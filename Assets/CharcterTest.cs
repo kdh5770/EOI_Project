@@ -8,6 +8,7 @@ public class CharcterTest : MonoBehaviour
     void Start()
     {
         Debug.Log("천호진");
+        Debug.Log("천호진1");
     }
 
     // Update is called once per frame
