@@ -8,6 +8,7 @@ public class CHJTest : MonoBehaviour
     void Start()
     {
         Debug.Log("오 안녕하세요 ");
+        Debug.Log("두번째 테스트");
     }
 
     // Update is called once per frame
