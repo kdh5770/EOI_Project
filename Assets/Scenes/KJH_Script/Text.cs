@@ -8,6 +8,7 @@ public class Text : MonoBehaviour
     void Start()
     {
         Debug.Log("±èÁ¤ÈÆ");
+        Debug.Log("±èÁ¤ÈÆ, ¸¶Áö¸· Å×½ºÆ®");
     }
 
     // Update is called once per frame
