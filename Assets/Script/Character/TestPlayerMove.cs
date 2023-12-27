@@ -5,6 +5,7 @@ using UnityEngine;
 public class TestPlayerMove : MonoBehaviour
 {
     Vector3 dir;
+    public Rigidbody _rigid;
     public float moveSpd;
 
     void Start()
@@ -17,7 +18,12 @@ public class TestPlayerMove : MonoBehaviour
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
-        dir = new Vector3(v, 0, h);
+        dir = new Vector3(h, 0, v);
+
+        /*
+        Vector3 dir = transform.forward;
+        _rigid.velocity = dir * moveSpd * Time.deltaTime;*/
+        
         transform.position += dir * moveSpd * Time.deltaTime;
     }
 }
