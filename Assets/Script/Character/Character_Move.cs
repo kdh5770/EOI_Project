@@ -7,13 +7,14 @@ using UnityEngine.Windows;
 
 public class Character_Move : MonoBehaviour
 {
+    public Vector2 input;
     private Vector3 moveDirection;
     public float moveSpeed = 4f;
+
     public Animator animator;
     private Rigidbody rigid;
     Camera camera;
-    Vector3 inputvalue;
-    // Start is called before the first frame update
+
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
@@ -24,9 +25,8 @@ public class Character_Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveDirection = (transform.right * inputvalue.x + transform.forward * inputvalue.y).normalized;
+        moveDirection = (transform.right * input.x + transform.forward * input.y).normalized;
         rigid.MovePosition(transform.position + (moveDirection * moveSpeed * Time.deltaTime));
-
     }
 
 
@@ -38,13 +38,9 @@ public class Character_Move : MonoBehaviour
 
     void OnMove(InputValue value)
     {
-        Vector2 input = value.Get<Vector2>();
-        if (input != null)
-        {
+        input = value.Get<Vector2>();
 
-            inputvalue = new Vector3(input.x, 0, input.y);
-            animator.SetFloat("X", input.x);
-            animator.SetFloat("Y", input.y);
-        }
+        animator.SetFloat("X", input.x);
+        animator.SetFloat("Y", input.y);
     }
 }
