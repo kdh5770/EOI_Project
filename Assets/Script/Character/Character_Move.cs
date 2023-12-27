@@ -3,36 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
+
 public class Character_Move : MonoBehaviour
 {
     private Vector3 moveDirection;
-    private float moveSpeed = 4f;
-    private Animator animator;
-
+    public float moveSpeed = 4f;
+    public Animator animator;
+    private Rigidbody rigid;
+    Camera camera;
+    Vector3 inputvalue;
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
+        rigid = GetComponent<Rigidbody>();
+        camera = Camera.main;
     }
 
     // Update is called once per frame
     void Update()
     {
-        bool hasControl = (moveDirection != Vector3.zero);
-        if(hasControl)
-        {
-            transform.rotation=Quaternion.LookRotation(moveDirection);
-            transform.Translate(Vector3.forward*Time.deltaTime*moveSpeed);
-        }
+        moveDirection = (transform.right * inputvalue.x + transform.forward * inputvalue.y).normalized;
+        rigid.MovePosition(transform.position + (moveDirection * moveSpeed * Time.deltaTime));
+
+    }
+
+
+
+    private void LateUpdate()
+    {
+        transform.rotation = Quaternion.Euler(0, camera.transform.eulerAngles.y, 0);
     }
 
     void OnMove(InputValue value)
     {
         Vector2 input = value.Get<Vector2>();
-        if(input != null)
+        if (input != null)
         {
-            moveDirection = new Vector3(input.x, 0f, input.y);
-            animator.SetFloat("moveSpeed", input.magnitude);
+
+            inputvalue = new Vector3(input.x, 0, input.y);
+            animator.SetFloat("X", input.x);
+            animator.SetFloat("Y", input.y);
         }
     }
 }
