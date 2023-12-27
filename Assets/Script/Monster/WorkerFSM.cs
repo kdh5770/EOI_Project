@@ -8,6 +8,9 @@ public class WorkerFSM : MonsterFSM
 {
     public GameObject target;
     public NavMeshAgent nav;
+
+    public float dist; // 몬스터와 플레이어 거리
+    public float attackDist = 3f; 
     
     private void Start()
     {
@@ -20,6 +23,7 @@ public class WorkerFSM : MonsterFSM
 
     private void Update()
     {
+
         switch (State)
         {
             case MONSTER_STATE.iDLE:
@@ -93,6 +97,7 @@ public class WorkerFSM : MonsterFSM
     void SetTracking()
     {
         animator.SetBool("IsIdle", true);
+        animator.SetBool("IsAttack", false);
     }
     void UpdateTracking() // 추적 타겟 감지
     {
@@ -117,12 +122,12 @@ public class WorkerFSM : MonsterFSM
     {
         animator.SetBool("IsRun", true);
         animator.SetBool("IsIdle", false);
-        nav.SetDestination(target.transform.position);
     }
 
     void UpdateMove() // 공격 범위 감지
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 1.5f); // 공격 범위 지정하기
+        nav.SetDestination(target.transform.position);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 1f); // 공격 범위 지정하기
 
         if (colliders.Length > 0)
         {
@@ -145,12 +150,16 @@ public class WorkerFSM : MonsterFSM
 
     void UpdateAttack()
     {
-        // 공격이 끝났을때 상태전환
-        if(animator.GetBool("IsAttack"))
+        dist = Vector3.Distance(transform.position, target.transform.position);
+        if(dist <= attackDist)
         {
-
+            nav.ResetPath();
+            nav.velocity = Vector3.zero;
         }
-        // 데미지 주는 방법
+        else if(dist > attackDist)
+        {
+            ChangeState(MONSTER_STATE.TRACKING);
+        }
     }
 
     void SetReact()

@@ -144,6 +144,8 @@ MonoBehaviour:
   State: 6
   target: {fileID: 0}
   nav: {fileID: 0}
+  dist: 0
+  attackDist: 1
 --- !u!114 &598980999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,7 +164,7 @@ MonoBehaviour:
   DEF: 0
   bassSPD: 0
   moveRange: 0
-  sightRange: 2
+  sightRange: 10
   dropItemPre: {fileID: 0}
 --- !u!195 &598981001
 NavMeshAgent:
@@ -627,6 +629,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: Worker
       objectReference: {fileID: 0}
+    - target: {fileID: 739839661717828185, guid: a28950776a54f3248921ce15544f67ed,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 739839661717828185, guid: a28950776a54f3248921ce15544f67ed,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 739839661717828185, guid: a28950776a54f3248921ce15544f67ed,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 739839661717828185, guid: a28950776a54f3248921ce15544f67ed,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 739839661717828185, guid: a28950776a54f3248921ce15544f67ed,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 739839661717828185, guid: a28950776a54f3248921ce15544f67ed,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4302836073969810821, guid: a28950776a54f3248921ce15544f67ed,
         type: 3}
       propertyPath: m_RootOrder
@@ -635,7 +667,7 @@ PrefabInstance:
     - target: {fileID: 4302836073969810821, guid: a28950776a54f3248921ce15544f67ed,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.49
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4302836073969810821, guid: a28950776a54f3248921ce15544f67ed,
         type: 3}
