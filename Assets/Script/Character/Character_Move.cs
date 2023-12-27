@@ -42,5 +42,11 @@ public class Character_Move : MonoBehaviour
 
         animator.SetFloat("X", input.x);
         animator.SetFloat("Y", input.y);
+        if (input != Vector2.zero)
+        {
+            animator.SetFloat("Speed", 1);
+            return;
+        }
+        animator.SetFloat("Speed", 0);
     }
 }
