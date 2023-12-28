@@ -2,24 +2,50 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Shoot : MonoBehaviour
 {
+    
     public CinemachineVirtualCamera aimCam;
     public bool Aim;
     Animator animator;
+    private PlayerInput playerinput;
+    private InputAction aimAction;
+    [SerializeField]
+    private int priorityBoostAmount = 10;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
+        playerinput = GetComponent<PlayerInput>();
+        aimCam=GetComponent<CinemachineVirtualCamera>();
+        aimAction = playerinput.actions["Aim"];
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        Aiming();
-        OnShoot();
+        aimAction.performed += _ => StartAim();
+        aimAction.canceled += _ => CancelAim();
     }
+
+    private void OnDisable()
+    {
+        aimAction.performed -= _ => StartAim();
+        aimAction.canceled -= _ => CancelAim();
+    }
+
+    private void StartAim()
+    {
+
+    }
+
+    private void CancelAim()
+    {
+
+    }
+
 
     void Aiming()
     {

@@ -14,12 +14,15 @@ public class Character_Move : MonoBehaviour
     public Animator animator;
     private Rigidbody rigid;
     Camera camera;
-
+    private PlayerInput playerinput;
+    private InputAction moveAction;
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
         rigid = GetComponent<Rigidbody>();
         camera = Camera.main;
+        playerinput = GetComponent<PlayerInput>();
+        moveAction = playerinput.actions["Move"];
     }
 
     // Update is called once per frame
