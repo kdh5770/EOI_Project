@@ -8,7 +8,7 @@ public class MonsterAttack : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("ATK");
+            other.GetComponent<CharacterHealth>().TakeDamage(1);
         }
     }
 }
