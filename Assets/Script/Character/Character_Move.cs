@@ -15,11 +15,6 @@ public class Character_Move : MonoBehaviour
     private Rigidbody rigid;
     Camera camera;
 
-
-
-    float _magnitude;
-    public float _x;
-    public float _y;
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
@@ -30,23 +25,19 @@ public class Character_Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        #region 기존 이동 로직
         //moveDirection = (transform.right * input.x + transform.forward * input.y).normalized;
         //rigid.MovePosition(transform.position + (moveDirection * moveSpeed * Time.deltaTime));
+        #endregion
 
-        _x = input.x;
-        _y = input.y;
-
-        moveDirection = (transform.right * _x + transform.forward * _y).normalized;
+        moveDirection = (Vector3.right * input.x + Vector3.forward * input.y).normalized; // 기존엔 transform.right로 해서 플레이어의 회전값에 따라 계속 변하는데, 이를 Vector3.right 즉 World기준으로 이동하게 만들었다.
 
         moveDirection = Quaternion.AngleAxis(camera.transform.rotation.eulerAngles.y, Vector3.up) * moveDirection; // 기존 _dir * y축 기준으로 카메라의 rotation.y값만큼 Quaternion을 리턴한다.
 
-        moveDirection = moveDirection.normalized;
+        moveDirection = moveDirection.normalized; // 정규화
 
-        _magnitude = Mathf.Clamp01(moveDirection.magnitude) * moveSpeed;
+        rigid.MovePosition(transform.position + (moveDirection * moveSpeed * Time.deltaTime)); // 이동
     }
-
-
-
     private void LateUpdate()
     {
         if (moveDirection != Vector3.zero) // _dir이 0이 아니라면, 즉! 움직이고 있다면,
@@ -55,7 +46,9 @@ public class Character_Move : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, quat, 720f * Time.deltaTime); // (첫번째) 에서 (두번째)까지 (세번째)의 속도로 회전한 결과를 리턴한다.
         }
 
+        #region 기존 이동 로직
         //transform.rotation = Quaternion.Euler(0, camera.transform.eulerAngles.y, 0);
+        #endregion
     }
 
     void OnMove(InputValue value)
