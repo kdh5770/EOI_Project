@@ -43,7 +43,7 @@ public class Character_Move : MonoBehaviour
         if (moveDirection != Vector3.zero) // _dir이 0이 아니라면, 즉! 움직이고 있다면,
         {
             Quaternion quat = Quaternion.LookRotation(moveDirection, Vector3.up); // 첫번째 인자는 바라보는 방향이며, 두번째 인자는 축이다. => 첫번째 인자는 바라보고자 하는 방향벡터가 들어가야한다.
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, quat, 720f * Time.deltaTime); // (첫번째) 에서 (두번째)까지 (세번째)의 속도로 회전한 결과를 리턴한다.
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, quat, 360f * Time.deltaTime); // (첫번째) 에서 (두번째)까지 (세번째)의 속도로 회전한 결과를 리턴한다.
         }
 
         #region 기존 이동 로직
