@@ -1,11 +1,18 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Aiming : MonoBehaviour
+public class AimAndShot : MonoBehaviour
 {
+    public enum AimState
+    {
+        NotAiming, Aiming
+    }
+
+    public AimState aimstate {  get; private set; }
+
     private Animator animator;
     [SerializeField]
-    private GameObject Laser;
+    private GameObject Laser; // 화면 크로스헤어 오브젝트
     // Start is called before the first frame update
     void Start()
     {
@@ -35,8 +42,10 @@ public class Aiming : MonoBehaviour
         // 마우스 우클릭 시작 시 호출되는 메서드
         if (context.started)
         {
-            Laser.SetActive(true);
+            Laser.SetActive(true); // 화면에 빨강색 크로스헤어 표시
             animator.SetBool("Aiming", true);
+
+
         }
     }
 
@@ -45,7 +54,7 @@ public class Aiming : MonoBehaviour
         // 마우스 우클릭 종료 시 호출되는 메서드
         if (context.canceled)
         {
-            Laser.SetActive(false);
+            Laser.SetActive(false); // 화면 빨강색 크로스헤어 없앰
             animator.SetBool("Aiming", false);
         }
     }
