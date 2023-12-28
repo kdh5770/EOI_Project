@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TempScript : MonoBehaviour
 {
+    public int targetFrame;
+
     #region 프레임 확인 GUI 관련 로직
     [Range(10, 150)]
     public int fontSize = 30;
@@ -13,16 +15,15 @@ public class TempScript : MonoBehaviour
 
     void Start()
     {
-        Application.targetFrameRate = 50; // 프레임 고정
+        targetFrame = 60;
+        Application.targetFrameRate = targetFrame; // 프레임 고정
         #region 마우스 커서 감추기 && 고정
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         #endregion
     }
-    void Update()
-    {
-        
-    }
+
+
     void OnGUI()
     {
         #region 프레임 확인 GUI 관련 로직

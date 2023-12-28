@@ -11,8 +11,7 @@ public class AimAndShot : MonoBehaviour
     public AimState aimstate {  get; private set; }
 
     private Animator animator;
-    [SerializeField]
-    private GameObject Laser; // 화면 크로스헤어 오브젝트
+    public GameObject Laser; // 화면 크로스헤어 오브젝트
     // Start is called before the first frame update
     void Start()
     {

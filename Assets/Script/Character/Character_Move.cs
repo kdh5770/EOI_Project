@@ -37,6 +37,9 @@ public class Character_Move : MonoBehaviour
         moveDirection = moveDirection.normalized; // 정규화
 
         rigid.MovePosition(transform.position + (moveDirection * moveSpeed * Time.deltaTime)); // 이동
+
+        if(animator.GetBool("Aiming"))
+            transform.rotation = Quaternion.Euler(0f, Camera.main.transform.eulerAngles.y, 0f);
     }
     private void LateUpdate()
     {
@@ -64,4 +67,5 @@ public class Character_Move : MonoBehaviour
         }
         animator.SetFloat("Speed", 0);
     }
+  
 }
