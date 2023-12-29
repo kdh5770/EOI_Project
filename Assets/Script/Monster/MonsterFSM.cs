@@ -20,9 +20,11 @@ public class MonsterFSM : MonoBehaviour
     protected Animator animator;
 
     protected MonsterStatus monsterStatus;
+
     public virtual void ChangeState(MONSTER_STATE _state)
     {
         State = _state;
+        
     }
-
+    
 }
