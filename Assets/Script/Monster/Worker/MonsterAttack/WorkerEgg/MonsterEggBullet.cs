@@ -12,7 +12,7 @@ public class MonsterEggBullet : MonoBehaviour
         {
             GameObject obj = Instantiate(eggEFT, transform.position, Quaternion.identity);
             Destroy(obj, 2f);
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 }

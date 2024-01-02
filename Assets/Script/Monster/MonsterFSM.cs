@@ -9,7 +9,8 @@ public class MonsterFSM : MonoBehaviour
         iDLE = 0, 
         TRACKING, // 추적
         MOVE,
-        ATTACK,
+        ATTACK, // 근거리 공격
+        LONGATTACK, // 원거리 공격
         REACT, // 반응
         CUTSCENE, // 
         DIE

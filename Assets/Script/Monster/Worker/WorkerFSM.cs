@@ -14,6 +14,8 @@ public class WorkerFSM : MonsterFSM
 
     public int Shout = 0; // 소리 지르기 1회
 
+    public float longAttackTime = 0; // 원거리 공격 타임
+
     private void Start()
     {
         animator = GetComponentInChildren<Animator>();
@@ -41,6 +43,10 @@ public class WorkerFSM : MonsterFSM
 
             case MONSTER_STATE.ATTACK:
                 UpdateAttack();
+                break;
+
+            case MONSTER_STATE.LONGATTACK:
+                UpdateLongAttack();
                 break;
 
             case MONSTER_STATE.REACT:
@@ -77,6 +83,10 @@ public class WorkerFSM : MonsterFSM
                 SetAttack();
                 break;
 
+            case MONSTER_STATE.LONGATTACK:
+                SetLongAttack();
+                break;
+
             case MONSTER_STATE.REACT:
                 SetReact();
                 break;
@@ -101,6 +111,7 @@ public class WorkerFSM : MonsterFSM
         animator.SetBool("IsIdle", true);
         animator.SetBool("IsAttack", false);
         animator.SetBool("IsShout", false);
+        animator.SetBool("IsLongAttack", false);
     }
     void UpdateTracking() // 추적 타겟 감지
     {
@@ -133,6 +144,8 @@ public class WorkerFSM : MonsterFSM
 
     void UpdateMove() // 공격 범위 감지
     {
+        longAttackTime += 1f * Time.deltaTime;
+        dist = Vector3.Distance(transform.position, target.transform.position); // 몬스터와 플레이어의 거리
         nav.SetDestination(target.transform.position);
         Collider[] colliders = Physics.OverlapSphere(transform.position, 1f); // 공격 범위 지정하기
 
@@ -143,6 +156,12 @@ public class WorkerFSM : MonsterFSM
                 if (col.CompareTag("Player"))
                 {
                     ChangeState(MONSTER_STATE.ATTACK);
+                    break;
+                }
+
+                if( dist >= attackDist && longAttackTime >= 5f)
+                {
+                    ChangeState(MONSTER_STATE.LONGATTACK);
                     break;
                 }
             }
@@ -167,6 +186,27 @@ public class WorkerFSM : MonsterFSM
         else if(dist > attackDist)
         {
             ChangeState(MONSTER_STATE.TRACKING);
+        }
+    }
+
+    void SetLongAttack()
+    {
+        animator.SetBool("IsRun", false);
+        animator.SetBool("IsIdle", false);
+        animator.SetBool("IsLongAttack", true);
+    }
+
+    void UpdateLongAttack()
+    {
+        if(longAttackTime >= 5)
+        {
+            longAttackTime = 0f;
+            transform.LookAt(target.transform.position);
+            nav.ResetPath();
+        }
+        else if (longAttackTime <= 5)
+        {
+            StartCoroutine(WaitForLongAttack());
         }
     }
 
@@ -207,6 +247,11 @@ public class WorkerFSM : MonsterFSM
     IEnumerator WaitForEggAttackAnimation() // 소리 지르기 애니메이션 실행 후 1초 뒤
     {
         yield return new WaitForSeconds(2.2f);
+        ChangeState(MONSTER_STATE.TRACKING);
+    }
+    IEnumerator WaitForLongAttack() // 원거리 공격 애니메이션
+    {
+        yield return new WaitForSeconds(1.2f);
         ChangeState(MONSTER_STATE.TRACKING);
     }
 }
