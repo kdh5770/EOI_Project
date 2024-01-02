@@ -12,8 +12,6 @@ public class PittyHandFSM : MonsterFSM
     public float dist; // 몬스터와 플레이어 거리
     public float attackDist = 3f;
 
-    public int Shout = 0; // 소리 지르기 1회
-
     private void Start()
     {
         animator = GetComponentInChildren<Animator>();
@@ -110,13 +108,9 @@ public class PittyHandFSM : MonsterFSM
         {
             foreach (Collider col in colliders)
             {
-                if (col.CompareTag("Player") && Shout == 0)
+                if (col.CompareTag("Player"))
                 {
                     target = col.gameObject;
-                    ChangeState(MONSTER_STATE.REACT);
-                }
-                if (col.CompareTag("Player") && Shout == 1)
-                {
                     ChangeState(MONSTER_STATE.MOVE);
                     break;
                 }
@@ -177,15 +171,7 @@ public class PittyHandFSM : MonsterFSM
 
     void UpdateReact()
     {
-        if (Shout == 0)
-        {
-            transform.LookAt(target.transform.position);
-            Shout += 1;
-        }
-        else if (Shout == 1)
-        {
-            StartCoroutine(WaitForEggAttackAnimation());
-        }
+
     }
 
     void UpdateCutsene()
@@ -203,9 +189,4 @@ public class PittyHandFSM : MonsterFSM
 
     }
 
-    IEnumerator WaitForEggAttackAnimation() // 소리 지르기 애니메이션 실행 후 1초 뒤
-    {
-        yield return new WaitForSeconds(1);
-        ChangeState(MONSTER_STATE.TRACKING);
-    }
 }
