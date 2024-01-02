@@ -11,5 +11,9 @@ public class WorkerBullet : MonoBehaviour
             Destroy(this.gameObject);
             Debug.Log("Çה");
         }
+        else
+        {
+            Destroy(this.gameObject, 3f);
+        }
     }
 }

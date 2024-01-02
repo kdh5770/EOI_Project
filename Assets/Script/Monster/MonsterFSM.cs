@@ -12,6 +12,7 @@ public class MonsterFSM : MonoBehaviour
         ATTACK, // 근거리 공격
         LONGATTACK, // 원거리 공격
         REACT, // 반응
+        HIT, // 피격
         CUTSCENE, // 
         DIE
     }
