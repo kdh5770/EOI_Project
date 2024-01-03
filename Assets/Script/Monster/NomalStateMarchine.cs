@@ -113,9 +113,8 @@ public class NomalStateMarchine : MonsterFSM
     void SetTracking()
     {
         animator.SetBool("IsIdle", true);
-        animator.SetBool("IsAttack", false);
-        animator.SetBool("IsShout", false);
-        animator.SetBool("IsLongAttack", false);
+        animator.SetBool("IsMelee", false);
+        animator.SetBool("IsRun", false);
     }
     void UpdateTracking() // 추적 타겟 감지
     {
@@ -127,6 +126,7 @@ public class NomalStateMarchine : MonsterFSM
             {
                 if (col.CompareTag("Player"))
                 {
+                    target = col.gameObject;
                     ChangeState(MONSTER_STATE.MOVE);
                     break;
                 }
@@ -146,12 +146,15 @@ public class NomalStateMarchine : MonsterFSM
         nav.SetDestination(target.transform.position);
         Collider[] colliders = Physics.OverlapSphere(transform.position, 1f); // 공격 범위 지정하기
 
+        Debug.Log(colliders.Length);
         if (colliders.Length > 0)
         {
+            Debug.Log("2");
             foreach (Collider col in colliders)
             {
                 if (col.CompareTag("Player"))
                 {
+                    Debug.Log("3");
                     ChangeState(MONSTER_STATE.ATTACK);
                     break;
                 }
@@ -161,8 +164,8 @@ public class NomalStateMarchine : MonsterFSM
 
     void SetAttack()
     {
-        animator.SetBool("IsRun", false);
         animator.SetBool("IsIdle", true);
+        animator.SetBool("IsRun", false);
         skill.ExecuteAttack();
     }
 

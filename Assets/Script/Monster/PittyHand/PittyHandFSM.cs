@@ -129,14 +129,18 @@ public class PittyHandFSM : MonsterFSM
     void UpdateMove() // 공격 범위 감지
     {
         nav.SetDestination(target.transform.position);
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 2f); // 공격 범위 지정하기
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 10f); // 공격 범위 지정하기
 
         if (colliders.Length > 0)
         {
+            Debug.Log("1");
             foreach (Collider col in colliders)
             {
                 if (col.CompareTag("Player"))
                 {
+                    Debug.Log("2");
+                    nav.ResetPath();
+                    nav.isStopped = true;
                     ChangeState(MONSTER_STATE.ATTACK);
                     break;
                 }
@@ -146,7 +150,7 @@ public class PittyHandFSM : MonsterFSM
 
     void SetAttack()
     {
-        animator.SetBool("IsAttack", true);
+        animator.SetBool("IsIdle", true);
         animator.SetBool("IsRun", false);
         skill.ExecuteAttack();
     }
