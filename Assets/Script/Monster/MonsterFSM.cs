@@ -15,7 +15,7 @@ public enum MONSTER_STATE
     DIE
 }
 
-public class MonsterFSM : MonoBehaviour, IStateMachine
+public abstract class MonsterFSM : MonoBehaviour, IStateMachine
 {
 
     public MONSTER_STATE State;
@@ -24,10 +24,8 @@ public class MonsterFSM : MonoBehaviour, IStateMachine
 
     protected MonsterStatus monsterStatus;
 
-    public void ChangeReactionState(REACT_TYPE _state)
-    {
-        Debug.Log("구현 하세용");
-    }
+    public abstract void ChangeReactionState(REACT_TYPE _state);
+
 
     public virtual void ChangeState(MONSTER_STATE _state)
     {

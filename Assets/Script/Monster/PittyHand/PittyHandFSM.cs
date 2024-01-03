@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static MonsterFSM;
 using UnityEngine.AI;
 
 public class PittyHandFSM : MonsterFSM
@@ -189,4 +188,8 @@ public class PittyHandFSM : MonsterFSM
 
     }
 
+    public override void ChangeReactionState(REACT_TYPE _state)
+    {
+        throw new System.NotImplementedException();
+    }
 }

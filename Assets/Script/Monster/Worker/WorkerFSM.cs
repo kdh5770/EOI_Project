@@ -254,4 +254,9 @@ public class WorkerFSM : MonsterFSM
         yield return new WaitForSeconds(1.2f);
         ChangeState(MONSTER_STATE.TRACKING);
     }
+
+    public override void ChangeReactionState(REACT_TYPE _state)
+    {
+        throw new System.NotImplementedException();
+    }
 }
