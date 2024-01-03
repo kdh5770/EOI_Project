@@ -45,9 +45,7 @@ public class WorkerFSM : MonsterFSM
                 UpdateAttack();
                 break;
 
-            case MONSTER_STATE.LONGATTACK:
-                UpdateLongAttack();
-                break;
+
 
             case MONSTER_STATE.REACT:
                 UpdateReact();
@@ -83,9 +81,7 @@ public class WorkerFSM : MonsterFSM
                 SetAttack();
                 break;
 
-            case MONSTER_STATE.LONGATTACK:
-                SetLongAttack();
-                break;
+
 
             case MONSTER_STATE.REACT:
                 SetReact();
@@ -156,12 +152,6 @@ public class WorkerFSM : MonsterFSM
                 if (col.CompareTag("Player"))
                 {
                     ChangeState(MONSTER_STATE.ATTACK);
-                    break;
-                }
-
-                if( dist >= attackDist && longAttackTime >= 5f)
-                {
-                    ChangeState(MONSTER_STATE.LONGATTACK);
                     break;
                 }
             }

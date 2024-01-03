@@ -98,8 +98,6 @@ public class PittyHandFSM : MonsterFSM
     void SetTracking()
     {
         animator.SetBool("IsIdle", true);
-        animator.SetBool("IsAttack", false);
-        animator.SetBool("IsShout", false);
     }
     void UpdateTracking() // 추적 타겟 감지
     {

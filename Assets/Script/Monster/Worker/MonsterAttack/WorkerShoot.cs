@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class WorkerShout : Attack, ISkillEffect
+public class WorkerShoot : Attack, ISkillEffect
 {
     public GameObject Worker;
 
@@ -27,8 +26,8 @@ public class WorkerShout : Attack, ISkillEffect
             {
                 if (collider.CompareTag("Player"))
                 {
-                    animator.SetTrigger("IsShoutSkill");
-                    Debug.Log("»þ¿ìÆÃ");
+                    animator.SetTrigger("IsShootSkill");
+                    Debug.Log("¾Ë Çª½¹");
                     break;
                 }
             }
