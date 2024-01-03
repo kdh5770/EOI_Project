@@ -23,9 +23,10 @@ public class PittyHandSkill : Attack, ISkillEffect
     public override void ExecuteAttack() // 공격 실행
     {
         pittyHand.GetComponent<NavMeshAgent>().enabled = false;
-        pittyHand.transform.position = qte.position + qte.transform.forward * 0.3f;
-        pittyHand.transform.LookAt(qte.transform.position);
-        pittyHand.transform.rotation = Quaternion.Euler(- 90, qte.transform.rotation.y, 0);
+        pittyHand.transform.position = qte.position + qte.transform.forward * 0.03f;
+        Vector3 lookDirection = new Vector3(qte.transform.position.x - pittyHand.transform.position.x, 0, qte.transform.position.z - pittyHand.transform.position.z);
+        Quaternion desiredRotation = Quaternion.LookRotation(lookDirection, Vector3.up) * Quaternion.Euler(-60, 0, 0);
+        pittyHand.transform.rotation = desiredRotation;
         StartCoroutine(TestQTE());
     }
 
