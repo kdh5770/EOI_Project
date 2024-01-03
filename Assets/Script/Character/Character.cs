@@ -11,11 +11,12 @@ public class Character : MonoBehaviour
     public Vector2 input;
     private Vector3 moveDirection;
     public float moveSpeed = 4f;
-
+    public GameObject AimUI; // 조준점
     public Animator animator;
     private Rigidbody rigid;
     Camera camera;
     public bool Aiming;
+
 
     void Start()
     {
@@ -79,6 +80,7 @@ public class Character : MonoBehaviour
     {
         input = context.ReadValue<Vector2>();
 
+
         animator.SetFloat("X", input.x);
         animator.SetFloat("Y", input.y);
         if (input != Vector2.zero)
@@ -87,6 +89,7 @@ public class Character : MonoBehaviour
             return;
         }
         animator.SetFloat("Speed", 0);
+
 
         #region 기존 이동 로직
         //moveDirection = (transform.right * input.x + transform.forward * input.y).normalized;
@@ -123,23 +126,28 @@ public class Character : MonoBehaviour
         {
             Debug.Log("조준 땡깁니다.");
             animator.SetBool("Aiming", true);
+            AimUI.SetActive(true);
             Aiming = true;
         }
         else if (context.canceled)
         {
             Debug.Log("조준 해제.");
             animator.SetBool("Aiming", false);
+            AimUI.SetActive(false);
             Aiming = false;
         }
     }
-
 
     public void OnShoot(InputAction.CallbackContext context) // 사격
     {
         if (context.performed && Aiming)
         {
-            animator.SetTrigger("Shoot");
+            animator.SetBool("Shoot",true);
             Debug.Log("쏩니다.");
+        }
+        else if(context.canceled)
+        {
+            animator.SetBool("Shoot", false);
         }
     }
 
@@ -168,7 +176,6 @@ public class Character : MonoBehaviour
             Debug.Log("상호작용 중.");
         }
     }
-
 
 
     void OnDeath()
