@@ -11,6 +11,8 @@ public class PittyHandFSM : MonsterFSM
     public float dist; // 몬스터와 플레이어 거리
     public float attackDist = 3f;
 
+    public Attack skill;
+
     private void Start()
     {
         animator = GetComponentInChildren<Animator>();
@@ -127,7 +129,7 @@ public class PittyHandFSM : MonsterFSM
     void UpdateMove() // 공격 범위 감지
     {
         nav.SetDestination(target.transform.position);
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 1f); // 공격 범위 지정하기
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 2f); // 공격 범위 지정하기
 
         if (colliders.Length > 0)
         {
@@ -146,20 +148,12 @@ public class PittyHandFSM : MonsterFSM
     {
         animator.SetBool("IsAttack", true);
         animator.SetBool("IsRun", false);
+        skill.ExecuteAttack();
     }
 
     void UpdateAttack()
     {
-        dist = Vector3.Distance(transform.position, target.transform.position);
-        if (dist <= attackDist)
-        {
-            nav.ResetPath();
-            nav.velocity = Vector3.zero;
-        }
-        else if (dist > attackDist)
-        {
-            ChangeState(MONSTER_STATE.TRACKING);
-        }
+
     }
 
     void SetReact()

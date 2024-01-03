@@ -14,6 +14,8 @@ public class CharacterHealth : MonoBehaviour
     public float DEF;
     public float baseSpeed;
 
+    public GameObject pittyHandPos;
+
     public void TakeDamage(float _damage)
     {
         curHP -= ((int)(_damage - DEF));
@@ -22,5 +24,9 @@ public class CharacterHealth : MonoBehaviour
         {
             Debug.Log("플레이어 사망");
         }
+    }
+    public bool GetDie()
+    {
+        return (curHP <= 0);
     }
 }
