@@ -17,7 +17,6 @@ public class BuildTest : MonoBehaviour
 
     public string inputText;
 
-    public TextMeshPro textMeshPro;
     int debugCount;
 
     private void Start()
@@ -37,8 +36,8 @@ public class BuildTest : MonoBehaviour
                 isPop = false;
                 playerInput.enabled = isPop;
 
-                Vector3 cuvePos = new Vector3(transform.position.x, 20, transform.position.z);
-                preObj = Instantiate(checkPre, cuvePos, Quaternion.identity);
+                Vector3 cubePos = new Vector3(transform.position.x, 20, transform.position.z);
+                preObj = Instantiate(checkPre, cubePos, Quaternion.identity);
                 preObj.GetComponent<DebugTestCube>().text.text = debugCount++.ToString();
                 panel.SetActive(!panel.activeSelf);
 

@@ -13,6 +13,7 @@ public class MonsterStatus : MonoBehaviour
     public float bassSPD;
     public float moveRange;
     public float sightRange;
+    public float attackRange;
 
     public GameObject dropItemPre;
 
