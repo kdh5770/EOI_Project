@@ -9,7 +9,7 @@ public class NomalStateMarchine : MonsterFSM
     public NavMeshAgent nav;
 
     public float dist; // 몬스터와 플레이어 거리
-    public float attackDist = 1.7f;
+    public float attackDist = 1.5f;
 
     public int Shout = 0; // 소리 지르기 1회
 
@@ -49,10 +49,6 @@ public class NomalStateMarchine : MonsterFSM
                 UpdateAttack();
                 break;
 
-            case MONSTER_STATE.LONGATTACK:
-                UpdateLongAttack();
-                break;
-
             case MONSTER_STATE.REACT:
                 UpdateReact();
                 break;
@@ -85,10 +81,6 @@ public class NomalStateMarchine : MonsterFSM
 
             case MONSTER_STATE.ATTACK:
                 SetAttack();
-                break;
-
-            case MONSTER_STATE.LONGATTACK:
-                SetLongAttack();
                 break;
 
             case MONSTER_STATE.REACT:
@@ -139,12 +131,14 @@ public class NomalStateMarchine : MonsterFSM
     {
         animator.SetBool("IsRun", true);
         animator.SetBool("IsIdle", false);
+        nav.isStopped = false;
     }
 
     void UpdateMove() // 공격 범위 감지
     {
+        dist = Vector3.Distance(transform.position, target.transform.position);
         nav.SetDestination(target.transform.position);
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 3f); // 공격 범위 지정하기
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 7f); // 공격 범위 지정하기
 
         Debug.Log(colliders.Length);
         if (colliders.Length > 0)
@@ -172,11 +166,19 @@ public class NomalStateMarchine : MonsterFSM
     float testtime = 0;
     void UpdateAttack()
     {
-        testtime += Time.deltaTime;
-        if(testtime >= 3f)
+        //testtime += Time.deltaTime;
+        //if(testtime >= 3f)
+        //{
+        //    attackcount++;
+        //    testtime = 0;
+
+        //    nav.isStopped = false;
+        //    ChangeState(MONSTER_STATE.TRACKING);
+        //}
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsTag("attack"))
         {
-            testtime = 0;
             ChangeState(MONSTER_STATE.TRACKING);
+            Debug.Log("asdasdsadsadasd");
         }
     }
 
@@ -192,21 +194,12 @@ public class NomalStateMarchine : MonsterFSM
 
     void SetReact()
     {
-        //animator.SetBool("IsIdle", false);
-        //animator.SetBool("IsShout", true);
+
     }
 
     void UpdateReact()
     {
-        //if (Shout == 0)
-        //{
-        //    transform.LookAt(target.transform.position);
-        //    Shout += 1;
-        //}
-        //else if (Shout == 1)
-        //{
-        //    StartCoroutine(WaitForEggAttackAnimation());
-        //}
+
     }
 
     void UpdateCutsene()
@@ -223,17 +216,6 @@ public class NomalStateMarchine : MonsterFSM
     {
 
     }
-
-    //IEnumerator WaitForEggAttackAnimation() // 소리 지르기 애니메이션 실행 후 1초 뒤
-    //{
-    //    yield return new WaitForSeconds(2.2f);
-    //    ChangeState(MONSTER_STATE.TRACKING);
-    //}
-    //IEnumerator WaitForLongAttack() // 원거리 공격 애니메이션
-    //{
-    //    yield return new WaitForSeconds(1.2f);
-    //    ChangeState(MONSTER_STATE.TRACKING);
-    //}
 
     public override void ChangeReactionState(REACT_TYPE _state)
     {
