@@ -144,17 +144,17 @@ public class NomalStateMarchine : MonsterFSM
     void UpdateMove() // 공격 범위 감지
     {
         nav.SetDestination(target.transform.position);
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 1f); // 공격 범위 지정하기
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 3f); // 공격 범위 지정하기
 
         Debug.Log(colliders.Length);
         if (colliders.Length > 0)
         {
-            Debug.Log("2");
             foreach (Collider col in colliders)
             {
                 if (col.CompareTag("Player"))
                 {
-                    Debug.Log("3");
+                    nav.ResetPath();
+                    nav.isStopped = true;
                     ChangeState(MONSTER_STATE.ATTACK);
                     break;
                 }
@@ -173,7 +173,7 @@ public class NomalStateMarchine : MonsterFSM
     void UpdateAttack()
     {
         testtime += Time.deltaTime;
-        if(testtime >= 1f)
+        if(testtime >= 3f)
         {
             testtime = 0;
             ChangeState(MONSTER_STATE.TRACKING);
