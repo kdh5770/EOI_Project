@@ -16,7 +16,7 @@ public class Character : MonoBehaviour
     private Rigidbody rigid;
     Camera camera;
     public bool Aiming;
-
+    public GameObject firePos;
 
     void Start()
     {
@@ -33,6 +33,39 @@ public class Character : MonoBehaviour
         //if (animator.GetBool("Aiming"))
         //    transform.rotation = Quaternion.Euler(0f, Camera.main.transform.eulerAngles.y, 0f);
         transform.rotation = Quaternion.Euler(0f, Camera.main.transform.eulerAngles.y, 0f);
+
+        if(animator.GetBool("Aiming"))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+            RaycastHit hit;
+
+            // If the ray hits something in the scene
+            if (Physics.Raycast(ray, out hit))
+            {
+                // Make firePos look at the hit point
+                firePos.transform.LookAt(hit.point);
+                if (animator.GetBool("Shoot"))
+                {
+                    if(hit.collider.CompareTag("Monster"))
+                    {
+                        hit.collider.GetComponent<MonsterStatus>().CalculateDamage(1,0);
+                    }
+                }
+            }
+            else
+            {
+                // If the ray doesn't hit anything, set the direction far away in the direction of the ray
+                firePos.transform.LookAt(ray.origin + ray.direction * 1000);
+            }
+
+            if(animator.GetBool("Shoot"))
+            {
+
+            }
+
+            // Debugging: Visualize the ray in the scene view
+            Debug.DrawRay(ray.origin, ray.direction * 100, Color.red);
+        }
     }
 
     private void FixedUpdate()
@@ -135,6 +168,7 @@ public class Character : MonoBehaviour
             animator.SetBool("Aiming", true);
             AimUI.SetActive(true);
             Aiming = true;
+            
         }
         else if (context.canceled)
         {
@@ -149,8 +183,8 @@ public class Character : MonoBehaviour
     {
         if (context.performed && Aiming)
         {
+            Debug.Log("¹ß»ç");
             animator.SetBool("Shoot", true);
-            Debug.Log("½õ´Ï´Ù.");
         }
         else if (context.canceled)
         {
@@ -188,5 +222,17 @@ public class Character : MonoBehaviour
     void OnDeath()
     {
 
+    }
+
+    void LookAtPoint(Vector3 point)
+    {
+        // Calculate the direction from firePos to the target point
+        Vector3 targetDirection = point - firePos.transform.position;
+
+        // Calculate the rotation needed to look at the target
+        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+
+        // Apply the rotation to the firePos
+        firePos.transform.rotation = targetRotation;
     }
 }

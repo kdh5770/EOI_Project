@@ -58,6 +58,7 @@ public class NomalStateMarchine : MonsterFSM
                 break;
 
             case MONSTER_STATE.DIE:
+                UpdateDie();
                 break;
         }
     }
@@ -214,9 +215,16 @@ public class NomalStateMarchine : MonsterFSM
 
     void SetDie()
     {
-
+        animator.SetTrigger("IsDead");
     }
 
+    void UpdateDie()
+    {
+        if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
+        {
+            Destroy(this.gameObject);
+        }
+    }    
     public override void ChangeReactionState(REACT_TYPE _state)
     {
         throw new System.NotImplementedException();

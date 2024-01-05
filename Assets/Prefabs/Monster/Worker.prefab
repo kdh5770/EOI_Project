@@ -46,9 +46,10 @@ GameObject:
   - component: {fileID: 1786861573}
   - component: {fileID: 1786861572}
   - component: {fileID: 1786861577}
+  - component: {fileID: 1278012375}
   m_Layer: 0
   m_Name: Worker
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,13 +84,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 0
-  curHP: 0
+  curHP: 10
   ATK: 0
   DEF: 0
   bassSPD: 0
   moveRange: 0
   sightRange: 10
+  attackRange: 0
   dropItemPre: {fileID: 0}
+  body: {fileID: 0}
 --- !u!195 &2772928981826424643
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -147,10 +150,10 @@ MonoBehaviour:
   dist: 0
   attackDist: 1.7
   Shout: 0
-  longAttackTime: 0
   skill: {fileID: 1786861577}
   melee: {fileID: 1786861572}
   throwAttack: {fileID: 0}
+  isSkill: 0
 --- !u!114 &1786861572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,9 +184,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   react_type: 0
-  qte: {fileID: 0}
-  target: {fileID: 0}
   Worker: {fileID: 5860725389467076843}
+--- !u!136 &1278012375
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5860725389467076843}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.62
+  m_Height: 2.57
+  m_Direction: 2
+  m_Center: {x: 0, y: 0.71, z: 0}
 --- !u!1001 &2772928981617319505
 PrefabInstance:
   m_ObjectHideFlags: 0

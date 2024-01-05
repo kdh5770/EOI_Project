@@ -18,12 +18,20 @@ public class MonsterStatus : MonoBehaviour
     public GameObject dropItemPre;
 
     protected MonsterFSM monsterFSM;
+    public Collider body;
+
+    private void Start()
+    {
+        monsterFSM = GetComponent<MonsterFSM>();
+        body = GetComponent<Collider>();
+    }
 
     public virtual void CalculateDamage(int _damage, int _weakenValue)
     {
         curHP -= _damage - (DEF - _weakenValue);
         if(curHP <= 0)
         {
+            body.enabled = false;
             monsterFSM.ChangeState(MONSTER_STATE.DIE);
         }
     }

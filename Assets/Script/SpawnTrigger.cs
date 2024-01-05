@@ -1,32 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.XR.Oculus.Input;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class SpawnTrigger : MonoBehaviour
 {
-    bool isSpawn;
-    void Start()
-    {
-        isSpawn = true;
-        StartCoroutine(SpawnTriggerCourutin());
-    }
+    [Header("스폰할 몬스터")]
+    public GameObject spawnMonster;
 
-    IEnumerator SpawnTriggerCourutin()
+    [Header("스폰할 위치 - 복수 가능")]
+    public Transform[] spawnPosition;
+
+
+
+    private void OnTriggerEnter(Collider other)
     {
-        while (isSpawn)
+        if (other.CompareTag("Player"))
         {
-            Collider[] colliders = Physics.OverlapSphere(transform.position, 4f);
-            foreach (Collider collider in colliders)
+            foreach(Transform transform in spawnPosition)
             {
-                if(collider.CompareTag("Player"))
-                {
-                    Gamemanager.instance.spawnManager.SpawnMonsters();
-                    isSpawn = false;
-                    break;
-                }
+                Instantiate(spawnMonster, transform);
             }
-            yield return null;
-
         }
     }
 }
