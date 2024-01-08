@@ -32,7 +32,7 @@ namespace StarterAssets
 
 
 
-
+        public float targetSpeed=1f;
         private float _speed;
         private float _animationBlend;
         private float _targetRotation = 0.0f;
@@ -88,6 +88,7 @@ namespace StarterAssets
             _animIDSpeed = Animator.StringToHash("Speed");
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
         }
+
         private void Move()
         {
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
@@ -97,7 +98,6 @@ namespace StarterAssets
                 targetSpeed = 0.0f;
             }
             float currentHorizontalSpeed = _rigidbody.velocity.magnitude;
-
             float speedOffset = 0.1f;
             float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
 
