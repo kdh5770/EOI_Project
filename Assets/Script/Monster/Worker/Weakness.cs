@@ -8,6 +8,7 @@ public class Weakness : MonoBehaviour
     public int test;
     private void Start()
     {
+        this.gameObject.tag = "Monster";
         GameObject root = transform.root.gameObject;
         status = root.GetComponent<MonsterStatus>();
     }
