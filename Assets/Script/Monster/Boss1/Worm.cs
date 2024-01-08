@@ -122,7 +122,6 @@ public class Worm : MonsterFSM
         if (attackTime >= 5)
         {
             attackTime = 0;
-            attackEgg();
             ChangeState(MONSTER_STATE.iDLE);
         }
     }
