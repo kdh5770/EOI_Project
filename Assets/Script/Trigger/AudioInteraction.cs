@@ -8,6 +8,6 @@ public class AudioInteraction : Interaction
     public AudioClip clip;
     public override void Interact()
     {
-        Debug.Log(clip.name);
+        Debug.Log("사운드재생");
     }
 }
