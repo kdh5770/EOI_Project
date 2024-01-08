@@ -8,7 +8,7 @@ public class Gamemanager : MonoBehaviour
 
     public CameraManager cameraManager;
     public TempScript tempScript;
-    public SpawnManager spawnManager;
+
 
     private void Awake()
     {

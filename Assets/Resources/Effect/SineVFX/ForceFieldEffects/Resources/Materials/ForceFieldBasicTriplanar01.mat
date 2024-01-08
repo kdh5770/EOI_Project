@@ -2,14 +2,20 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: ForceFieldBasicTriplanar01
-  m_Shader: {fileID: 4800000, guid: 5cdbfa3dede94fe1b51278b4ab12beca, type: 3}
-  m_ShaderKeywords: _LOCALNOISEPOSITION_ON _MASKDEPTHFADEENABLED_ON _NOISEDISTORTIONENABLED_ON
-    _RAMPOFPROCEDRUAL_ON _RAMPORPROCEDRUAL_ON
+  m_Shader: {fileID: 4800000, guid: 4bc825f87622481ebc279aac6d670399, type: 3}
+  m_ValidKeywords:
+  - _LOCALNOISEPOSITION_ON
+  - _MASKDEPTHFADEENABLED_ON
+  - _NOISEDISTORTIONENABLED_ON
+  m_InvalidKeywords:
+  - _RAMPOFPROCEDRUAL_ON
+  - _RAMPORPROCEDRUAL_ON
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -87,6 +93,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _AffectorCount: 20
     - _AppearMaskRemapLocalY: 0.5
@@ -114,6 +121,7 @@ Material:
     - _MaskAppearInvert: 0
     - _MaskAppearLocalYAdd: -0.5
     - _MaskAppearLocalYRamap: 0.5
+    - _MaskAppearLocalYRemap: 0.5
     - _MaskAppearMultiply: 6
     - _MaskAppearNoiseNegate: 1
     - _MaskAppearNoiseTriplanar: 0
@@ -127,6 +135,9 @@ Material:
     - _MaskDepthFadeEnabled: 1
     - _MaskDepthFadeExp: 4
     - _MaskFresnelExp: 4
+    - _MaskSoftBorders: 0
+    - _MaskSoftBordersExp: 20
+    - _MaskSoftBordersMultiply: 1.01
     - _Noise01ScrollSpeed: 0.25
     - _Noise01Tiling: 0.125
     - _Noise02Enabled: 0
@@ -148,6 +159,7 @@ Material:
     - _RamporProcedrual: 1
     - _ScreenDistortionPower: 1
     - _Til: 0.25
+    - _VisualizeMaskDebug: 0
     - __dirty: 0
     m_Colors:
     - _Color0: {r: 1, g: 0, b: 0, a: 1}
@@ -157,3 +169,4 @@ Material:
     - _ProvedrualColorEnd: {r: 1, g: 0.7306288, b: 0.3897058, a: 1}
     - _ProvedrualColorStart: {r: 1, g: 0.24604455, b: 0.07352937, a: 1}
     - _RampColorTint: {r: 1, g: 0.4893508, b: 0.30146357, a: 1}
+  m_BuildTextureStacks: []
