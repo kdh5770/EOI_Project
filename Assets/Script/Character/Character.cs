@@ -1,237 +1,144 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.Windows;
 
-public class Character : MonoBehaviour
+namespace StarterAssets
 {
-    public int P_Hp;
-    public Vector2 input;
-    private Vector3 moveDirection;
-    public float moveSpeed = 4f;
-    public GameObject AimUI; // 조준점
-    public Animator animator;
-    private Rigidbody rigid;
-    Camera camera;
-    public bool Aiming;
-    public GameObject firePos;
-    
-
-    void Start()
+#if ENABLE_INPUT_SYSTEM
+    [RequireComponent(typeof(PlayerInput))]
+#endif
+    public class Character : MonoBehaviour
     {
-        animator = GetComponentInChildren<Animator>();
-        rigid = GetComponent<Rigidbody>();
-        camera = Camera.main;
+        private CharacterInputSystem _input;
+        private Rigidbody _rigidbody;
+#if ENABLE_INPUT_SYSTEM
+        private PlayerInput _playerinput;
+#endif
+        private Animator _animator;
+        Camera _mainCamera;
+        public Vector2 input;
 
-        Cursor.lockState = CursorLockMode.Locked;
-    }
+        public int P_Hp;
+        public float MoveSpeed = 2f; // 기본속도
+        public float SprintSpeed = 5.3f; // 뛰는속도
 
-    // Update is called once per frame
-    void Update()
-    {
-        //if (animator.GetBool("Aiming"))
-        //    transform.rotation = Quaternion.Euler(0f, Camera.main.transform.eulerAngles.y, 0f);
-        transform.rotation = Quaternion.Euler(0f, Camera.main.transform.eulerAngles.y, 0f);
+        //public float 
 
-        if(animator.GetBool("Aiming"))
+
+
+
+
+
+        private float _speed;
+        private float _animationBlend;
+        private float _targetRotation = 0.0f;
+        private float _rotationVelocity;
+        private float _verticalVelocity;
+        private float _terminalVelocity = 53.0f;
+        public float SpeedChangeRate = 10.0f;
+        public float RotationSmoothTime = 0.12f;
+        private bool _hasAnimator;
+
+        public int _animIDSpeed;
+        public int _animIDMotionSpeed;
+
+        public class Vector2Event : UnityEvent<Vector2> { }
+
+        public Vector2Event onLookEvent;
+        private bool isCurrentDeviceMouse
         {
-            Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
-            RaycastHit hit;
-
-            // If the ray hits something in the scene
-            if (Physics.Raycast(ray, out hit))
+            get
             {
-                // Make firePos look at the hit point
-                firePos.transform.LookAt(hit.point);
-                if (animator.GetBool("Shoot"))
-                {
-                    if(hit.collider.CompareTag("Monster"))
-                    {
-                        hit.collider.GetComponent<Weakness>().AttackDamage(10);
-                    }
-                }
+                return _playerinput.currentControlScheme == "PC";
+            }
+        }
+
+        void Start()
+        {
+            _input = GetComponent<CharacterInputSystem>();
+            _playerinput = GetComponent<PlayerInput>();
+
+            //_animator = GetComponentInChildren<Animator>();
+            _hasAnimator = TryGetComponent(out _animator);
+            _rigidbody = GetComponent<Rigidbody>();
+            _mainCamera = Camera.main;
+
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            Move();
+        }
+
+
+        private void LateUpdate()
+        {
+            //CameraRotation();
+        }
+
+
+        private void AssignAnimationIds()
+        {
+            _animIDSpeed = Animator.StringToHash("Speed");
+            _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
+        }
+        private void Move()
+        {
+            float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
+
+            if (_input.move == Vector2.zero)
+            {
+                targetSpeed = 0.0f;
+            }
+            float currentHorizontalSpeed = _rigidbody.velocity.magnitude;
+
+            float speedOffset = 0.1f;
+            float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
+
+            if (currentHorizontalSpeed < targetSpeed - speedOffset || currentHorizontalSpeed > targetSpeed + speedOffset)
+            {
+                _speed = Mathf.Round(_speed * 1000f) / 100f;
             }
             else
             {
-                // If the ray doesn't hit anything, set the direction far away in the direction of the ray
-                firePos.transform.LookAt(ray.origin + ray.direction * 1000);
+                _speed = targetSpeed;
             }
 
-            if(animator.GetBool("Shoot"))
+            _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
+            if (_animationBlend < 0.01f)
             {
-
+                _animationBlend = 0f;
             }
+            Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
 
-            // Debugging: Visualize the ray in the scene view
-            Debug.DrawRay(ray.origin, ray.direction * 100, Color.red);
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        moveDirection = (Vector3.right * input.x + Vector3.forward * input.y).normalized; // 기존엔 transform.right로 해서 플레이어의 회전값에 따라 계속 변하는데, 이를 Vector3.right 즉 World기준으로 이동하게 만들었다.
-
-        moveDirection = Quaternion.AngleAxis(camera.transform.rotation.eulerAngles.y, Vector3.up) * moveDirection; // 기존 _dir * y축 기준으로 카메라의 rotation.y값만큼 Quaternion을 리턴한다.
-
-        moveDirection = moveDirection.normalized; // 정규화
-
-        rigid.MovePosition(transform.position + (moveDirection * moveSpeed * Time.deltaTime)); // 이동
-
-
-    }
-
-    private void LateUpdate()
-    {
-
-        //if (moveDirection != Vector3.zero &&  !animator.GetBool("Aiming")) // _dir이 0이 아니라면, 즉! 움직이고 있다면,
-        //{
-        //    Quaternion quat = Quaternion.LookRotation(moveDirection, Vector3.up); // 첫번째 인자는 바라보는 방향이며, 두번째 인자는 축이다. => 첫번째 인자는 바라보고자 하는 방향벡터가 들어가야한다.
-        //    transform.rotation = Quaternion.RotateTowards(transform.rotation, quat, 360f * Time.deltaTime); // (첫번째) 에서 (두번째)까지 (세번째)의 속도로 회전한 결과를 리턴한다.
-        //}
-        #region 기존 이동 로직
-        //transform.rotation = Quaternion.Euler(0, camera.transform.eulerAngles.y, 0);
-        #endregion
-    }
-
-
-    /*    public void OnMove(InputValue value)
-        {
-            input = value.Get<Vector2>();
-
-            animator.SetFloat("X", input.x);
-            animator.SetFloat("Y", input.y);
-            if (input != Vector2.zero)
+            if (_input.move != Vector2.zero)
             {
-                animator.SetFloat("Speed", 1);
-                return;
+                _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
+                                  _mainCamera.transform.eulerAngles.y;
+                float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,RotationSmoothTime);
+
+                // rotate to face input direction relative to camera position
+                transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
             }
-            animator.SetFloat("Speed", 0);
 
-            #region 기존 이동 로직
-            //moveDirection = (transform.right * input.x + transform.forward * input.y).normalized;
-            //rigid.MovePosition(transform.position + (moveDirection * moveSpeed * Time.deltaTime));
-            #endregion
+            Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 
-            moveDirection = (Vector3.right * input.x + Vector3.forward * input.y).normalized; // 기존엔 transform.right로 해서 플레이어의 회전값에 따라 계속 변하는데, 이를 Vector3.right 즉 World기준으로 이동하게 만들었다.
+            // move the player
+            _rigidbody.velocity = targetDirection.normalized * (_speed) + new Vector3(0.0f, _verticalVelocity, 0.0f);
 
-            moveDirection = Quaternion.AngleAxis(camera.transform.rotation.eulerAngles.y, Vector3.up) * moveDirection; // 기존 _dir * y축 기준으로 카메라의 rotation.y값만큼 Quaternion을 리턴한다.
+            // update animator if using character
+            if (_hasAnimator)
+            {
+                _animator.SetFloat(_animIDSpeed, _animationBlend);
+                //_animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
+            }
 
-            moveDirection = moveDirection.normalized; // 정규화
-
-            rigid.MovePosition(transform.position + (moveDirection * moveSpeed * Time.deltaTime)); // 이동
-
-            if (animator.GetBool("Aiming"))
-                transform.rotation = Quaternion.Euler(0f, Camera.main.transform.eulerAngles.y, 0f);
-        }*/
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        input = context.ReadValue<Vector2>();
-
-
-        animator.SetFloat("X", input.x);
-        animator.SetFloat("Y", input.y);
-        if (input != Vector2.zero)
-        {
-            animator.SetFloat("Speed", 1);
-            return;
         }
-        animator.SetFloat("Speed", 0);
-
-
-        #region 기존 이동 로직
-        //moveDirection = (transform.right * input.x + transform.forward * input.y).normalized;
-        //rigid.MovePosition(transform.position + (moveDirection * moveSpeed * Time.deltaTime));
-        #endregion
-
-
-    } // 이동
-
-
-    public void OnSit(InputAction.CallbackContext context) // 앉기
-    {
-        if (context.performed)
-        {
-            animator.SetBool("Sit", true); // 앉기 애니메이션 실행
-        }
-        else if (context.canceled)
-            animator.SetBool("Sit", false); // 일어서기 애니메이션 실행
-    }
-
-
-    public void OnAim(InputAction.CallbackContext context) // 조준
-    {
-        if (context.performed)
-        {
-            Debug.Log("조준 땡깁니다.");
-            animator.SetBool("Aiming", true);
-            AimUI.SetActive(true);
-            Aiming = true;
-        }
-        else if (context.canceled)
-        {
-            Debug.Log("조준 해제.");
-            animator.SetBool("Aiming", false);
-            AimUI.SetActive(false);
-            Aiming = false;
-        }
-    }
-
-    public void OnShoot(InputAction.CallbackContext context) // 사격
-    {
-        if (context.performed && Aiming)
-        {
-            Debug.Log("발사");
-            animator.SetBool("Shoot", true);
-        }
-        else if (context.canceled)
-        {
-            animator.SetBool("Shoot", false);
-        }
-    }
-
-    public void OnReloading(InputAction.CallbackContext context) // 재장전
-    {
-        if (context.performed)
-        {
-            animator.SetTrigger("Reloading");
-            Debug.Log("재장전 중.");
-        }
-    }
-
-    public void OnUseItem(InputAction.CallbackContext context) // 아이템 사용
-    {
-        if (context.performed)
-        {
-            Debug.Log("아이템 사용 중.");
-        }
-    }
-
-    public void OnInterAction(InputAction.CallbackContext context) // 상호작용
-    {
-        if (context.performed)
-        {
-            animator.SetTrigger("InterAction");
-            Debug.Log("상호작용 중.");
-        }
-    }
-
-
-    void OnDeath()
-    {
-
-    }
-
-    void LookAtPoint(Vector3 point)
-    {
-        // Calculate the direction from firePos to the target point
-        Vector3 targetDirection = point - firePos.transform.position;
-
-        // Calculate the rotation needed to look at the target
-        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-
-        // Apply the rotation to the firePos
-        firePos.transform.rotation = targetRotation;
     }
 }
