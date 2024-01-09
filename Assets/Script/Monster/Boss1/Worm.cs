@@ -177,6 +177,20 @@ public class Worm : MonsterFSM
     public void attackSpout()
     {
         Vector3 direction = (target.transform.position - firePos.transform.position).normalized;
-        Instantiate(spoutEft, firePos.position, Quaternion.LookRotation(direction));
+        testobj = Instantiate(spoutEft, firePos.position, Quaternion.LookRotation(direction));
+        StartCoroutine(test());
+    }
+
+    public GameObject testobj;
+    IEnumerator test()
+    {
+        float time = 0f;
+        while (time <= 5)
+        {
+            testobj.transform.LookAt(target.transform.position);
+            testobj.transform.position = firePos.transform.position;
+            yield return null;
+            time+= Time.deltaTime;
+        }
     }
 }
