@@ -14,11 +14,13 @@ public class Worm : MonsterFSM
     public int encounter = 10;
 
     public GameObject spoutEft;
+    public float spoutTime = 0f;
 
     public float attackTime = 0; // 공격 딜레이
     public int spwanCount = 0;
     public int attackType = 0; // 공격 타입
 
+    public Attack throwAttack;
 
     private void Start()
     {
@@ -78,6 +80,7 @@ public class Worm : MonsterFSM
         animator.SetTrigger("IsSpawn");
         animator.SetBool("IsIdle", true);
         animator.SetBool("IsLongAttack", false);
+        animator.SetBool("IsSpout", false);
     }
 
     void UpdateIdle()
@@ -115,7 +118,11 @@ public class Worm : MonsterFSM
 
     void SetAttack()
     {
-        if(attackType % 3 == 0)
+        animator.SetBool("IsSpout", true);
+        animator.SetBool("IsIdle", false);
+        return;
+
+        if (attackType % 3 == 0)
         {
             animator.SetBool("IsSpout", true);
             animator.SetBool("IsIdle", false);
@@ -131,11 +138,12 @@ public class Worm : MonsterFSM
     {
         gameObject.transform.LookAt(target.transform.position);
 
-        if (attackTime >= 5)
-        {
-            attackTime = 0;
-            ChangeState(MONSTER_STATE.iDLE);
-        }
+
+        //if (attackTime >= 5)
+        //{
+        //    attackTime = 0;
+        //    ChangeState(MONSTER_STATE.iDLE);
+        //}
     }
 
     void UpdateDie()
@@ -163,13 +171,12 @@ public class Worm : MonsterFSM
 
     public void attackEgg()
     {
-        Vector3 direction = (target.transform.position - firePos.position).normalized;
-        GameObject preObj = Instantiate(bullet, firePos.position, Quaternion.identity);
-        preObj.GetComponent<Rigidbody>().AddForce(direction * encounter, ForceMode.Impulse);
+        throwAttack.ExecuteAttack(target);
     }
 
     public void attackSpout()
     {
-        GameObject spawnedObject = Instantiate(spoutEft, firePos.position, Quaternion.identity);
+        Vector3 direction = (target.transform.position - firePos.transform.position).normalized;
+        Instantiate(spoutEft, firePos.position, Quaternion.LookRotation(direction));
     }
 }

@@ -18,7 +18,7 @@ public class ThorwObject : MonoBehaviour
             other.GetComponent<CharacterHealth>().TakeDamage(damage);
         }
 
-        Instantiate(effectPre);
+        Instantiate(effectPre, transform.position, Quaternion.identity);
         Destroy(effectPre,effectTimer);
         Destroy(gameObject);
     }

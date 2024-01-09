@@ -14,8 +14,9 @@ public class MonsterThrow : Attack
     public float impulsPow;
     public override void ExecuteAttack(GameObject _target)
     {
-        preObj = Instantiate(throwPre, shootPos.transform.position, Quaternion.LookRotation(_target.transform.position));
+        Vector3 direction = (_target.transform.position - shootPos.transform.position).normalized;
+        preObj = Instantiate(throwPre, shootPos.transform.position, Quaternion.identity);
         preObj.GetComponent<ThorwObject>().SetDamage(damage);
-        preObj.GetComponent<Rigidbody>().AddForce(transform.forward * impulsPow);
+        preObj.GetComponent<Rigidbody>().AddForce(direction * impulsPow, ForceMode.Impulse);
     }
 }
