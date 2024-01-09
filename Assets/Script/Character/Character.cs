@@ -43,6 +43,8 @@ public class Character : MonoBehaviour
     private float RotationSmoothTime = 0.12f;
     private float _rotationVelocity;
     private float _terminalVelocity = 53.0f;
+    private float _verticalVelocity;
+
 #if ENABLE_INPUT_SYSTEM
     private bool IsCurrentDeviceMouse
     {
@@ -65,7 +67,7 @@ public class Character : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void Update()
+    private void FixedUpdate()
     {
         Move(); // 움직임
     }
@@ -128,24 +130,28 @@ public class Character : MonoBehaviour
         float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed; // input 참 일때 sprintspeed, 거짓일 때 movespeed
         Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
 
+        
+
         if (_input.move == Vector2.zero)
         {
             targetSpeed = 0f;
         }
 
 
-        if (inputDirection != Vector3.zero)
+        if (_input.move != Vector2.zero)
         {
             _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg;
             float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, RotationSmoothTime);
-            transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+            
+            transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f); // 
         }
 
-        //Vector3 moveDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
+        Vector3 moveDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
         
-        
-        _rigidbody.velocity = transform.forward * (targetSpeed * inputDirection.magnitude);
-        
+
+        _rigidbody.MovePosition(moveDirection*targetSpeed*Time.deltaTime+new Vector3(0.0f,_verticalVelocity,0.0f)*Time.deltaTime);
+        //_rigidbody.velocity = transform.forward * (targetSpeed * inputDirection.magnitude);
+
 
         // 걷기/뛰기 애니메이션 출력
         _animator.SetFloat("Speed", targetSpeed);   
@@ -170,7 +176,6 @@ public class Character : MonoBehaviour
         // Cinemachine will follow this target
         CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride, _cinemachineTargetYaw, 0.0f);
     }
-
 
     private static float ClampAngle(float IfAngle, float IfMin, float IfMax)
     {
