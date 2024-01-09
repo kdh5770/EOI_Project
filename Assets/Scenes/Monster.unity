@@ -1785,7 +1785,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 758692573}
-  m_LocalRotation: {x: 0.24687064, y: 0.18303375, z: -0.047542956, w: 0.9504174}
+  m_LocalRotation: {x: 0.24687064, y: 0.18303381, z: -0.04754297, w: 0.9504174}
   m_LocalPosition: {x: -13.31, y: 2.4970002, z: -2.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11324,8 +11324,10 @@ MonoBehaviour:
   bullet: {fileID: 7506553650978014683, guid: db39f33c2ed9a624ab6f7639f37d9951, type: 3}
   firePos: {fileID: 1011939907}
   encounter: 10
+  spoutEft: {fileID: 100002, guid: 06d796ccd85dc4c4b9c98270196715ae, type: 3}
   attackTime: 0
   spwanCount: 0
+  attackType: 0
 --- !u!114 &5306083207277117461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11493,6 +11495,7 @@ MonoBehaviour:
   P_Hp: 0
   MoveSpeed: 2
   SprintSpeed: 5.3
+  targetSpeed: 1
   SpeedChangeRate: 10
   RotationSmoothTime: 0.12
   _animIDSpeed: 0
@@ -11635,6 +11638,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 93d71267-890a-43e1-98ee-724660e5855e
     m_ActionName: Player/InterActions[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 345661e7-c6ad-49b6-8616-75688a19774b
+    m_ActionName: Player/Look[/Mouse/delta,/Pen/delta]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -16196,7 +16203,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7254636870804871225}
-  m_LocalRotation: {x: -0.036264956, y: -0.05741077, z: -0.0020868205, w: 0.9976896}
+  m_LocalRotation: {x: -0.036264956, y: -0.057410736, z: -0.0020868194, w: 0.9976896}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -17074,7 +17081,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7254636872372046690}
-  m_LocalRotation: {x: 0.24687064, y: 0.18303373, z: -0.047542956, w: 0.9504174}
+  m_LocalRotation: {x: 0.24687064, y: 0.18303376, z: -0.04754296, w: 0.9504174}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

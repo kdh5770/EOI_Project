@@ -13,8 +13,11 @@ public class Worm : MonsterFSM
     public Transform firePos;
     public int encounter = 10;
 
-    public float attackTime = 0;
+    public GameObject spoutEft;
+
+    public float attackTime = 0; // 공격 딜레이
     public int spwanCount = 0;
+    public int attackType = 0; // 공격 타입
 
 
     private void Start()
@@ -84,6 +87,7 @@ public class Worm : MonsterFSM
 
         if (attackTime >= 5)
         {
+            attackType += 1;
             ChangeState(MONSTER_STATE.ATTACK);
         }
     }
@@ -111,8 +115,16 @@ public class Worm : MonsterFSM
 
     void SetAttack()
     {
-        animator.SetBool("IsIdle", false);
-        animator.SetBool("IsLongAttack", true);
+        if(attackType % 3 == 0)
+        {
+            animator.SetBool("IsSpout", true);
+            animator.SetBool("IsIdle", false);
+        }
+        else
+        {
+            animator.SetBool("IsIdle", false);
+            animator.SetBool("IsLongAttack", true);
+        }
     }
 
     void UpdateAttack()
@@ -154,5 +166,10 @@ public class Worm : MonsterFSM
         Vector3 direction = (target.transform.position - firePos.position).normalized;
         GameObject preObj = Instantiate(bullet, firePos.position, Quaternion.identity);
         preObj.GetComponent<Rigidbody>().AddForce(direction * encounter, ForceMode.Impulse);
+    }
+
+    public void attackSpout()
+    {
+        GameObject spawnedObject = Instantiate(spoutEft, firePos.position, Quaternion.identity);
     }
 }
