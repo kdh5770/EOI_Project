@@ -161,37 +161,29 @@ public class NomalStateMarchine : MonsterFSM
     {
         animator.SetBool("IsIdle", true);
         animator.SetBool("IsRun", false);
-        skill.ExecuteAttack();
+
+        if (skill != null)
+        {
+            skill.ExecuteAttack(target);
+            skill = null;
+            return;
+        }
+        if (melee != null)
+            melee.ExecuteAttack(target);
+
+        if (throwAttack != null)
+            throwAttack.ExecuteAttack(target);
+
     }
 
-    float testtime = 0;
     void UpdateAttack()
     {
-        //testtime += Time.deltaTime;
-        //if(testtime >= 3f)
-        //{
-        //    attackcount++;
-        //    testtime = 0;
-
-        //    nav.isStopped = false;
-        //    ChangeState(MONSTER_STATE.TRACKING);
-        //}
         if (!animator.GetCurrentAnimatorStateInfo(0).IsTag("attack"))
         {
             ChangeState(MONSTER_STATE.TRACKING);
-            Debug.Log("asdasdsadsadasd");
         }
     }
 
-    void SetLongAttack()
-    {
-
-    }
-
-    void UpdateLongAttack()
-    {
-
-    }
 
     void SetReact()
     {
@@ -220,11 +212,11 @@ public class NomalStateMarchine : MonsterFSM
 
     void UpdateDie()
     {
-        if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
+        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
         {
             Destroy(this.gameObject);
         }
-    }    
+    }
     public override void ChangeReactionState(REACT_TYPE _state)
     {
         throw new System.NotImplementedException();

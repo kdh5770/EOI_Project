@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum REACT_TYPE
@@ -43,6 +41,6 @@ public abstract class Attack : MonoBehaviour
         Initialized();
     }
 
-    public abstract void ExecuteAttack();
+    public abstract void ExecuteAttack(GameObject _target);
 
 }

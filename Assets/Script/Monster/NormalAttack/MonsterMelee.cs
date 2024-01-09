@@ -5,15 +5,13 @@ using UnityEngine;
 public class MonsterMelee : Attack
 {
     public float damage; // 공격 데미지
-    public float attackDamage; // 공격 범위
+    public float attackRange; // 공격 범위
 
 
-    public override void ExecuteAttack()
+    public override void ExecuteAttack(GameObject _target)
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, attackDamage);
-        if (colliders.Length < 1.5 )
-        {
+        transform.LookAt(_target.transform.position);
+        _target.GetComponent<CharacterHealth>().TakeDamage(damage);
 
-        }
     }
 }

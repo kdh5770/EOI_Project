@@ -150,7 +150,7 @@ public class PittyHandFSM : MonsterFSM
     {
         animator.SetBool("IsIdle", true);
         animator.SetBool("IsRun", false);
-        skill.ExecuteAttack();
+        skill.ExecuteAttack(target);
     }
 
     void UpdateAttack()

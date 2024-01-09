@@ -20,7 +20,7 @@ public class PittyHandSkill : Attack, ISkillEffect
         Debug.Log("스킬 효과");
     }
 
-    public override void ExecuteAttack() // 공격 실행
+    public override void ExecuteAttack(GameObject _target) // 공격 실행
     {
         pittyHand.GetComponent<NavMeshAgent>().enabled = false;
         pittyHand.transform.position = qte.position + qte.transform.forward * 0.03f;

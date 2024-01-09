@@ -16,7 +16,7 @@ public class WorkerShoot : Attack, ISkillEffect
         Debug.Log("스킬 효과");
     }
 
-    public override void ExecuteAttack() // 공격 실행
+    public override void ExecuteAttack(GameObject _target) // 공격 실행
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, 11f); // 공격 범위 지정하기
 
