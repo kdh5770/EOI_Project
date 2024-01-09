@@ -142,9 +142,10 @@ public class Character : MonoBehaviour
         }
 
         //Vector3 moveDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
-
+        
+        
         _rigidbody.velocity = transform.forward * (targetSpeed * inputDirection.magnitude);
-
+        
 
         // 걷기/뛰기 애니메이션 출력
         _animator.SetFloat("Speed", targetSpeed);   
