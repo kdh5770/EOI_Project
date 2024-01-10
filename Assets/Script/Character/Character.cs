@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.Windows;
+using Cinemachine;
 
 #if ENABLE_INPUT_SYSTEM
 [RequireComponent(typeof(PlayerInput))]
@@ -44,6 +45,18 @@ public class Character : MonoBehaviour
     private float _rotationVelocity;
     private float _terminalVelocity = 53.0f;
     private float _verticalVelocity;
+    public bool isAimMove = false;
+
+    [Header("에임관련")]
+    [SerializeField]
+    private CinemachineVirtualCamera AimCam;
+    [SerializeField]
+    private GameObject aimObj;
+    [SerializeField]
+    private float aimObjDis = 10f;
+    [SerializeField]
+    private LayerMask targetLayer;
+
 
 #if ENABLE_INPUT_SYSTEM
     private bool IsCurrentDeviceMouse
@@ -67,6 +80,11 @@ public class Character : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+    private void Update()
+    {
+        OnAim();
+    }
+
     private void FixedUpdate()
     {
         Move(); // 움직임
@@ -75,6 +93,49 @@ public class Character : MonoBehaviour
     private void LateUpdate()
     {
         CameraRotation(); // 카메라 회전
+    }
+
+
+
+
+    void OnAim()
+    {
+        if (_input.aim)
+        {
+            AimCam.gameObject.SetActive(true);
+
+            //_animator.SetLayerWeight(1, 1);
+
+            Transform camTransform = Camera.main.transform;
+            RaycastHit hit;
+
+            Vector3 targetPosition = Vector3.zero;
+
+            if (Physics.Raycast(camTransform.position, camTransform.forward, out hit, Mathf.Infinity, targetLayer))
+            {
+                targetPosition = hit.point;
+                aimObj.transform.position = hit.point;
+            }
+            else
+            {
+                targetPosition = camTransform.position + camTransform.forward*aimObjDis;
+                aimObj.transform.position = camTransform.position + camTransform.forward * aimObjDis;
+            
+            
+            }
+
+            Vector3 targetAim = targetPosition;
+            targetAim.y = transform.position.y;
+            Vector3 aimDir = (targetAim - transform.position).normalized;
+
+            transform.forward = Vector3.Lerp(transform.forward, aimDir, Time.deltaTime * 30f);
+        }
+
+        else
+        {
+            AimCam.gameObject.SetActive(false);
+            //_animator.SetLayerWeight(1, 0);
+        }
     }
 
     private void Move()
@@ -130,15 +191,13 @@ public class Character : MonoBehaviour
         float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed; // input 참 일때 sprintspeed, 거짓일 때 movespeed
         Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
 
-        
-
         if (_input.move == Vector2.zero)
         {
             targetSpeed = 0f;
         }
 
 
-        if (_input.move != Vector2.zero)
+        if (_input.move != Vector2.zero&&!_input.aim)
         {
             _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg;
             float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, RotationSmoothTime);
@@ -147,11 +206,6 @@ public class Character : MonoBehaviour
         }
 
         Vector3 moveDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
-        
-
-        _rigidbody.MovePosition(moveDirection*targetSpeed*Time.deltaTime+new Vector3(0.0f,_verticalVelocity,0.0f)*Time.deltaTime);
-        //_rigidbody.velocity = transform.forward * (targetSpeed * inputDirection.magnitude);
-
 
         // 걷기/뛰기 애니메이션 출력
         _animator.SetFloat("Speed", targetSpeed);   

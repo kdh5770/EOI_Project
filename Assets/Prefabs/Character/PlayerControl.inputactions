@@ -7,9 +7,9 @@
             "actions": [
                 {
                     "name": "Aim",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "1908772a-e1bd-4bb0-a628-028a993ddc03",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -88,17 +88,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "8a5d2144-fbef-4e1e-a28d-e5140b8c01ed",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PC",
-                    "action": "Aim",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "ed41fde6-c6f4-45b5-ade6-e1e8bbe21f94",
@@ -239,6 +228,17 @@
                     "processors": "",
                     "groups": "PC",
                     "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "de8e38a0-a918-44e3-88b7-7060cb04a25e",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
