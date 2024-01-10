@@ -12,6 +12,7 @@ using Cinemachine;
 #endif
 public class Character : MonoBehaviour
 {
+
     private CharacterInputSystem _input;
     private Rigidbody _rigidbody;
 #if ENABLE_INPUT_SYSTEM
@@ -45,17 +46,9 @@ public class Character : MonoBehaviour
     private float _rotationVelocity;
     private float _terminalVelocity = 53.0f;
     private float _verticalVelocity;
-    public bool isAimMove = false;
 
-    [Header("에임관련")]
-    [SerializeField]
-    private CinemachineVirtualCamera AimCam;
-    [SerializeField]
-    private GameObject aimObj;
-    [SerializeField]
-    private float aimObjDis = 10f;
-    [SerializeField]
-    private LayerMask targetLayer;
+    public bool isReload = false;
+
 
 
 #if ENABLE_INPUT_SYSTEM
@@ -72,17 +65,17 @@ public class Character : MonoBehaviour
 
     void Start()
     {
-        _input = GetComponent<CharacterInputSystem>();
-        _playerinput = GetComponent<PlayerInput>();
-        _animator = GetComponentInChildren<Animator>();
         _rigidbody = GetComponent<Rigidbody>();
         _mainCamera = Camera.main;
         Cursor.lockState = CursorLockMode.Locked;
+        _input = GetComponent<CharacterInputSystem>();
+        _playerinput = GetComponent<PlayerInput>();
+        _animator = GetComponentInChildren<Animator>();
     }
 
     private void Update()
     {
-        OnAim();
+
     }
 
     private void FixedUpdate()
@@ -95,50 +88,7 @@ public class Character : MonoBehaviour
         CameraRotation(); // 카메라 회전
     }
 
-
-
-
-    void OnAim()
-    {
-        if (_input.aim)
-        {
-            AimCam.gameObject.SetActive(true);
-
-            //_animator.SetLayerWeight(1, 1);
-
-            Transform camTransform = Camera.main.transform;
-            RaycastHit hit;
-
-            Vector3 targetPosition = Vector3.zero;
-
-            if (Physics.Raycast(camTransform.position, camTransform.forward, out hit, Mathf.Infinity, targetLayer))
-            {
-                targetPosition = hit.point;
-                aimObj.transform.position = hit.point;
-            }
-            else
-            {
-                targetPosition = camTransform.position + camTransform.forward*aimObjDis;
-                aimObj.transform.position = camTransform.position + camTransform.forward * aimObjDis;
-            
-            
-            }
-
-            Vector3 targetAim = targetPosition;
-            targetAim.y = transform.position.y;
-            Vector3 aimDir = (targetAim - transform.position).normalized;
-
-            transform.forward = Vector3.Lerp(transform.forward, aimDir, Time.deltaTime * 30f);
-        }
-
-        else
-        {
-            AimCam.gameObject.SetActive(false);
-            //_animator.SetLayerWeight(1, 0);
-        }
-    }
-
-    private void Move()
+    private void Move() // 플레이어 이동
     {
         // 첫번째 이동
         /*        float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed; // input 참 일때 sprintspeed, 거짓일 때 movespeed
@@ -211,7 +161,7 @@ public class Character : MonoBehaviour
         _animator.SetFloat("Speed", targetSpeed);   
     }
 
-    private void CameraRotation()
+    private void CameraRotation() // 카메라 회전
     {
         // if there is an input and camera position is not fixed
         if (_input.look.sqrMagnitude >= _threshold && !LockCameraPosition)
@@ -231,7 +181,7 @@ public class Character : MonoBehaviour
         CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride, _cinemachineTargetYaw, 0.0f);
     }
 
-    private static float ClampAngle(float IfAngle, float IfMin, float IfMax)
+    private static float ClampAngle(float IfAngle, float IfMin, float IfMax) // 카메라 각도 관련
     {
         if (IfAngle < -360f) IfAngle += 360f;
         if (IfAngle > 360f) IfAngle -= 360f;

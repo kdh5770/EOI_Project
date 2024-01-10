@@ -396,6 +396,7 @@ GameObject:
   - component: {fileID: 8075449314441570919}
   - component: {fileID: 8075449314441570968}
   - component: {fileID: 8075449314441570912}
+  - component: {fileID: 4375949064453233561}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -471,13 +472,6 @@ MonoBehaviour:
   BottomClamp: -30
   CameraAngleOverride: 0
   LockCameraPosition: 0
-  isAimMove: 0
-  AimCam: {fileID: 4539686480707000345}
-  aimObj: {fileID: 0}
-  aimObjDis: 20
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!114 &8075449314441570968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -495,6 +489,7 @@ MonoBehaviour:
   sprint: 0
   aim: 0
   shoot: 0
+  reload: 0
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
@@ -657,6 +652,26 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &4375949064453233561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8075449314441570938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f75723d3116d7649bd91f36832bec5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AimCam: {fileID: 0}
+  aimObj: {fileID: 0}
+  aimObjDis: 10
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  isAimMove: 0
+  isReload: 0
 --- !u!1 &8075449314569660676
 GameObject:
   m_ObjectHideFlags: 0
