@@ -22,6 +22,8 @@ public class Worm : MonsterFSM
 
     public Attack throwAttack;
 
+    public float rotationSpeed = 2f;
+
     private void Start()
     {
         animator = GetComponentInChildren<Animator>();
@@ -118,10 +120,6 @@ public class Worm : MonsterFSM
 
     void SetAttack()
     {
-        animator.SetBool("IsSpout", true);
-        animator.SetBool("IsIdle", false);
-        return;
-
         if (attackType % 3 == 0)
         {
             animator.SetBool("IsSpout", true);
@@ -134,16 +132,24 @@ public class Worm : MonsterFSM
         }
     }
 
+    public float skillTime = 0f;
     void UpdateAttack()
     {
-        gameObject.transform.LookAt(target.transform.position);
+        //gameObject.transform.LookAt(target.transform.position);
+        skillTime += Time.deltaTime;
 
-
-        //if (attackTime >= 5)
-        //{
-        //    attackTime = 0;
-        //    ChangeState(MONSTER_STATE.iDLE);
-        //}
+        if (attackTime >= 5 && skillTime >= 5f && attackType % 3 == 0)
+        {
+            skillTime = 0f;
+            attackTime = 0;
+            ChangeState(MONSTER_STATE.iDLE);
+        }
+        else if (attackType % 3 != 0 && attackTime >= 5)
+        {
+            skillTime = 0f;
+            attackTime = 0;
+            ChangeState(MONSTER_STATE.iDLE);
+        }
     }
 
     void UpdateDie()
@@ -178,17 +184,31 @@ public class Worm : MonsterFSM
     {
         Vector3 direction = (target.transform.position - firePos.transform.position).normalized;
         testobj = Instantiate(spoutEft, firePos.position, Quaternion.LookRotation(direction));
-        StartCoroutine(test());
+        if(target != null)
+        {
+            StartCoroutine(test());
+        }
     }
 
     public GameObject testobj;
-    IEnumerator test()
+    IEnumerator test() // 타겟을 쳐다보게
     {
         float time = 0f;
         while (time <= 5)
         {
-            testobj.transform.LookAt(target.transform.position);
+            Vector3 direction = target.transform.position - transform.position;
+            Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
+
+            // 부드러운 회전을 위해 Slerp 사용
+            transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, Time.deltaTime * rotationSpeed);
+
             testobj.transform.position = firePos.transform.position;
+            testobj.transform.rotation = firePos.transform.rotation;
+
+            Vector3 fireposdirection = (target.transform.position - firePos.transform.position).normalized;
+            Quaternion firePostoRotation = Quaternion.LookRotation(fireposdirection, Vector3.up);
+            firePos.transform.rotation = Quaternion.Slerp(firePos.transform.rotation, firePostoRotation, Time.deltaTime * rotationSpeed);
+
             yield return null;
             time+= Time.deltaTime;
         }
