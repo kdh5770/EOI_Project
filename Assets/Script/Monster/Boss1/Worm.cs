@@ -160,11 +160,13 @@ public class Worm : MonsterFSM
         }
     }
 
+    float time = 0f;
     void UpdateDie()
     {
-        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
+        time += Time.deltaTime;
+        if(time >= 3)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 

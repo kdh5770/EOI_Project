@@ -22,7 +22,7 @@ public class PrefabLauncher : MonoBehaviour
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
 
         // Instantiate the prefab at the mouse position
-        GameObject obj = Instantiate(prefab, worldPos, Quaternion.identity);
-        obj.GetComponent<Rigidbody>().AddForce(obj.transform.forward * 10, ForceMode.Impulse);
+        GameObject obj = Instantiate(prefab, worldPos, Quaternion.LookRotation(worldPos));
+        obj.GetComponent<Rigidbody>().AddForce(obj.transform.forward * -10, ForceMode.Impulse);
     }
 }

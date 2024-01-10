@@ -10,6 +10,7 @@ public class DeathTrigger : MonoBehaviour
     public List<Interaction> interactions;
     private void OnDestroy()
     {
+        Debug.Log("»ç¸Á");
         if(interactions != null )
         {
             foreach( Interaction interaction in interactions )
