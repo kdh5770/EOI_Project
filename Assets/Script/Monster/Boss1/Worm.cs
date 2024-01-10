@@ -91,6 +91,7 @@ public class Worm : MonsterFSM
         animator.SetBool("IsIdle", true);
         animator.SetBool("IsLongAttack", false);
         animator.SetBool("IsSpout", false);
+        animator.SetBool("IsSpout2", false);
     }
 
     void UpdateIdle()
@@ -128,9 +129,16 @@ public class Worm : MonsterFSM
 
     void SetAttack()
     {
-        if (attackType % 3 == 0)
+        bool skill = Random.Range(0, 2) == 0;
+
+        if (attackType % 3 == 0 && skill)
         {
             animator.SetBool("IsSpout", true);
+            animator.SetBool("IsIdle", false);
+        }
+        else if (attackType % 3 == 0 && !skill)
+        {
+            animator.SetBool("IsSpout2", true);
             animator.SetBool("IsIdle", false);
         }
         else
