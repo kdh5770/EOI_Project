@@ -49,6 +49,10 @@ public class Worm : MonsterFSM
                 UpdateAttack();
                 break;
 
+            case MONSTER_STATE.REACT:
+                UpdateReact();
+                break;
+
             case MONSTER_STATE.DIE:
                 UpdateDie();
                 break;
@@ -70,6 +74,10 @@ public class Worm : MonsterFSM
 
             case MONSTER_STATE.ATTACK:
                 SetAttack();
+                break;
+
+            case MONSTER_STATE.REACT:
+                SetReact();
                 break;
 
             case MONSTER_STATE.DIE:
@@ -162,14 +170,32 @@ public class Worm : MonsterFSM
 
     void SetDie()
     {
-        animator.SetTrigger("IsDead");
+        animator.SetTrigger("IsDescend");
     }
+
+    void UpdateReact()
+    {
+
+    }
+
+    void SetReact()
+    {
+
+    }
+
+
+
+
+    /// <summary>
+    /// /////////////////////////////////////////////////////////////////////////
+    /// </summary>
 
     public void Idle()
     {
         animator.SetBool("IsSpwan", false);
         animator.SetBool("IsIdle", true);
     }
+
     public override void ChangeReactionState(REACT_TYPE _state)
     {
         throw new System.NotImplementedException();
