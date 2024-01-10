@@ -7,14 +7,14 @@ public class ObjectSpawner : Interaction
     [Header("스폰할 프리팹")]
     public GameObject SpawnerPrefab;
     [Header("스폰할 위치")]
-    public List<Transform> spawnePos;
+    public List<GameObject> spawnePos;
     public override void Interact()
     {
         if (SpawnerPrefab != null)
         {
-            foreach (Transform trs in spawnePos)
+            foreach (GameObject obj in spawnePos)
             {
-                Instantiate(SpawnerPrefab, trs);
+                Instantiate(SpawnerPrefab, obj.transform.position, Quaternion.identity);
                 Debug.Log("리스폰");
             }
         }
