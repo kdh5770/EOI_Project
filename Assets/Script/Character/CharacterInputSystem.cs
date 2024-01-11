@@ -36,7 +36,6 @@ public class CharacterInputSystem : MonoBehaviour
         }
     }
 
-
     public void OnSprint(InputValue value)
     {
         SprintInput(value.isPressed);
@@ -101,4 +100,3 @@ public class CharacterInputSystem : MonoBehaviour
         Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
     }
 }
-

@@ -81,11 +81,12 @@ public class Character : MonoBehaviour
     private void FixedUpdate()
     {
         Move(); // 움직임
+        CameraRotation();
     }
 
     private void LateUpdate()
     {
-        CameraRotation(); // 카메라 회전
+        //CameraRotation(); // 카메라 회전
     }
 
     private void Move() // 플레이어 이동
@@ -147,19 +148,39 @@ public class Character : MonoBehaviour
         }
 
 
-        if (_input.move != Vector2.zero&&!_input.aim)
+/*        if (_input.move != Vector2.zero&&!_input.aim)
         {
             _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg;
             float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, RotationSmoothTime);
-            
-            transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f); // 
+
+            //transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f); // 
+
+            //transform.LookAt(_mainCamera.transform.forward);
+
+        }*/
+
+        Vector3 moveDirection = _mainCamera.transform.TransformDirection(inputDirection); // 카메라 기준으로 input값을 바꿔줌
+        moveDirection.y = 0f;
+        Vector3 moveVector = moveDirection * targetSpeed ;
+        //_rigidbody.MovePosition(moveVector);
+
+        _rigidbody.velocity = new Vector3(moveVector.x, _rigidbody.velocity.y, moveVector.z);
+
+        if (moveVector.magnitude > 0f&&!_input.aim)
+        {
+            Quaternion newRotation = Quaternion.LookRotation(moveDirection);//, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 10f);
         }
 
-        Vector3 moveDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
+
+        //Vector3 moveDirection = Quaternion.Euler(inputDirection) * _mainCamera.transform.forward;
+
+        //_rigidbody.MovePosition();
 
         // 걷기/뛰기 애니메이션 출력
-        _animator.SetFloat("Speed", targetSpeed);   
+        _animator.SetFloat("Speed", targetSpeed);
     }
+
 
     private void CameraRotation() // 카메라 회전
     {
