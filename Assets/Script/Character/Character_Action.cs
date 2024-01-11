@@ -55,7 +55,7 @@ public class Character_Action : MonoBehaviour
 
     void OnAim()
     {
-        if (_input.aim)
+        if (_input.aim&&!_input.sprint)
         {
             AimControll(true);
 
