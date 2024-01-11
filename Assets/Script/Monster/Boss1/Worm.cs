@@ -218,48 +218,58 @@ public class Worm : MonsterFSM
 
     public void attackSpout()
     {
-        Vector3 direction = (target.transform.position - firePos.transform.position).normalized;
-        testobj = Instantiate(spoutEft, firePos.position, Quaternion.LookRotation(direction));
-        if (target != null)
-        {
-            StartCoroutine(test());
-        }
+        testobj = Instantiate(spoutEft, firePos.position, Quaternion.identity);
+
+        // 플레이어 방향으로 회전시키기
+        Vector3 playerDirection = (target.transform.position - firePos.position).normalized;
+        Quaternion toRotation = Quaternion.LookRotation(playerDirection, Vector3.up);
+
+        // 회전 각도를 설정
+        float rotationAngle = 20f;
+
+        // y축으로 회전시키기 (플레이어 방향을 기준으로 회전)
+        Vector3 eulerRotation = new Vector3(0f, toRotation.eulerAngles.y + rotationAngle, 0f);
+        testobj.transform.eulerAngles = eulerRotation;
+        //if (target != null)
+        //{
+        //    StartCoroutine(test());
+        //}
     }
 
     public GameObject testobj;
-    IEnumerator test() // 타겟을 쳐다보게
-    {
-        float time = 0f;
+    //IEnumerator test() // 타겟을 쳐다보게
+    //{
+    //    float time = 0f;
 
-        // 회전 애니메이션의 지속 시간
-        float rotationDuration = 2f;
+    //    // 회전 애니메이션의 지속 시간
+    //    float rotationDuration = 2f;
 
-        while (time <= rotationDuration)
-        {
-            // 타겟을 바라보게 하는 회전
-            Vector3 targetDirection = (target.transform.position - firePos.position).normalized;
-            Quaternion toRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+    //    while (time <= rotationDuration)
+    //    {
+    //        // 타겟을 바라보게 하는 회전
+    //        Vector3 targetDirection = (target.transform.position - firePos.position).normalized;
+    //        Quaternion toRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
 
-            // 좌우로 25도씩 회전
-            float rotationAngle = 25f;
+    //        // 좌우로 25도씩 회전
+    //        float rotationAngle = 25f;
 
-            // 좌측으로 회전
-            Quaternion leftRotation = Quaternion.Euler(0f, -rotationAngle, 0f);
-            Quaternion rotatedLeft = toRotation * leftRotation;
+    //        // 좌측으로 회전
+    //        Quaternion leftRotation = Quaternion.Euler(0f, -rotationAngle, 0f);
+    //        Quaternion rotatedLeft = toRotation * leftRotation;
 
-            // 우측으로 회전
-            Quaternion rightRotation = Quaternion.Euler(0f, rotationAngle, 0f);
-            Quaternion rotatedRight = toRotation * rightRotation;
+    //        // 우측으로 회전
+    //        Quaternion rightRotation = Quaternion.Euler(0f, rotationAngle, 0f);
+    //        Quaternion rotatedRight = toRotation * rightRotation;
 
-            // 타겟을 바라보게 하는 회전 적용
-            firePos.transform.rotation = Quaternion.Slerp(rotatedLeft, rotatedRight, time / rotationDuration);
+    //        // 타겟을 바라보게 하는 회전 적용
+    //        firePos.transform.rotation = Quaternion.Slerp(rotatedLeft, rotatedRight, time / rotationDuration);
 
-            // 타겟을 쳐다보게 하는 회전
-            testobj.transform.position = firePos.transform.position;
-            testobj.transform.rotation = firePos.transform.rotation;
+    //        // 타겟을 쳐다보게 하는 회전
+    //        testobj.transform.position = firePos.transform.position;
+    //        testobj.transform.rotation = firePos.transform.rotation;
 
-            yield return null;
-            time += Time.deltaTime;
-        }
-    }
+    //        yield return null;
+    //        time += Time.deltaTime;
+    //    }
+    //}
 }
