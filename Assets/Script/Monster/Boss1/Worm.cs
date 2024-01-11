@@ -220,7 +220,7 @@ public class Worm : MonsterFSM
     {
         Vector3 direction = (target.transform.position - firePos.transform.position).normalized;
         testobj = Instantiate(spoutEft, firePos.position, Quaternion.LookRotation(direction));
-        if(target != null)
+        if (target != null)
         {
             StartCoroutine(test());
         }
@@ -230,23 +230,36 @@ public class Worm : MonsterFSM
     IEnumerator test() // 타겟을 쳐다보게
     {
         float time = 0f;
-        while (time <= 5)
+
+        // 회전 애니메이션의 지속 시간
+        float rotationDuration = 2f;
+
+        while (time <= rotationDuration)
         {
-            Vector3 direction = target.transform.position - transform.position;
-            Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
+            // 타겟을 바라보게 하는 회전
+            Vector3 targetDirection = (target.transform.position - firePos.position).normalized;
+            Quaternion toRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
 
-            // 부드러운 회전을 위해 Slerp 사용
-            transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, Time.deltaTime * rotationSpeed);
+            // 좌우로 25도씩 회전
+            float rotationAngle = 25f;
 
+            // 좌측으로 회전
+            Quaternion leftRotation = Quaternion.Euler(0f, -rotationAngle, 0f);
+            Quaternion rotatedLeft = toRotation * leftRotation;
+
+            // 우측으로 회전
+            Quaternion rightRotation = Quaternion.Euler(0f, rotationAngle, 0f);
+            Quaternion rotatedRight = toRotation * rightRotation;
+
+            // 타겟을 바라보게 하는 회전 적용
+            firePos.transform.rotation = Quaternion.Slerp(rotatedLeft, rotatedRight, time / rotationDuration);
+
+            // 타겟을 쳐다보게 하는 회전
             testobj.transform.position = firePos.transform.position;
             testobj.transform.rotation = firePos.transform.rotation;
 
-            Vector3 fireposdirection = (target.transform.position - firePos.transform.position).normalized;
-            Quaternion firePostoRotation = Quaternion.LookRotation(fireposdirection, Vector3.up);
-            firePos.transform.rotation = Quaternion.Slerp(firePos.transform.rotation, firePostoRotation, Time.deltaTime * rotationSpeed);
-
             yield return null;
-            time+= Time.deltaTime;
+            time += Time.deltaTime;
         }
     }
 }

@@ -13,13 +13,18 @@ public class ThorwObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if(other.gameObject.CompareTag("Player"))
         {
             other.GetComponent<CharacterHealth>().TakeDamage(damage);
+            GameObject eftPre = Instantiate(effectPre, transform.position, Quaternion.identity);
+            Destroy(eftPre, effectTimer);
+            Destroy(gameObject);
         }
-
-        Instantiate(effectPre, transform.position, Quaternion.identity);
-        Destroy(effectPre,effectTimer);
-        Destroy(gameObject);
+        if(other.gameObject.CompareTag("Wall"))
+        {
+            GameObject eftPre = Instantiate(effectPre, transform.position, Quaternion.identity);
+            Destroy(eftPre, effectTimer);
+            Destroy(gameObject);
+        }
     }
 }
