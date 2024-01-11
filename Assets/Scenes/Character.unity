@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -222,7 +222,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &146027855
 GameObject:
-  m_ObjectHideFlags: 3
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -241,7 +241,7 @@ GameObject:
   m_IsActive: 1
 --- !u!4 &146027856
 Transform:
-  m_ObjectHideFlags: 3
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -256,7 +256,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &146027857
 MonoBehaviour:
-  m_ObjectHideFlags: 3
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -273,7 +273,7 @@ MonoBehaviour:
   mNoiseOffsets: {x: 221.48193, y: 627.57275, z: 244.2893}
 --- !u!114 &146027858
 MonoBehaviour:
-  m_ObjectHideFlags: 3
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -297,7 +297,7 @@ MonoBehaviour:
   DampingFromCollision: 0
 --- !u!114 &146027859
 MonoBehaviour:
-  m_ObjectHideFlags: 3
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -895,7 +895,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4377501823677586265}
+  - {fileID: 1292079524}
   m_Father: {fileID: 5697606105463431941}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -972,7 +972,7 @@ MonoBehaviour:
       m_Item7:
         transform: {fileID: 0}
         weight: 0
-    m_Offset: {x: -10, y: 0, z: 15.6}
+    m_Offset: {x: -10, y: 0, z: 0}
     m_MinLimit: -10
     m_MaxLimit: 50
     m_AimAxis: 3
@@ -1054,6 +1054,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d740dccea7439845bf3dc9b119b9a9f, type: 3}
+--- !u!4 &1292079524 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4377501824935971578, guid: 1d740dccea7439845bf3dc9b119b9a9f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1292079523}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1386420639
 GameObject:
   m_ObjectHideFlags: 0
@@ -1520,12 +1526,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4377501823677586265 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4377501824935971578, guid: 1d740dccea7439845bf3dc9b119b9a9f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1292079523}
-  m_PrefabAsset: {fileID: 0}
 --- !u!54 &5697606104309835105
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4279,7 +4279,15 @@ MonoBehaviour:
   m_RigLayers:
   - m_Rig: {fileID: 486326098}
     m_Active: 1
-  m_Effectors: []
+  m_Effectors:
+  - m_Transform: {fileID: 5697606105463432023}
+    m_Style:
+      shape: {fileID: 4300000, guid: c6793350c150f456688e39a81f97364a, type: 2}
+      color: {r: 1, g: 0, b: 0, a: 0.5}
+      size: 0.1
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
+    m_Visible: 1
 --- !u!137 &5697606105474642433
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
