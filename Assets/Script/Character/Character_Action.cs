@@ -17,6 +17,10 @@ public class Character_Action : MonoBehaviour
     [SerializeField]
     private LayerMask targetLayer;
 
+    [SerializeField]
+    private GameObject BloodObj;
+   
+
     private PlayerInput _playerinput;
     private CharacterInputSystem _input;
 
@@ -24,7 +28,7 @@ public class Character_Action : MonoBehaviour
 
     public bool isAimMove = false;
     public bool isReload = false;
-
+    RaycastHit hit;
 
     // Start is called before the first frame update
     void Start()
@@ -62,7 +66,7 @@ public class Character_Action : MonoBehaviour
             //_animator.SetLayerWeight(1, 1);
 
             Transform camTransform = Camera.main.transform;
-            RaycastHit hit;
+
 
             Vector3 targetPosition = Vector3.zero;
 
@@ -75,8 +79,6 @@ public class Character_Action : MonoBehaviour
             {
                 targetPosition = camTransform.position + camTransform.forward * aimObjDis;
                 aimObj.transform.position = camTransform.position + camTransform.forward * aimObjDis;
-
-
             }
 
             Vector3 targetAim = targetPosition;
@@ -85,16 +87,16 @@ public class Character_Action : MonoBehaviour
 
             transform.forward = Vector3.Lerp(transform.forward, aimDir, Time.deltaTime * 30f);
 
-            if (_input.shoot)
+/*            if (_input.shoot)
             {
                 _animator.SetBool("Shoot", true);
             }
             else
             {
                 _animator.SetBool("Shoot", false);
-            }
-
+            }*/
         }
+
 
         else
         {
@@ -105,9 +107,25 @@ public class Character_Action : MonoBehaviour
         }
     }
 
-
     void AimControll(bool isCheck)
     {
         AimCam.gameObject.SetActive(isCheck);
+    }
+
+    public void OnShoot()
+    {
+        if(_input.aim)
+        {
+            _animator.SetTrigger("ShootTri");
+            if (hit.transform.gameObject.CompareTag("Monster"))
+            {
+                GameObject eftObj = Instantiate(BloodObj, hit.transform.position, Quaternion.identity);
+                eftObj.transform.LookAt(transform.position);
+                
+                //eftObj.transform.rotation = Quaternion.Euler(eftObj.transform.rotation.eulerAngles.x, 90f, eftObj.transform.rotation.eulerAngles.z);
+                Destroy(eftObj, 2f);
+                
+            }
+        }
     }
 }

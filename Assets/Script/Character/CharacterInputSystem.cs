@@ -46,10 +46,10 @@ public class CharacterInputSystem : MonoBehaviour
         AimInput(value.isPressed);
     }
 
-    public void OnShoot(InputValue value)
+/*    public void OnShoot(InputValue value)
     {
         ShootInput(value.isPressed);
-    }
+    }*/
 
     public void OnReload(InputValue value)
     {

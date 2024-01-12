@@ -37,15 +37,6 @@ public class Character : MonoBehaviour
     private const float _threshold = 0.01f;
     public bool LockCameraPosition = false;
 
-    // player
-    private float _animationBlend;
-    private float _speed;
-    private float SpeedChangeRate = 10.0f;
-    private float _targetRotation = 0.0f;
-    private float RotationSmoothTime = 0.12f;
-    private float _rotationVelocity;
-    private float _terminalVelocity = 53.0f;
-    private float _verticalVelocity;
 
     public bool isReload = false;
 
@@ -86,59 +77,13 @@ public class Character : MonoBehaviour
 
     private void LateUpdate()
     {
-        //CameraRotation(); // 카메라 회전
+
     }
+
+
 
     private void Move() // 플레이어 이동
     {
-        // 첫번째 이동
-        /*        float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed; // input 참 일때 sprintspeed, 거짓일 때 movespeed
-
-                if (_input.move == Vector2.zero) // wasd 입력값 없을때 vector값 제로
-                {
-                    targetSpeed = 0f;
-                }
-                Vector3 movement = new Vector3(_input.move.x, 0f, _input.move.y).normalized;
-                Vector3 velocity = movement * targetSpeed;
-
-                _rigidbody.velocity = new Vector3(velocity.x, _rigidbody.velocity.y, velocity.z);
-
-                float speedOffset = 0.1f;
-                float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
-
-                float currentHorizontalSpeed = new Vector3(_rigidbody.velocity.x, 0.0f, _rigidbody.velocity.z).magnitude;
-
-                if (currentHorizontalSpeed < targetSpeed - speedOffset || currentHorizontalSpeed > targetSpeed + speedOffset)
-                {
-                    _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude, Time.deltaTime * SpeedChangeRate);
-
-                    _speed = Mathf.Round(_speed * 1000f) / 1000f;
-                }
-
-                else
-                    _speed = targetSpeed;
-
-                _animationBlend = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude, Time.deltaTime * SpeedChangeRate);
-
-                if (_animationBlend < 0.01f)
-                {
-                    _animationBlend = 0f;
-                }
-
-                Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
-
-                if(_input.move!=Vector2.zero)
-                {
-                    _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + _mainCamera.transform.eulerAngles.y;
-                    float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, RotationSmoothTime);
-
-                    transform.rotation = Quaternion.Euler(0.0f, _targetRotation, 0.0f);
-                }
-
-                Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
-        */
-
-        // 2번째 방법
         float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed; // input 참 일때 sprintspeed, 거짓일 때 movespeed
         Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
 
@@ -171,11 +116,6 @@ public class Character : MonoBehaviour
             Quaternion newRotation = Quaternion.LookRotation(moveDirection);//, Vector3.up);
             transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 10f);
         }
-
-
-        //Vector3 moveDirection = Quaternion.Euler(inputDirection) * _mainCamera.transform.forward;
-
-        //_rigidbody.MovePosition();
 
         // 걷기/뛰기 애니메이션 출력
         _animator.SetFloat("Speed", targetSpeed);
