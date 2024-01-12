@@ -99,7 +99,7 @@ public class Worm : MonsterFSM
         attackTime += Time.deltaTime;
         gameObject.transform.LookAt(target.transform.position);
 
-        if (attackTime >= 5)
+        if (attackTime >= 3)
         {
             attackType += 1;
             ChangeState(MONSTER_STATE.ATTACK);
@@ -129,18 +129,18 @@ public class Worm : MonsterFSM
 
     void SetAttack()
     {
-        //bool skill = Random.Range(0, 2) == 0;
+        bool skill = Random.Range(0, 2) == 0;
 
-        if (attackType % 3 == 0)
+        if (attackType % 3 == 0 && skill)
         {
             animator.SetBool("IsSpout", true);
             animator.SetBool("IsIdle", false);
         }
-        //else if (attackType % 3 == 0 && !skill)
-        //{
-        //    animator.SetBool("IsSpout2", true);
-        //    animator.SetBool("IsIdle", false);
-        //}
+        else if (attackType % 3 == 0 && !skill)
+        {
+            animator.SetBool("IsSpout2", true);
+            animator.SetBool("IsIdle", false);
+        }
         else
         {
             animator.SetBool("IsIdle", false);
@@ -154,13 +154,13 @@ public class Worm : MonsterFSM
         //gameObject.transform.LookAt(target.transform.position);
         skillTime += Time.deltaTime;
 
-        if (attackTime >= 5 && skillTime >= 5f && attackType % 3 == 0)
+        if (attackTime >= 3 && skillTime >= 1.5f && attackType % 3 == 0)
         {
             skillTime = 0f;
             attackTime = 0;
             ChangeState(MONSTER_STATE.iDLE);
         }
-        else if (attackType % 3 != 0 && attackTime >= 5)
+        else if (attackType % 3 != 0 && attackTime >= 3)
         {
             skillTime = 0f;
             attackTime = 0;
@@ -172,7 +172,7 @@ public class Worm : MonsterFSM
     void UpdateDie()
     {
         time += Time.deltaTime;
-        if(time >= 3)
+        if (time >= 3)
         {
             Destroy(gameObject);
         }

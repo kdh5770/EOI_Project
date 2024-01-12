@@ -6,7 +6,7 @@ public class BossSkill : MonoBehaviour
 {
     public GameObject bulletPrefab; // 탄 프리팹
     public int numberOfBullets = 8; // 한 번에 날아가는 탄의 개수
-    public float projectileSpeed = 5f; // 탄 속도
+    public float projectileSpeed = 3f; // 탄 속도
     public float projectileLifetime = 5f; // 탄이 생성되어 있는 시간
     public float gravity = -9.8f; // 중력 가속도
 

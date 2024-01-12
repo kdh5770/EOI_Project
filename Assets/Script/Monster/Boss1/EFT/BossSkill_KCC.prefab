@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 7470555017456767703}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -43,7 +43,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7470555017456767703}
   serializedVersion: 8
-  lengthInSec: 8
+  lengthInSec: 5
   simulationSpeed: 1.15
   stopAction: 0
   cullingMode: 1
@@ -153,7 +153,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1.45
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -251,8 +251,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.8
-      minScalar: 0.48
+      scalar: 1.51
+      minScalar: 2.49
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -531,7 +531,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 94
+    maxNumParticles: 102
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -906,14 +906,14 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 0.39928052
-          inSlope: 0.99164426
-          outSlope: 0.99164426
+          inSlope: 0.8156203
+          outSlope: 0.8156203
           tangentMode: 34
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.6057812
+          time: 0.7365185
           value: 1
           inSlope: -0.0000017316714
           outSlope: -0.0000017316714
@@ -924,8 +924,8 @@ ParticleSystem:
         - serializedVersion: 3
           time: 1
           value: 0.09168494
-          inSlope: -2.3040886
-          outSlope: -2.3040886
+          inSlope: -3.4473581
+          outSlope: -3.4473581
           tangentMode: 34
           weightedMode: 0
           inWeight: 0.33333334
@@ -1437,8 +1437,8 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1
-      minScalar: 2
+      scalar: 0
+      minScalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
