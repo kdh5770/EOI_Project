@@ -106,7 +106,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
   randomSeed: 0
@@ -545,7 +545,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.74
+      scalar: 0.7
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -3592,7 +3592,7 @@ ParticleSystem:
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 2
     inside: 1
     outside: 0
@@ -4627,6 +4627,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400002}
   - component: {fileID: 19800002}
+  - component: {fileID: -8840852555572440692}
   - component: {fileID: 19900002}
   - component: {fileID: 11400000}
   m_Layer: 0
@@ -8117,14 +8118,14 @@ ParticleSystem:
   CollisionModule:
     enabled: 0
     serializedVersion: 4
-    type: 0
+    type: 1
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
     multiplyColliderForceByParticleSpeed: 0
     multiplyColliderForceByCollisionAngle: 1
     m_Planes:
-    - {fileID: 0}
+    - {fileID: 6094516810536679217, guid: 82749a35b6d864448b425b30222cf2c7, type: 3}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
@@ -8294,24 +8295,24 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 64
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
     enabled: 0
     serializedVersion: 2
-    inside: 1
+    inside: 2
     outside: 0
     enter: 0
     exit: 0
-    colliderQueryMode: 0
+    colliderQueryMode: 2
     radiusScale: 1
     primitives:
-    - {fileID: 0}
+    - {fileID: 6094516810536679217, guid: 82749a35b6d864448b425b30222cf2c7, type: 3}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
@@ -8319,11 +8320,12 @@ ParticleSystem:
     - {fileID: 0}
   SubModule:
     serializedVersion: 2
-    enabled: 0
+    enabled: 1
     subEmitters:
     - serializedVersion: 3
-      emitter: {fileID: 0}
-      type: 0
+      emitter: {fileID: 7470555017475935159, guid: 695efd2f26b408442857d9483670d6ec,
+        type: 3}
+      type: 1
       properties: 0
       emitProbability: 1
   LightsModule:
@@ -9255,6 +9257,20 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &-8840852555572440692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d8b1dd5a194a234baea2e723c2006ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trs: {fileID: 1293536967864389745, guid: 34e14812627d5334786a082b1d9bd17c, type: 3}
+  eft: {fileID: 7470555017456767703, guid: 695efd2f26b408442857d9483670d6ec, type: 3}
 --- !u!199 &19900002
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -9446,7 +9462,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
   randomSeed: 0
