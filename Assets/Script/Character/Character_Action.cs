@@ -11,6 +11,7 @@ public class Character_Action : MonoBehaviour
     private Character character;
 
     [Header("에임관련")]
+    Transform camTransform;
     [SerializeField]
     private CinemachineVirtualCamera AimCam;
     [SerializeField]
@@ -33,12 +34,15 @@ public class Character_Action : MonoBehaviour
     public bool isReload = false;
     RaycastHit hit;
 
+    public GameObject spotLight;
+
     // Start is called before the first frame update
     void Start()
     {
         _animator = GetComponentInChildren<Animator>();
         _input = GetComponent<CharacterInputSystem>();
         character = GetComponent<Character>();
+        camTransform = Camera.main.transform;
     }
 
     // Update is called once per frame
@@ -68,20 +72,20 @@ public class Character_Action : MonoBehaviour
 
             //_animator.SetLayerWeight(1, 1);
 
-            Transform camTransform = Camera.main.transform;
-
             Vector3 targetPosition = Vector3.zero;
 
             if (Physics.Raycast(camTransform.position, camTransform.forward, out hit, Mathf.Infinity, targetLayer))
             {
                 targetPosition = hit.point;
                 aimObj.transform.position = hit.point;
+                spotLight.transform.LookAt(aimObj.transform.position);
             }
 
             else
             {
                 targetPosition = camTransform.position + camTransform.forward * aimObjDis;
                 aimObj.transform.position = camTransform.position + camTransform.forward * aimObjDis;
+                spotLight.transform.LookAt(aimObj.transform.position);
             }
 
 /*            Vector3 targetAim = targetPosition;
@@ -112,7 +116,7 @@ public class Character_Action : MonoBehaviour
         if(_input.aim)
         {
             _animator.SetTrigger("ShootTri");
-            if (hit.transform!=null&&hit.transform.gameObject.CompareTag("Monster"))
+            if (Physics.Raycast(camTransform.position, camTransform.forward, out hit, Mathf.Infinity, targetLayer))
             {
                 GameObject eftObj = Instantiate(BloodObj, hit.transform.position, Quaternion.identity);
                 eftObj.transform.LookAt(transform.position);

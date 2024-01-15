@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class WorkerShoot : Attack, ISkillEffect
 {
-    public GameObject Worker;
-
     public void ApplyReaction(GameObject target) // 리액션 효과 (넉백)
     {
         Debug.Log("리액션 효과");

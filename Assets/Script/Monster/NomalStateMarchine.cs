@@ -8,8 +8,7 @@ public class NomalStateMarchine : MonsterFSM
     public GameObject target;
     public NavMeshAgent nav;
 
-    public float dist; // 몬스터와 플레이어 거리
-    public float attackDist = 1.5f;
+    public float attackDist;
 
     public int Shout = 0; // 소리 지르기 1회
 
@@ -18,7 +17,6 @@ public class NomalStateMarchine : MonsterFSM
     public Attack throwAttack;
 
     public bool isSkill;
-
     private void Start()
     {
         isSkill = true;
@@ -106,7 +104,6 @@ public class NomalStateMarchine : MonsterFSM
     void SetTracking()
     {
         animator.SetBool("IsIdle", true);
-        animator.SetBool("IsMelee", false);
         animator.SetBool("IsRun", false);
     }
     void UpdateTracking() // 추적 타겟 감지
@@ -133,13 +130,22 @@ public class NomalStateMarchine : MonsterFSM
         animator.SetBool("IsRun", true);
         animator.SetBool("IsIdle", false);
         nav.isStopped = false;
+
+        if (skill != null)
+        {
+            attackDist = skill.atkRange;
+            return;
+        }
+        if (melee != null)
+        {
+            attackDist = melee.atkRange;
+        }
     }
 
     void UpdateMove() // 공격 범위 감지
     {
-        dist = Vector3.Distance(transform.position, target.transform.position);
         nav.SetDestination(target.transform.position);
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 7f); // 공격 범위 지정하기
+        Collider[] colliders = Physics.OverlapSphere(transform.position, attackDist); // 공격 범위 지정하기
 
         Debug.Log(colliders.Length);
         if (colliders.Length > 0)
@@ -176,10 +182,13 @@ public class NomalStateMarchine : MonsterFSM
 
     }
 
+    float timeTest;
     void UpdateAttack()
     {
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsTag("attack"))
+        timeTest += Time.deltaTime;
+        if (timeTest > .2f && !animator.GetCurrentAnimatorStateInfo(0).IsTag("attack"))
         {
+            timeTest = 0;
             ChangeState(MONSTER_STATE.TRACKING);
         }
     }
