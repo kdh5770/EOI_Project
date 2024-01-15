@@ -12,7 +12,6 @@ using Cinemachine;
 #endif
 public class Character : MonoBehaviour
 {
-
     private CharacterInputSystem _input;
     private Rigidbody _rigidbody;
 #if ENABLE_INPUT_SYSTEM
@@ -23,8 +22,12 @@ public class Character : MonoBehaviour
     public Vector2 input;
 
     [Header("플레이어 스탯")]
-    public int P_Hp=100;
-    public float MoveSpeed = 2.0f; // 기본속도
+    public int Cur_P_Hp=100; // 플레이어 현재 체력
+    public int Max_P_Hp = 100; // 플레이어 최대 체력
+    public int Cur_P_Armor; // 플레이어 현재 아머
+    public int Max_P_Armor; // 플레이어 최대 아머
+
+    public float MoveSpeed = 2.0f; // 기본 걷기속도
     public float SprintSpeed = 5.3f; // 뛰는속도
 
     [Header("카메라 관련 변수")]
