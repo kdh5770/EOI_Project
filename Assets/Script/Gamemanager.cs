@@ -8,7 +8,7 @@ public class Gamemanager : MonoBehaviour
 
     public CameraManager cameraManager;
     public TempScript tempScript;
-    public SpawnManager spawnManager;
+    public SpawnTest spawnTest;
 
     private void Awake()
     {
@@ -17,5 +17,10 @@ public class Gamemanager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
     }
- 
+
+    private void Start()
+    {
+        spawnTest.SpawnMonster();
+    }
+
 }

@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class CharacterFSM : MonoBehaviour
+public enum STATE
 {
-    public enum STATE
+    NONE = 0,
+    Idle,
+    Moving,
+    UsingMelee,
+    UsingGun,
+    Reaction,
+    CutScene,
+    Dead
+}
+
+public class CharacterFSM : MonoBehaviour, IStateMachine
+{
+    public void ChangeReactionState(REACT_TYPE _state)
     {
-        NONE = 0,
-        Idle,
-        Moving,
-        UsingMelee,
-        UsingGun,
-        Reaction,
-        CutScene,
-        Dead
+        Debug.Log("구현하세요");
     }
 }

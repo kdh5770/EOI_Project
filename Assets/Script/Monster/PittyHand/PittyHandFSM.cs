@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static MonsterFSM;
 using UnityEngine.AI;
 
 public class PittyHandFSM : MonsterFSM
@@ -12,7 +11,7 @@ public class PittyHandFSM : MonsterFSM
     public float dist; // 몬스터와 플레이어 거리
     public float attackDist = 3f;
 
-    public int Shout = 0; // 소리 지르기 1회
+    public Attack skill;
 
     private void Start()
     {
@@ -99,8 +98,6 @@ public class PittyHandFSM : MonsterFSM
     void SetTracking()
     {
         animator.SetBool("IsIdle", true);
-        animator.SetBool("IsAttack", false);
-        animator.SetBool("IsShout", false);
     }
     void UpdateTracking() // 추적 타겟 감지
     {
@@ -110,13 +107,9 @@ public class PittyHandFSM : MonsterFSM
         {
             foreach (Collider col in colliders)
             {
-                if (col.CompareTag("Player") && Shout == 0)
+                if (col.CompareTag("Player"))
                 {
                     target = col.gameObject;
-                    ChangeState(MONSTER_STATE.REACT);
-                }
-                if (col.CompareTag("Player") && Shout == 1)
-                {
                     ChangeState(MONSTER_STATE.MOVE);
                     break;
                 }
@@ -134,14 +127,18 @@ public class PittyHandFSM : MonsterFSM
     void UpdateMove() // 공격 범위 감지
     {
         nav.SetDestination(target.transform.position);
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 1f); // 공격 범위 지정하기
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 10f); // 공격 범위 지정하기
 
         if (colliders.Length > 0)
         {
+            Debug.Log("1");
             foreach (Collider col in colliders)
             {
                 if (col.CompareTag("Player"))
                 {
+                    Debug.Log("2");
+                    nav.ResetPath();
+                    nav.isStopped = true;
                     ChangeState(MONSTER_STATE.ATTACK);
                     break;
                 }
@@ -151,22 +148,14 @@ public class PittyHandFSM : MonsterFSM
 
     void SetAttack()
     {
-        animator.SetBool("IsAttack", true);
+        animator.SetBool("IsIdle", true);
         animator.SetBool("IsRun", false);
+        skill.ExecuteAttack(target);
     }
 
     void UpdateAttack()
     {
-        dist = Vector3.Distance(transform.position, target.transform.position);
-        if (dist <= attackDist)
-        {
-            nav.ResetPath();
-            nav.velocity = Vector3.zero;
-        }
-        else if (dist > attackDist)
-        {
-            ChangeState(MONSTER_STATE.TRACKING);
-        }
+
     }
 
     void SetReact()
@@ -177,15 +166,7 @@ public class PittyHandFSM : MonsterFSM
 
     void UpdateReact()
     {
-        if (Shout == 0)
-        {
-            transform.LookAt(target.transform.position);
-            Shout += 1;
-        }
-        else if (Shout == 1)
-        {
-            StartCoroutine(WaitForEggAttackAnimation());
-        }
+
     }
 
     void UpdateCutsene()
@@ -203,9 +184,8 @@ public class PittyHandFSM : MonsterFSM
 
     }
 
-    IEnumerator WaitForEggAttackAnimation() // 소리 지르기 애니메이션 실행 후 1초 뒤
+    public override void ChangeReactionState(REACT_TYPE _state)
     {
-        yield return new WaitForSeconds(1);
-        ChangeState(MONSTER_STATE.TRACKING);
+        throw new System.NotImplementedException();
     }
 }
