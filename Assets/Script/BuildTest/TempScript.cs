@@ -15,8 +15,8 @@ public class TempScript : MonoBehaviour
 
     void Start()
     {
-        targetFrame = 60;
-        Application.targetFrameRate = targetFrame; // 프레임 고정
+        //targetFrame = 60;
+        //Application.targetFrameRate = targetFrame; // 프레임 고정
         #region 마우스 커서 감추기 && 고정
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;

@@ -25,6 +25,7 @@ public class InputField : MonoBehaviour
         inputField.text = null;
         
         panel.SetActive(false);
+        Time.timeScale = 1.0f;
     }
 
     public void OutputDebug()

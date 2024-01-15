@@ -12,6 +12,7 @@ public class BuildTest : MonoBehaviour
     public GameObject panel;
     public GameObject checkPre;
     public GameObject preObj;
+    public GameObject player;
 
     public bool isPop;
 
@@ -32,11 +33,12 @@ public class BuildTest : MonoBehaviour
         {
             if (isPop)
             {
+                Time.timeScale = 0f;
                 inputText += "Position: " + transform.position.ToString() + "\n";
                 isPop = false;
                 playerInput.enabled = isPop;
 
-                Vector3 cubePos = new Vector3(transform.position.x, 20, transform.position.z);
+                Vector3 cubePos = new Vector3(player.transform.position.x, 20, player.transform.position.z);
                 preObj = Instantiate(checkPre, cubePos, Quaternion.identity);
                 preObj.GetComponent<DebugTestCube>().text.text = debugCount++.ToString();
                 panel.SetActive(!panel.activeSelf);

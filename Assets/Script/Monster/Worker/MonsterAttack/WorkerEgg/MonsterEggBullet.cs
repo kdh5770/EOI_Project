@@ -6,9 +6,11 @@ using static MonsterFSM;
 public class MonsterEggBullet : MonoBehaviour
 {
     public GameObject eggEFT;
-    private void OnCollisionEnter(Collision collision)
+
+
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if(other.gameObject.CompareTag("Player"))
         {
             GameObject obj = Instantiate(eggEFT, transform.position, Quaternion.identity);
             Destroy(obj, 2f);

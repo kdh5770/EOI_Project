@@ -25,7 +25,7 @@ public class Character_Action : MonoBehaviour
 
     [SerializeField]
     private GameObject BloodObj;
-   
+
     private CharacterInputSystem _input;
 
     private Animator _animator;
@@ -88,12 +88,12 @@ public class Character_Action : MonoBehaviour
                 spotLight.transform.LookAt(aimObj.transform.position);
             }
 
-/*            Vector3 targetAim = targetPosition;
-            targetAim.y = transform.position.y;
-            Vector3 aimDir = (targetAim - transform.position).normalized;
+            /*            Vector3 targetAim = targetPosition;
+                        targetAim.y = transform.position.y;
+                        Vector3 aimDir = (targetAim - transform.position).normalized;
 
-            transform.forward = Vector3.Lerp(transform.forward, aimDir, Time.deltaTime * 30f);*/
-            
+                        transform.forward = Vector3.Lerp(transform.forward, aimDir, Time.deltaTime * 30f);*/
+
         }
 
         else
@@ -113,16 +113,19 @@ public class Character_Action : MonoBehaviour
 
     public void OnShoot()
     {
-        if(_input.aim)
+        if (_input.aim && !_animator.GetCurrentAnimatorStateInfo(1).IsTag("Shoot"))
         {
             _animator.SetTrigger("ShootTri");
             if (Physics.Raycast(camTransform.position, camTransform.forward, out hit, Mathf.Infinity, targetLayer))
             {
-                GameObject eftObj = Instantiate(BloodObj, hit.transform.position, Quaternion.identity);
-                eftObj.transform.LookAt(transform.position);
-                
-                //eftObj.transform.rotation = Quaternion.Euler(eftObj.transform.rotation.eulerAngles.x, 90f, eftObj.transform.rotation.eulerAngles.z);
-                Destroy(eftObj, 2f);
+                if (hit.collider.CompareTag("Monster"))
+                {
+                    hit.collider.GetComponent<MonsterStatus>().CalculateDamage(2, 0);
+
+                    GameObject eftObj = Instantiate(BloodObj, hit.point, Quaternion.identity);
+                    eftObj.transform.LookAt(camTransform.transform.position);
+                    Destroy(eftObj, 1f);
+                }
             }
         }
     }
