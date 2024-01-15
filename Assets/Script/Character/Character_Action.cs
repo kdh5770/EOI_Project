@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.InputSystem;
+using TMPro;
+
 public class Character_Action : MonoBehaviour
 {
     [SerializeField]
     private Character character;
+
     [Header("에임관련")]
     [SerializeField]
     private CinemachineVirtualCamera AimCam;
@@ -16,12 +19,12 @@ public class Character_Action : MonoBehaviour
     private float aimObjDis = 10f;
     [SerializeField]
     private LayerMask targetLayer;
+    [SerializeField]
+    private GameObject AimImage; // 조준선
 
     [SerializeField]
     private GameObject BloodObj;
    
-
-    private PlayerInput _playerinput;
     private CharacterInputSystem _input;
 
     private Animator _animator;
@@ -42,7 +45,6 @@ public class Character_Action : MonoBehaviour
     void Update()
     {
         OnAim();
-
         if (_input.reload)
         {
             _input.reload = false;
@@ -57,16 +59,16 @@ public class Character_Action : MonoBehaviour
         }
     }
 
+
     void OnAim()
     {
-        if (_input.aim&&!_input.sprint)
+        if (_input.aim && !_input.sprint)
         {
             AimControll(true);
 
             //_animator.SetLayerWeight(1, 1);
 
             Transform camTransform = Camera.main.transform;
-
 
             Vector3 targetPosition = Vector3.zero;
 
@@ -75,28 +77,20 @@ public class Character_Action : MonoBehaviour
                 targetPosition = hit.point;
                 aimObj.transform.position = hit.point;
             }
+
             else
             {
                 targetPosition = camTransform.position + camTransform.forward * aimObjDis;
                 aimObj.transform.position = camTransform.position + camTransform.forward * aimObjDis;
             }
 
-            Vector3 targetAim = targetPosition;
+/*            Vector3 targetAim = targetPosition;
             targetAim.y = transform.position.y;
             Vector3 aimDir = (targetAim - transform.position).normalized;
 
-            transform.forward = Vector3.Lerp(transform.forward, aimDir, Time.deltaTime * 30f);
-
-/*            if (_input.shoot)
-            {
-                _animator.SetBool("Shoot", true);
-            }
-            else
-            {
-                _animator.SetBool("Shoot", false);
-            }*/
+            transform.forward = Vector3.Lerp(transform.forward, aimDir, Time.deltaTime * 30f);*/
+            
         }
-
 
         else
         {
@@ -110,6 +104,7 @@ public class Character_Action : MonoBehaviour
     void AimControll(bool isCheck)
     {
         AimCam.gameObject.SetActive(isCheck);
+        AimImage.SetActive(isCheck);
     }
 
     public void OnShoot()
@@ -117,15 +112,18 @@ public class Character_Action : MonoBehaviour
         if(_input.aim)
         {
             _animator.SetTrigger("ShootTri");
-            if (hit.transform.gameObject.CompareTag("Monster"))
+            if (hit.transform!=null&&hit.transform.gameObject.CompareTag("Monster"))
             {
                 GameObject eftObj = Instantiate(BloodObj, hit.transform.position, Quaternion.identity);
                 eftObj.transform.LookAt(transform.position);
                 
                 //eftObj.transform.rotation = Quaternion.Euler(eftObj.transform.rotation.eulerAngles.x, 90f, eftObj.transform.rotation.eulerAngles.z);
                 Destroy(eftObj, 2f);
-                
             }
         }
     }
+
+
+
+
 }

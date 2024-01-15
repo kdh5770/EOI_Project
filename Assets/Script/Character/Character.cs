@@ -140,6 +140,11 @@ public class Character : MonoBehaviour
 
         // Cinemachine will follow this target
         CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride, _cinemachineTargetYaw, 0.0f);
+        if(_input.aim)
+        {
+            transform.rotation = Quaternion.Euler(/*_cinemachineTargetPitch + CameraAngleOverride*/0f, _cinemachineTargetYaw, 0.0f);
+
+        }
     }
 
     private static float ClampAngle(float IfAngle, float IfMin, float IfMax) // 카메라 각도 관련
