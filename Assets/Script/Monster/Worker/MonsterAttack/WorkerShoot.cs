@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class WorkerShoot : Attack, ISkillEffect
 {
+    public GameObject egg;
+    public int encounter = 10;
+
     public void ApplyReaction(GameObject target) // 리액션 효과 (넉백)
     {
         Debug.Log("리액션 효과");
@@ -16,19 +19,11 @@ public class WorkerShoot : Attack, ISkillEffect
 
     public override void ExecuteAttack(GameObject _target) // 공격 실행
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 11f); // 공격 범위 지정하기
+        transform.LookAt(_target.transform.position);
 
-        if (colliders.Length > 0)
-        {
-            foreach (Collider collider in colliders)
-            {
-                if (collider.CompareTag("Player"))
-                {
-                    animator.SetTrigger("IsShootSkill");
-                    Debug.Log("알 푸슝");
-                    break;
-                }
-            }
-        }
+        egg.GetComponent<ThorwObject>().SetDamage(10);
+        Rigidbody EGG = egg.GetComponent<Rigidbody>();
+        EGG.AddForce(transform.forward * encounter, ForceMode.Impulse);
+        egg.transform.SetParent(null);
     }
 }

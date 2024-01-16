@@ -10,16 +10,12 @@ public class NomalStateMarchine : MonsterFSM
 
     public float attackDist;
 
-    public int Shout = 0; // 소리 지르기 1회
-
     public Attack skill;
     public Attack melee;
     public Attack throwAttack;
 
-    public bool isSkill;
     private void Start()
     {
-        isSkill = true;
         animator = GetComponentInChildren<Animator>();
         monsterStatus = GetComponent<MonsterStatus>();
         nav = GetComponent<NavMeshAgent>();
@@ -182,13 +178,13 @@ public class NomalStateMarchine : MonsterFSM
 
     }
 
-    float timeTest;
+    float timeOffset;
     void UpdateAttack()
     {
-        timeTest += Time.deltaTime;
-        if (timeTest > .2f && !animator.GetCurrentAnimatorStateInfo(0).IsTag("attack"))
+        timeOffset += Time.deltaTime;
+        if (timeOffset > .2f && !animator.GetCurrentAnimatorStateInfo(0).IsTag("attack"))
         {
-            timeTest = 0;
+            timeOffset = 0;
             ChangeState(MONSTER_STATE.TRACKING);
         }
     }
