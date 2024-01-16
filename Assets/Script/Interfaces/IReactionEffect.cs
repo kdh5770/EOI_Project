@@ -7,10 +7,10 @@ public interface IReactionEffect
 
 public class KnockbackEffect : IReactionEffect
 {
-    public float pushForce = 10f;
+    public float pushForce = 2f;
     public void ApplyReaction(GameObject target)
     {
-        target.GetComponent<Rigidbody>().AddForce((target.transform.forward * -1) * pushForce);
+        target.GetComponent<Rigidbody>().AddForce((target.transform.forward * -1) * pushForce, ForceMode.Impulse);
     }
 }
 

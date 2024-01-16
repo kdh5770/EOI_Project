@@ -9,10 +9,10 @@ public enum REACT_TYPE
 }
 public abstract class Attack : MonoBehaviour
 {
-    public Animator animator;
+    protected Animator animator;
     public REACT_TYPE react_type;
     public IReactionEffect reaction;
-    public float atkRange;
+    public float attackRange;
     public void Initialized()
     {
         animator = GetComponentInChildren<Animator>();

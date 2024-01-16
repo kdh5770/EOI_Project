@@ -126,24 +126,29 @@ public class NomalStateMarchine : MonsterFSM
         animator.SetBool("IsRun", true);
         animator.SetBool("IsIdle", false);
         nav.isStopped = false;
+        nav.SetDestination(target.transform.position);
 
+        //공격별 공격 범위 초기화
         if (skill != null)
         {
-            attackDist = skill.atkRange;
+            attackDist = skill.attackRange;
             return;
         }
         if (melee != null)
         {
-            attackDist = melee.atkRange;
+            attackDist = melee.attackRange;
         }
+        if (throwAttack != null)
+        {
+            attackDist = throwAttack.attackRange;
+        }
+
     }
 
     void UpdateMove() // 공격 범위 감지
     {
-        nav.SetDestination(target.transform.position);
-        Collider[] colliders = Physics.OverlapSphere(transform.position, attackDist); // 공격 범위 지정하기
+        Collider[] colliders = Physics.OverlapSphere(transform.position, attackDist); // 공격 범위내 플레이어 감지
 
-        Debug.Log(colliders.Length);
         if (colliders.Length > 0)
         {
             foreach (Collider col in colliders)
@@ -152,6 +157,7 @@ public class NomalStateMarchine : MonsterFSM
                 {
                     nav.ResetPath();
                     nav.isStopped = true;
+                    nav.velocity = Vector3.zero;
                     ChangeState(MONSTER_STATE.ATTACK);
                     break;
                 }
@@ -178,13 +184,15 @@ public class NomalStateMarchine : MonsterFSM
 
     }
 
-    float timeOffset;
+    public float timeOffset = 0;
     void UpdateAttack()
     {
         timeOffset += Time.deltaTime;
-        if (timeOffset > .2f && !animator.GetCurrentAnimatorStateInfo(0).IsTag("attack"))
+
+        if (timeOffset > .3f && !animator.GetCurrentAnimatorStateInfo(0).IsTag("attack"))
         {
             timeOffset = 0;
+            target = null;
             ChangeState(MONSTER_STATE.TRACKING);
         }
     }

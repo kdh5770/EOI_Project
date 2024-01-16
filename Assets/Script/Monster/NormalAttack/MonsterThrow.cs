@@ -8,7 +8,6 @@ public class MonsterThrow : Attack
     public GameObject shootPos;
 
     public float damage; // 공격 데미지
-    public float attackRange; // 공격 범위
     public GameObject preObj;
 
     public float impulsPow;
