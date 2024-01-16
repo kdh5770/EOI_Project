@@ -48,6 +48,11 @@ public class Character_Action : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(_input.sprint)
+        {
+            _input.aim = false;
+        }
+
         OnAim();
         if (_input.reload)
         {
@@ -113,7 +118,7 @@ public class Character_Action : MonoBehaviour
 
     public void OnShoot()
     {
-        if (_input.aim && !_animator.GetCurrentAnimatorStateInfo(1).IsTag("Shoot"))
+        if (_input.aim && !_animator.GetCurrentAnimatorStateInfo(1).IsTag("Shoot")&&!_input.sprint)
         {
             _animator.SetTrigger("ShootTri");
             if (Physics.Raycast(camTransform.position, camTransform.forward, out hit, Mathf.Infinity, targetLayer))

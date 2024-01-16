@@ -10,12 +10,15 @@ public struct WeaponData
     public int MaxBullet;
     public int CurBullet;
     public float ShotDelay;
+    
+    //public GameObject WeaponFireFlash; // ÃÑ ½ò ¶§ ÃÑ±¸¿¡¼­ ³ª°¡´Â ºû? ¹ßÈ­¿°µµ Ãß°¡ÇØ¾ßÇÔ. ¹ßÈ­¿° À§Ä¡µµ Ãß°¡ÇØ¾ßÇÔ.
 }
 
-public abstract class WeaponTest:MonoBehaviour
+public abstract class WeaponTable: MonoBehaviour
 {
     public WeaponData Data;
     private CharacterInputSystem _input;
+    private float restTime = 0f;
 
     private void Start()
     {
@@ -27,9 +30,14 @@ public abstract class WeaponTest:MonoBehaviour
 
     public virtual void Using()
     {
-        if(_input.aim&&_input.shoot)
+        if(_input.aim)
         {
-
+            restTime += Time.deltaTime;
+            if(_input.shoot&&Data.ShotDelay<=restTime&&Data.CurBullet>=0)
+            {
+                Data.CurBullet--;
+                restTime = 0f;
+            }
         }
     }
 }

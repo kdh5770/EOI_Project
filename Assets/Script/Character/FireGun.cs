@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireGun : WeaponTest
+public class FireGun : WeaponTable
 {
     public override void Initsetting()
     {
@@ -10,23 +10,11 @@ public class FireGun : WeaponTest
         Data.MaxBullet = 30;
         Data.CurBullet = 30;
         Data.Damage = 10;
-
     }
 
     public override void Using()
     {
-        
+        base.Using();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
