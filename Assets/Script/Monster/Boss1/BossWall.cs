@@ -6,9 +6,8 @@ public class BossWall : MonoBehaviour
 {
     public int hitCount = 5;
     
-    public void BossWall_()
+    public void BossWall_asd()
     {
-
         hitCount--;
         if (hitCount <= 0)
         {

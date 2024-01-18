@@ -28,7 +28,7 @@ public class ThorwObject : MonoBehaviour
         }
         if (other.gameObject.CompareTag("BossWall"))
         {
-            other.GetComponent<BossWall>().BossWall_();
+            other.GetComponent<BossWall>().BossWall_asd();
             GameObject eftPre = Instantiate(effectPre, transform.position, Quaternion.identity);
             Destroy(eftPre, effectTimer);
             Destroy(gameObject);
