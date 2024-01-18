@@ -8,7 +8,7 @@ public class TestBullet : MonoBehaviour
     {
         if (other.CompareTag("Monster"))
         {
-            other.GetComponent<MonsterStatus>().CalculateDamage(100,0);
+            other.GetComponent<MonsterStatus>().CalculateDamage(100);
         }
     }
 }

@@ -7,7 +7,6 @@ public class MonsterThrow : Attack
     public GameObject throwPre;
     public GameObject shootPos;
 
-    public float damage; // 공격 데미지
     public GameObject preObj;
 
     public float impulsPow;
