@@ -145,7 +145,6 @@ GameObject:
   - component: {fileID: 6572703997543103083}
   - component: {fileID: 3177564352122371521}
   - component: {fileID: 7552379565653125740}
-  - component: {fileID: 2488062607857225652}
   m_Layer: 0
   m_Name: WorkerEgg
   m_TagString: Monster
@@ -188,6 +187,7 @@ MonoBehaviour:
   skill: {fileID: 6572703997543103083}
   melee: {fileID: 6572703997543103076}
   throwAttack: {fileID: 0}
+  isSkilled: 0
 --- !u!114 &6572703997543103077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,7 +224,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   react_type: 0
   attackRange: 2
-  damage: 0
+  damage: 1
+  meleeType: 0
 --- !u!114 &6572703997543103083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,6 +240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   react_type: 0
   attackRange: 5
+  damage: 10
   egg: {fileID: 1528683616759712181}
   encounter: 10
 --- !u!195 &3177564352122371521
@@ -250,7 +252,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 6572703997543103081}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -259,7 +261,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 1
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -280,20 +282,6 @@ MonoBehaviour:
   lineStart: {x: 0, y: 0, z: 0}
   lineEnd: {x: 1, y: 0, z: 0}
   sphereRadius: 10
---- !u!136 &2488062607857225652
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6572703997543103081}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.8
-  m_Height: 2.28
-  m_Direction: 2
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1001 &6709830858136867274
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -385,3 +373,21 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6709830858136867274}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8027356512095688609 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3636935605936588395, guid: 993597eb001317843bf453f99cc424f2,
+    type: 3}
+  m_PrefabInstance: {fileID: 6709830858136867274}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1887024722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8027356512095688609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90dc5c8c250b5694fb77ed17d311e1bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

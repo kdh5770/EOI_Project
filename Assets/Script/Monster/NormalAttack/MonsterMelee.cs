@@ -12,7 +12,6 @@ public class MonsterMelee : Attack
     }    
 
     public MELEE_TYPE meleeType;
-    public float damage; // 공격 데미지
     
     public override void ExecuteAttack(GameObject _target)
     {

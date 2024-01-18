@@ -1,14 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class AnimationEvent : MonoBehaviour
 {
-    public GameObject AttackOBJ;
-    public void Test()
+    MonsterFSM monsterFSM;
+
+    private void Start()
     {
-        bool ish = AttackOBJ.activeSelf;
-        AttackOBJ.SetActive(!ish);
+        monsterFSM = transform.root.GetComponent<MonsterFSM>();
+    }
+
+    public void EndAnimation()
+    {
+        monsterFSM.ChangeState(MONSTER_STATE.TRACKING);
     }
 }

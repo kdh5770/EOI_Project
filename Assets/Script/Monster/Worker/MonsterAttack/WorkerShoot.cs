@@ -19,9 +19,17 @@ public class WorkerShoot : Attack, ISkillEffect
 
     public override void ExecuteAttack(GameObject _target) // 공격 실행
     {
-        transform.LookAt(_target.transform.position);
-
         egg.GetComponent<ThorwObject>().SetDamage(10);
+        transform.LookAt(_target.transform.position);
+        StartCoroutine(AnimatorDelay());
+
+    }
+
+    IEnumerator AnimatorDelay()
+    {
+        animator.SetTrigger("IsShootSkill");
+
+        yield return new WaitForSeconds(.3f);
         Rigidbody EGG = egg.GetComponent<Rigidbody>();
         EGG.AddForce(transform.forward * encounter, ForceMode.Impulse);
         egg.transform.SetParent(null);

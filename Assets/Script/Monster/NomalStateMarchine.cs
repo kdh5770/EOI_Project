@@ -13,12 +13,14 @@ public class NomalStateMarchine : MonsterFSM
     public Attack skill;
     public Attack melee;
     public Attack throwAttack;
+    public bool isSkilled;
 
     private void Start()
     {
         animator = GetComponentInChildren<Animator>();
         monsterStatus = GetComponent<MonsterStatus>();
         nav = GetComponent<NavMeshAgent>();
+        isSkilled = true;
 
         ChangeState(MONSTER_STATE.TRACKING);
     }
@@ -132,6 +134,7 @@ public class NomalStateMarchine : MonsterFSM
         if (skill != null)
         {
             attackDist = skill.attackRange;
+
             return;
         }
         if (melee != null)
@@ -159,10 +162,11 @@ public class NomalStateMarchine : MonsterFSM
                     nav.isStopped = true;
                     nav.velocity = Vector3.zero;
                     ChangeState(MONSTER_STATE.ATTACK);
-                    break;
+                    return;
                 }
             }
         }
+        ChangeState(MONSTER_STATE.TRACKING);
     }
 
     void SetAttack()
@@ -184,17 +188,9 @@ public class NomalStateMarchine : MonsterFSM
 
     }
 
-    public float timeOffset = 0;
     void UpdateAttack()
     {
-        timeOffset += Time.deltaTime;
 
-        if (timeOffset > .3f && !animator.GetCurrentAnimatorStateInfo(0).IsTag("attack"))
-        {
-            timeOffset = 0;
-            target = null;
-            ChangeState(MONSTER_STATE.TRACKING);
-        }
     }
 
 
