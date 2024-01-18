@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class WorkerShout : Attack, ISkillEffect
+public class WorkerShout : MonsterSkill
 {
 
-    public void ApplyReaction(GameObject target) // 리액션 효과 (넉백)
+    public override void ApplyReaction(GameObject target) // 리액션 효과 (넉백)
     {
         Debug.Log("리액션 효과");
     }
 
-    public void ApplySkillEffect(GameObject target) // 스킬 효과
+    public override void ApplySkillEffect(GameObject target) // 스킬 효과
     {
         Debug.Log("스킬 효과");
     }

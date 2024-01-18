@@ -13,7 +13,7 @@ public class AnimationEvent : MonoBehaviour
         monsterFSM = transform.root.GetComponent<MonsterFSM>();
     }
 
-    public void EndAnimation()
+    public void EndAnimation() // 공격 애니메이션 종료시 호출할 함수
     {
         monsterFSM.ChangeState(MONSTER_STATE.TRACKING);
     }

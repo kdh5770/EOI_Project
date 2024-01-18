@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WorkerShoot : Attack, ISkillEffect
+public class WorkerShoot : MonsterSkill
 {
     public GameObject egg;
     public int encounter = 10;
 
-    public void ApplyReaction(GameObject target) // 리액션 효과 (넉백)
+    public override void ApplyReaction(GameObject target) // 리액션 효과 (넉백 같은거)
     {
         Debug.Log("리액션 효과");
     }
 
-    public void ApplySkillEffect(GameObject target) // 스킬 효과
+    public override void ApplySkillEffect(GameObject target) // 스킬 효과
     {
         Debug.Log("스킬 효과");
     }
