@@ -1,4 +1,5 @@
 
+using System.Collections;
 using UnityEngine;
 
 
@@ -89,6 +90,7 @@ public class Worm : MonsterFSM
         animator.SetBool("IsLongAttack", false);
         animator.SetBool("IsSpout", false);
         animator.SetBool("IsSpout2", false);
+        animator.SetBool("IsWall", false);
     }
 
     void UpdateIdle()
@@ -128,15 +130,22 @@ public class Worm : MonsterFSM
     {
         bool skill = Random.Range(0, 2) == 0;
 
-        if (attackType % 3 == 0 && skill)
+        if (attackType % 3 == 0 && skill && spawnInterval < 5)
         {
             animator.SetBool("IsSpout", true);
             animator.SetBool("IsIdle", false);
         }
-        else if (attackType % 3 == 0 && !skill)
+        else if (attackType % 3 == 0 && !skill && spawnInterval < 5)
         {
             animator.SetBool("IsSpout2", true);
             animator.SetBool("IsIdle", false);
+        }
+        else if (spawnInterval >= 5)
+        {
+            animator.SetBool("IsIdle", false);
+            animator.SetBool("IsWall", true);
+            SpawnObjects();
+            spawnInterval = 0f;
         }
         else
         {
@@ -149,7 +158,8 @@ public class Worm : MonsterFSM
     void UpdateAttack()
     {
         //gameObject.transform.LookAt(target.transform.position);
-        skillTime += Time.deltaTime;
+        skillTime += 1*Time.deltaTime;
+        spawnInterval += 1*Time.deltaTime;
 
         if (attackTime >= 3 && skillTime >= 1.5f && attackType % 3 == 0)
         {
@@ -228,5 +238,21 @@ public class Worm : MonsterFSM
         // y축으로 회전시키기 (플레이어 방향을 기준으로 회전)
         Vector3 eulerRotation = new Vector3(rotationAngle, toRotation.eulerAngles.y, 0f);
         testobj.transform.eulerAngles = eulerRotation;
+    }
+
+    [Header("보스가 생성한 벽")]
+    public GameObject objectPrefab; // 생성할 오브젝트 프리팹
+    public Transform bossTransform; // 보스의 Transform
+    public float spawnRadius = 15f; // 생성 반경
+    public float spawnInterval; // 생성 간격
+
+    public void SpawnObjects()
+    {
+        // 보스 주위에 랜덤한 위치 계산
+        Vector3 randomPosition = bossTransform.position + Random.onUnitSphere * spawnRadius;
+        randomPosition.y = 0;
+
+        // 오브젝트 생성
+        GameObject spawnedObject = Instantiate(objectPrefab, randomPosition, Quaternion.identity);
     }
 }
