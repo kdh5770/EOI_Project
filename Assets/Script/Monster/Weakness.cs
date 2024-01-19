@@ -16,6 +16,7 @@ public class Weakness : MonoBehaviour
 
     public MonsterStatus status;
     public float reduction;
+
     private void Start()
     {
         this.gameObject.tag = "Monster";
@@ -26,7 +27,7 @@ public class Weakness : MonoBehaviour
     public void AttackDamage(float _damage)
     {
         float result = _damage - ( _damage * reduction );
-        Debug.Log(result);
+
         status.CalculateDamage(result);
     }
 
