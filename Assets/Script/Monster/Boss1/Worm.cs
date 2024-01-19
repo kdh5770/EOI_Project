@@ -20,6 +20,7 @@ public class Worm : MonsterFSM
     public int attackType = 0; // 공격 타입
 
     public Attack throwAttack;
+    public Attack energySkill;
 
     public float rotationSpeed = 2f;
 
