@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossEnergy : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class BossEnergy : MonoBehaviour
 
 
     public GameObject preObj;
+
+    public Slider hp;
     public void Energy()
     {
         if (preObj == null)
