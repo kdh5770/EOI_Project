@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossEnergy : MonsterStatus
+public class BossEnergy : MonoBehaviour
 {
     public GameObject pre;
     public Transform tf;
@@ -10,9 +10,9 @@ public class BossEnergy : MonsterStatus
     public GameObject preObj;
     public void Energy()
     {
-        if(curHP <= maxHP * 0.5f)
+        if (preObj == null)
         {
-            preObj = Instantiate(pre, tf.transform.position, Quaternion.identity);
+            preObj = Instantiate(pre, tf.position, Quaternion.identity);
         }
     }
 }

@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 201441162421415335}
+  - component: {fileID: 1290021056455283404}
   m_Layer: 0
   m_Name: Energy
   m_TagString: Untagged
@@ -25,13 +26,30 @@ Transform:
   m_GameObject: {fileID: 201441162421415332}
   m_LocalRotation: {x: -0, y: 0.42590064, z: -0, w: 0.90477}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3333333, y: 0.33333334, z: 0.3333333}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8315355989406130948}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1290021056455283404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201441162421415332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd552320b5db5fd4dab9c3cf2f321b70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleValue: 5
+  durationTime: 30
+  maxScale: 5
+  preBomm: {fileID: 8752907378659990453, guid: a847b3349d399a64fa790ad63a37474d, type: 3}
+  effectTimer: 4
 --- !u!1 &2090557176198640841
 GameObject:
   m_ObjectHideFlags: 0
@@ -9790,7 +9808,6 @@ GameObject:
   - component: {fileID: 8315355989254550415}
   - component: {fileID: 8315355989254550411}
   - component: {fileID: 8315355989254550410}
-  - component: {fileID: 8315355989254550413}
   - component: {fileID: 8315355989254550412}
   m_Layer: 0
   m_Name: Effect_12_Sphere
@@ -9866,19 +9883,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &8315355989254550413
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8315355989254550414}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8315355989254550412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9905,7 +9909,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8315355989406130948}
-  - component: {fileID: 8315355989406130950}
   m_Layer: 0
   m_Name: Effect_12_UniverseEater
   m_TagString: Untagged
@@ -9930,27 +9933,6 @@ Transform:
   m_Father: {fileID: 201441162421415335}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &8315355989406130950
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8315355989406130951}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3fc507be2ef813b42aad336f2747510d, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8315355989409647946
 GameObject:
   m_ObjectHideFlags: 0
@@ -14844,7 +14826,6 @@ GameObject:
   - component: {fileID: 8315355989830221190}
   - component: {fileID: 8315355989830221186}
   - component: {fileID: 8315355989830221189}
-  - component: {fileID: 8315355989830221188}
   - component: {fileID: 8315355989830221191}
   m_Layer: 0
   m_Name: Effect_12_Sphere_2
@@ -14918,19 +14899,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &8315355989830221188
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8315355989830221193}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8315355989830221191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14993,7 +14961,6 @@ GameObject:
   - component: {fileID: 8315355990425729463}
   - component: {fileID: 8315355990425729459}
   - component: {fileID: 8315355990425729458}
-  - component: {fileID: 8315355990425729461}
   - component: {fileID: 8315355990425729460}
   m_Layer: 0
   m_Name: Effect_12_Sphere_3
@@ -15067,19 +15034,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &8315355990425729461
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8315355990425729462}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8315355990425729460
 MonoBehaviour:
   m_ObjectHideFlags: 0

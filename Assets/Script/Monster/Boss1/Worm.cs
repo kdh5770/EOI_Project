@@ -1,6 +1,7 @@
 
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class Worm : MonsterFSM
@@ -21,6 +22,8 @@ public class Worm : MonsterFSM
     public Attack throwAttack;
 
     public float rotationSpeed = 2f;
+
+    public Slider hp;
 
     private void Start()
     {
@@ -129,8 +132,12 @@ public class Worm : MonsterFSM
     void SetAttack()
     {
         bool skill = Random.Range(0, 2) == 0;
-
-        if (attackType % 3 == 0 && skill && spawnInterval < 5)
+        if (hp.value <= 0.3)
+        {
+            animator.SetBool("IsIdle", false);
+            animator.SetBool("IsEnergy", true);
+        }
+        else if (attackType % 3 == 0 && skill && spawnInterval < 5)
         {
             animator.SetBool("IsSpout", true);
             animator.SetBool("IsIdle", false);
@@ -155,6 +162,7 @@ public class Worm : MonsterFSM
     }
 
     public float skillTime = 0f;
+    public float boomCount = 0;
     void UpdateAttack()
     {
         //gameObject.transform.LookAt(target.transform.position);
