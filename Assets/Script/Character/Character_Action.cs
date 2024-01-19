@@ -37,8 +37,11 @@ public class Character_Action : MonoBehaviour
     //public GameObject spotLight;
 
     [Header("트레일 렌더러 관련")]
+
     [SerializeField]
-    private ParticleSystem ShootingSystem;
+    private GameObject ShootFlx;
+
+    //private ParticleSystem ShootingSystem;
     [SerializeField]
     private Transform Shootposition;
     [SerializeField]
@@ -130,10 +133,12 @@ public class Character_Action : MonoBehaviour
 
     public void OnShoot()
     {
+
         if (_input.aim && !_animator.GetCurrentAnimatorStateInfo(1).IsTag("Shoot") && !_input.sprint)
         {
             _animator.SetTrigger("ShootTri");
-            ShootingSystem.Play();
+            Instantiate(ShootFlx, Shootposition);
+            //ShootingSystem.Play();
             Vector3 directioin = GetDirection();
 
             if (Physics.Raycast(Shootposition.position, directioin, out RaycastHit hit, float.MaxValue, Mask))
@@ -148,15 +153,15 @@ public class Character_Action : MonoBehaviour
                 TrailRenderer trail = Instantiate(BulletTrail, Shootposition.position, Quaternion.identity);
 
                 StartCoroutine(SpawnTrail(trail, hit));
-                if (hit.collider.CompareTag("Monster"))
-                {
-                    hit.collider.GetComponent<Weakness>().AttackDamage(100);
+                /*                if (hit.collider.CompareTag("Monster"))
+                                {
+                                    hit.collider.GetComponent<Weakness>().AttackDamage(100);
 
-                    GameObject eftObj = Instantiate(BloodObj, hit.point, Quaternion.identity);
-                    eftObj.transform.LookAt(camTransform.transform.position);
-                    Destroy(eftObj, 1f);
+                                    GameObject eftObj = Instantiate(BloodObj, hit.point, Quaternion.identity);
+                                    eftObj.transform.LookAt(camTransform.transform.position);
+                                    Destroy(eftObj, 1f);
 
-                }
+                                }*/
             }
         }
     }
