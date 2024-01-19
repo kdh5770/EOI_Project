@@ -23,8 +23,6 @@ public class Worm : MonsterFSM
 
     public float rotationSpeed = 2f;
 
-    public Slider hp;
-
     private void Start()
     {
         animator = GetComponentInChildren<Animator>();
@@ -132,12 +130,8 @@ public class Worm : MonsterFSM
     void SetAttack()
     {
         bool skill = Random.Range(0, 2) == 0;
-        if (hp.value <= 0.3)
-        {
-            animator.SetBool("IsIdle", false);
-            animator.SetBool("IsEnergy", true);
-        }
-        else if (attackType % 3 == 0 && skill && spawnInterval < 5)
+
+        if (attackType % 3 == 0 && skill && spawnInterval < 5)
         {
             animator.SetBool("IsSpout", true);
             animator.SetBool("IsIdle", false);
