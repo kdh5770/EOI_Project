@@ -19,14 +19,16 @@ public class Weakness : MonoBehaviour
 
     private void Start()
     {
-        this.gameObject.tag = "Monster";
+        if (type != WEAK_TYPE.None)
+            this.gameObject.tag = "Monster";
+
         GameObject root = transform.root.gameObject;
         status = root.GetComponent<MonsterStatus>();
         InitType();
     }
     public void AttackDamage(float _damage)
     {
-        float result = _damage - ( _damage * reduction );
+        float result = _damage - (_damage * reduction);
 
         status.CalculateDamage(result);
     }

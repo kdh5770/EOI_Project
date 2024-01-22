@@ -8,15 +8,12 @@ public class BossHealth : MonsterStatus
     public Slider HP;
     public int count = 0;
 
-    private void Update()
+    public override void CalculateDamage(float _damage)
     {
-        float healthPercentage = (curHP / maxHP) * 100.0f;
-        HP.value = healthPercentage;
-
-        if (curHP <= maxHP * 0.3f && count == 0)
+        base.CalculateDamage(_damage);
+        if(curHP <= curHP * .3)
         {
-            GetComponent<BossEnergy>().Energy();
-            count++;
+            
         }
     }
 }
