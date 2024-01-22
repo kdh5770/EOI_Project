@@ -5,7 +5,8 @@ using UnityEngine;
 public class BossWall : MonoBehaviour
 {
     public int hitCount = 5;
-    
+
+
     public void BossWall_asd()
     {
         hitCount--;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11005,11 +11005,12 @@ MonoBehaviour:
   spwanCount: 0
   attackType: 0
   throwAttack: {fileID: 5306083207277117463}
+  energySkill: {fileID: 0}
   rotationSpeed: 2
   skillTime: 0
   boomCount: 0
   testobj: {fileID: 0}
-  objectPrefab: {fileID: 7345328223892371441, guid: c8526cbd6aca76344a3f5cbe2e996d1d,
+  objectPrefab: {fileID: 1052950223426455223, guid: 5cb63f3f158533f4fbce410a350afe7d,
     type: 3}
   bossTransform: {fileID: 5306083207277117459}
   spawnRadius: 15
@@ -11146,6 +11147,7 @@ MonoBehaviour:
   tower2: {fileID: 143299168}
   tower3: {fileID: 1200391240}
   preObj: {fileID: 0}
+  hp: {fileID: 0}
 --- !u!1 &5362899306600879348
 GameObject:
   m_ObjectHideFlags: 0
