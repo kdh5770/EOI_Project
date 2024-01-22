@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class TestBullet : MonoBehaviour
 {
-    public GameObject PreObj;
+    public List<GameObject> PreObj;
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(PreObj, transform.position, Quaternion.identity);
+            int i = Random.Range(0, PreObj.Count);
+            Instantiate(PreObj[i], transform.position, Quaternion.identity);
         }
     }
 }

@@ -9,6 +9,7 @@ public class Gamemanager : MonoBehaviour
     public CameraManager cameraManager;
     public TempScript tempScript;
     public SpawnTest spawnTest;
+    public ItemDropManagere itemDropManagere;
 
     private void Awake()
     {
@@ -20,7 +21,7 @@ public class Gamemanager : MonoBehaviour
 
     private void Start()
     {
-        spawnTest.SpawnMonster();
+       // spawnTest.SpawnMonster();
     }
 
 }

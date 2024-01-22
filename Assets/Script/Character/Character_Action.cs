@@ -141,27 +141,25 @@ public class Character_Action : MonoBehaviour
             //ShootingSystem.Play();
             Vector3 directioin = GetDirection();
 
-            if (Physics.Raycast(Shootposition.position, directioin, out RaycastHit hit, float.MaxValue, Mask))
-            {
-
-
-            }
-
 
             if (Physics.Raycast(camTransform.position, camTransform.forward, out hit, Mathf.Infinity, targetLayer))
             {
                 TrailRenderer trail = Instantiate(BulletTrail, Shootposition.position, Quaternion.identity);
 
                 StartCoroutine(SpawnTrail(trail, hit));
-                /*                if (hit.collider.CompareTag("Monster"))
-                                {
-                                    hit.collider.GetComponent<Weakness>().AttackDamage(100);
 
-                                    GameObject eftObj = Instantiate(BloodObj, hit.point, Quaternion.identity);
-                                    eftObj.transform.LookAt(camTransform.transform.position);
-                                    Destroy(eftObj, 1f);
+                if (hit.collider.CompareTag("Monster"))
+                {
+                    hit.collider.GetComponent<Weakness>().AttackDamage(100);
 
-                                }*/
+                    GameObject eftObj = Instantiate(BloodObj, hit.point, Quaternion.identity);
+                    eftObj.transform.LookAt(camTransform.transform.position);
+                    Destroy(eftObj, 1f);                  
+                }
+                else
+                {
+                    Instantiate(ImpactParticleSystem, hit.point, Quaternion.LookRotation(hit.normal));
+                }
             }
         }
     }
@@ -187,7 +185,6 @@ public class Character_Action : MonoBehaviour
         }
 
         Trail.transform.position = hit.point;
-        Instantiate(ImpactParticleSystem, hit.point, Quaternion.LookRotation(hit.normal));
 
         Destroy(Trail.gameObject, Trail.time);
 

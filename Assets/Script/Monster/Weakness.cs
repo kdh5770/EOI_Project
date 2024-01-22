@@ -15,7 +15,7 @@ public class Weakness : MonoBehaviour
     public WEAK_TYPE type;
 
     public MonsterStatus status;
-    public float reduction;
+    private float reduction;
 
     private void Start()
     {

@@ -27,6 +27,7 @@ public class MonsterStatus : MonoBehaviour
         if(curHP <= 0)
         {
             monsterFSM.ChangeState(MONSTER_STATE.DIE);
+            Gamemanager.instance.itemDropManagere.SpawnItems(transform.position);
         }
     }
 }
