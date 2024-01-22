@@ -1,17 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class BossWallDestroy : MonoBehaviour
 {
     public float growthDuration = 5f; // 커지는 시간 설정
-    public float destructionDelay = 2f; // 터지기 전까지 대기 시간 설정
+    public float destructionDelay = 0.5f; // 터지기 전까지 대기 시간 설정
+    public float maxScale = 10f; // 최대 크기 설정
 
-    private bool isExploding = false;
+    public GameObject boom;
+
+    private Coroutine growAndExplodeCoroutine;
 
     void Start()
     {
-        StartCoroutine(GrowAndExplode());
+        // 코루틴 시작
+        growAndExplodeCoroutine = StartCoroutine(GrowAndExplode());
     }
 
     IEnumerator GrowAndExplode()
@@ -21,7 +26,7 @@ public class BossWallDestroy : MonoBehaviour
         while (Time.time - startTime < growthDuration)
         {
             float t = (Time.time - startTime) / growthDuration;
-            float newSize = Mathf.Lerp(0f, 8f, t); // 시작 크기(0)에서 목표 크기(10)로 선형 보간
+            float newSize = Mathf.Lerp(0f, maxScale, t); // 시작 크기(0)에서 목표 크기(maxScale)로 선형 보간
 
             transform.localScale = new Vector3(newSize, 0.1f, newSize);
             yield return null;
@@ -30,21 +35,20 @@ public class BossWallDestroy : MonoBehaviour
         // growthDuration 동안 크기가 커진 후에 실행되는 부분
         yield return new WaitForSeconds(destructionDelay);
 
-        // 터지는 로직 추가
-        Explode();
+        // 최대 크기에 도달하면 부모 오브젝트를 파괴
+        if (transform.localScale.x >= 6f)
+        {
+            Explode();
+        }
     }
 
     void Explode()
     {
-        if (!isExploding)
-        {
-            isExploding = true;
+        // 코루틴 중지
+        StopCoroutine(growAndExplodeCoroutine);
 
-            // 원하는 터지는 로직을 여기에 추가
-            Debug.Log("장판이 터집니다!");
-
-            // 예시로 바닥 장판을 파괴
-            Destroy(gameObject);
-        }
+        // 부모 오브젝트 파괴
+        Destroy(transform.root.gameObject);
+        Instantiate(boom, transform.position, quaternion.identity);
     }
 }

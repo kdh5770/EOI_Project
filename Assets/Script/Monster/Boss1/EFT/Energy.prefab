@@ -77,8 +77,8 @@ Transform:
   m_GameObject: {fileID: 2090557176198640841}
   m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8315355990322975827}
   m_RootOrder: 2
@@ -798,7 +798,7 @@ ParticleSystem:
     sphericalDirectionAmount: 1
     randomPositionAmount: 1
     radius:
-      value: 35
+      value: 64.8
       mode: 0
       spread: 0
       speed:
@@ -4367,8 +4367,8 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0
-          value: -0.04717064
+          time: 0.018229168
+          value: 1
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -4376,8 +4376,8 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.16094173
-          value: 0.5048863
+          time: 0.06979336
+          value: 1
           inSlope: 2.102948
           outSlope: 2.102948
           tangentMode: 0
@@ -4385,8 +4385,8 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.13465767
         - serializedVersion: 3
-          time: 1
-          value: 1
+          time: 0.833313
+          value: -1
           inSlope: 0
           outSlope: 0
           tangentMode: 0
