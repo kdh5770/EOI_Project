@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class CameraImpulse : Interaction
 {
+    [Header("Èçµé¸² °­µµ")]
+    public float shakeImpulse = 1f;
     public override void Interact()
     {
         CinemachineImpulseSource source = GetComponent<CinemachineImpulseSource>();
-        source.GenerateImpulse();
+        source.GenerateImpulseWithForce(shakeImpulse);
     }
 }
