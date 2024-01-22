@@ -3,7 +3,10 @@ using UnityEngine;
 
 public class WormEggThrow : Attack, ISkillEffect
 {
-
+    public override void ActionAttack()
+    {
+        throw new System.NotImplementedException();
+    }
 
     public void ApplyReaction(GameObject target)
     {

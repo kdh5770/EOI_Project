@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class MonsterMelee : Attack
 {
-    public enum MELEE_TYPE
+    private void Start()
     {
-        SINGLE,
-        SEQUENTIAL,
-        RANDEOM
-    }    
+    }
 
-    public MELEE_TYPE meleeType;
-    
     public override void ExecuteAttack(GameObject _target)
     {
-        transform.LookAt(_target.transform.position);
+        animationEvent.ActionAttack += ActionAttack;
+        target = _target;
+        transform.LookAt(target.transform.position);
         animator.SetTrigger("IsMelee");
-        _target.GetComponent<CharacterHealth>().TakeDamage(damage);
+    }
+
+    public override void ActionAttack()
+    {
+        target.GetComponent<CharacterHealth>().TakeDamage(damage);
+        animationEvent.ActionAttack -= ActionAttack;
     }
 }

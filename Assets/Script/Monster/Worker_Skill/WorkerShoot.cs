@@ -19,19 +19,21 @@ public class WorkerShoot : MonsterSkill
 
     public override void ExecuteAttack(GameObject _target) // 공격 실행
     {
-        egg.GetComponent<ThorwObject>().SetDamage(10);
-        transform.LookAt(_target.transform.position);
-        StartCoroutine(AnimatorDelay());
+        animationEvent.ActionAttack += ActionAttack;
 
+        target = _target;
+        animator.SetTrigger("IsShootSkill");
+        egg.GetComponent<ThorwObject>().SetDamage(damage);
+        transform.LookAt(target.transform.position);
     }
 
-    IEnumerator AnimatorDelay()
+    public override void ActionAttack()
     {
-        animator.SetTrigger("IsShootSkill");
-
-        yield return new WaitForSeconds(.3f);
         Rigidbody EGG = egg.GetComponent<Rigidbody>();
         EGG.AddForce(transform.forward * encounter, ForceMode.Impulse);
         egg.transform.SetParent(null);
+
+        animationEvent.ActionAttack -= ActionAttack;
     }
+
 }

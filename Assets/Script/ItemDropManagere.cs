@@ -23,6 +23,6 @@ public class ItemDropManagere : MonoBehaviour
     {
         Vector2 randomPos = Random.insideUnitCircle;
 
-        return new Vector3(randomPos.x, _position.y, randomPos.y);
+        return new Vector3(_position.x + randomPos.x, _position.y,_position.z + randomPos.y);
     }
 }

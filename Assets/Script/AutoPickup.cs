@@ -13,16 +13,9 @@ public class AutoPickup : MonoBehaviour
     private void Start()
     {
         P0_GameObject = gameObject.transform.position;
-        P1_GameObject = gameObject.transform.up * 5f;
+        P1_GameObject = transform.position + gameObject.transform.up * 2f;
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyUp(KeyCode.Escape))
-        {
-            StartCoroutine(PathFollowing());
-        }
-    }
 
     Vector3 Bezier(Vector3 P0, Vector3 P1, Vector3 P2, Vector3 P3, float t)
     {

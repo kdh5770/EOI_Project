@@ -150,7 +150,7 @@ public class Character_Action : MonoBehaviour
 
                 if (hit.collider.CompareTag("Monster"))
                 {
-                    hit.collider.GetComponent<Weakness>().AttackDamage(100);
+                    hit.collider.GetComponent<Weakness>().AttackDamage(5);
 
                     GameObject eftObj = Instantiate(BloodObj, hit.point, Quaternion.identity);
                     eftObj.transform.LookAt(camTransform.transform.position);

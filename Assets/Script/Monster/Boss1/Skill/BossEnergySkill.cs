@@ -8,6 +8,12 @@ public class BossEnergySkill : MonsterSkill
     public Transform tf;
 
     public GameObject preObj;
+
+    public override void ActionAttack()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public override void ApplyReaction(GameObject target)
     {
         throw new System.NotImplementedException();

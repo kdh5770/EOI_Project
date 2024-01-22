@@ -8,8 +8,6 @@ using TMPro;
 public class CharacterUI : MonoBehaviour
 {
     [SerializeField]
-    private Character character;
-    [SerializeField]
     private Slider HpSlider;
     [SerializeField]
     private TMP_Text HpText;
@@ -18,29 +16,90 @@ public class CharacterUI : MonoBehaviour
     [SerializeField]
     private TMP_Text ArmorText;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Image effectImage;
 
-    // Update is called once per frame
-    void Update()
-    {
-        HandleHP();
-    }
+    public Image bloodFrame;
+    public Image bloodEffect;
 
-    void HandleHP()
+    bool isDanger;
+
+    IEnumerator effectCor;
+
+    public void HandleHP(float _curHP, float _maxHP, bool _isAttack)
     {
-        float hpPercentage= (float)(character.Cur_P_Hp) / (float)(character.Max_P_Hp);
+        float hpPercentage = _curHP / _maxHP;
         HpSlider.value = hpPercentage;
-        HpText.text = $"{hpPercentage*100:0}%";
+        HpText.text = $"{hpPercentage * 100:0}%";
+
+        Color frame = bloodFrame.color;
+        frame.a = 1 - (_curHP / _maxHP);
+        bloodFrame.color = frame;
+
+        if (hpPercentage <= .3f)
+        {
+            if (effectCor == null)
+            {
+                isDanger = true;
+                effectCor = SinFadeImage();
+                StartCoroutine(effectCor);
+            }
+        }
+        else
+        {
+            isDanger = false;
+            if (effectCor != null)
+            {
+                effectCor = null;
+            }
+        }
     }
 
-/*    void HandleArmor()
+    /*    void HandleArmor()
+        {
+            float ArmorPercentage = (float)(character.Cur_P_Hp) / (float)(character.Max_P_Hp);
+            ArmorSlider.value = ArmorPercentage;
+            ArmorText.text = $"{ArmorPercentage * 100:0}%";
+        }*/
+    public void TakeEffect(Sprite _image)
     {
-        float ArmorPercentage = (float)(character.Cur_P_Hp) / (float)(character.Max_P_Hp);
-        ArmorSlider.value = ArmorPercentage;
-        ArmorText.text = $"{ArmorPercentage * 100:0}%";
-    }*/
+        if (effectImage.sprite == null)
+        {
+            effectImage.sprite = _image;
+            StartCoroutine(FadeOutImage());
+        }
+    }
+
+    IEnumerator SinFadeImage()
+    {
+        Color effect = bloodEffect.color;
+
+        while (isDanger) // Continuous loop
+        {
+            float t = Time.time % 1; // Repeat every second
+            float alpha = (Mathf.Sin(2 * Mathf.PI * t) + 1) / 2; // Oscillate alpha between 0 and 1
+            effect.a = alpha;
+            bloodEffect.color = effect;
+            yield return null; // Wait for the next frame
+
+        }
+
+        effect.a = 0f;
+        bloodEffect.color = effect;
+        effectCor = null;
+    }
+
+    IEnumerator FadeOutImage()
+    {
+        float duration = 1f;
+        Color newColor = effectImage.color;
+
+        for (float t = 0f; t < duration; t += Time.deltaTime)
+        {
+            newColor.a = Mathf.Lerp(1, 0, t / duration);
+            effectImage.color = newColor;
+            yield return null;
+        }
+
+        effectImage.sprite = null;
+    }
 }

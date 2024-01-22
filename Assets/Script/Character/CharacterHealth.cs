@@ -16,9 +16,17 @@ public class CharacterHealth : MonoBehaviour
 
     public GameObject pittyHandPos;
 
+    private void Start()
+    {
+        curHP = maxHP;
+        Gamemanager.instance.characterUI.HandleHP(curHP, maxHP, false);
+    }
+
     public void TakeDamage(float _damage)
     {
         curHP -= ((int)(_damage - DEF));
+
+        Gamemanager.instance.characterUI.HandleHP(curHP, maxHP, true);
 
         if (curHP <= 0)
         {
