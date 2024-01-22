@@ -161,8 +161,8 @@ public class Worm : MonsterFSM
     void UpdateAttack()
     {
         //gameObject.transform.LookAt(target.transform.position);
-        skillTime += 1*Time.deltaTime;
-        spawnInterval += 1*Time.deltaTime;
+        skillTime += 1 * Time.deltaTime;
+        spawnInterval += 1 * Time.deltaTime;
 
         if (attackTime >= 3 && skillTime >= 1.5f && attackType % 3 == 0)
         {
@@ -251,11 +251,28 @@ public class Worm : MonsterFSM
 
     public void SpawnObjects()
     {
-        // 보스 주위에 랜덤한 위치 계산
-        Vector3 randomPosition = bossTransform.position + Random.onUnitSphere * spawnRadius;
-        randomPosition.y = 0;
+        if (target != null)
+        {
+            // 타겟이 보고 있는 방향 벡터
+            Vector3 targetForward = target.transform.forward;
 
-        // 오브젝트 생성
-        GameObject spawnedObject = Instantiate(objectPrefab, randomPosition, Quaternion.identity);
+            // 랜덤한 위치 생성 (타겟 주변)
+            Vector3 randomPointNearTarget = GetRandomPointNearTarget(target.transform.position, spawnRadius);
+
+            // 오브젝트를 타겟이 보고 있는 방향으로 이동
+            Vector3 spawnPosition = randomPointNearTarget + targetForward * spawnRadius;
+
+            // 오브젝트 생성
+            GameObject spawnedObject = Instantiate(objectPrefab, spawnPosition, Quaternion.identity);
+        }
+    }
+
+    Vector3 GetRandomPointNearTarget(Vector3 center, float radius)
+    {
+        Vector2 randomPointOnCircle = Random.insideUnitCircle * radius;
+        Vector3 randomPointNearTarget = center + new Vector3(randomPointOnCircle.x, 0f, randomPointOnCircle.y);
+        return randomPointNearTarget;
     }
 }
+
+
