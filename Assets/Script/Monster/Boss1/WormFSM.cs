@@ -8,30 +8,23 @@ public class WormFSM : MonsterFSM
 {
     public GameObject target;
 
-    public GameObject bullet;
-    public Transform firePos;
-    public int encounter = 10;
-
-    public GameObject spoutEft;
-    public float spoutTime = 0f;
-
     public float attackTime = 0; // 공격 딜레이
-    public int spwanCount = 0;
-    public int attackType = 0; // 공격 타입
 
-    public Attack throwAttack;
-    public Attack energySkill;
 
     public float rotationSpeed = 2f;
 
+    public WormHealth wormHealth;
     public BossSkillController skillController;
+
+    bool isSpecialSkill;
 
     private void Start()
     {
         animator = GetComponentInChildren<Animator>();
-        monsterStatus = GetComponent<MonsterStatus>();
+        wormHealth = GetComponent<WormHealth>();
         skillController = GetComponentInChildren<BossSkillController>();
-        ChangeState(MONSTER_STATE.TRACKING);
+
+        ChangeState(MONSTER_STATE.iDLE);
     }
 
 
@@ -91,7 +84,7 @@ public class WormFSM : MonsterFSM
     void SetIdle()
     {
         animator.SetTrigger("IsSpawn");
-        animator.SetBool("IsIdle", true);
+        animator.SetBool("isIdle", true);
         animator.SetBool("IsLongAttack", false);
         animator.SetBool("IsSpout", false);
         animator.SetBool("IsSpout2", false);
@@ -100,22 +93,16 @@ public class WormFSM : MonsterFSM
 
     void UpdateIdle()
     {
-        attackTime += Time.deltaTime;
-        gameObject.transform.LookAt(target.transform.position);
 
-        if (attackTime >= 3)
-        {
-            attackType += 1;
-            ChangeState(MONSTER_STATE.ATTACK);
-        }
     }
 
     void SetTracking()
     {
+        animator.SetBool("isIdle", true);
     }
     void UpdateTracking() // 추적 타겟 감지
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, monsterStatus.sightRange);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, wormHealth.sightRange);
 
         if (colliders.Length > 0)
         {
@@ -124,7 +111,7 @@ public class WormFSM : MonsterFSM
                 if (col.CompareTag("Player"))
                 {
                     target = col.gameObject;
-                    ChangeState(MONSTER_STATE.iDLE);
+                    ChangeState(MONSTER_STATE.ATTACK);
                     break;
                 }
             }
@@ -133,29 +120,13 @@ public class WormFSM : MonsterFSM
 
     void SetAttack()
     {
+        animator.SetBool("isIdle", true);
         skillController.SetAttackState(target);
     }
 
-    public float skillTime = 0f;
-    public float boomCount = 0;
     void UpdateAttack()
     {
-        //gameObject.transform.LookAt(target.transform.position);
-        skillTime += 1 * Time.deltaTime;
-        spawnInterval += 1 * Time.deltaTime;
 
-        if (attackTime >= 3 && skillTime >= 1.5f && attackType % 3 == 0)
-        {
-            skillTime = 0f;
-            attackTime = 0;
-            ChangeState(MONSTER_STATE.iDLE);
-        }
-        else if (attackType % 3 != 0 && attackTime >= 3)
-        {
-            skillTime = 0f;
-            attackTime = 0;
-            ChangeState(MONSTER_STATE.iDLE);
-        }
     }
 
     float time = 0f;
@@ -184,74 +155,9 @@ public class WormFSM : MonsterFSM
     }
 
 
-
-
-    /// <summary>
-    /// /////////////////////////////////////////////////////////////////////////
-    /// </summary>
-
-    public void Idle()
-    {
-        animator.SetBool("IsSpwan", false);
-        animator.SetBool("IsIdle", true);
-    }
-
     public override void ChangeReactionState(REACT_TYPE _state)
     {
         throw new System.NotImplementedException();
-    }
-
-    public void attackEgg()
-    {
-        throwAttack.ExecuteAttack(target);
-    }
-
-    public GameObject testobj;
-    public void attackSpout()
-    {
-        testobj = Instantiate(spoutEft, firePos.position, Quaternion.identity);
-
-        // 플레이어 방향으로 회전시키기
-        Vector3 playerDirection = (target.transform.position - firePos.position).normalized;
-        Quaternion toRotation = Quaternion.LookRotation(playerDirection, Vector3.up);
-
-        // 회전 각도를 설정
-        float rotationAngle = 20f;
-
-        // y축으로 회전시키기 (플레이어 방향을 기준으로 회전)
-        Vector3 eulerRotation = new Vector3(rotationAngle, toRotation.eulerAngles.y, 0f);
-        testobj.transform.eulerAngles = eulerRotation;
-    }
-
-    [Header("보스가 생성한 벽")]
-    public GameObject objectPrefab; // 생성할 오브젝트 프리팹
-    public Transform bossTransform; // 보스의 Transform
-    public float spawnRadius = 15f; // 생성 반경
-    public float spawnInterval; // 생성 간격
-
-    public void SpawnObjects()
-    {
-        if (target != null)
-        {
-            // 타겟이 보고 있는 방향 벡터
-            Vector3 targetForward = target.transform.forward;
-
-            // 랜덤한 위치 생성 (타겟 주변)
-            Vector3 randomPointNearTarget = GetRandomPointNearTarget(target.transform.position, spawnRadius);
-
-            // 오브젝트를 타겟이 보고 있는 방향으로 이동
-            Vector3 spawnPosition = randomPointNearTarget + targetForward * spawnRadius;
-
-            // 오브젝트 생성
-            GameObject spawnedObject = Instantiate(objectPrefab, spawnPosition, Quaternion.identity);
-        }
-    }
-
-    Vector3 GetRandomPointNearTarget(Vector3 center, float radius)
-    {
-        Vector2 randomPointOnCircle = Random.insideUnitCircle * radius;
-        Vector3 randomPointNearTarget = center + new Vector3(randomPointOnCircle.x, 0f, randomPointOnCircle.y);
-        return randomPointNearTarget;
     }
 }
 

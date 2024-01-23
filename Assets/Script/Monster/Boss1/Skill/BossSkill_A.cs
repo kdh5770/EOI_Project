@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BossSkill_A : MonsterSkill
 {
+    public GameObject firePosition;
     public GameObject bulletPrefab; // 탄 프리팹
     public int numberOfBullets = 8; // 한 번에 날아가는 탄의 개수
     public int loopMaxCount = 2;
@@ -38,7 +39,7 @@ public class BossSkill_A : MonsterSkill
         {
             // 랜덤한 방향으로 탄을 발사
             Vector3 randomDirection = Random.onUnitSphere.normalized;
-            GameObject projectile = Instantiate(bulletPrefab, spawnPosition, Quaternion.identity);
+            GameObject projectile = Instantiate(bulletPrefab, firePosition.transform.position, Quaternion.identity);
             Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
 
             // 초기 속도 설정
@@ -55,6 +56,7 @@ public class BossSkill_A : MonsterSkill
         {
             animationEvent.ActionAttack -= ActionAttack;
             animator.SetTrigger("isStopLoop");
+            loopCurCount = 0;
         }
     }
 }

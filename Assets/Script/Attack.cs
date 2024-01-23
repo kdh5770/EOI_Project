@@ -19,7 +19,7 @@ public abstract class Attack : MonoBehaviour
     public AnimationEvent animationEvent;
     private void Initialized()
     {
-        animator = GetComponentInChildren<Animator>();
+        animator = transform.root.GetComponentInChildren<Animator>();
         animationEvent = transform.root.GetComponentInChildren<AnimationEvent>();
 
         switch (react_type)
@@ -50,4 +50,5 @@ public abstract class Attack : MonoBehaviour
     public abstract void ExecuteAttack(GameObject _target);
 
     public abstract void ActionAttack();
+
 }

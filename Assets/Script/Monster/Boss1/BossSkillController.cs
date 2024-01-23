@@ -10,14 +10,13 @@ public class BossSkillController : MonoBehaviour
     public List<Attack> skills;
     public Attack specialSkill_A;
     public int skillCount;
-
     public bool isSpecialSkill;
 
     private void Start()
     {
         bossFSM = GetComponentInParent<MonsterFSM>();
+        transform.root.GetComponent<WormHealth>().LowHealthEvent += SetSpecialSkill;
         skillCount = 0;
-        isSpecialSkill = false;
     }
 
     public void SetAttackState(GameObject _target)
@@ -25,12 +24,23 @@ public class BossSkillController : MonoBehaviour
         if (!isSpecialSkill)
         {
             curSkill = skills[skillCount++];
+            if (skillCount >= skills.Count)
+            {
+                skillCount = 0;
+            }
             curSkill.ExecuteAttack(_target);
         }
         else
         {
+            isSpecialSkill = false;
             curSkill = specialSkill_A;
             curSkill.ExecuteAttack(_target);
         }
+    }
+
+    void SetSpecialSkill()
+    {
+        isSpecialSkill = true;
+        transform.root.GetComponent<WormHealth>().LowHealthEvent -= SetSpecialSkill;
     }
 }
