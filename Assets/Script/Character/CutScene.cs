@@ -13,13 +13,11 @@ public class CutScene : MonoBehaviour
     [SerializeField]
     private Text ShakeSceneText;
     private CharacterInputSystem _input;
-    private Animator _animator;
     // Start is called before the first frame update
     void Start()
     {
         pd=GetComponent<PlayableDirector>();
         _input=GetComponent<CharacterInputSystem>();
-        _animator=GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -36,7 +34,9 @@ public class CutScene : MonoBehaviour
             {
                 other.gameObject.SetActive(false);
                 pd.Play(Tl[0]);
+
             }
         }
     }
+
 }
