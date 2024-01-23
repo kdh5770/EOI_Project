@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class Worm : MonsterFSM
+public class WormFSM : MonsterFSM
 {
     public GameObject target;
 
@@ -24,10 +24,13 @@ public class Worm : MonsterFSM
 
     public float rotationSpeed = 2f;
 
+    public BossSkillController skillController;
+
     private void Start()
     {
         animator = GetComponentInChildren<Animator>();
         monsterStatus = GetComponent<MonsterStatus>();
+        skillController = GetComponentInChildren<BossSkillController>();
         ChangeState(MONSTER_STATE.TRACKING);
     }
 
@@ -130,30 +133,7 @@ public class Worm : MonsterFSM
 
     void SetAttack()
     {
-        bool skill = Random.Range(0, 2) == 0;
-
-        if (attackType % 3 == 0 && skill && spawnInterval < 5)
-        {
-            animator.SetBool("IsSpout", true);
-            animator.SetBool("IsIdle", false);
-        }
-        else if (attackType % 3 == 0 && !skill && spawnInterval < 5)
-        {
-            animator.SetBool("IsSpout2", true);
-            animator.SetBool("IsIdle", false);
-        }
-        else if (spawnInterval >= 5)
-        {
-            animator.SetBool("IsIdle", false);
-            animator.SetBool("IsWall", true);
-            SpawnObjects();
-            spawnInterval = 0f;
-        }
-        else
-        {
-            animator.SetBool("IsIdle", false);
-            animator.SetBool("IsLongAttack", true);
-        }
+        skillController.SetAttackState(target);
     }
 
     public float skillTime = 0f;

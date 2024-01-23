@@ -24573,6 +24573,155 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1078548241}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1082709922
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1082709923}
+  - component: {fileID: 1082709928}
+  - component: {fileID: 1082709927}
+  - component: {fileID: 1082709926}
+  - component: {fileID: 1082709925}
+  - component: {fileID: 1082709924}
+  m_Layer: 0
+  m_Name: Skills
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1082709923
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082709922}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1145715878}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1082709924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082709922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89f8bf8363df7a040b6b6105449ca43e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pre: {fileID: 201441162421415332, guid: 99196a826994f2b4898517607d9e0a3b, type: 3}
+  towerPre1: {fileID: 3434693382836235308, guid: c1a0d7dd573418342a0c9cb7785a9251,
+    type: 3}
+  towerPre2: {fileID: 4291378974855724370, guid: 7e04cb2663cc1de4c9153741fbdd29f4,
+    type: 3}
+  towerPre3: {fileID: 2018803843872809997, guid: 6592797e5438d614b8fc79c47b8e8a62,
+    type: 3}
+  shield: {fileID: 3772046439525228255, guid: 1763dff21e44f44489e55d9d8167d5b2, type: 3}
+  shieldTf: {fileID: 1881788823795437396}
+  preTf: {fileID: 1881788824851295191}
+  tower1: {fileID: 0}
+  tower2: {fileID: 0}
+  tower3: {fileID: 0}
+  preObj: {fileID: 0}
+  hp: {fileID: 0}
+--- !u!114 &1082709925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082709922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f48b7339be45774f96bf5ede9bbe411, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  react_type: 0
+  attackRange: 0
+  damage: 0
+  target: {fileID: 0}
+  animationEvent: {fileID: 0}
+  spoutEffect: {fileID: 100002, guid: 06d796ccd85dc4c4b9c98270196715ae, type: 3}
+  firePosition: {fileID: 1881788825403346606}
+--- !u!114 &1082709926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082709922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc846d68be107fb44b8993bd99a90494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  react_type: 0
+  attackRange: 0
+  damage: 0
+  target: {fileID: 0}
+  animationEvent: {fileID: 0}
+  bulletPrefab: {fileID: 5790214432754064660, guid: 6195baec4a941da4bab9c4d6401fd47b,
+    type: 3}
+  numberOfBullets: 5
+  loopMaxCount: 2
+  loopCurCount: 0
+  projectileSpeed: 10
+  projectileLifetime: 5
+  gravity: -9.8
+--- !u!114 &1082709927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082709922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dfee3eb815e15f4980aa054a01a4e23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  react_type: 0
+  attackRange: 0
+  damage: 0
+  target: {fileID: 0}
+  animationEvent: {fileID: 0}
+  throwPre: {fileID: 5790214432754064660, guid: 6195baec4a941da4bab9c4d6401fd47b,
+    type: 3}
+  shootPos: {fileID: 1881788825403346607}
+  impulsPow: 20
+--- !u!114 &1082709928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082709922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c4c4a939230e5479a3a61049564a18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossFSM: {fileID: 0}
+  curSkill: {fileID: 0}
+  skills:
+  - {fileID: 1082709927}
+  - {fileID: 1082709926}
+  - {fileID: 1082709925}
+  specialSkill_A: {fileID: 0}
+  skillCount: 0
+  isSpecialSkill: 0
 --- !u!1 &1083873743 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2025992928135127236, guid: dbde0b8014cb20b47b24d25bfeafab50,
@@ -26248,6 +26397,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6034694201261470974}
+  - {fileID: 1082709923}
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -26313,7 +26463,7 @@ MonoBehaviour:
   attackTime: 0
   spwanCount: 0
   attackType: 0
-  throwAttack: {fileID: 6034694201261470970}
+  throwAttack: {fileID: 0}
   energySkill: {fileID: 0}
   rotationSpeed: 2
   skillTime: 0
@@ -57396,72 +57546,6 @@ MonoBehaviour:
   CameraRadius: 0.15
   DampingIntoCollision: 0
   DampingFromCollision: 0
---- !u!114 &6034694201261470966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6409848000683503172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89f8bf8363df7a040b6b6105449ca43e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pre: {fileID: 201441162421415332, guid: 99196a826994f2b4898517607d9e0a3b, type: 3}
-  towerPre1: {fileID: 3434693382836235308, guid: c1a0d7dd573418342a0c9cb7785a9251,
-    type: 3}
-  towerPre2: {fileID: 4291378974855724370, guid: 7e04cb2663cc1de4c9153741fbdd29f4,
-    type: 3}
-  towerPre3: {fileID: 2018803843872809997, guid: 6592797e5438d614b8fc79c47b8e8a62,
-    type: 3}
-  shield: {fileID: 3772046439525228255, guid: 1763dff21e44f44489e55d9d8167d5b2, type: 3}
-  shieldTf: {fileID: 1881788823795437396}
-  preTf: {fileID: 1881788824851295191}
-  tower1: {fileID: 0}
-  tower2: {fileID: 0}
-  tower3: {fileID: 0}
-  preObj: {fileID: 0}
-  hp: {fileID: 0}
---- !u!114 &6034694201261470967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6409848000683503172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc846d68be107fb44b8993bd99a90494, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 5790214432754064660, guid: 6195baec4a941da4bab9c4d6401fd47b,
-    type: 3}
-  numberOfBullets: 5
-  projectileSpeed: 10
-  projectileLifetime: 5
-  gravity: -9.8
---- !u!114 &6034694201261470970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6409848000683503172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dfee3eb815e15f4980aa054a01a4e23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  react_type: 0
-  attackRange: 0
-  damage: 0
-  target: {fileID: 0}
-  animationEvent: {fileID: 0}
-  throwPre: {fileID: 5790214432754064660, guid: 6195baec4a941da4bab9c4d6401fd47b,
-    type: 3}
-  shootPos: {fileID: 1881788825403346607}
-  impulsPow: 20
 --- !u!4 &6034694201261470974
 Transform:
   m_ObjectHideFlags: 0
@@ -57492,9 +57576,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6034694201261470974}
   - component: {fileID: 387211383511543428}
-  - component: {fileID: 6034694201261470970}
-  - component: {fileID: 6034694201261470967}
-  - component: {fileID: 6034694201261470966}
   m_Layer: 0
   m_Name: Earthworm
   m_TagString: Monster
