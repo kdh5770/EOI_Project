@@ -8,10 +8,6 @@ public class WorkerShout : MonsterSkill
 {
     public Sprite effectImage;
 
-    private void Start()
-    {
-        animationEvent.ActionAttack += ActionAttack;
-    }
     public override void ApplyReaction(GameObject target) // 리액션 효과 (넉백)
     {
         Debug.Log("리액션 효과");
@@ -24,6 +20,7 @@ public class WorkerShout : MonsterSkill
 
     public override void ExecuteAttack(GameObject _target) // 공격 실행
     {
+        animationEvent.ActionAttack += ActionAttack;
         target = _target;
         transform.LookAt(_target.transform.position);
         animator.SetTrigger("IsShoutSkill");
