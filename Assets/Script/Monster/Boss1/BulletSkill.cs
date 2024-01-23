@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletSkill : MonoBehaviour
 {
-    public Transform target;  // 타겟 오브젝트의 Transform 컴포넌트를 연결해주세요.
+    public GameObject target;  // 타겟 오브젝트의 Transform 컴포넌트를 연결해주세요.
     public float initialSpeed = 10f;
     public float maxHeight = 5f;
 
@@ -20,6 +20,18 @@ public class BulletSkill : MonoBehaviour
 
     void Update()
     {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 100f);
+
+        if (colliders.Length > 0)
+        {
+            foreach (Collider col in colliders)
+            {
+                if (col.CompareTag("Player"))
+                {
+                    target = col.gameObject;
+                }
+            }
+        }
         if (isAscending)
         {
             currentHeight = transform.position.y;
@@ -35,13 +47,13 @@ public class BulletSkill : MonoBehaviour
     }
     void LaunchProjectile()
     {
-        Vector3 direction = (target.position - transform.position).normalized;
+        Vector3 direction = (target.transform.position - transform.position).normalized;
         rb.velocity = direction * initialSpeed;
     }
 
     void RotateTowardsTarget()
     {
-        Vector3 direction = (target.position - transform.position).normalized;
+        Vector3 direction = (target.transform.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         transform.rotation = lookRotation;
     }
