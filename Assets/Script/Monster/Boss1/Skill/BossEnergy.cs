@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class BossEnergy : MonsterSkill
 {
@@ -19,9 +16,6 @@ public class BossEnergy : MonsterSkill
 
 
     public GameObject preObj;
-
-    public Slider hp;
-
 
     public override void ApplyReaction(GameObject target)
     {
@@ -48,10 +42,10 @@ public class BossEnergy : MonsterSkill
         if (preObj == null)
         {
             preObj = Instantiate(energyBall, preTf.position, Quaternion.identity);
-            GameObject.Instantiate(shield, shieldTf.transform.position, Quaternion.identity);
-            GameObject.Instantiate(towerPre1, tower1.transform.position, Quaternion.identity);
-            GameObject.Instantiate(towerPre2, tower2.transform.position, Quaternion.identity);
-            GameObject.Instantiate(towerPre3, tower3.transform.position, Quaternion.identity);
+            Instantiate(shield, shieldTf.transform.position, Quaternion.identity);
+            Instantiate(towerPre1, tower1.position, Quaternion.identity);
+            Instantiate(towerPre2, tower2.position, Quaternion.identity);
+            Instantiate(towerPre3, tower3.position, Quaternion.identity);
         }
     }
 
