@@ -34,16 +34,9 @@ public class CutScene : MonoBehaviour
         {
             if (_input.interaction) // 상호작용 키 e 를 눌렀을 때
             {
-                StartCoroutine(ShakeDelayTime());
                 other.gameObject.SetActive(false);
                 pd.Play(Tl[0]);
             }
         }
-    }
-
-
-    IEnumerator ShakeDelayTime()
-    {
-        yield return new WaitForSeconds(5f);
     }
 }
