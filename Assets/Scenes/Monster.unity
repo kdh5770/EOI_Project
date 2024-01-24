@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1661,6 +1661,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 677cf4e1892a445418c65bc070a9f01b, type: 3}
+--- !u!4 &833550178 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8597331432976128247, guid: f6bbabf6ef0336a4c9a6884e91beccee,
+    type: 3}
+  m_PrefabInstance: {fileID: 1093707155}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &839379021
 GameObject:
   m_ObjectHideFlags: 0
@@ -1872,6 +1878,90 @@ Transform:
   m_Father: {fileID: 4325028630496639958}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 188.514, y: 90, z: 0}
+--- !u!1001 &1093707155
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5306083207277117459}
+    m_Modifications:
+    - target: {fileID: 8597331432976128244, guid: f6bbabf6ef0336a4c9a6884e91beccee,
+        type: 3}
+      propertyPath: m_Name
+      value: Boss_Worm
+      objectReference: {fileID: 0}
+    - target: {fileID: 8597331432976128247, guid: f6bbabf6ef0336a4c9a6884e91beccee,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8597331432976128247, guid: f6bbabf6ef0336a4c9a6884e91beccee,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.12626262
+      objectReference: {fileID: 0}
+    - target: {fileID: 8597331432976128247, guid: f6bbabf6ef0336a4c9a6884e91beccee,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.12626262
+      objectReference: {fileID: 0}
+    - target: {fileID: 8597331432976128247, guid: f6bbabf6ef0336a4c9a6884e91beccee,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.12626262
+      objectReference: {fileID: 0}
+    - target: {fileID: 8597331432976128247, guid: f6bbabf6ef0336a4c9a6884e91beccee,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 8597331432976128247, guid: f6bbabf6ef0336a4c9a6884e91beccee,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 8597331432976128247, guid: f6bbabf6ef0336a4c9a6884e91beccee,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8597331432976128247, guid: f6bbabf6ef0336a4c9a6884e91beccee,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.1641868
+      objectReference: {fileID: 0}
+    - target: {fileID: 8597331432976128247, guid: f6bbabf6ef0336a4c9a6884e91beccee,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8597331432976128247, guid: f6bbabf6ef0336a4c9a6884e91beccee,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.9864293
+      objectReference: {fileID: 0}
+    - target: {fileID: 8597331432976128247, guid: f6bbabf6ef0336a4c9a6884e91beccee,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8597331432976128247, guid: f6bbabf6ef0336a4c9a6884e91beccee,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8597331432976128247, guid: f6bbabf6ef0336a4c9a6884e91beccee,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8597331432976128247, guid: f6bbabf6ef0336a4c9a6884e91beccee,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f6bbabf6ef0336a4c9a6884e91beccee, type: 3}
 --- !u!1 &1126344151
 GameObject:
   m_ObjectHideFlags: 0
@@ -20777,7 +20867,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4821435715417758377}
-  m_LocalRotation: {x: -0, y: -0.42590064, z: -0, w: 0.90477}
+  m_LocalRotation: {x: 0, y: -0.9864293, z: 0, w: 0.1641868}
   m_LocalPosition: {x: -39.77573, y: 151.97037, z: -113.23665}
   m_LocalScale: {x: 7.92, y: 7.92, z: 7.92}
   m_ConstrainProportionsScale: 1
@@ -20787,9 +20877,10 @@ Transform:
   - {fileID: 2485410405168601158}
   - {fileID: 61349690}
   - {fileID: 1552366521}
+  - {fileID: 833550178}
   m_Father: {fileID: 309873496}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -50.415, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -161.1, z: 0}
 --- !u!114 &5306083207277117460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20804,27 +20895,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   State: 1
   target: {fileID: 0}
-  bullet: {fileID: 0}
-  firePos: {fileID: 1011939907}
-  encounter: 10
-  spoutEft: {fileID: 6682981844355629286, guid: b07be65539454da48929b4d2f8e8caa5,
-    type: 3}
-  spoutTime: 0
   attackTime: 0
-  spwanCount: 0
-  attackType: 0
-  throwAttack: {fileID: 5306083207277117463}
-  energySkill: {fileID: 0}
   rotationSpeed: 2
+  wormHealth: {fileID: 0}
   skillController: {fileID: 0}
-  skillTime: 0
-  boomCount: 0
-  testobj: {fileID: 0}
-  objectPrefab: {fileID: 1052950223426455223, guid: 5cb63f3f158533f4fbce410a350afe7d,
-    type: 3}
-  bossTransform: {fileID: 5306083207277117459}
-  spawnRadius: 15
-  spawnInterval: 0
 --- !u!114 &5306083207277117461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20931,6 +21005,7 @@ MonoBehaviour:
   damage: 0
   target: {fileID: 0}
   animationEvent: {fileID: 0}
+  firePosition: {fileID: 0}
   bulletPrefab: {fileID: 5790214432754064660, guid: 6195baec4a941da4bab9c4d6401fd47b,
     type: 3}
   numberOfBullets: 5
@@ -20951,7 +21026,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89f8bf8363df7a040b6b6105449ca43e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pre: {fileID: 201441162421415332, guid: 99196a826994f2b4898517607d9e0a3b, type: 3}
+  react_type: 0
+  attackRange: 0
+  damage: 0
+  target: {fileID: 0}
+  animationEvent: {fileID: 0}
+  energyBall: {fileID: 0}
   towerPre1: {fileID: 3434693382836235308, guid: c1a0d7dd573418342a0c9cb7785a9251,
     type: 3}
   towerPre2: {fileID: 4291378974855724370, guid: 7e04cb2663cc1de4c9153741fbdd29f4,
@@ -20965,7 +21045,6 @@ MonoBehaviour:
   tower2: {fileID: 143299168}
   tower3: {fileID: 1200391240}
   preObj: {fileID: 0}
-  hp: {fileID: 0}
 --- !u!1 &5362899306600879348
 GameObject:
   m_ObjectHideFlags: 0
