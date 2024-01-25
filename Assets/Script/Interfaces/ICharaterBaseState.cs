@@ -4,7 +4,11 @@ using UnityEngine;
 
 public abstract class ICharaterBaseState
 {
-    public bool IsChageState { get; protected set; }
+    public bool IsChageState
+    {
+        get { return IsChageState; }
+        protected set { IsChageState = value; }
+    }
     public virtual void OnEnterState() { }
     public virtual void OnUpdateState() { }
     public virtual void OnFixedUpdateState() { }
@@ -14,7 +18,7 @@ public abstract class ICharaterBaseState
 
 public class MoveState : ICharaterBaseState
 {
-   
+
 
     public void OnEnterState()
     {
