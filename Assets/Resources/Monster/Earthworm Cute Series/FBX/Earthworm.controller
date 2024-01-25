@@ -89,7 +89,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsStopLoop
+    m_ConditionEvent: isStopLoop
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3262694107169924427}
@@ -255,7 +255,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsStopLoop
+    m_ConditionEvent: isStopLoop
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -67065143464414350}
@@ -364,7 +364,19 @@ AnimatorController:
   m_Name: Earthworm
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: IsIdle
+  - m_Name: IsGround
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: isIdle
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: IsLongAttack
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -376,19 +388,25 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: IsDead
+  - m_Name: IsDie
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: IsStopLoop
+  - m_Name: IsDescend
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: IsThrow
+  - m_Name: isStopLoop
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: isThrow
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -440,7 +458,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsThrow
+    m_ConditionEvent: isThrow
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 582372882860836375}
@@ -661,7 +679,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsDead
+    m_ConditionEvent: IsDescend
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8598966310217417134}

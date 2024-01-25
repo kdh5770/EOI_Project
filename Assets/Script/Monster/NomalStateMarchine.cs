@@ -214,12 +214,7 @@ public class NomalStateMarchine : MonsterFSM
 
     void SetDie()
     {
-        nav.ResetPath();
-        nav.isStopped = true;
-        nav.velocity = Vector3.zero;
-
         animator.SetTrigger("IsDead");
-        animator.SetBool("IsIdle", false);
     }
 
     void UpdateDie()
