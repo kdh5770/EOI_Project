@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class CutScene : MonoBehaviour
 {
@@ -20,11 +21,9 @@ public class CutScene : MonoBehaviour
         _input=GetComponent<CharacterInputSystem>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
+
+    
 
     private void OnTriggerStay(Collider other) // 컷씬이 재생 될 박스 콜라이더에 머물면서 
     {
@@ -32,11 +31,26 @@ public class CutScene : MonoBehaviour
         {
             if (_input.interaction) // 상호작용 키 e 를 눌렀을 때
             {
+
                 other.gameObject.SetActive(false);
                 pd.Play(Tl[0]);
+
+
+                GetComponent<PlayerInput>().enabled = false;
+                other.gameObject.SetActive(false);;
+                pd.Play(Tl[0]);
+                StartCoroutine(CutSceneIsPlayed());
 
             }
         }
     }
+
+
+    IEnumerator CutSceneIsPlayed() // 컷씬이 재생완료됐을 때
+    {
+        yield return new WaitForSeconds(11f);
+        GetComponent<PlayerInput>().enabled = true;
+    }
+
 
 }
