@@ -34,19 +34,17 @@ public class CutScene : MonoBehaviour
 
                 other.gameObject.SetActive(false);
                 pd.Play(Tl[0]);
-
-
-                GetComponent<PlayerInput>().enabled = false;
+                GetComponent<PlayerInput>().enabled = false; // 플레이어 이동불가상태 만들기
                 other.gameObject.SetActive(false);;
                 pd.Play(Tl[0]);
-                StartCoroutine(CutSceneIsPlayed());
+                StartCoroutine(CutSceneIsPlayed()); // 코루틴 사용 11초 후 플레이어 이동 재개
 
             }
         }
     }
 
 
-    IEnumerator CutSceneIsPlayed() // 컷씬이 재생완료됐을 때
+    IEnumerator CutSceneIsPlayed() 
     {
         yield return new WaitForSeconds(11f);
         GetComponent<PlayerInput>().enabled = true;
