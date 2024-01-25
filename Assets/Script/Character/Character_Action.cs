@@ -90,7 +90,7 @@ public class Character_Action : MonoBehaviour
         {
             AimControll(true);
 
-            //_animator.SetLayerWeight(1, 1);
+            _animator.SetLayerWeight(1, 1);
 
             Vector3 targetPosition = Vector3.zero;
 
@@ -120,7 +120,7 @@ public class Character_Action : MonoBehaviour
         {
             AimControll(false);
 
-            //_animator.SetLayerWeight(1, 0);
+            _animator.SetLayerWeight(1, 0);
             _animator.SetBool("Shoot", false);
         }
     }
@@ -151,7 +151,7 @@ public class Character_Action : MonoBehaviour
                 if (hit.collider.CompareTag("Monster"))
                 {
                     hit.collider.GetComponent<Weakness>().AttackDamage(5);
-
+                    Instantiate(ImpactParticleSystem, hit.point, Quaternion.LookRotation(hit.normal));
                     GameObject eftObj = Instantiate(BloodObj, hit.point, Quaternion.identity);
                     eftObj.transform.LookAt(camTransform.transform.position);
                     Destroy(eftObj, 1f);                  

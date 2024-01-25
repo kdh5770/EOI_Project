@@ -135,6 +135,8 @@ GameObject:
   - component: {fileID: 111803315}
   - component: {fileID: 111803314}
   - component: {fileID: 111803313}
+  - component: {fileID: 111803317}
+  - component: {fileID: 111803318}
   m_Layer: 6
   m_Name: Cube
   m_TagString: Monster
@@ -150,7 +152,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 111803312}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -220,6 +222,41 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &111803317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 111803312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f279dce8a74bfb48bcf80a21d649baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  status: {fileID: 0}
+--- !u!114 &111803318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 111803312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48cb24c403e96cf42bf753956762e0a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 100
+  curHP: 100
+  ATK: 0
+  DEF: 0
+  bassSPD: 0
+  moveRange: 0
+  sightRange: 0
+  attackRange: 0
+  dropItemPre: {fileID: 0}
 --- !u!1 &146027855
 GameObject:
   m_ObjectHideFlags: 3
@@ -399,7 +436,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &246183465
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1275,8 +1312,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1814354257}
-  m_LocalRotation: {x: 0.33453757, y: 0.49773166, z: 0.42441282, w: 0.67839634}
-  m_LocalPosition: {x: 0.1981, y: 0.0008, z: 0.0802}
+  m_LocalRotation: {x: 0.455283, y: 0.6676969, z: 0.3089716, w: 0.5014327}
+  m_LocalPosition: {x: 0.2242, y: -0.0257, z: 0.0229}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1285,7 +1322,7 @@ Transform:
   - {fileID: 813646937}
   m_Father: {fileID: 5697606105463431941}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 1.8, y: 73.69, z: 65.41}
+  m_LocalEulerAnglesHint: {x: 2.521, y: 107.848, z: 66.741}
 --- !u!1 &1386420639
 GameObject:
   m_ObjectHideFlags: 0
@@ -1879,10 +1916,10 @@ MonoBehaviour:
     type: 3}
   isAimMove: 0
   isReload: 0
-  ShootFlx: {fileID: 6834260447711250411, guid: 6d3b8ee5fb7e0dd4687a95f618eb98ee,
+  ShootFlx: {fileID: 6834260447711250411, guid: e0e81df8b53f2b842a0cfbf295701e05,
     type: 3}
   Shootposition: {fileID: 254905181}
-  ImpactParticleSystem: {fileID: 1388365810584370409, guid: 8853f875fcffacf42910cd168feaa7e8,
+  ImpactParticleSystem: {fileID: 6008994167682417887, guid: 08f0404f414c2cf49b84734e48814f18,
     type: 3}
   BulletTrail: {fileID: 8665584575456551542, guid: a878c502d012887499ac3ecc35b7d9a3,
     type: 3}
@@ -6338,7 +6375,8 @@ MonoBehaviour:
   m_fontAsset: {fileID: 11400000, guid: b04f3173f946b754db673ac13842f4c1, type: 2}
   m_sharedMaterial: {fileID: 21728410361126204, guid: b04f3173f946b754db673ac13842f4c1,
     type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 21728410361126204, guid: b04f3173f946b754db673ac13842f4c1, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -6519,7 +6557,8 @@ MonoBehaviour:
   m_fontAsset: {fileID: 11400000, guid: 581c047ed60765249b12f37ff2895497, type: 2}
   m_sharedMaterial: {fileID: 21082280118058838, guid: 581c047ed60765249b12f37ff2895497,
     type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 21082280118058838, guid: 581c047ed60765249b12f37ff2895497, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -8473,7 +8512,8 @@ MonoBehaviour:
   m_fontAsset: {fileID: 11400000, guid: 581c047ed60765249b12f37ff2895497, type: 2}
   m_sharedMaterial: {fileID: 21082280118058838, guid: 581c047ed60765249b12f37ff2895497,
     type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 21082280118058838, guid: 581c047ed60765249b12f37ff2895497, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
