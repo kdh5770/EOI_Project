@@ -84,7 +84,7 @@ public class WormFSM : MonsterFSM
     void SetIdle()
     {
         animator.SetTrigger("IsSpawn");
-        animator.SetBool("isIdle", true);
+        animator.SetBool("IsIdle", true);
         animator.SetBool("IsLongAttack", false);
         animator.SetBool("IsSpout", false);
         animator.SetBool("IsSpout2", false);
@@ -98,7 +98,7 @@ public class WormFSM : MonsterFSM
 
     void SetTracking()
     {
-        animator.SetBool("isIdle", true);
+        animator.SetBool("IsIdle", true);
     }
     void UpdateTracking() // 추적 타겟 감지
     {
@@ -120,7 +120,7 @@ public class WormFSM : MonsterFSM
 
     void SetAttack()
     {
-        animator.SetBool("isIdle", true);
+        animator.SetBool("IsIdle", true);
         skillController.SetAttackState(target);
     }
 
@@ -141,7 +141,7 @@ public class WormFSM : MonsterFSM
 
     void SetDie()
     {
-        animator.SetTrigger("IsDescend");
+        animator.SetTrigger("IsDead");
     }
 
     void UpdateReact()

@@ -55,7 +55,7 @@ public class BossSkill_A : MonsterSkill
         if(++loopCurCount >= loopMaxCount)
         {
             animationEvent.ActionAttack -= ActionAttack;
-            animator.SetTrigger("isStopLoop");
+            animator.SetTrigger("IsStopLoop");
             loopCurCount = 0;
         }
     }

@@ -18,7 +18,7 @@ public class MonsterThrow : Attack
         direction = (target.transform.position - shootPos.transform.position).normalized;
         transform.root.rotation = Quaternion.LookRotation(direction);
 
-        animator.SetTrigger("isThrow");     
+        animator.SetTrigger("IsThrow");     
     }
 
     public override void ActionAttack()
