@@ -6,7 +6,6 @@ public class Gamemanager : MonoBehaviour
 {
     public static Gamemanager instance;
 
-    public CameraManager cameraManager;
     public TempScript tempScript;
     public SpawnTest spawnTest;
     public ItemDropManagere itemDropManagere;

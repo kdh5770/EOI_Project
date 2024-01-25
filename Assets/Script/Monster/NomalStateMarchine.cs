@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -131,7 +129,7 @@ public class NomalStateMarchine : MonsterFSM
         nav.SetDestination(target.transform.position);
 
         //공격별 공격 범위 초기화
-        if (isSkilled)
+        if (skill != null && isSkilled)
         {
             attackDist = skill.attackRange;
 
@@ -174,7 +172,7 @@ public class NomalStateMarchine : MonsterFSM
         animator.SetBool("IsIdle", true);
         animator.SetBool("IsRun", false);
 
-        if (isSkilled)
+        if (skill != null && isSkilled)
         {
             skill.ExecuteAttack(target);
             isSkilled = false;
