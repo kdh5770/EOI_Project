@@ -9,7 +9,7 @@ public class BossSkill_B : MonsterSkill
     public Transform firePosition;
     private GameObject preObj;
 
-    public int loopMaxCount = 10;
+    public int loopMaxCount = 23;
     public int loopCurCount = 0;
 
     public override void ApplyReaction(GameObject target)
@@ -28,6 +28,7 @@ public class BossSkill_B : MonsterSkill
         animationEvent.ActionAttack += ActionAttack;
 
         Vector3 direction = (target.transform.position - firePosition.transform.position).normalized;
+        direction.y = 0f;//
         transform.root.rotation = Quaternion.LookRotation(direction);
 
         animator.SetTrigger("IsSpout");

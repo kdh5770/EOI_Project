@@ -40,12 +40,13 @@ public class BossSkill_A : MonsterSkill
             // 랜덤한 방향으로 탄을 발사
             Vector3 randomDirection = Random.onUnitSphere.normalized;
             GameObject projectile = Instantiate(bulletPrefab, firePosition.transform.position, Quaternion.identity);
+
             Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
 
-            // 초기 속도 설정
+            //// 초기 속도 설정
             projectileRb.velocity = randomDirection * projectileSpeed;
 
-            // 중력 적용
+            //// 중력 적용
             projectileRb.useGravity = true;
 
             // 일정 시간이 지난 후에 탄을 제거
