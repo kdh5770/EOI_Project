@@ -26,7 +26,7 @@ public class CharacterHealth : MonoBehaviour
     {
         curHP -= ((int)(_damage - DEF));
 
-        Gamemanager.instance.characterUI.HandleHP(curHP, maxHP, true);
+        //Gamemanager.instance.characterUI.HandleHP(curHP, maxHP, true);
 
         if (curHP <= 0)
         {
