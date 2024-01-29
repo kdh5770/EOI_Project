@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mutant_Skill_A : MonsterSkill
+public class Mutant_Skill_B : MonsterSkill
 {
     public override void ApplyReaction(GameObject target)
     {
@@ -19,8 +19,8 @@ public class Mutant_Skill_A : MonsterSkill
         animationEvent.ActionAttack += ActionAttack;
         target = _target;
         transform.LookAt(_target.transform.position);
-        animator.SetTrigger("IsSkillA");
-        Debug.Log("땅 치는 순간 플레이어 위치에 땅에서 촉수 나와서 공격");
+        animator.SetTrigger("IsSkillB");
+        Debug.Log("장판 공격");
     }
     public override void ActionAttack()
     {
