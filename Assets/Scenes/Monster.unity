@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2287,7 +2287,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &931381667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5088,7 +5088,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!64 &1517658757
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14906,7 +14906,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2036681728697798875}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.93, y: 1.1, z: -14.65}
+  m_LocalPosition: {x: -5.9, y: 5.7, z: -61.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -35177,15 +35177,14 @@ MonoBehaviour:
   damage: 0
   target: {fileID: 0}
   animationEvent: {fileID: 0}
-  firePosition: {fileID: 0}
-  bulletPrefab: {fileID: 5790214432754064660, guid: 6195baec4a941da4bab9c4d6401fd47b,
-    type: 3}
-  numberOfBullets: 5
   loopMaxCount: 2
   loopCurCount: 0
-  projectileSpeed: 10
-  projectileLifetime: 5
-  gravity: -9.8
+  firstTargets: []
+  secondTarget: {fileID: 0}
+  waitTime: 0
+  bullet: {fileID: 0}
+  Gun: {fileID: 0}
+  bullets: []
 --- !u!114 &5306083207277117467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35389,7 +35388,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6003942260890184742}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.306871, y: -2.679005, z: -16.156294}
+  m_LocalPosition: {x: 6.4768715, y: 1.9209948, z: -62.806293}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -35488,7 +35487,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6003942260902650729}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.41, y: 2.818, z: -16.65}
+  m_LocalPosition: {x: -5.42, y: 7.4179997, z: -63.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -47305,15 +47304,14 @@ MonoBehaviour:
   damage: 0
   target: {fileID: 0}
   animationEvent: {fileID: 0}
-  firePosition: {fileID: 7877551749687037805}
-  bulletPrefab: {fileID: 1297980236589049873, guid: 143eedf728ad0dc498e9b511697e0b52,
-    type: 3}
-  numberOfBullets: 5
   loopMaxCount: 2
   loopCurCount: 0
-  projectileSpeed: 10
-  projectileLifetime: 5
-  gravity: -9.8
+  firstTargets: []
+  secondTarget: {fileID: 0}
+  waitTime: 0
+  bullet: {fileID: 7219366672434247233, guid: 143eedf728ad0dc498e9b511697e0b52, type: 3}
+  Gun: {fileID: 7877551749687037804}
+  bullets: []
 --- !u!114 &8597331433987888741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47386,7 +47384,7 @@ MonoBehaviour:
   animationEvent: {fileID: 0}
   spoutEffect: {fileID: 6682981842899936497}
   firePosition: {fileID: 7877551749687037804}
-  loopMaxCount: 23
+  loopMaxCount: 24
   loopCurCount: 0
 --- !u!114 &8597331433987888746
 MonoBehaviour:
@@ -47484,7 +47482,7 @@ MonoBehaviour:
   gizmoColor: 0
   lineStart: {x: 0, y: 0, z: 0}
   lineEnd: {x: 1, y: 0, z: 0}
-  sphereRadius: 50
+  sphereRadius: 65
 --- !u!1 &8597331434067672423
 GameObject:
   m_ObjectHideFlags: 0
@@ -47503,7 +47501,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &8597331434067672426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47522,7 +47520,7 @@ MonoBehaviour:
   DEF: 0
   bassSPD: 0
   moveRange: 0
-  sightRange: 50
+  sightRange: 65
   attackRange: 0
   dropItemPre: {fileID: 0}
   HP: {fileID: 0}

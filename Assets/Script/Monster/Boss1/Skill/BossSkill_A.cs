@@ -1,18 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossSkill_A : MonsterSkill
 {
-    public GameObject firePosition;
-    public GameObject bulletPrefab; // 탄 프리팹
-    public int numberOfBullets = 8; // 한 번에 날아가는 탄의 개수
     public int loopMaxCount = 2;
     public int loopCurCount = 0;
-    public float projectileSpeed = 3f; // 탄 속도
-    public float projectileLifetime = 5f; // 탄이 생성되어 있는 시간
-    public float gravity = -9.8f; // 중력 가속도
-    
+
+    public List<Vector3> firstTargets;
+    public Transform secondTarget;
+    public float waitTime; // 두 번째 목표지점으로 던지기 전 대기 시간
+    public GameObject bullet;
+    public Transform Gun;
+    private Rigidbody rb;
+    bool hasReachedFirstTarget = false;
+    public List<GameObject> bullets = new List<GameObject>();
+
+
+    void Update()
+    {
+        if (hasReachedFirstTarget)
+        {
+            // 대기 시간이 지난 후 두 번째 목표지점으로 던지기
+            waitTime -= Time.deltaTime;
+            if (waitTime <= 0f)
+            {
+                hasReachedFirstTarget = false;
+                foreach (GameObject bullet in bullets)
+                {
+                    bullet.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                }
+                StartCoroutine(MoveToSecondTarget());
+            }
+        }
+    }
 
     public override void ApplyReaction(GameObject target)
     {
@@ -33,31 +55,68 @@ public class BossSkill_A : MonsterSkill
 
     public override void ActionAttack()
     {
-        Vector3 spawnPosition = new Vector3(0, 7, 0); // x, y, z는 좌표 값입니다.
 
-        for (int i = 0; i < numberOfBullets; i++)
+        if (loopCurCount == 0)
         {
-            // 랜덤한 방향으로 탄을 발사
-            Vector3 randomDirection = Random.onUnitSphere.normalized;
-            GameObject projectile = Instantiate(bulletPrefab, firePosition.transform.position, Quaternion.identity);
+            bullets.Clear();
+            firstTargets.Clear();
+            rb = GetComponent<Rigidbody>();
+            waitTime = 2f;
+            hasReachedFirstTarget = true;
 
-            Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
-
-            //// 초기 속도 설정
-            projectileRb.velocity = randomDirection * projectileSpeed;
-
-            //// 중력 적용
-            projectileRb.useGravity = true;
-
-            // 일정 시간이 지난 후에 탄을 제거
-            Destroy(projectile, projectileLifetime);
+            for (int i = 0; i < 10; i++)
+            {
+                bullets.Add(Instantiate(bullet, Gun.transform.position, Quaternion.identity));
+            }
+            MoveToFirstTarget();
         }
 
-        if(++loopCurCount >= loopMaxCount)
+        if (++loopCurCount >= loopMaxCount)
         {
             animationEvent.ActionAttack -= ActionAttack;
             animator.SetTrigger("isStopLoop");
             loopCurCount = 0;
+        }
+    }
+
+    void MoveToFirstTarget()
+    {
+
+        for (int i = 0; i < 10; i++)
+        {
+            Vector3 randomDirection = Random.onUnitSphere;
+            Vector3 randomPosition = transform.up * 2 + randomDirection;
+            firstTargets.Add(randomPosition);
+        }
+        // 첫 번째 목표지점으로 이동
+        for (int i = 0; i < 10; i++)
+        {
+            Vector3 dir = firstTargets[i].normalized;
+            bullets[i].GetComponent<Rigidbody>().AddForce(dir * 5, ForceMode.Impulse);
+        }
+    }
+
+    IEnumerator MoveToSecondTarget()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 65f);
+
+        if (colliders.Length > 0)
+        {
+            foreach (Collider col in colliders)
+            {
+                if (col.CompareTag("Player"))
+                {
+                    secondTarget = col.gameObject.transform;
+                    break;
+                }
+            }
+        }
+
+        foreach (GameObject bullet in bullets)
+        {
+            Vector3 directionToSecondTarget = (secondTarget.position - bullet.transform.position).normalized;
+            bullet.GetComponent<Rigidbody>().AddForce(directionToSecondTarget * 30, ForceMode.Impulse);
+            yield return new WaitForSeconds(.5f);
         }
     }
 }

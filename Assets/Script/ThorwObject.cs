@@ -6,6 +6,7 @@ public class ThorwObject : MonoBehaviour
     public float effectTimer;
     public float damage;
 
+
     public void SetDamage(float _damage)
     {
         damage = _damage;

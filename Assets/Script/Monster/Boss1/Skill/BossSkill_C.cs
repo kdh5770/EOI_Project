@@ -34,10 +34,10 @@ public class BossSkill_C : MonsterSkill
         Vector3 targetForward = target.transform.forward;
 
         // 랜덤한 위치 생성 (타겟 주변)
-        Vector3 randomPointNearTarget = GetRandomPointNearTarget(transform.position, spawnRadius);
+        Vector3 randomPointNearTarget = GetRandomPointNearTarget(target.transform.position, spawnRadius);
 
         // 오브젝트를 타겟이 보고 있는 방향으로 이동
-        //Vector3 spawnPosition = randomPointNearTarget + targetForward * spawnRadius;
+        Vector3 spawnPosition = randomPointNearTarget + targetForward * spawnRadius;
 
         // 오브젝트 생성
         GameObject spawnedObject = Instantiate(objectPrefab, randomPointNearTarget, Quaternion.identity);
