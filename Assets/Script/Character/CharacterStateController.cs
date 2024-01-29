@@ -15,13 +15,16 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     public float SprintSpeed = 5.3f; // ¶Ù´Â¼Óµµ
 
     public GameObject CinemachineCameraTarget;
-    private float _cinemachineTargetYaw;
-    private float _cinemachineTargetPitch;
+    public float _cinemachineTargetYaw;
+    public float _cinemachineTargetPitch;
     public float TopClamp = 70f;
     public float BottomClamp = -30f;
     public float CameraAngleOverride = 0.0f;
     private const float _threshold = 0.01f;
+    public float Threshold { get { return _threshold; } }
     public bool LockCameraPosition = false;
+
+
 
 
     public MoveState moveState;
@@ -62,4 +65,6 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     {
         throw new System.NotImplementedException();
     }
+
+
 }

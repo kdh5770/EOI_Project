@@ -11,10 +11,10 @@ public class MoveState : CharaterBaseState
     }
     public override void OnUpdateState()
     {
-        
     }
     public override void OnFixedUpdateState()
     {
+        CameraRotation();
         Move();
     }
 
@@ -50,4 +50,35 @@ public class MoveState : CharaterBaseState
         controller._animator.SetFloat("MoveSpeed", targetSpeed);
     }
 
+    private void CameraRotation() // 카메라 회전
+    {
+        // if there is an input and camera position is not fixed
+        if (controller._input.look.sqrMagnitude >= controller.Threshold && !controller.LockCameraPosition)
+        {
+            //Don't multiply mouse input by Time.deltaTime;
+            float deltaTimeMultiplier = 1f;
+
+            controller._cinemachineTargetYaw += controller._input.look.x * deltaTimeMultiplier;
+            controller._cinemachineTargetPitch += controller._input.look.y * deltaTimeMultiplier;
+        }
+
+        // clamp our rotations so our values are limited 360 degrees
+        controller._cinemachineTargetYaw = ClampAngle(controller._cinemachineTargetYaw, float.MinValue, float.MaxValue);
+        controller._cinemachineTargetPitch = ClampAngle(controller._cinemachineTargetPitch, controller.BottomClamp, controller.TopClamp);
+
+        // Cinemachine will follow this target
+        controller.CinemachineCameraTarget.transform.rotation = Quaternion.Euler(controller._cinemachineTargetPitch + controller.CameraAngleOverride, controller._cinemachineTargetYaw, 0.0f);
+        if (controller._input.aim)
+        {
+            controller.transform.rotation = Quaternion.Euler(/*_cinemachineTargetPitch + CameraAngleOverride*/0f, controller._cinemachineTargetYaw, 0.0f);
+
+        }
+    }
+
+    private static float ClampAngle(float IfAngle, float IfMin, float IfMax) // 카메라 각도 관련
+    {
+        if (IfAngle < -360f) IfAngle += 360f;
+        if (IfAngle > 360f) IfAngle -= 360f;
+        return Mathf.Clamp(IfAngle, IfMin, IfMax);
+    }
 }
