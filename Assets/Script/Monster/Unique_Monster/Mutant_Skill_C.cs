@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Mutant_Skill_C : MonsterSkill
 {
+    // 어깨 가시 공격(원거리)
     public override void ApplyReaction(GameObject target)
     {
         throw new System.NotImplementedException();

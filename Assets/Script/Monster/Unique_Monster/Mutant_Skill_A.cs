@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Mutant_Skill_A : MonsterSkill
 {
+    // ¶¥ Ä¥ ¶§ ÇÃ·¹ÀÌ¾î ¹Ø¿¡¼­ ÃË¼ö Æ¢¾î³ª¿Í¼­ °ø°Ý
     public override void ApplyReaction(GameObject target)
     {
         throw new System.NotImplementedException();
@@ -24,7 +25,7 @@ public class Mutant_Skill_A : MonsterSkill
     }
     public override void ActionAttack()
     {
-        ApplySkillEffect(target);
+
         animationEvent.ActionAttack -= ActionAttack;
     }
 }

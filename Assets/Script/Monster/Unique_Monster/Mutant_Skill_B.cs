@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Mutant_Skill_B : MonsterSkill
 {
+    // (원거리 장판 공격)
     public override void ApplyReaction(GameObject target)
     {
         throw new System.NotImplementedException();
@@ -24,7 +25,7 @@ public class Mutant_Skill_B : MonsterSkill
     }
     public override void ActionAttack()
     {
-        ApplySkillEffect(target);
+
         animationEvent.ActionAttack -= ActionAttack;
     }
 }
