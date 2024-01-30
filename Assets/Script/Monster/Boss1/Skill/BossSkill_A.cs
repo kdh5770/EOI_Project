@@ -13,28 +13,9 @@ public class BossSkill_A : MonsterSkill
     public float waitTime; // 두 번째 목표지점으로 던지기 전 대기 시간
     public GameObject bullet;
     public Transform Gun;
-    private Rigidbody rb;
     bool hasReachedFirstTarget = false;
     public List<GameObject> bullets = new List<GameObject>();
 
-
-    void Update()
-    {
-        if (hasReachedFirstTarget)
-        {
-            // 대기 시간이 지난 후 두 번째 목표지점으로 던지기
-            waitTime -= Time.deltaTime;
-            if (waitTime <= 0f)
-            {
-                hasReachedFirstTarget = false;
-                foreach (GameObject bullet in bullets)
-                {
-                    bullet.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                }
-                StartCoroutine(MoveToSecondTarget());
-            }
-        }
-    }
 
     public override void ApplyReaction(GameObject target)
     {
@@ -48,27 +29,26 @@ public class BossSkill_A : MonsterSkill
 
     public override void ExecuteAttack(GameObject _target)
     {
+        bullets.Clear();
+        firstTargets.Clear();
         target = _target;
+        waitTime = 2f;
+
         animationEvent.ActionAttack += ActionAttack;
         animator.SetTrigger("IsSpout2");
     }
 
     public override void ActionAttack()
     {
-
         if (loopCurCount == 0)
         {
-            bullets.Clear();
-            firstTargets.Clear();
-            rb = GetComponent<Rigidbody>();
-            waitTime = 2f;
             hasReachedFirstTarget = true;
-
             for (int i = 0; i < 10; i++)
             {
                 bullets.Add(Instantiate(bullet, Gun.transform.position, Quaternion.identity));
             }
             MoveToFirstTarget();
+            StartCoroutine(Up());
         }
 
         if (++loopCurCount >= loopMaxCount)
@@ -117,6 +97,29 @@ public class BossSkill_A : MonsterSkill
             Vector3 directionToSecondTarget = (secondTarget.position - bullet.transform.position).normalized;
             bullet.GetComponent<Rigidbody>().AddForce(directionToSecondTarget * 30, ForceMode.Impulse);
             yield return new WaitForSeconds(.5f);
+        }
+    }
+
+    IEnumerator Up()
+    {
+        if (hasReachedFirstTarget)
+        {
+            while (waitTime >= 0)
+            {
+                // 대기 시간이 지난 후 두 번째 목표지점으로 던지기
+                waitTime -= Time.deltaTime;
+                yield return null;
+            }
+
+            if (waitTime <= 0f)
+            {
+                hasReachedFirstTarget = false;
+                foreach (GameObject bullet in bullets)
+                {
+                    bullet.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                }
+                StartCoroutine(MoveToSecondTarget());
+            }
         }
     }
 }

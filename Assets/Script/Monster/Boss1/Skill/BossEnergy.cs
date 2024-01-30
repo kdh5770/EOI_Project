@@ -41,11 +41,15 @@ public class BossEnergy : MonsterSkill
     {
         animationEvent.ActionAttack += ActionAttack;
         animator.SetTrigger("IsEnergy");
-        ShieldDestroy();
     }
     public override void ActionAttack()
     {
         Energy();
+        if (_shield1 == null && _shield2 == null && _shield3 == null)
+        {
+            Destroy(preObj);
+            animator.SetTrigger("isStopLoop2");
+        }
         if (++loopCurCount >= loopMaxCount)
         {
             animationEvent.ActionAttack -= ActionAttack;
@@ -71,6 +75,7 @@ public class BossEnergy : MonsterSkill
     {
         if(_shield1 == null && _shield2 == null && _shield3 == null)
         {
+            Destroy(preObj);
             animator.SetTrigger("isStopLoop2");
         }
     }
