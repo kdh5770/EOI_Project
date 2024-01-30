@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Mutant_Skill_A : MonsterSkill
 {
-    // ¶¥ Ä¥ ¶§ ÇÃ·¹ÀÌ¾î ¹Ø¿¡¼­ ÃË¼ö Æ¢¾î³ª¿Í¼­ °ø°Ý
+    // ¶¥ Ä¥ ¶§ ¸ó½ºÅÍ ¹Ý°æ ³»¿¡ ·£´ýÀ¸·Î ÃË¼ö Æ¢¾î³ª¿Í¼­ °ø°Ý
+    [SerializeField]
+    private GameObject SkillPrefab;
+    public float radius = 10f;
+    public int numberOfSkills = 20;
     public override void ApplyReaction(GameObject target)
     {
         throw new System.NotImplementedException();
@@ -25,7 +29,13 @@ public class Mutant_Skill_A : MonsterSkill
     }
     public override void ActionAttack()
     {
-
+        Vector3 monsterPosition = transform.position;
+        for (int i = 0; i < numberOfSkills; i++)
+        {
+            Vector2 randomOffset = Random.insideUnitCircle * radius;
+            Vector3 randomPosition = new Vector3(monsterPosition.x + randomOffset.x, monsterPosition.y, monsterPosition.z + randomOffset.y);
+            Instantiate(SkillPrefab, randomPosition, Quaternion.identity);
+        }
         animationEvent.ActionAttack -= ActionAttack;
     }
 }
