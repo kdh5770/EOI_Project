@@ -8,7 +8,10 @@ public class Mutant_Skill_C : MonsterSkill
     [SerializeField]
     private Transform[] shootpositions;
     [SerializeField]
-    private GameObject shootobj;
+    private GameObject shootobjprefab;
+    private List<GameObject> shootobjs = new List<GameObject>();
+    private float objdestroyTime=5f;
+
 
     public float objspeed = 10f;
 
@@ -30,16 +33,26 @@ public class Mutant_Skill_C : MonsterSkill
         animationEvent.ActionAttack += ActionAttack;
         direction = (target.transform.position - transform.position).normalized;
         animator.SetTrigger("IsSkillC");
-        Debug.Log("어깨에서 가시같은거 던짐");
     }
     public override void ActionAttack()
     {
         for (int i = 0; i < shootpositions.Length; i++)
         {
-            shootobj = Instantiate(shootobj, shootpositions[i].position, Quaternion.LookRotation(direction));
-            shootobj.GetComponent<Rigidbody>().AddForce(direction * objspeed, ForceMode.Impulse);
+            GameObject shootObj = Instantiate(shootobjprefab, shootpositions[i].position, Quaternion.LookRotation(direction));
+            shootObj.GetComponent<Rigidbody>().AddForce(direction * objspeed, ForceMode.Impulse);
+            shootobjs.Add(shootObj);
+            Invoke("DestoryObj", objdestroyTime);
         }
 
         animationEvent.ActionAttack -= ActionAttack;
+    }
+
+    void DestoryObj()
+    {
+        foreach(var obj in shootobjs)
+        {
+            Destroy(obj);
+        }
+        shootobjs.Clear();
     }
 }
