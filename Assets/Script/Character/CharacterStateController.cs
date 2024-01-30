@@ -1,46 +1,55 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
+using UnityEngine.Windows;
 
 public class CharacterStateController : MonoBehaviour, IStateMachine
 {
-    public CharacterInputSystem _input;
-    public Rigidbody _rigidbody;
-    public Animator _animator;
-    public Camera _mainCamera;
-    public CharaterBaseState curState;
+    public Rigidbody rigidbody;
+    public Animator animator;
+    public Camera mainCamera;
+    public CharacterHealth health;
 
-    public float MoveSpeed = 2.0f; // 기본 걷기속도
-    public float SprintSpeed = 5.3f; // 뛰는속도
+    public Vector3 inputDir;
+    public float moveSpeed = 2.0f; // 기본 걷기속도
+    public float sprintSpeed = 5.3f; // 뛰는속도
+    public float applySpeed;
 
     public GameObject CinemachineCameraTarget;
-    public float _cinemachineTargetYaw;
-    public float _cinemachineTargetPitch;
+    public float cinemachineTargetYaw;
+    public float cinemachineTargetPitch;
     public float TopClamp = 70f;
     public float BottomClamp = -30f;
-    public float CameraAngleOverride = 0.0f;
-    private const float _threshold = 0.01f;
-    public float Threshold { get { return _threshold; } }
-    public bool LockCameraPosition = false;
+    public float rotationSensitivity;
 
+    public CharaterBaseState curState;
+    MoveState moveState;
+    AttackState attackState;
+    SkillState skillState;
+    ReactionState reactionState;
+    CutSceneState cutSceneState;
+    DeathState deathState;
 
-
-    public MoveState moveState;
+    public bool isSprint;
+    public bool isAiming;
+    public bool canShooting;
 
     private void Start()
     {
-        _rigidbody = GetComponent<Rigidbody>();
-        _mainCamera = Camera.main;
+        rigidbody = GetComponent<Rigidbody>();
+        animator = GetComponentInChildren<Animator>();
+        mainCamera = Camera.main;
+        health = GetComponent<CharacterHealth>();
+
         Cursor.lockState = CursorLockMode.Locked;
-        _input = GetComponent<CharacterInputSystem>();
-        _animator = GetComponentInChildren<Animator>();
 
-        moveState = new MoveState();
-        moveState.InitState(gameObject.GetComponent<CharacterStateController>());
+        rotationSensitivity = 100f;
 
+        InitState();
         ChangeState(moveState);
-
     }
 
     private void Update()
@@ -65,5 +74,103 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         throw new System.NotImplementedException();
     }
 
+    void InitState()
+    {
+        moveState = new MoveState(gameObject.GetComponent<CharacterStateController>());
+        attackState = new AttackState(gameObject.GetComponent<CharacterStateController>());
+        skillState = new SkillState(gameObject.GetComponent<CharacterStateController>());
+        reactionState = new ReactionState(gameObject.GetComponent<CharacterStateController>());
+        cutSceneState = new CutSceneState(gameObject.GetComponent<CharacterStateController>());
+        deathState = new DeathState(gameObject.GetComponent<CharacterStateController>());
+    }
 
+    bool CanConvertState()
+    {
+        if (health.GetDie())
+            return false;
+        return true;
+    }
+
+    private static float ClampAngle(float IfAngle, float IfMin, float IfMax) // 카메라 각도 관련
+    {
+        if (IfAngle < -360f) IfAngle += 360f;
+        if (IfAngle > 360f) IfAngle -= 360f;
+        return Mathf.Clamp(IfAngle, IfMin, IfMax);
+    }
+
+    public void OnMoveInput(InputAction.CallbackContext _context)
+    {
+        if (_context.ReadValue<Vector2>() == Vector2.zero)
+        {
+            inputDir = Vector3.zero;
+        }
+
+        inputDir = new Vector3(_context.ReadValue<Vector2>().x, 0f, _context.ReadValue<Vector2>().y);
+    }
+
+    public void OnSprint(InputAction.CallbackContext _context)
+    {
+        if (_context.performed)
+        {
+            if (_context.interaction is HoldInteraction)
+            {
+                isSprint = true;
+            }
+        }
+        else
+        {
+            isSprint = false;
+        }
+
+    }
+
+    public void OnCamRotation(InputAction.CallbackContext _context)
+    {
+        if (_context.ReadValue<Vector2>() == Vector2.zero)
+        {
+            return;
+        }
+
+        Vector2 mouseDir = _context.ReadValue<Vector2>().normalized;
+        cinemachineTargetYaw += mouseDir.x * rotationSensitivity * Time.deltaTime;
+        cinemachineTargetPitch += mouseDir.y * rotationSensitivity * Time.deltaTime;
+
+        cinemachineTargetYaw = ClampAngle(cinemachineTargetYaw, float.MinValue, float.MaxValue);
+        cinemachineTargetPitch = ClampAngle(cinemachineTargetPitch, BottomClamp, TopClamp);
+
+    }
+
+    public void OnAim(InputAction.CallbackContext _context)
+    {
+        if (_context.performed)
+        {
+            if (_context.interaction is HoldInteraction)
+            {
+                isAiming = true;
+                animator.SetLayerWeight(1, 1);
+                Debug.Log("에임");
+            }
+        }
+        if (_context.canceled)
+        {
+            isAiming = false;
+            animator.SetLayerWeight(1, 0);
+            Debug.Log("not,에임");
+        }
+    }
+
+    public void OnShoot(InputAction.CallbackContext _context)
+    {
+        if (isAiming && canShooting)
+        {
+            if (_context.interaction is HoldInteraction)
+            {
+                if (_context.performed)
+                {
+                    animator.SetTrigger("IsShoot");
+                    Debug.Log("shoot");
+                }
+            }
+        }
+    }
 }
