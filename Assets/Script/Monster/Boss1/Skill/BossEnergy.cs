@@ -2,19 +2,26 @@ using UnityEngine;
 
 public class BossEnergy : MonsterSkill
 {
+    [Header("에너지 스킬")]
     public GameObject energyBall;
+    [Header("타워")]
     public GameObject towerPre1;
     public GameObject towerPre2;
     public GameObject towerPre3;
+    [Header("쉴드")]
     public GameObject shield1;
     public GameObject shield2;
     public GameObject shield3;
-
+    [Header("위치")]
     public Transform shieldTf;
     public Transform preTf;
     public Transform tower1;
     public Transform tower2;
     public Transform tower3;
+    [Header("생성된 쉴드")]
+    public GameObject _shield1;
+    public GameObject _shield2;
+    public GameObject _shield3;
 
     public GameObject preObj;
 
@@ -34,11 +41,15 @@ public class BossEnergy : MonsterSkill
     {
         animationEvent.ActionAttack += ActionAttack;
         animator.SetTrigger("IsEnergy");
-        ShieldDestroy();
     }
     public override void ActionAttack()
     {
         Energy();
+        if (_shield1 == null && _shield2 == null && _shield3 == null)
+        {
+            Destroy(preObj);
+            animator.SetTrigger("isStopLoop2");
+        }
         if (++loopCurCount >= loopMaxCount)
         {
             animationEvent.ActionAttack -= ActionAttack;
@@ -52,9 +63,9 @@ public class BossEnergy : MonsterSkill
         if (preObj == null)
         {
             preObj = Instantiate(energyBall, preTf.position, Quaternion.identity);
-            Instantiate(shield1, shieldTf.transform.position, Quaternion.identity);
-            Instantiate(shield2, shieldTf.transform.position, Quaternion.identity);
-            Instantiate(shield3, shieldTf.transform.position, Quaternion.identity);
+            _shield1 = Instantiate(shield1, shieldTf.transform.position, Quaternion.identity);
+            _shield2 = Instantiate(shield2, shieldTf.transform.position, Quaternion.identity);
+            _shield3 = Instantiate(shield3, shieldTf.transform.position, Quaternion.identity);
             Instantiate(towerPre1, tower1.position, Quaternion.identity);
             Instantiate(towerPre2, tower2.position, Quaternion.identity);
             Instantiate(towerPre3, tower3.position, Quaternion.identity);
@@ -62,8 +73,9 @@ public class BossEnergy : MonsterSkill
     }
     public void ShieldDestroy()
     {
-        if(shield1 == null && shield2 == null && shield3 == null)
+        if(_shield1 == null && _shield2 == null && _shield3 == null)
         {
+            Destroy(preObj);
             animator.SetTrigger("isStopLoop2");
         }
     }
