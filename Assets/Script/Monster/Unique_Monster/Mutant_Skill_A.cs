@@ -17,8 +17,8 @@ public class Mutant_Skill_A : MonsterSkill
 
     public override void ExecuteAttack(GameObject _target)
     {
-        animationEvent.ActionAttack += ActionAttack;
         target = _target;
+        animationEvent.ActionAttack += ActionAttack;
         transform.LookAt(_target.transform.position);
         animator.SetTrigger("IsSkillA");
         Debug.Log("땅 치는 순간 플레이어 위치에 땅에서 촉수 나와서 공격");

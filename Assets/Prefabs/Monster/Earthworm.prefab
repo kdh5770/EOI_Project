@@ -533,10 +533,11 @@ MonoBehaviour:
   react_type: 0
   attackRange: 0
   damage: 0
+  target: {fileID: 0}
+  animationEvent: {fileID: 0}
   throwPre: {fileID: 5790214432754064660, guid: 6195baec4a941da4bab9c4d6401fd47b,
     type: 3}
   shootPos: {fileID: 1881788824494103173}
-  preObj: {fileID: 0}
   impulsPow: 20
 --- !u!114 &6034694202439147731
 MonoBehaviour:
@@ -552,25 +553,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   State: 1
   target: {fileID: 0}
-  bullet: {fileID: 0}
-  firePos: {fileID: 1881788824494103172}
-  encounter: 10
-  spoutEft: {fileID: 100002, guid: 06d796ccd85dc4c4b9c98270196715ae, type: 3}
-  spoutTime: 0
   attackTime: 0
-  spwanCount: 0
-  attackType: 0
-  throwAttack: {fileID: 6034694202439147728}
-  energySkill: {fileID: 0}
   rotationSpeed: 2
-  skillTime: 0
-  boomCount: 0
-  testobj: {fileID: 0}
-  objectPrefab: {fileID: 1052950223426455223, guid: 5cb63f3f158533f4fbce410a350afe7d,
-    type: 3}
-  bossTransform: {fileID: 6034694202439147732}
-  spawnRadius: 15
-  spawnInterval: 0
+  wormHealth: {fileID: 0}
+  skillController: {fileID: 0}
 --- !u!114 &6034694202439147730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -637,12 +623,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc846d68be107fb44b8993bd99a90494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 5790214432754064660, guid: 6195baec4a941da4bab9c4d6401fd47b,
-    type: 3}
-  numberOfBullets: 5
-  projectileSpeed: 10
-  projectileLifetime: 5
-  gravity: -9.8
+  react_type: 0
+  attackRange: 0
+  damage: 0
+  target: {fileID: 0}
+  animationEvent: {fileID: 0}
+  loopMaxCount: 2
+  loopCurCount: 0
+  firstTargets: []
+  secondTarget: {fileID: 0}
+  waitTime: 0
+  bullet: {fileID: 0}
+  Gun: {fileID: 0}
+  bullets: []
 --- !u!114 &6034694202439147742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -669,7 +662,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89f8bf8363df7a040b6b6105449ca43e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pre: {fileID: 201441162421415332, guid: 99196a826994f2b4898517607d9e0a3b, type: 3}
+  react_type: 0
+  attackRange: 0
+  damage: 0
+  target: {fileID: 0}
+  animationEvent: {fileID: 0}
+  energyBall: {fileID: 0}
   towerPre1: {fileID: 3434693382836235308, guid: c1a0d7dd573418342a0c9cb7785a9251,
     type: 3}
   towerPre2: {fileID: 4291378974855724370, guid: 7e04cb2663cc1de4c9153741fbdd29f4,
@@ -683,7 +681,6 @@ MonoBehaviour:
   tower2: {fileID: 0}
   tower3: {fileID: 0}
   preObj: {fileID: 0}
-  hp: {fileID: 0}
 --- !u!1 &7654587075524780950
 GameObject:
   m_ObjectHideFlags: 0

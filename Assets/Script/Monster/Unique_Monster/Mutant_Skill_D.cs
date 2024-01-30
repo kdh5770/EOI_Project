@@ -21,18 +21,23 @@ public class Mutant_Skill_D : MonsterSkill
 
     public override void ExecuteAttack(GameObject _target)
     {
-        animationEvent.ActionAttack += ActionAttack;
         target = _target;
+        animationEvent.ActionAttack += ActionAttack;
+
         transform.LookAt(_target.transform.position);
         animator.SetTrigger("IsSkillD");
         Debug.Log("샤우팅, 몬스터 소환");
     }
     public override void ActionAttack()
     {
+        Debug.Log("스폰메서드 들어옴");
         for(int i=0;  i<spawnpositions.Length; i++) 
         {
+            Debug.Log("스폰메서드 for문 들어옴");
             Instantiate(spawnmob, spawnpositions[i].position, Quaternion.identity);
         }
+        Debug.Log("스폰메서드 for문 끝");
         animationEvent.ActionAttack -= ActionAttack;
+        Debug.Log("스폰메서드 이벤트 빼줌");
     }
 }

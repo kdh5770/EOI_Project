@@ -5,17 +5,17 @@ using UnityEngine.AI;
 
 public class Unique_FSM : MonsterFSM
 {
-    NavMeshAgent nav;
-
-    private Unique_SkillController skillController;
-    Unique_Health unique_Health;
-
     public GameObject target;
+    NavMeshAgent nav;
+    Unique_Health unique_Health;
+    private Unique_SkillController skillController;
+
+
     private void Start()
     {
-        skillController = GetComponentInChildren<Unique_SkillController>();
         animator = GetComponentInChildren<Animator>();
         unique_Health = GetComponent<Unique_Health>();
+        skillController = GetComponentInChildren<Unique_SkillController>();
         nav = GetComponent<NavMeshAgent>();
 
         ChangeState(MONSTER_STATE.TRACKING);
