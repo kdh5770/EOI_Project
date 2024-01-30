@@ -9,6 +9,8 @@ public class Mutant_Skill_A : MonsterSkill
     private GameObject SkillPrefab;
     public float radius = 10f;
     public int numberOfSkills = 20;
+    private List<GameObject> spawnedSkills = new List<GameObject>();
+    private float skillDestroyDelay = 1f;
     public override void ApplyReaction(GameObject target)
     {
         throw new System.NotImplementedException();
@@ -25,7 +27,7 @@ public class Mutant_Skill_A : MonsterSkill
         animationEvent.ActionAttack += ActionAttack;
         transform.LookAt(_target.transform.position);
         animator.SetTrigger("IsSkillA");
-        Debug.Log("땅 치는 순간 플레이어 위치에 땅에서 촉수 나와서 공격");
+
     }
     public override void ActionAttack()
     {
@@ -34,8 +36,20 @@ public class Mutant_Skill_A : MonsterSkill
         {
             Vector2 randomOffset = Random.insideUnitCircle * radius;
             Vector3 randomPosition = new Vector3(monsterPosition.x + randomOffset.x, monsterPosition.y, monsterPosition.z + randomOffset.y);
-            Instantiate(SkillPrefab, randomPosition, Quaternion.identity);
+            GameObject spawnedSkill = Instantiate(SkillPrefab, randomPosition, Quaternion.identity);
+            spawnedSkills.Add(spawnedSkill);
+
+            Invoke("DestroySkill", skillDestroyDelay);
         }
         animationEvent.ActionAttack -= ActionAttack;
+    }
+
+    void DestroySkill()
+    {
+        foreach(var skill in spawnedSkills)
+        {
+            Destroy(skill);
+        }
+        spawnedSkills.Clear();
     }
 }

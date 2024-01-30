@@ -26,7 +26,6 @@ public class Mutant_Skill_D : MonsterSkill
 
         transform.LookAt(_target.transform.position);
         animator.SetTrigger("IsSkillD");
-        Debug.Log("샤우팅, 몬스터 소환");
     }
     public override void ActionAttack()
     {
