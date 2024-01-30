@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: d682c8dccfb2f98429b27c79c2b16f7c
+guid: bc2cef13a821e4a41b56ade2b443ae27
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
-    second: Idle 03
+    second: Cast Spell
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -36,18 +36,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Idle 03
+      name: Cast Spell
       takeName: Take 001
-      internalID: 0
+      internalID: 1827226128182048838
       firstFrame: 0
-      lastFrame: 80
+      lastFrame: 35
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -60,8 +60,16 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 1
+      - time: 0.5008834
         functionName: EventAnimation
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 90dc5c8c250b5694fb77ed17d311e1bc,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.9090105
+        functionName: EndAnimation
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 90dc5c8c250b5694fb77ed17d311e1bc,
           type: 3}
