@@ -26,7 +26,6 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
 
 
-
     public MoveState moveState;
 
     private void Start()
