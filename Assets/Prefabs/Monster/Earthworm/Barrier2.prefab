@@ -24588,6 +24588,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1872466805233262358}
+  - component: {fileID: 4141146515244680171}
   m_Layer: 0
   m_Name: Barrier2
   m_TagString: Shield2
@@ -24612,3 +24613,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &4141146515244680171
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872466805233262353}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 6
+  m_Center: {x: 0, y: 0, z: 0}

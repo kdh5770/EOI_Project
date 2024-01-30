@@ -34,11 +34,11 @@ public class BossEnergy : MonsterSkill
     {
         animationEvent.ActionAttack += ActionAttack;
         animator.SetTrigger("IsEnergy");
+        ShieldDestroy();
     }
     public override void ActionAttack()
     {
         Energy();
-        ShieldDestroy();
         if (++loopCurCount >= loopMaxCount)
         {
             animationEvent.ActionAttack -= ActionAttack;
