@@ -131,7 +131,7 @@ public class Unique_FSM : MonsterFSM
 
     void UpdateMove() // 공격 범위 감지
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 2); // 공격 범위내 플레이어 감지
+        Collider[] colliders = Physics.OverlapSphere(transform.position, skillController.curSkill.attackRange); // 공격 범위내 플레이어 감지
 
         if (colliders.Length > 0)
         {

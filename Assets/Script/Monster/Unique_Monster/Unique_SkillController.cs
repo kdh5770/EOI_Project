@@ -16,18 +16,24 @@ public class Unique_SkillController : MonoBehaviour
     {
         bossFSM = GetComponentInParent<MonsterFSM>();
         skillCount = 0;
+        curSkill = skills[0];
     }
 
     public void SetAttackState(GameObject _target)
     {
         if (!isSpecialSkill)
         {
-            curSkill = skills[skillCount++];
-            if (skillCount >= skills.Count)
+            Debug.Log(curSkill);
+            Debug.Log(skillCount);
+
+            curSkill.ExecuteAttack(_target);
+
+            if (++skillCount >= skills.Count)
             {
                 skillCount = 0;
             }
-            curSkill.ExecuteAttack(_target);
+            else
+                curSkill = skills[skillCount];
         }
     }
 }
