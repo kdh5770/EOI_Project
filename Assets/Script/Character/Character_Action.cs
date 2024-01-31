@@ -127,7 +127,7 @@ public class Character_Action : MonoBehaviour
     void AimControll(bool isCheck)
     {
         AimCam.gameObject.SetActive(isCheck);
-        AimImage.SetActive(isCheck);
+        //AimImage.SetActive(isCheck);
         _animator.SetBool("Aiming", isCheck);
     }
 

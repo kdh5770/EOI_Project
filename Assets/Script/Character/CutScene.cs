@@ -22,12 +22,9 @@ public class CutScene : MonoBehaviour
     }
 
 
-
-    
-
-    private void OnTriggerStay(Collider other) // 컷씬이 재생 될 박스 콜라이더에 머물면서 
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "CutScene") 
+        if (other.gameObject.tag == "CutScene")
         {
             if (_input.interaction) // 상호작용 키 e 를 눌렀을 때
             {
@@ -35,7 +32,7 @@ public class CutScene : MonoBehaviour
                 other.gameObject.SetActive(false);
                 pd.Play(Tl[0]);
                 GetComponent<PlayerInput>().enabled = false; // 플레이어 이동불가상태 만들기
-                other.gameObject.SetActive(false);;
+                other.gameObject.SetActive(false); ;
                 pd.Play(Tl[0]);
                 StartCoroutine(CutSceneIsPlayed()); // 코루틴 사용 11초 후 플레이어 이동 재개
 
