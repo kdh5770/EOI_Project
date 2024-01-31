@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class BossEnergy : MonsterSkill
@@ -28,6 +29,9 @@ public class BossEnergy : MonsterSkill
     public int loopMaxCount = 23;
     public int loopCurCount = 0;
 
+    public float neutralizeTime = 0f; // 무력화 시간
+    public WormFSM fsm;
+
     public override void ApplyReaction(GameObject target)
     {
         throw new System.NotImplementedException();
@@ -45,11 +49,16 @@ public class BossEnergy : MonsterSkill
     public override void ActionAttack()
     {
         Energy();
+        StartCoroutine(NeutralizeTime());
         if (_shield1 == null && _shield2 == null && _shield3 == null)
         {
             Destroy(preObj);
             animationEvent.ActionAttack -= ActionAttack;
             animator.SetTrigger("isStopLoop2");
+            if(neutralizeTime >= 5)
+            {
+                fsm.ChangeState(MONSTER_STATE.TRACKING);
+            }
         }
         if (++loopCurCount >= loopMaxCount)
         {
@@ -80,5 +89,10 @@ public class BossEnergy : MonsterSkill
             animator.SetTrigger("isStopLoop2");
         }
     }
-    
+
+    IEnumerator NeutralizeTime()
+    {
+        neutralizeTime += Time.deltaTime;
+        yield return null;
+    }
 }

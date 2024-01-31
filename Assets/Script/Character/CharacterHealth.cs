@@ -19,7 +19,7 @@ public class CharacterHealth : MonoBehaviour
     private void Start()
     {
         curHP = maxHP;
-        Gamemanager.instance.characterUI.HandleHP(curHP, maxHP, false);
+        //Gamemanager.instance.characterUI.HandleHP(curHP, maxHP, false);
     }
 
     public void TakeDamage(float _damage)

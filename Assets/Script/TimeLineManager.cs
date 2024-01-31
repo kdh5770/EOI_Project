@@ -15,6 +15,7 @@ public class TimeLineManager : MonoBehaviour
     public void SetInteraction(TimelineAsset _cutScene)
     {
         cutScene = _cutScene;
+        playableDirector.playableAsset = cutScene;
         playableDirector.stopped += StopTimeline;
         playableDirector.Play(cutScene);
     }
