@@ -5,6 +5,12 @@ using UnityEngine;
 public class Mutant_Skill_B : MonsterSkill
 {
     // (원거리 장판 공격)
+    [SerializeField]
+    private GameObject skill_b;
+    [SerializeField]
+    private Transform shootposition;
+
+
     public override void ApplyReaction(GameObject target)
     {
         throw new System.NotImplementedException();
