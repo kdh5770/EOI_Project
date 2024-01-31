@@ -10,6 +10,7 @@ public class Gamemanager : MonoBehaviour
     public SpawnTest spawnTest;
     public ItemDropManagere itemDropManagere;
     public CharacterUI characterUI;
+    public TimeLineManager timeLineManager;
 
     private void Awake()
     {

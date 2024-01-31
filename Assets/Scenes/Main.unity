@@ -9878,6 +9878,7 @@ GameObject:
   - component: {fileID: 458231090}
   - component: {fileID: 458231091}
   - component: {fileID: 458231092}
+  - component: {fileID: 458231093}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -9918,6 +9919,7 @@ MonoBehaviour:
   spawnTest: {fileID: 458231091}
   itemDropManagere: {fileID: 458231092}
   characterUI: {fileID: 58155015257063492}
+  timeLineManager: {fileID: 0}
 --- !u!4 &458231088
 Transform:
   m_ObjectHideFlags: 0
@@ -10086,6 +10088,19 @@ MonoBehaviour:
   - {fileID: 1500184002728490887, guid: 8a73ff2890cdb1a45b8c6177e0109fde, type: 3}
   dropCount: 0
   maxDropCount: 5
+--- !u!114 &458231093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458231085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0779a482758c614db9f77e6290c6025, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cutScene: {fileID: 0}
 --- !u!1 &459967451
 GameObject:
   m_ObjectHideFlags: 0
@@ -55104,7 +55119,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   mainCamera: {fileID: 0}
   health: {fileID: 0}
-  moveVector: {x: 0, y: 0, z: 0}
+  inputDir: {x: 0, y: 0, z: 0}
   moveSpeed: 2
   sprintSpeed: 5.3
   applySpeed: 0
