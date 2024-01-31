@@ -17,5 +17,7 @@ public class CollisionTrigger : MonoBehaviour
                 interaction.Interact();
             }
         }
+
+        gameObject.GetComponent<Collider>().enabled = false;
     }
 }

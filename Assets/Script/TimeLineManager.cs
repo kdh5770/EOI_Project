@@ -7,13 +7,10 @@ public class TimeLineManager : MonoBehaviour
     public PlayableDirector playableDirector;
     public TimelineAsset cutScene;
 
-    private void Start()
-    {
-        playableDirector = GetComponent<PlayableDirector>();
-    }
 
-    public void SetInteraction(TimelineAsset _cutScene)
+    public void SetInteraction(PlayableDirector _pd, TimelineAsset _cutScene)
     {
+        playableDirector = _pd;
         cutScene = _cutScene;
         playableDirector.playableAsset = cutScene;
         playableDirector.stopped += StopTimeline;
@@ -23,5 +20,6 @@ public class TimeLineManager : MonoBehaviour
     public void StopTimeline(PlayableDirector _playableDirector)
     {
         playableDirector.stopped -= StopTimeline;
+        playableDirector.enabled = false;
     }
 }

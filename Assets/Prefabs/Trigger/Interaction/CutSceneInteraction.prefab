@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3695336529928937432}
   - component: {fileID: 3695336529928937435}
+  - component: {fileID: 4088016759080676915}
   m_Layer: 0
   m_Name: CutSceneInteraction
   m_TagString: Untagged
@@ -45,3 +46,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeLine: {fileID: 0}
+  pd: {fileID: 0}
+--- !u!320 &4088016759080676915
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3695336529928937434}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 0}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings: []
+  m_ExposedReferences:
+    m_References: []
