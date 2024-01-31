@@ -1,14 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
+using UnityEngine.InputSystem.XR;
 using UnityEngine.Windows;
+
+public enum CharacterSTATE
+{
+    MOVE,
+    ATTACK,
+    SKILL,
+    INTERACTION,
+    REACTION,
+    DEAT
+}
 
 public class CharacterStateController : MonoBehaviour, IStateMachine
 {
-    public Rigidbody rigidbody;
+    private Rigidbody rigidbody;
     public Animator animator;
     public Camera mainCamera;
     public CharacterHealth health;
@@ -25,13 +37,12 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     public float BottomClamp = -30f;
     public float rotationSensitivity;
 
+    public WeaponTable curWeapon;
+    public List<WeaponTable> weapons;
+
+    private Dictionary<CharacterSTATE,CharaterBaseState> states = new Dictionary<CharacterSTATE,CharaterBaseState>();
+
     public CharaterBaseState curState;
-    MoveState moveState;
-    AttackState attackState;
-    SkillState skillState;
-    ReactionState reactionState;
-    CutSceneState cutSceneState;
-    DeathState deathState;
 
     public bool isSprint;
     public bool isAiming;
@@ -44,28 +55,29 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         animator = GetComponentInChildren<Animator>();
         health = GetComponent<CharacterHealth>();
 
-        Cursor.lockState = CursorLockMode.Locked;
 
-        rotationSensitivity = 100f;
+        rotationSensitivity = 50f;
+
+        curWeapon = weapons[0];
 
         InitState();
-        ChangeState(moveState);
+        ChangeState(CharacterSTATE.MOVE);
     }
 
     private void Update()
     {
-        curState.OnUpdateState();
+        curState?.OnUpdateState();
     }
 
     private void FixedUpdate()
     {
-        curState.OnFixedUpdateState();
+        curState?.OnFixedUpdateState();
     }
 
-    public void ChangeState(CharaterBaseState _state)
+    public void ChangeState(CharacterSTATE _state)
     {
         curState?.OnExitState();
-        curState = _state;
+        curState = states[_state];
         curState?.OnEnterState();
     }
 
@@ -76,14 +88,45 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
     void InitState()
     {
-        moveState = new MoveState(gameObject.GetComponent<CharacterStateController>());
-        attackState = new AttackState(gameObject.GetComponent<CharacterStateController>());
-        skillState = new SkillState(gameObject.GetComponent<CharacterStateController>());
-        reactionState = new ReactionState(gameObject.GetComponent<CharacterStateController>());
-        cutSceneState = new CutSceneState(gameObject.GetComponent<CharacterStateController>());
-        deathState = new DeathState(gameObject.GetComponent<CharacterStateController>());
+        states.Add(CharacterSTATE.MOVE, new MoveState(gameObject.GetComponent<CharacterStateController>()));
+        states.Add(CharacterSTATE.ATTACK, new AttackState(gameObject.GetComponent<CharacterStateController>()));
+        states.Add(CharacterSTATE.SKILL, new SkillState(gameObject.GetComponent<CharacterStateController>()));
+        states.Add(CharacterSTATE.INTERACTION, new InteractionState(gameObject.GetComponent<CharacterStateController>()));
+        states.Add(CharacterSTATE.REACTION, new ReactionState(gameObject.GetComponent<CharacterStateController>()));
+        states.Add(CharacterSTATE.DEAT, new DeathState(gameObject.GetComponent<CharacterStateController>()));
     }
 
+    public void MoveUpdate()
+    {
+        if (inputDir != Vector3.zero)
+        {
+            applySpeed = isSprint ? sprintSpeed : moveSpeed;
+            animator.SetFloat("MoveSpeed", applySpeed);
+
+            Vector3 moveVector = mainCamera.transform.TransformDirection(inputDir); // 카메라 기준으로 input값을 바꿔줌
+            moveVector.y = 0f;
+            moveVector *= applySpeed;
+            rigidbody.velocity = new Vector3(moveVector.x, rigidbody.velocity.y, moveVector.z);
+
+            if (moveVector.magnitude > 0f && !isAiming)
+            {
+                Quaternion newRotation = Quaternion.LookRotation(moveVector);//, Vector3.up);
+                transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 10f);
+            }
+        }
+        else
+        {
+            animator.SetFloat("MoveSpeed", 0);
+            rigidbody.velocity = Vector3.zero;
+        }
+    }
+
+    public void RotateUpdate()
+    {
+        if (isAiming)
+            transform.rotation = Quaternion.Euler(0f, cinemachineTargetYaw, 0.0f);
+        CinemachineCameraTarget.transform.rotation = Quaternion.Euler(cinemachineTargetPitch, cinemachineTargetYaw, 0.0f);
+    }
 
     private static float ClampAngle(float IfAngle, float IfMin, float IfMax) // 카메라 각도 관련
     {
@@ -155,16 +198,21 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
     public void OnShoot(InputAction.CallbackContext _context)
     {
-        if (isAiming && canShooting)
+        if (isAiming && curState == states[CharacterSTATE.MOVE])
         {
             if (_context.interaction is HoldInteraction)
             {
                 if (_context.performed)
                 {
                     animator.SetTrigger("IsShoot");
-                    Debug.Log("shoot");
+                    ChangeState(CharacterSTATE.ATTACK);
                 }
             }
         }
+    }
+
+    public static implicit operator CharacterStateController(CharacterController v)
+    {
+        throw new NotImplementedException();
     }
 }
