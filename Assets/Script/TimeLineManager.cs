@@ -4,7 +4,7 @@ using UnityEngine.Timeline;
 
 public class TimeLineManager : MonoBehaviour
 {
-    private PlayableDirector playableDirector;
+    public PlayableDirector playableDirector;
     public TimelineAsset cutScene;
 
     private void Start()

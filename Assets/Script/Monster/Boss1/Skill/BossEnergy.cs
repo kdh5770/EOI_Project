@@ -49,15 +49,16 @@ public class BossEnergy : MonsterSkill
     public override void ActionAttack()
     {
         Energy();
-        StartCoroutine(NeutralizeTime());
         if (_shield1 == null && _shield2 == null && _shield3 == null)
         {
             Destroy(preObj);
             animationEvent.ActionAttack -= ActionAttack;
             animator.SetTrigger("isStopLoop2");
-            if(neutralizeTime >= 5)
+            StartCoroutine(NeutralizeTime());
+            if (neutralizeTime >= 5)
             {
-                fsm.ChangeState(MONSTER_STATE.TRACKING);
+                animator.SetTrigger("isStopLoop");
+                //fsm.ChangeState(MONSTER_STATE.TRACKING);
             }
         }
         if (++loopCurCount >= loopMaxCount)
@@ -92,7 +93,10 @@ public class BossEnergy : MonsterSkill
 
     IEnumerator NeutralizeTime()
     {
-        neutralizeTime += Time.deltaTime;
-        yield return null;
+        while (neutralizeTime <= 5)
+        {
+            neutralizeTime += Time.deltaTime;
+            yield return null;
+        }
     }
 }

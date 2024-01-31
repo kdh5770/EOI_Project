@@ -12,7 +12,7 @@ public class CollisionTrigger : MonoBehaviour
     {
         if(interactions.Count > 0)
         {
-            foreach(Interaction interaction in interactions)
+            foreach (Interaction interaction in interactions)
             {
                 interaction.Interact();
             }
