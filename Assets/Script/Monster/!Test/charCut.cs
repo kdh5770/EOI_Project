@@ -23,20 +23,14 @@ public class charCut : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             pd.Play(ta[0]);
-            StartCoroutine(cut());
         }
     }
     public void StopTimeline(PlayableDirector _pd)
     {
-        boss.ChangeState(MONSTER_STATE.TRACKING);
-        pd.stopped -= StopTimeline;
-    }
-
-    IEnumerator cut()
-    {
-        yield return new WaitForSeconds(8.8f);
         image_1.SetActive(false);
         image_2.SetActive(false);
         gameObject.SetActive(false);
+        boss.ChangeState(MONSTER_STATE.TRACKING);
+        pd.stopped -= StopTimeline;
     }
 }

@@ -48,6 +48,7 @@ public class BossEnergy : MonsterSkill
         if (_shield1 == null && _shield2 == null && _shield3 == null)
         {
             Destroy(preObj);
+            animationEvent.ActionAttack -= ActionAttack;
             animator.SetTrigger("isStopLoop2");
         }
         if (++loopCurCount >= loopMaxCount)
