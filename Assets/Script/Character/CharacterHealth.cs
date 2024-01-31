@@ -19,14 +19,14 @@ public class CharacterHealth : MonoBehaviour
     private void Start()
     {
         curHP = maxHP;
-        //Gamemanager.instance.characterUI.HandleHP(curHP, maxHP, false);
+        Gamemanager.instance.characterUI.HandleHP(curHP, maxHP, false);
     }
 
     public void TakeDamage(float _damage)
     {
         curHP -= ((int)(_damage - DEF));
 
-        //Gamemanager.instance.characterUI.HandleHP(curHP, maxHP, true);
+        Gamemanager.instance.characterUI.HandleHP(curHP, maxHP, true);
 
         if (curHP <= 0)
         {
