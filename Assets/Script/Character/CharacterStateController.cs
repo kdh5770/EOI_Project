@@ -39,9 +39,9 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
     private void Start()
     {
+        mainCamera = Camera.main;
         rigidbody = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
-        mainCamera = Camera.main;
         health = GetComponent<CharacterHealth>();
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -84,12 +84,6 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         deathState = new DeathState(gameObject.GetComponent<CharacterStateController>());
     }
 
-    bool CanConvertState()
-    {
-        if (health.GetDie())
-            return false;
-        return true;
-    }
 
     private static float ClampAngle(float IfAngle, float IfMin, float IfMax) // 카메라 각도 관련
     {
