@@ -31,6 +31,7 @@ public class Mutant_Skill_A : MonsterSkill
     }
     public override void ActionAttack()
     {
+        animationEvent.ActionAttack -= ActionAttack;
         Vector3 monsterPosition = transform.position;
         for (int i = 0; i < numberOfSkills; i++)
         {
@@ -41,7 +42,6 @@ public class Mutant_Skill_A : MonsterSkill
 
             Invoke("DestroySkill", skillDestroyDelay);
         }
-        animationEvent.ActionAttack -= ActionAttack;
     }
 
     void DestroySkill()

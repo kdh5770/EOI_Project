@@ -29,10 +29,10 @@ public class Mutant_Skill_D : MonsterSkill
     }
     public override void ActionAttack()
     {
+        animationEvent.ActionAttack -= ActionAttack;
         for(int i=0;  i<spawnpositions.Length; i++) 
         {
             Instantiate(spawnmob, spawnpositions[i].position, Quaternion.identity);
         }
-        animationEvent.ActionAttack -= ActionAttack;
     }
 }
