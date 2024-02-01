@@ -24,11 +24,11 @@ public class BulletUIManager : MonoBehaviour
 
     void HandleBulletUI()
     {
-
         if (characterStateController != null)
         {
             BulletTxt.text = characterStateController.curWeapon.Data.CurBullet.ToString() + "/" + characterStateController.curWeapon.Data.MaxBullet.ToString();
         }
+
         else
         {
             Debug.Log("³Î");
