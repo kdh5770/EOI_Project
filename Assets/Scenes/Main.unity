@@ -48225,7 +48225,7 @@ Animator:
   m_GameObject: {fileID: 2036681727976261054}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 4c8878c5b3926354d94961e850293879, type: 3}
-  m_Controller: {fileID: 9100000, guid: 87661db323af6f141878db4f48e8060b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5d748914d02d2ce4d89d3ba044ed20f0, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -52566,6 +52566,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   mainCamera: {fileID: 0}
   health: {fileID: 0}
+  playerAnimationEvent: {fileID: 0}
   inputDir: {x: 0, y: 0, z: 0}
   moveSpeed: 2
   sprintSpeed: 5.3
@@ -52581,7 +52582,6 @@ MonoBehaviour:
   - {fileID: 1699452666}
   isSprint: 0
   isAiming: 0
-  canShooting: 0
 --- !u!1 &6003942261062115928
 GameObject:
   m_ObjectHideFlags: 0

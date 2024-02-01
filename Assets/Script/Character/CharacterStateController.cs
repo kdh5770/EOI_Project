@@ -209,9 +209,4 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
             }
         }
     }
-
-    public static implicit operator CharacterStateController(CharacterController v)
-    {
-        throw new NotImplementedException();
-    }
 }
