@@ -9011,7 +9011,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 947570957}
-  - component: {fileID: 947570956}
   - component: {fileID: 947570955}
   - component: {fileID: 947570953}
   m_Layer: 0
@@ -9072,28 +9071,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!195 &947570956
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 947570952}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 1
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 1
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!4 &947570957
 Transform:
   m_ObjectHideFlags: 0
@@ -10975,11 +10952,11 @@ PlayableDirector:
     value: {fileID: 1376088708324991001}
   - key: {fileID: -7539513069025057576, guid: afb8b770ed7d79142a222fa67c6217b0, type: 2}
     value: {fileID: 1816686695}
-  - key: {fileID: -1634492130237777649, guid: afb8b770ed7d79142a222fa67c6217b0, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 0}
-  - key: {fileID: -3059792408129858418, guid: afb8b770ed7d79142a222fa67c6217b0, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 0}
-  - key: {fileID: -5760392687384970359, guid: afb8b770ed7d79142a222fa67c6217b0, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 0}
   m_ExposedReferences:
     m_References:
@@ -13063,7 +13040,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1468411231}
-  - component: {fileID: 1468411234}
   - component: {fileID: 1468411230}
   - component: {fileID: 1468411232}
   m_Layer: 0
@@ -13140,28 +13116,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!195 &1468411234
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1468411229}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 1
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 1
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1 &1486203441
 GameObject:
   m_ObjectHideFlags: 0
@@ -17835,7 +17789,7 @@ PrefabInstance:
     - target: {fileID: 4088016759080676915, guid: bfc02efb62aaa2c49affd73c79c15b86,
         type: 3}
       propertyPath: m_SceneBindings.Array.size
-      value: 25
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 4088016759080676915, guid: bfc02efb62aaa2c49affd73c79c15b86,
         type: 3}
@@ -17967,20 +17921,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SceneBindings.Array.data[22].key
       value: 
-      objectReference: {fileID: -1634492130237777649, guid: afb8b770ed7d79142a222fa67c6217b0,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 4088016759080676915, guid: bfc02efb62aaa2c49affd73c79c15b86,
         type: 3}
       propertyPath: m_SceneBindings.Array.data[23].key
       value: 
-      objectReference: {fileID: -3059792408129858418, guid: afb8b770ed7d79142a222fa67c6217b0,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 4088016759080676915, guid: bfc02efb62aaa2c49affd73c79c15b86,
         type: 3}
       propertyPath: m_SceneBindings.Array.data[24].key
       value: 
-      objectReference: {fileID: -5760392687384970359, guid: afb8b770ed7d79142a222fa67c6217b0,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 4088016759080676915, guid: bfc02efb62aaa2c49affd73c79c15b86,
         type: 3}
       propertyPath: m_SceneBindings.Array.data[0].value
@@ -18095,12 +18046,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SceneBindings.Array.data[22].value
       value: 
-      objectReference: {fileID: 58155015290717756}
+      objectReference: {fileID: 58155015320558876}
     - target: {fileID: 4088016759080676915, guid: bfc02efb62aaa2c49affd73c79c15b86,
         type: 3}
       propertyPath: m_SceneBindings.Array.data[23].value
       value: 
-      objectReference: {fileID: 58155014980666607}
+      objectReference: {fileID: 58155015320558876}
     - target: {fileID: 4088016759080676915, guid: bfc02efb62aaa2c49affd73c79c15b86,
         type: 3}
       propertyPath: m_SceneBindings.Array.data[24].value
@@ -28277,28 +28228,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbde0b8014cb20b47b24d25bfeafab50, type: 3}
---- !u!195 &2181195473557222999
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7596234728177103359}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 1
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 1
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1001 &2181195473576472034
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34022,7 +33951,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6526456347646468600}
-  - component: {fileID: 2181195473557222999}
   - component: {fileID: 7596234728177103361}
   - component: {fileID: 7596234728177103363}
   m_Layer: 0
