@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class PlayerAnimationEvent : MonoBehaviour
 {
-    CharacterController controller;
+    CharacterStateController controller;
     public event Action ActionAttack;
     private void Start()
     {
-        controller = transform.root.GetComponent<CharacterController>();
+        controller = transform.root.GetComponent<CharacterStateController>();
     }
 
     public void EventAnimation()
@@ -17,6 +17,6 @@ public class PlayerAnimationEvent : MonoBehaviour
 
     public void EndAnimation() // 공격 애니메이션 종료시 호출할 함수
     {
-        
+        controller.ChangeState(CharacterSTATE.MOVE);
     }
 }

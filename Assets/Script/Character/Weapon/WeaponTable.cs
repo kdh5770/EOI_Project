@@ -13,10 +13,11 @@ public struct WeaponData
     //public GameObject WeaponFireFlash; // ÃÑ ½ò ¶§ ÃÑ±¸¿¡¼­ ³ª°¡´Â ºû? ¹ßÈ­¿°µµ Ãß°¡ÇØ¾ßÇÔ. ¹ßÈ­¿° À§Ä¡µµ Ãß°¡ÇØ¾ßÇÔ.
 }
 
-public abstract class WeaponTable: MonoBehaviour
+public abstract class WeaponTable : MonoBehaviour
 {
     protected new Camera camera;
     public WeaponData Data;
+    public int AniHash { get; protected set; }
 
     private void Awake()
     {

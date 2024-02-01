@@ -11,10 +11,9 @@ public class AttackState : CharaterBaseState
 
     public override void OnEnterState()
     {
-        time = 3f;
-        controller.curWeapon.Using();
+        controller.playerAnimationEvent.ActionAttack += controller.curWeapon.Using;
+        controller.animator.SetTrigger(controller.curWeapon.Data.triggerName);
     }
-    float time = 1;
     public override void OnFixedUpdateState()
     {
         controller.RotateUpdate();
@@ -23,15 +22,12 @@ public class AttackState : CharaterBaseState
 
     public override void OnUpdateState()
     {
-        time -= Time.deltaTime;
-        if(time <= 0)
-        {
-            controller.ChangeState(CharacterSTATE.MOVE);
-        }
+
     }
 
     public override void OnExitState()
     {
+        controller.playerAnimationEvent.ActionAttack -= controller.curWeapon.Using;
     }
 
 }

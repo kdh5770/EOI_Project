@@ -5,6 +5,10 @@ using UnityEngine.InputSystem;
 
 public class MachineGun : WeaponTable
 {
+    private void Start()
+    {
+        Initsetting();
+    }
     public override void Initsetting()
     {
         Data.ShotDelay = 0.5f;

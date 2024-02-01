@@ -24,6 +24,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     public Animator animator;
     public Camera mainCamera;
     public CharacterHealth health;
+    public PlayerAnimationEvent playerAnimationEvent;
 
     public Vector3 inputDir;
     public float moveSpeed = 2.0f; // 기본 걷기속도
@@ -40,13 +41,12 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     public WeaponTable curWeapon;
     public List<WeaponTable> weapons;
 
-    private Dictionary<CharacterSTATE,CharaterBaseState> states = new Dictionary<CharacterSTATE,CharaterBaseState>();
+    private Dictionary<CharacterSTATE, CharaterBaseState> states = new Dictionary<CharacterSTATE, CharaterBaseState>();
 
     public CharaterBaseState curState;
 
     public bool isSprint;
     public bool isAiming;
-    public bool canShooting;
 
     private void Start()
     {
@@ -54,7 +54,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         rigidbody = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
         health = GetComponent<CharacterHealth>();
-
+        playerAnimationEvent = GetComponentInChildren<PlayerAnimationEvent>();
 
         rotationSensitivity = 50f;
 
@@ -204,7 +204,6 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
             {
                 if (_context.performed)
                 {
-                    animator.SetTrigger("IsShoot");
                     ChangeState(CharacterSTATE.ATTACK);
                 }
             }
