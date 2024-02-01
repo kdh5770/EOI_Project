@@ -15,7 +15,8 @@ public class CharacterUI : MonoBehaviour
     private Slider ArmorSlider;
     [SerializeField]
     private TMP_Text ArmorText;
-
+    [SerializeField]
+    private TMP_Text BulletText;
     public Image effectImage;
 
     public Image bloodFrame;
