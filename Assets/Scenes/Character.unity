@@ -1870,7 +1870,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -6787,7 +6787,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1884416984}
-  m_LocalRotation: {x: 0.2993637, y: -0.005804913, z: 0.0018213443, w: 0.9541197}
+  m_LocalRotation: {x: 0.29936373, y: -0.0058049415, z: 0.0018213533, w: 0.9541197}
   m_LocalPosition: {x: -0.01, y: 1.77, z: -11.37}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6845,9 +6845,8 @@ GameObject:
   - component: {fileID: 1937990134}
   - component: {fileID: 1937990136}
   - component: {fileID: 1937990135}
-  - component: {fileID: 1937990137}
   m_Layer: 5
-  m_Name: BulletUI
+  m_Name: BulletTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6860,7 +6859,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1937990133}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6972,19 +6971,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1937990133}
   m_CullTransparentMesh: 1
---- !u!114 &1937990137
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1937990133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab030e3c0259bae4695f219358138518, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BulletTxt: {fileID: 0}
 --- !u!1 &1960280426
 GameObject:
   m_ObjectHideFlags: 0
@@ -9110,6 +9096,7 @@ MonoBehaviour:
   HpText: {fileID: 3909613914897530830}
   ArmorSlider: {fileID: 0}
   ArmorText: {fileID: 0}
+  BulletText: {fileID: 0}
   effectImage: {fileID: 3931403373729276473}
   bloodFrame: {fileID: 5001909876397215988}
   bloodEffect: {fileID: 2623343332777956351}
