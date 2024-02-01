@@ -1,12 +1,8 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
-using UnityEngine.InputSystem.XR;
-using UnityEngine.Windows;
+
 
 public enum CharacterSTATE
 {
@@ -20,7 +16,7 @@ public enum CharacterSTATE
 
 public class CharacterStateController : MonoBehaviour, IStateMachine
 {
-    private Rigidbody rigidbody;
+    private new Rigidbody rigidbody;
     public Animator animator;
     public Camera mainCamera;
     public CharacterHealth health;
