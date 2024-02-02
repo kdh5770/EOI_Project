@@ -17,6 +17,10 @@ public class Weakness : MonoBehaviour
     public MonsterStatus status;
     private float reduction;
 
+    public GameObject lowBlood;
+    public GameObject middleBlood;
+    public GameObject highBlood;
+
     private void Start()
     {
         if (type != WEAK_TYPE.None)
@@ -26,10 +30,12 @@ public class Weakness : MonoBehaviour
         status = root.GetComponent<MonsterStatus>();
         InitType();
     }
-    public void AttackDamage(float _damage)
+    public void AttackDamage(float _damage, Vector3 _hitPoint)
     {
         float result = _damage - (_damage * reduction);
 
+        GameObject hitEffect = Gamemanager.instance.poolManager.GetFromPool();
+        hitEffect.transform.position = _hitPoint;
         status.CalculateDamage(result);
     }
 
