@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class burstEgg : MonsterStatus
 {
-    public GameObject boomPre;
-    public GameObject boomPre_;
+    public GameObject boomEftPre;
+    public GameObject boomPreObj;
+    public GameObject target;
 
     public override void CalculateDamage(float _damage)
     {
@@ -18,18 +19,23 @@ public class burstEgg : MonsterStatus
 
     public void EggBoom()
     {
-        boomPre_ = Instantiate(boomPre, gameObject.transform.position, Quaternion.identity);
+        gameObject.GetComponent<Collider>().enabled = false;
+
+        if (target != null)
+        {
+            target.GetComponent<CharacterHealth>().TakeDamage(10);
+        }
+        boomPreObj = Instantiate(boomEftPre, gameObject.transform.position, Quaternion.identity);
         Destroy(gameObject);
-        Destroy(boomPre_, 2f);
+        Destroy(boomPreObj, 2f);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            boomPre_ = Instantiate(boomPre, gameObject.transform.position, Quaternion.identity);
-            Destroy(gameObject);
-            Destroy(boomPre_, 4f);
+            target = other.gameObject;
+            EggBoom();
         }
     }
 }
