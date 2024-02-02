@@ -1,5 +1,7 @@
+using Cinemachine;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 
@@ -27,6 +29,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     public float sprintSpeed = 5.3f; // 뛰는속도
     public float applySpeed;
 
+    public CinemachineVirtualCamera virtualCamera;
     public GameObject CinemachineCameraTarget;
     public float cinemachineTargetYaw;
     public float cinemachineTargetPitch;
@@ -40,6 +43,9 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     private Dictionary<CharacterSTATE, CharaterBaseState> states = new Dictionary<CharacterSTATE, CharaterBaseState>();
     
     public CharaterBaseState curState;
+
+    public Rig aimIK;
+
 
     public bool isSprint;
     public bool isAiming;
@@ -179,17 +185,23 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         {
             if (_context.interaction is HoldInteraction)
             {
+                Cinemachine3rdPersonFollow follow = virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
+                follow.CameraDistance = 1;
                 isAiming = true;
                 animator.SetLayerWeight(1, 1);
                 animator.SetBool("IsAiming", isAiming);
+                aimIK.weight = 1;
                 Debug.Log("에임");
             }
         }
         if (_context.canceled)
         {
+            Cinemachine3rdPersonFollow follow = virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
+            follow.CameraDistance = 2;
             isAiming = false;
             animator.SetLayerWeight(1, 0);
             animator.SetBool("IsAiming", isAiming);
+            aimIK.weight = 0;
             Debug.Log("not,에임");
         }
     }

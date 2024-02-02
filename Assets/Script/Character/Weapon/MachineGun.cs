@@ -5,6 +5,11 @@ using UnityEngine.InputSystem;
 
 public class MachineGun : WeaponTable
 {
+    public Transform shotPos;
+    public GameObject shotFlash;
+    public TrailRenderer shotTrail;
+    public GameObject impactEft;
+
     private void Start()
     {
         Initsetting();
@@ -22,8 +27,28 @@ public class MachineGun : WeaponTable
     {
         Vector3 mousePos = Mouse.current.position.ReadValue();
         Ray ray = camera.ScreenPointToRay(mousePos);
-        Debug.DrawRay(ray.origin, ray.direction, Color.red, 3f);
+        TrailRenderer trail = Instantiate(shotTrail, shotPos.position, Quaternion.identity);
+
+        if (Physics.Raycast(ray, out RaycastHit hit))
+        {
+            StartCoroutine(SpawnTrail(trail, hit));
+        }
     }
 
+    private IEnumerator SpawnTrail(TrailRenderer Trail, RaycastHit hit)
+    {
+        float time = 0f;
+        Vector3 startPosition = Trail.transform.position;
+        while (time < 1f)
+        {
+            Trail.transform.position = Vector3.Lerp(startPosition, hit.point, time);
+            yield return null;
+            time += Trail.time / Time.deltaTime;
+        }
 
+        Trail.transform.position = hit.point;
+
+        Destroy(Trail.gameObject, Trail.time);
+
+    }
 }

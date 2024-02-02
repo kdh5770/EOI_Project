@@ -17,6 +17,10 @@ public abstract class WeaponTable : MonoBehaviour
 {
     protected new Camera camera;
     public WeaponData Data;
+    [SerializeField]
+    private LayerMask layerMask;
+   
+
     public int AniHash { get; protected set; }
 
     private void Awake()
