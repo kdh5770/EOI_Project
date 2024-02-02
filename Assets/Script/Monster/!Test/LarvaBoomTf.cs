@@ -25,7 +25,6 @@ public class LarvaBoomTf : MonoBehaviour
                     break;
                 }
             }
-
             gameObject.transform.LookAt(target);
             yield return null;
         }
