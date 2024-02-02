@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class MonsterStatus : MonoBehaviour
-{   
+{
     public float maxHP;
     public float curHP;
     public float ATK;
@@ -21,13 +21,16 @@ public class MonsterStatus : MonoBehaviour
 
     private void Start()
     {
-        monsterFSM = GetComponent<MonsterFSM>();
+        if (TryGetComponent(out MonsterFSM _monsterFSM))
+        {
+            monsterFSM = _monsterFSM;
+        }
     }
 
     public virtual void CalculateDamage(float _damage)
     {
         curHP -= _damage;
-        if(curHP <= 0)
+        if (curHP <= 0)
         {
             monsterFSM.ChangeState(MONSTER_STATE.DIE);
             Gamemanager.instance.itemDropManagere.SpawnItems(transform.position);

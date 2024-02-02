@@ -14,7 +14,8 @@ public class CharacterHealth : MonoBehaviour
     public float DEF;
     public float baseSpeed;
 
-    public GameObject pittyHandPos;
+    public float maxPortionGauge;
+    public float curmaxPortionGauge;
 
     private void Start()
     {
