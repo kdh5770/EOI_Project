@@ -38,7 +38,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     public List<WeaponTable> weapons;
 
     private Dictionary<CharacterSTATE, CharaterBaseState> states = new Dictionary<CharacterSTATE, CharaterBaseState>();
-
+    
     public CharaterBaseState curState;
 
     public bool isSprint;
@@ -143,7 +143,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
     public void OnSprint(InputAction.CallbackContext _context)
     {
-        if (_context.performed)
+        if (_context.performed && !isAiming && curState == states[CharacterSTATE.MOVE])
         {
             if (_context.interaction is HoldInteraction)
             {
@@ -181,6 +181,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
             {
                 isAiming = true;
                 animator.SetLayerWeight(1, 1);
+                animator.SetBool("IsAiming", isAiming);
                 Debug.Log("에임");
             }
         }
@@ -188,6 +189,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         {
             isAiming = false;
             animator.SetLayerWeight(1, 0);
+            animator.SetBool("IsAiming", isAiming);
             Debug.Log("not,에임");
         }
     }
