@@ -17,9 +17,7 @@ public class Weakness : MonoBehaviour
     public MonsterStatus status;
     private float reduction;
 
-    public GameObject lowBlood;
-    public GameObject middleBlood;
-    public GameObject highBlood;
+    private GameObject curEffect;
 
     private void Start()
     {
@@ -32,11 +30,23 @@ public class Weakness : MonoBehaviour
     }
     public void AttackDamage(float _damage, Vector3 _hitPoint)
     {
-        float result = _damage - (_damage * reduction);
+        if (type != WEAK_TYPE.None)
+        {
+            float result = _damage - (_damage * reduction);
 
-        GameObject hitEffect = Gamemanager.instance.poolManager.GetFromPool();
-        hitEffect.transform.position = _hitPoint;
-        status.CalculateDamage(result);
+            if (curEffect.activeSelf)
+            {
+                curEffect.transform.position = _hitPoint;
+                curEffect.SetActive(false);
+                curEffect.SetActive(true);
+            }
+            else
+            {
+                curEffect.transform.position = _hitPoint;
+                curEffect.SetActive(true);
+            }
+            status.CalculateDamage(result);
+        }
     }
 
     void InitType()
@@ -48,13 +58,17 @@ public class Weakness : MonoBehaviour
                 break;
             case WEAK_TYPE.LOW:
                 reduction = .3f;
+                curEffect = Instantiate(status.lowBlood, transform.position, Quaternion.identity);
                 break;
             case WEAK_TYPE.MEDIUM:
                 reduction = .5f;
+                curEffect = Instantiate(status.middleBlood, transform.position, Quaternion.identity);
                 break;
             case WEAK_TYPE.HIGH:
                 reduction = 0f;
+                curEffect = Instantiate(status.highBlood, transform.position, Quaternion.identity);
                 break;
         }
+        curEffect.SetActive(false);
     }
 }

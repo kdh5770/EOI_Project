@@ -46,7 +46,8 @@ public class BFX_ManualAnimationUpdate : MonoBehaviour
 
             if (currentTime / TimeLimit > 1.0)
             {
-                if (rend.enabled) rend.enabled = false;
+                if (rend.enabled) //rend.enabled = false;
+                    transform.root.gameObject.SetActive(false);
                 return;
             }
         }

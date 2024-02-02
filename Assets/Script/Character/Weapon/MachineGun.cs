@@ -32,6 +32,10 @@ public class MachineGun : WeaponTable
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
             StartCoroutine(SpawnTrail(trail, hit));
+            if(hit.collider.CompareTag("Monster"))
+            {
+                hit.collider.GetComponent<Weakness>().AttackDamage(10f, hit.point);
+            }
         }
     }
 

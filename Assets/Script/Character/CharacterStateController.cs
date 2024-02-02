@@ -50,6 +50,8 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     public bool isSprint;
     public bool isAiming;
 
+    public CharacterSTATE Debug_state;
+
     private void Start()
     {
         mainCamera = Camera.main;
@@ -58,7 +60,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         health = GetComponent<CharacterHealth>();
         playerAnimationEvent = GetComponentInChildren<PlayerAnimationEvent>();
 
-        rotationSensitivity = 50f;
+        rotationSensitivity = 25f;
 
         curWeapon = weapons[0];
 
@@ -81,6 +83,8 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         curState?.OnExitState();
         curState = states[_state];
         curState?.OnEnterState();
+        Debug_state = _state;
+        Debug.Log(_state.ToString());
     }
 
     public void ChangeReactionState(REACT_TYPE _state)
@@ -188,6 +192,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
                 Cinemachine3rdPersonFollow follow = virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
                 follow.CameraDistance = 1;
                 isAiming = true;
+                isSprint = false;
                 animator.SetLayerWeight(1, 1);
                 animator.SetBool("IsAiming", isAiming);
                 aimIK.weight = 1;
