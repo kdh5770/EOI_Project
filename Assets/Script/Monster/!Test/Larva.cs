@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Larva : MonoBehaviour
+public class Larva : MonsterStatus
 {
     public GameObject boomEft;
     public GameObject boomEft_;
     public Transform boom;
+
+    //IEnumerator boom()
+    //{
+    //    yield return ;
+    //}
 
     private void OnTriggerEnter(Collider other)
     {
