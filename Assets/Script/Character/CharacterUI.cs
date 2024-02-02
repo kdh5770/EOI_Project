@@ -34,7 +34,7 @@ public class CharacterUI : MonoBehaviour
         HpText.text = $"{hpPercentage * 100:0}%";
 
         Color frame = bloodFrame.color;
-        frame.a = 1 - (_curHP / _maxHP);
+        frame.a = 1 - hpPercentage;
         bloodFrame.color = frame;
 
         if (hpPercentage <= .3f)
@@ -59,11 +59,11 @@ public class CharacterUI : MonoBehaviour
     public void HandleCost(float _curCost, float _maxCost)
     {
         float costPercentage = _curCost / _maxCost;
-        HpSlider.value = costPercentage;
-        HpText.text = $"{costPercentage * 100:0}%";
+        costSlider.value = costPercentage;
+        costText.text = $"{costPercentage * 100:0}%";
 
         Color frame = bloodFrame.color;
-        frame.a = 1 - (_curCost / _maxCost);
+        frame.a = 1 - costPercentage;
         bloodFrame.color = frame;
     }
 

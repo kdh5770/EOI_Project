@@ -22,7 +22,10 @@ public class AttackState : CharaterBaseState
 
     public override void OnUpdateState()
     {
-
+        if (!controller.animator.GetCurrentAnimatorStateInfo(1).IsTag("Shoot"))
+        {
+            controller.ChangeState(CharacterSTATE.MOVE);
+        }
     }
 
     public override void OnExitState()

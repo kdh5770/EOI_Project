@@ -41,7 +41,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     public List<WeaponTable> weapons;
 
     private Dictionary<CharacterSTATE, CharaterBaseState> states = new Dictionary<CharacterSTATE, CharaterBaseState>();
-    
+
     public CharaterBaseState curState;
 
     public Rig aimIK;
@@ -153,18 +153,21 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
     public void OnSprint(InputAction.CallbackContext _context)
     {
-        if (_context.performed && !isAiming && curState == states[CharacterSTATE.MOVE])
+        if (!isAiming && curState == states[CharacterSTATE.MOVE])
         {
-            if (_context.interaction is HoldInteraction)
+            if (_context.performed)
             {
-                isSprint = true;
+                if (_context.interaction is HoldInteraction)
+                {
+                    isSprint = true;
+                }
             }
-        }
-        else
-        {
-            isSprint = false;
-        }
+            else
+            {
+                isSprint = false;
+            }
 
+        }
     }
 
     public void OnCamRotation(InputAction.CallbackContext _context)
@@ -215,9 +218,13 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     {
         if (isAiming && curState == states[CharacterSTATE.MOVE])
         {
-            if (_context.interaction is HoldInteraction)
+            if (_context.performed)
             {
-                if (_context.performed)
+                if (_context.interaction is HoldInteraction)
+                {
+                    ChangeState(CharacterSTATE.ATTACK);
+                }
+                if (_context.interaction is PressInteraction)
                 {
                     ChangeState(CharacterSTATE.ATTACK);
                 }

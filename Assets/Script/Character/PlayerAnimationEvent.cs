@@ -17,6 +17,7 @@ public class PlayerAnimationEvent : MonoBehaviour
 
     public void EndAnimation() // 공격 애니메이션 종료시 호출할 함수
     {
+        Debug.Log("endAni");
         controller.ChangeState(CharacterSTATE.MOVE);
     }
 }

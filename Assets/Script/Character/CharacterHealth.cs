@@ -23,7 +23,6 @@ public class CharacterHealth : MonoBehaviour
     private void Start()
     {
         InitStatus();
-        Gamemanager.instance.characterUI.HandleHP(curHP, maxHP, false);
     }
 
     public void TakeDamage(float _damage)
@@ -42,6 +41,9 @@ public class CharacterHealth : MonoBehaviour
     public void ProductCost(float _cost)
     {
         curCost -= _cost;
+        curCost = curCost <= 0 ? 0 : curCost;
+
+        Gamemanager.instance.characterUI.HandleCost(curCost, maxCost);
     }
 
     public bool GetDie()
@@ -54,5 +56,8 @@ public class CharacterHealth : MonoBehaviour
         curHP = maxHP;
         curCost = maxCost;
         DEF = 0;
+
+        Gamemanager.instance.characterUI.HandleHP(curHP, maxHP, false);
+        Gamemanager.instance.characterUI.HandleCost(curCost, maxCost);
     }
 }
