@@ -12,11 +12,12 @@ public class CharacterUI : MonoBehaviour
     [SerializeField]
     private TMP_Text HpText;
     [SerializeField]
-    private Slider ArmorSlider;
+    private Slider costSlider;
     [SerializeField]
-    private TMP_Text ArmorText;
+    private TMP_Text costText;
     [SerializeField]
     private TMP_Text BulletText;
+
     public Image effectImage;
 
     public Image bloodFrame;
@@ -55,12 +56,17 @@ public class CharacterUI : MonoBehaviour
         }
     }
 
-    /*    void HandleArmor()
-        {
-            float ArmorPercentage = (float)(character.Cur_P_Hp) / (float)(character.Max_P_Hp);
-            ArmorSlider.value = ArmorPercentage;
-            ArmorText.text = $"{ArmorPercentage * 100:0}%";
-        }*/
+    public void HandleCost(float _curCost, float _maxCost)
+    {
+        float costPercentage = _curCost / _maxCost;
+        HpSlider.value = costPercentage;
+        HpText.text = $"{costPercentage * 100:0}%";
+
+        Color frame = bloodFrame.color;
+        frame.a = 1 - (_curCost / _maxCost);
+        bloodFrame.color = frame;
+    }
+
     public void TakeEffect(Sprite _image)
     {
         if (effectImage.sprite == null)

@@ -6,10 +6,10 @@ using UnityEngine;
 public class CharacterHealth : MonoBehaviour
 {
     // Start is called before the first frame update
-    public int maxHP;
-    public int curHP;
-    public int maxCost;
-    public int curCost;
+    public float maxHP;
+    public float curHP;
+    public float maxCost;
+    public float curCost;
 
     public float ATK;
     public float DEF;
@@ -23,20 +23,25 @@ public class CharacterHealth : MonoBehaviour
     private void Start()
     {
         InitStatus();
-        //Gamemanager.instance.characterUI.HandleHP(curHP, maxHP, false);
+        Gamemanager.instance.characterUI.HandleHP(curHP, maxHP, false);
     }
 
     public void TakeDamage(float _damage)
     {
-        curHP -= ((int)(_damage - DEF));
+        curHP -= ((_damage - DEF));
 
-       // Gamemanager.instance.characterUI.HandleHP(curHP, maxHP, true);
+        Gamemanager.instance.characterUI.HandleHP(curHP, maxHP, true);
 
         if (curHP <= 0)
         {
             //캐릭터 사망시 등록된 이벤트 실행
             DeathAction?.Invoke();
         }
+    }
+
+    public void ProductCost(float _cost)
+    {
+        curCost -= _cost;
     }
 
     public bool GetDie()
@@ -48,5 +53,6 @@ public class CharacterHealth : MonoBehaviour
     {
         curHP = maxHP;
         curCost = maxCost;
+        DEF = 0;
     }
 }
