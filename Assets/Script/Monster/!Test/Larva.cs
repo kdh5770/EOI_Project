@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Larva : MonsterStatus
 {
-    public GameObject boomEft;
-    public GameObject boomEft_;
+    public GameObject boomEftPre;
+    public GameObject boomPreObj;
     public Transform boom;
-
+    public GameObject target;
     public override void CalculateDamage(float _damage)
     {
         curHP -= _damage;
@@ -19,18 +19,23 @@ public class Larva : MonsterStatus
 
     public void LarvaBoom()
     {
-        boomEft_ = Instantiate(boomEft, boom.transform.position, Quaternion.identity);
+        gameObject.GetComponent<Collider>().enabled = false;
+
+        if (target != null)
+        {
+            target.GetComponent<CharacterHealth>().TakeDamage(10);
+        }
+        boomPreObj = Instantiate(boomEftPre, boom.transform.position, Quaternion.identity);
         Destroy(gameObject);
-        Destroy(boomEft_, 2f);
+        Destroy(boomPreObj, 2f);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            boomEft_ = Instantiate(boomEft, boom.transform.position, Quaternion.identity);
-            Destroy(gameObject);
-            Destroy(boomEft_, 2f);
+            target = other.gameObject;
+            LarvaBoom();
         }
     }
 }
