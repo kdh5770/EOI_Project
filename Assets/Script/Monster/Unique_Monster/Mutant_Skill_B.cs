@@ -10,6 +10,8 @@ public class Mutant_Skill_B : MonsterSkill
     [SerializeField]
     private Transform shootposition;
 
+    Vector3 direction;
+
 
     public override void ApplyReaction(GameObject target)
     {
@@ -26,12 +28,13 @@ public class Mutant_Skill_B : MonsterSkill
         animationEvent.ActionAttack += ActionAttack;
         target = _target;
         transform.LookAt(_target.transform.position);
+        direction = (target.transform.position - transform.position).normalized;
         animator.SetTrigger("IsSkillB");
-        Debug.Log("장판 공격");
     }
     public override void ActionAttack()
     {
-
+        //Instantiate(skill_b, shootposition.position, Quaternion.LookRotation(target.transform.position));
+        Instantiate(skill_b, shootposition.position, Quaternion.LookRotation(direction));
         animationEvent.ActionAttack -= ActionAttack;
     }
 }

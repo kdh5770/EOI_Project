@@ -23,9 +23,6 @@ public class Unique_SkillController : MonoBehaviour
     {
         if (!isSpecialSkill)
         {
-            Debug.Log(curSkill);
-            Debug.Log(skillCount);
-
             curSkill.ExecuteAttack(_target);
 
             if (++skillCount >= skills.Count)
