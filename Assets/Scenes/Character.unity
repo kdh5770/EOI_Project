@@ -6436,7 +6436,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1740878113
 Transform:
   m_ObjectHideFlags: 0
@@ -6768,7 +6768,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1805981440}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.48000002, y: 1.7179999, z: -2}
+  m_LocalPosition: {x: 0.26600003, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8144,7 +8144,7 @@ MonoBehaviour:
   aimObjDis: 20
   targetLayer:
     serializedVersion: 2
-    m_Bits: 123
+    m_Bits: 192
   AimImage: {fileID: 0}
   BloodObj: {fileID: 2232662728709046839, guid: 5b81b9f1fd600654991c314e95e9e692,
     type: 3}
@@ -8159,7 +8159,7 @@ MonoBehaviour:
     type: 3}
   Mask:
     serializedVersion: 2
-    m_Bits: 123
+    m_Bits: 192
 --- !u!1 &1491614763509627188
 GameObject:
   m_ObjectHideFlags: 0
@@ -9219,8 +9219,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HpSlider: {fileID: 3909613915145085390}
   HpText: {fileID: 3909613914897530830}
-  ArmorSlider: {fileID: 0}
-  ArmorText: {fileID: 0}
+  costSlider: {fileID: 0}
+  costText: {fileID: 0}
   BulletText: {fileID: 0}
   effectImage: {fileID: 3931403373729276473}
   bloodFrame: {fileID: 5001909876397215988}

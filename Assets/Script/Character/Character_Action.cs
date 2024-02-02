@@ -133,7 +133,6 @@ public class Character_Action : MonoBehaviour
 
     public void OnShoot()
     {
-
         if (_input.aim && !_animator.GetCurrentAnimatorStateInfo(1).IsTag("Shoot") && !_input.sprint)
         {
             _animator.SetTrigger("ShootTri");
