@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,10 +18,12 @@ public class CharacterHealth : MonoBehaviour
     public float maxPortionGauge;
     public float curmaxPortionGauge;
 
+    public event Action DeathAction;
+
     private void Start()
     {
-        curHP = maxHP;
-       // Gamemanager.instance.characterUI.HandleHP(curHP, maxHP, false);
+        InitStatus();
+        //Gamemanager.instance.characterUI.HandleHP(curHP, maxHP, false);
     }
 
     public void TakeDamage(float _damage)
@@ -31,11 +34,19 @@ public class CharacterHealth : MonoBehaviour
 
         if (curHP <= 0)
         {
-            Debug.Log("플레이어 사망");
+            //캐릭터 사망시 등록된 이벤트 실행
+            DeathAction?.Invoke();
         }
     }
+
     public bool GetDie()
     {
         return (curHP <= 0);
+    }
+
+    void InitStatus()
+    {
+        curHP = maxHP;
+        curCost = maxCost;
     }
 }

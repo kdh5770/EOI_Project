@@ -13,7 +13,7 @@ public enum CharacterSTATE
     SKILL,
     INTERACTION,
     REACTION,
-    DEAT
+    DEATH
 }
 
 public class CharacterStateController : MonoBehaviour, IStateMachine
@@ -99,7 +99,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         states.Add(CharacterSTATE.SKILL, new SkillState(gameObject.GetComponent<CharacterStateController>()));
         states.Add(CharacterSTATE.INTERACTION, new InteractionState(gameObject.GetComponent<CharacterStateController>()));
         states.Add(CharacterSTATE.REACTION, new ReactionState(gameObject.GetComponent<CharacterStateController>()));
-        states.Add(CharacterSTATE.DEAT, new DeathState(gameObject.GetComponent<CharacterStateController>()));
+        states.Add(CharacterSTATE.DEATH, new DeathState(gameObject.GetComponent<CharacterStateController>()));
     }
 
     public void MoveUpdate()
