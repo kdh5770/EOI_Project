@@ -9808,11 +9808,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a66860ec3f50dcc44916b680572e6a11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
   follwSpeed: 3
   P0_GameObject: {x: 0, y: 0, z: 0}
   P1_GameObject: {x: 0, y: 0, z: 0}
   P2_GameObject: {x: 0, y: 0, z: 0}
   P3_GameObject: {x: 0, y: 0, z: 0}
+  pickupType: 1
 --- !u!135 &1500184002728490883
 SphereCollider:
   m_ObjectHideFlags: 0

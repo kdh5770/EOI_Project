@@ -1,8 +1,15 @@
 using System.Collections;
 using UnityEngine;
 
+public enum PICKUPTYPE
+{
+    HEALTH,
+    GOODS
+}
+
 public class AutoPickup : MonoBehaviour
 {
+    public GameObject target;
     public float follwSpeed;
 
     public Vector3 P0_GameObject;
@@ -10,10 +17,23 @@ public class AutoPickup : MonoBehaviour
     public Vector3 P2_GameObject;
     public Vector3 P3_GameObject;
 
+    public PICKUPTYPE pickupType;
+    public IItem item;
+
     private void Start()
     {
         P0_GameObject = gameObject.transform.position;
         P1_GameObject = transform.position + gameObject.transform.up * 2f;
+
+        switch (pickupType)
+        {
+            case PICKUPTYPE.HEALTH:
+                item = new HealthItem();
+                break;
+            case PICKUPTYPE.GOODS:
+                item = new GoodsItem();
+                break;
+        }
     }
 
 
@@ -42,14 +62,15 @@ public class AutoPickup : MonoBehaviour
                 P3_GameObject, t);
             yield return null;
         }
-
+        item.UsingItem(target);
         Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
+            target = other.gameObject;
             P2_GameObject = other.transform.position + other.transform.forward * -1;
             P3_GameObject = other.transform.position + other.transform.up * 1.5f;
             StartCoroutine(PathFollowing());
@@ -64,5 +85,9 @@ public class AutoPickup : MonoBehaviour
             P3_GameObject = other.transform.position + other.transform.up * 1.5f;
         }
     }
-    
+
+    public void UsingItem()
+    {
+        throw new System.NotImplementedException();
+    }
 }

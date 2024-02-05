@@ -12,7 +12,6 @@ public class MonsterStatus : MonoBehaviour
     public float sightRange;
     public float attackRange;
 
-    public GameObject dropItemPre;
     public GameObject lowBlood;
     public GameObject middleBlood;
     public GameObject highBlood;

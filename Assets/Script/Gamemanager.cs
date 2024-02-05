@@ -6,6 +6,7 @@ public class Gamemanager : MonoBehaviour
 {
     public static Gamemanager instance;
 
+    public GameObject player;
     public TempScript tempScript;
     public SpawnTest spawnTest;
     public ItemDropManagere itemDropManagere;
@@ -20,10 +21,4 @@ public class Gamemanager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
     }
-
-    private void Start()
-    {
-       // spawnTest.SpawnMonster();
-    }
-
 }
