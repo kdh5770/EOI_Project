@@ -10,7 +10,7 @@ public class DialogueBox : Interaction
 
     public override void Interact()
     {
-        Debug.Log(dialogueText);
+        Gamemanager.instance.characterUI.SetDialogue(dialogueText);
     }
 
 }

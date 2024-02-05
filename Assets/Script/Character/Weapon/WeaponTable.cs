@@ -18,7 +18,7 @@ public abstract class WeaponTable : MonoBehaviour
     protected new Camera camera;
     public WeaponData Data;
     [SerializeField]
-    private LayerMask layerMask;
+    protected LayerMask layerMask;
     public bool canShooting;
    
 

@@ -13,6 +13,7 @@ public class MachineGun : WeaponTable
     private WaitForSeconds shotDelay;
     private IEnumerator usingCor;
 
+
     private void Start()
     {
         Initsetting();
@@ -43,13 +44,13 @@ public class MachineGun : WeaponTable
             Vector3 mousePos = Mouse.current.position.ReadValue();
             Ray ray = camera.ScreenPointToRay(mousePos);
 
-            if (Physics.Raycast(ray, out RaycastHit hit))
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
             {
                 StartCoroutine(SpawnTrail(hit));
 
                 if (hit.collider.CompareTag("Monster"))
                 {
-                    hit.collider.GetComponent<Weakness>().AttackDamage(10f, hit.point);
+                    hit.collider.GetComponent<Weakness>().AttackDamage(Data.Damage, hit.point);
                 }
             }
             yield return shotDelay;
@@ -66,6 +67,6 @@ public class MachineGun : WeaponTable
         trail.transform.position = hit.point;
         GameObject eftObj = Instantiate(impactEft, hit.point, Quaternion.LookRotation(hit.normal));
         Destroy(eftObj, 1f);
-        Destroy(trail.gameObject, trail.time);
+        Destroy(trail.gameObject, .1f);
     }
 }

@@ -7,6 +7,8 @@ using TMPro;
 
 public class CharacterUI : MonoBehaviour
 {
+    private readonly WaitForSeconds outputTextDeley = new WaitForSeconds(2f);
+
     [SerializeField]
     private Slider HpSlider;
     [SerializeField]
@@ -21,6 +23,9 @@ public class CharacterUI : MonoBehaviour
     public Slider potionGauge;
     public TMP_Text potionText;
 
+    public TMP_Text dialogueText;
+    private Queue<string> dialogues = new Queue<string>();
+    private IEnumerator dialogueCor;
 
     public Image effectImage;
 
@@ -83,6 +88,17 @@ public class CharacterUI : MonoBehaviour
         }
     }
 
+    public void SetDialogue(string _masseage)
+    {
+        dialogues.Enqueue(_masseage);
+
+        if(dialogueCor == null)
+        {
+            dialogueCor = OutputTextGradually();
+            StartCoroutine(dialogueCor);
+        }
+    }
+
     IEnumerator SinFadeImage()
     {
         Color effect = bloodEffect.color;
@@ -116,5 +132,19 @@ public class CharacterUI : MonoBehaviour
         newColor.a = 0f;
         effectImage.color = newColor;
         effectImage.sprite = null;
+    }
+
+    IEnumerator OutputTextGradually()
+    {
+        dialogueText.enabled = true;
+
+        while(dialogues.TryDequeue(out var dialogue))
+        {
+            dialogueText.text = dialogue;
+            yield return outputTextDeley;
+        }
+
+        dialogueText.enabled = false;
+        dialogueCor = null;
     }
 }

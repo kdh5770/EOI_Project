@@ -83,6 +83,9 @@ public class CharacterHealth : MonoBehaviour
 
     public void UsingPortion()
     {
+        if (curPotionGauge <= 0)
+            return;
+
         curPotionGauge -= 10;
         curHP += 10;
 

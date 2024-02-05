@@ -24,7 +24,6 @@ public class WorkerShout : MonsterSkill
         target = _target;
         transform.LookAt(_target.transform.position);
         animator.SetTrigger("IsShoutSkill");
-        Debug.Log("»þ¿ìÆÃ");
     }
 
     public override void ActionAttack()
