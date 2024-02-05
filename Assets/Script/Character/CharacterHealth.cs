@@ -15,14 +15,29 @@ public class CharacterHealth : MonoBehaviour
     public float DEF;
     public float baseSpeed;
 
-    public float maxPortionGauge;
-    public float curmaxPortionGauge;
+    public float maxPotionGauge;
+    public float curPotionGauge;
+
+    public int curGoods;
 
     public event Action DeathAction;
 
     private void Start()
     {
         InitStatus();
+    }
+    void InitStatus()
+    {
+        curHP = maxHP;
+        curCost = maxCost;
+        DEF = 0;
+        curPotionGauge = maxPotionGauge * .5f;
+        curGoods = 0;
+
+
+        Gamemanager.instance.characterUI.HandleHP(curHP, maxHP, false);
+        Gamemanager.instance.characterUI.HandleCost(curCost, maxCost);
+        Gamemanager.instance.characterUI.HandlePotion(curPotionGauge, maxPotionGauge);
     }
 
     public void TakeDamage(float _damage)
@@ -37,6 +52,10 @@ public class CharacterHealth : MonoBehaviour
             DeathAction?.Invoke();
         }
     }
+    public bool GetDie()
+    {
+        return (curHP <= 0);
+    }
 
     public void ProductCost(float _cost)
     {
@@ -46,18 +65,25 @@ public class CharacterHealth : MonoBehaviour
         Gamemanager.instance.characterUI.HandleCost(curCost, maxCost);
     }
 
-    public bool GetDie()
+
+    public void TakePotion()
     {
-        return (curHP <= 0);
+        curPotionGauge += 10;
+        if (curPotionGauge >= maxPotionGauge)
+        {
+            curPotionGauge = maxPotionGauge;
+        }
+        Gamemanager.instance.characterUI.HandlePotion(curPotionGauge, maxPotionGauge);
     }
 
-    void InitStatus()
+    public void TakeGoods()
     {
-        curHP = maxHP;
-        curCost = maxCost;
-        DEF = 0;
+        curGoods += 1;
+    }
 
-        Gamemanager.instance.characterUI.HandleHP(curHP, maxHP, false);
-        Gamemanager.instance.characterUI.HandleCost(curCost, maxCost);
+    public void UsingPortion()
+    {
+        curPotionGauge -= 10;
+        curHP += 10;
     }
 }

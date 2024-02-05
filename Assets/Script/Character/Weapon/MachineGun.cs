@@ -11,6 +11,7 @@ public class MachineGun : WeaponTable
     public GameObject impactEft;
 
     private WaitForSeconds shotDelay;
+    private IEnumerator usingCor;
 
     private void Start()
     {
@@ -28,7 +29,11 @@ public class MachineGun : WeaponTable
 
     public override void Using()
     {
-        StartCoroutine(UsingCor());
+        if (usingCor != null)
+        {
+            usingCor = UsingCor();
+            StartCoroutine(usingCor);
+        }
     }
 
     IEnumerator UsingCor()
@@ -50,6 +55,7 @@ public class MachineGun : WeaponTable
             }
             yield return shotDelay;
         }
+        usingCor = null;
     }
 
     private IEnumerator SpawnTrail(RaycastHit hit)

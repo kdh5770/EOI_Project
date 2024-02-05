@@ -2595,6 +2595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55defe1bddbbafa4fa88bd0e7151f239, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   tempScript: {fileID: 0}
   spawnTest: {fileID: 0}
   itemDropManagere: {fileID: 0}
@@ -6899,7 +6900,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1884416984}
-  m_LocalRotation: {x: 0.29936373, y: -0.0058049415, z: 0.0018213533, w: 0.9541197}
+  m_LocalRotation: {x: 0.2993637, y: -0.005804913, z: 0.0018213443, w: 0.9541197}
   m_LocalPosition: {x: -0.01, y: 1.77, z: -11.37}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -17258,8 +17259,9 @@ MonoBehaviour:
   ATK: 0
   DEF: 0
   baseSpeed: 0
-  maxPortionGauge: 0
-  curmaxPortionGauge: 0
+  maxPotionGauge: 0
+  curPotionGauge: 0
+  curGoods: 0
 --- !u!114 &5697606104309835142
 MonoBehaviour:
   m_ObjectHideFlags: 0

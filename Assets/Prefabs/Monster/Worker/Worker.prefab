@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1786861566}
   m_Layer: 7
   m_Name: Worker
-  m_TagString: Monster
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,18 +105,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48cb24c403e96cf42bf753956762e0a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 0
-  curHP: 10
+  maxHP: 100
+  curHP: 0
   ATK: 0
   DEF: 0
   bassSPD: 0
   moveRange: 0
   sightRange: 10
   attackRange: 0
-  dropItemPre: {fileID: 0}
-  lowBlood: {fileID: 0}
-  middleBlood: {fileID: 0}
-  highBlood: {fileID: 0}
+  lowBlood: {fileID: 2656253210798625995, guid: a78e9ef18b366424b84e0c7410d2fe72,
+    type: 3}
+  middleBlood: {fileID: 5865290276592450837, guid: 42a28376f729c864a81abf66add7a418,
+    type: 3}
+  highBlood: {fileID: 77058900600929839, guid: acf69c953b1128942940a6232fdd13a4, type: 3}
 --- !u!195 &2772928981826424643
 NavMeshAgent:
   m_ObjectHideFlags: 0

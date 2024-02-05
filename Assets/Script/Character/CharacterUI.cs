@@ -18,6 +18,10 @@ public class CharacterUI : MonoBehaviour
     [SerializeField]
     private TMP_Text BulletText;
 
+    public Slider potionGauge;
+    public TMP_Text potionText;
+
+
     public Image effectImage;
 
     public Image bloodFrame;
@@ -61,10 +65,13 @@ public class CharacterUI : MonoBehaviour
         float costPercentage = _curCost / _maxCost;
         costSlider.value = costPercentage;
         costText.text = $"{costPercentage * 100:0}%";
+    }
 
-        Color frame = bloodFrame.color;
-        frame.a = 1 - costPercentage;
-        bloodFrame.color = frame;
+    public void HandlePotion(float _curPotion, float _maxPotion)
+    {
+        float costPercentage = _curPotion / _maxPotion;
+        potionGauge.value = costPercentage;
+        potionText.text = $"{costPercentage * 100:0}%";
     }
 
     public void TakeEffect(Sprite _image)
