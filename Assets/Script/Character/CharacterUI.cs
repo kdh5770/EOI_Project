@@ -113,7 +113,8 @@ public class CharacterUI : MonoBehaviour
             effectImage.color = newColor;
             yield return null;
         }
-
+        newColor.a = 0f;
+        effectImage.color = newColor;
         effectImage.sprite = null;
     }
 }

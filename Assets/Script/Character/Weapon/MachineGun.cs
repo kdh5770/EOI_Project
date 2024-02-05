@@ -29,7 +29,7 @@ public class MachineGun : WeaponTable
 
     public override void Using()
     {
-        if (usingCor != null)
+        if (usingCor == null)
         {
             usingCor = UsingCor();
             StartCoroutine(usingCor);
@@ -65,7 +65,8 @@ public class MachineGun : WeaponTable
         yield return null;
 
         trail.transform.position = hit.point;
-
+        GameObject eftObj = Instantiate(impactEft, hit.point, Quaternion.LookRotation(hit.normal));
+        Destroy(eftObj, 1f);
         Destroy(trail.gameObject, trail.time);
     }
 }

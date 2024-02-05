@@ -8,7 +8,7 @@ public class Weakness : MonoBehaviour
     {
         None,
         LOW,
-        MEDIUM,
+        MIDDLE,
         HIGH,
     }
 
@@ -60,7 +60,7 @@ public class Weakness : MonoBehaviour
                 reduction = .3f;
                 curEffect = Instantiate(status.lowBlood, transform.position, Quaternion.identity);
                 break;
-            case WEAK_TYPE.MEDIUM:
+            case WEAK_TYPE.MIDDLE:
                 reduction = .5f;
                 curEffect = Instantiate(status.middleBlood, transform.position, Quaternion.identity);
                 break;
@@ -69,6 +69,5 @@ public class Weakness : MonoBehaviour
                 curEffect = Instantiate(status.highBlood, transform.position, Quaternion.identity);
                 break;
         }
-        curEffect.SetActive(false);
     }
 }
