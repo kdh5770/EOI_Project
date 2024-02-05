@@ -20,10 +20,4 @@ public class Gamemanager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
     }
-
-    private void Start()
-    {
-       // spawnTest.SpawnMonster();
-    }
-
 }

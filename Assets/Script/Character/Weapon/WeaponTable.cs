@@ -19,6 +19,7 @@ public abstract class WeaponTable : MonoBehaviour
     public WeaponData Data;
     [SerializeField]
     private LayerMask layerMask;
+    public bool canShooting;
    
 
     public int AniHash { get; protected set; }

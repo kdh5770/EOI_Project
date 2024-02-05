@@ -213,22 +213,31 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
             Debug.Log("not,ø°¿”");
         }
     }
-
+    public bool isShoot;
     public void OnShoot(InputAction.CallbackContext _context)
     {
-        if (isAiming && curState == states[CharacterSTATE.MOVE])
+        if (_context.performed)
         {
-            if (_context.performed)
+            if (isAiming && curState == states[CharacterSTATE.MOVE])
             {
                 if (_context.interaction is HoldInteraction)
                 {
-                    ChangeState(CharacterSTATE.ATTACK);
+                    curWeapon.canShooting = true;
+                    animator.SetBool("IsMachineGun", curWeapon.canShooting);
+                    curWeapon.Using();
                 }
-                if (_context.interaction is PressInteraction)
+                else if (_context.interaction is PressInteraction)
                 {
-                    ChangeState(CharacterSTATE.ATTACK);
+                    curWeapon.canShooting = true;
+                    animator.SetBool("IsMachineGun", curWeapon.canShooting);
+                    curWeapon.Using();
                 }
             }
+        }
+        else if (_context.canceled)
+        {
+            curWeapon.canShooting = false;
+            animator.SetBool("IsMachineGun", curWeapon.canShooting);
         }
     }
 }
