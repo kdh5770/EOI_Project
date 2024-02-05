@@ -85,5 +85,14 @@ public class CharacterHealth : MonoBehaviour
     {
         curPotionGauge -= 10;
         curHP += 10;
+
+        if (curHP >= maxHP)
+            curHP = maxHP;
+
+        if (curPotionGauge <= 0)
+            curPotionGauge = 0;
+
+        Gamemanager.instance.characterUI.HandlePotion(curPotionGauge, maxPotionGauge);
+        Gamemanager.instance.characterUI.HandleHP(curHP, maxHP, true);
     }
 }

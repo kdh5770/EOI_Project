@@ -74207,6 +74207,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 34dba373-eaee-4a85-8ff3-178ffedaefdf
     m_ActionName: Player/New action
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5829913141035593610}
+        m_TargetAssemblyTypeName: CharacterStateController, Assembly-CSharp
+        m_MethodName: OnPotion
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 58b69968-d7eb-46b1-b997-3d7a5438c8e2
+    m_ActionName: Player/Potion
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: PC
   m_DefaultActionMap: Player
@@ -77326,7 +77342,6 @@ MonoBehaviour:
   isSprint: 0
   isAiming: 0
   Debug_state: 0
-  isShoot: 0
 --- !u!114 &6003942261104176136
 MonoBehaviour:
   m_ObjectHideFlags: 0

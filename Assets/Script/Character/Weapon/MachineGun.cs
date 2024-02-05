@@ -45,7 +45,6 @@ public class MachineGun : WeaponTable
 
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                Debug.DrawRay(ray.origin, ray.direction, Color.red, 1f);
                 StartCoroutine(SpawnTrail(hit));
 
                 if (hit.collider.CompareTag("Monster"))

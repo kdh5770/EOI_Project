@@ -199,7 +199,6 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
                 animator.SetLayerWeight(1, 1);
                 animator.SetBool("IsAiming", isAiming);
                 aimIK.weight = 1;
-                Debug.Log("에임");
             }
         }
         if (_context.canceled)
@@ -210,10 +209,9 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
             animator.SetLayerWeight(1, 0);
             animator.SetBool("IsAiming", isAiming);
             aimIK.weight = 0;
-            Debug.Log("not,에임");
         }
     }
-    public bool isShoot;
+
     public void OnShoot(InputAction.CallbackContext _context)
     {
         if (_context.performed)
@@ -238,6 +236,15 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         {
             curWeapon.canShooting = false;
             animator.SetBool("IsMachineGun", curWeapon.canShooting);
+        }
+    }
+
+    public void OnPotion(InputAction.CallbackContext _context)
+    {
+        if (_context.performed && curState == states[CharacterSTATE.MOVE])
+        {
+            health.UsingPortion();
+            Debug.Log("potion");
         }
     }
 }

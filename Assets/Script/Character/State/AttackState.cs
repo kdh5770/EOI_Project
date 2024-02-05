@@ -11,7 +11,7 @@ public class AttackState : CharaterBaseState
 
     public override void OnEnterState()
     {
-        controller.animator.SetBool("IsMachineGun", controller.isShoot);
+
     }
     public override void OnFixedUpdateState()
     {
@@ -30,7 +30,7 @@ public class AttackState : CharaterBaseState
 
     public override void OnExitState()
     {
-        controller.animator.SetBool("IsMachineGun", controller.isShoot);
+
     }
 
 }

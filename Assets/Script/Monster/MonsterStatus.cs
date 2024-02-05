@@ -24,6 +24,8 @@ public class MonsterStatus : MonoBehaviour
         {
             monsterFSM = _monsterFSM;
         }
+
+        curHP = maxHP;
     }
 
     public virtual void CalculateDamage(float _damage)
