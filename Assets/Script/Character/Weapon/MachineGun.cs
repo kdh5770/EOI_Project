@@ -86,23 +86,22 @@ public class MachineGun : WeaponTable
             bulRig.velocity = BulletShootPos.forward * bulspd * Time.deltaTime;
 
 
-<<<<<<< Updated upstream
-            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
+
+/*            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
             {
                 StartCoroutine(BulletInstanceCo(hit));
                 if (hit.collider.CompareTag("Monster"))
                 {
                     hit.collider.GetComponent<Weakness>().AttackDamage(Data.Damage, hit.point);
                 }
-            }
-=======
->>>>>>> Stashed changes
+            }*/
+
             yield return shotDelay;
         }
         usingCor = null;
     }
 
-<<<<<<< Updated upstream
+
     IEnumerator BulletInstanceCo(RaycastHit _hit)
     {
         GameObject bullet= Instantiate(BulletPrefab, BulletShootPos.position, Quaternion.identity);
@@ -112,8 +111,7 @@ public class MachineGun : WeaponTable
 
         yield return null;
     }
-=======
->>>>>>> Stashed changes
+
 
 
     private IEnumerator SpawnTrail(RaycastHit hit)
