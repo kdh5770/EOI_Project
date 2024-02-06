@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12206,7 +12206,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &1351030686
 Light:
   m_ObjectHideFlags: 0
@@ -12756,10 +12756,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55defe1bddbbafa4fa88bd0e7151f239, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   tempScript: {fileID: 0}
   spawnTest: {fileID: 0}
   itemDropManagere: {fileID: 0}
   characterUI: {fileID: 0}
+  poolManager: {fileID: 0}
   timeLineManager: {fileID: 1442403294}
 --- !u!1 &1443402232
 GameObject:
@@ -16664,7 +16666,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1858801991
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17865,7 +17867,7 @@ PrefabInstance:
     - target: {fileID: 4088016759080676915, guid: bfc02efb62aaa2c49affd73c79c15b86,
         type: 3}
       propertyPath: m_SceneBindings.Array.size
-      value: 22
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 4088016759080676915, guid: bfc02efb62aaa2c49affd73c79c15b86,
         type: 3}
@@ -17997,12 +17999,14 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SceneBindings.Array.data[22].key
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8202053871740748957, guid: afb8b770ed7d79142a222fa67c6217b0,
+        type: 2}
     - target: {fileID: 4088016759080676915, guid: bfc02efb62aaa2c49affd73c79c15b86,
         type: 3}
       propertyPath: m_SceneBindings.Array.data[23].key
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1003776192444714339, guid: afb8b770ed7d79142a222fa67c6217b0,
+        type: 2}
     - target: {fileID: 4088016759080676915, guid: bfc02efb62aaa2c49affd73c79c15b86,
         type: 3}
       propertyPath: m_SceneBindings.Array.data[24].key
@@ -18122,12 +18126,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SceneBindings.Array.data[22].value
       value: 
-      objectReference: {fileID: 58155015320558876}
+      objectReference: {fileID: 0}
     - target: {fileID: 4088016759080676915, guid: bfc02efb62aaa2c49affd73c79c15b86,
         type: 3}
       propertyPath: m_SceneBindings.Array.data[23].value
       value: 
-      objectReference: {fileID: 58155015320558876}
+      objectReference: {fileID: 0}
     - target: {fileID: 4088016759080676915, guid: bfc02efb62aaa2c49affd73c79c15b86,
         type: 3}
       propertyPath: m_SceneBindings.Array.data[24].value
@@ -19288,8 +19292,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HpSlider: {fileID: 58155016277253511}
   HpText: {fileID: 58155015425835911}
-  ArmorSlider: {fileID: 0}
-  ArmorText: {fileID: 0}
+  costSlider: {fileID: 0}
+  costText: {fileID: 0}
+  BulletText: {fileID: 0}
+  potionGauge: {fileID: 0}
+  potionText: {fileID: 0}
+  dialogueText: {fileID: 0}
   effectImage: {fileID: 0}
   bloodFrame: {fileID: 0}
   bloodEffect: {fileID: 0}
@@ -32388,8 +32396,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6003942260836007007}
-  m_LocalRotation: {x: 0.09563214, y: -0.19513214, z: 0.020102512, w: 0.9758965}
-  m_LocalPosition: {x: -38.553642, y: -31.282322, z: 138.62}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -39.95, y: -28.692, z: 104.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
