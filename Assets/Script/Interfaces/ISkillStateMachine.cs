@@ -1,4 +1,4 @@
 public interface ISkillStateMachine
 {
-    void ChangeReactionState(REACT_TYPE _state);
+    void ChangeSkillState(REACT_TYPE _state);
 }

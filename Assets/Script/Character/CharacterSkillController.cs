@@ -3,8 +3,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 
-public enum CharcterSkillState
+
+
+
+public enum CharacterSkillState
 {
+    None,           // 초기 스킨 None으로 셋팅
     Cloaking,       // 은신
     Flying,         // 날기
     psychokinesis   // 염력
@@ -13,39 +17,33 @@ public enum CharcterSkillState
 
 
 
-
-public class CharacterSkillController : MonoBehaviour, ISkillStateMachine
+public class CharacterSkillController : MonoBehaviour
 {
-    [Header("은신관련")]
-
-
-    [Header("날기")]
-
-
-
-    [Header("염력")]
-    public float flyingPower = 10f;
 
 
 
 
-
-    public void OnCloaking(InputAction.CallbackContext _context)
+    void Start()
     {
 
-    }
 
-    public void OnFlying(InputAction.CallbackContext _context)
-    {
+
+
+        InitSkillState();
 
     }
 
 
-    public void OnPsychokinesis(InputAction.CallbackContext _context)
+    public void ChangeSkillState(REACT_TYPE _state)
     {
-
+        throw new System.NotImplementedException();
     }
 
 
+
+    void InitSkillState()
+    {
+
+    }
 
 }

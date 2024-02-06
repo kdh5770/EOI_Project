@@ -50,6 +50,16 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     public bool isSprint;
     public bool isAiming;
 
+    // 스킬관련 
+    public bool IsCloaking;
+    public bool IsPsychokinesis;
+    public bool IsFlying;
+
+
+
+
+
+
     public CharacterSTATE Debug_state;
 
     private void Start()
@@ -246,5 +256,25 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
             health.UsingPortion();
             Debug.Log("potion");
         }
+    }
+
+    public void OnFlying(InputAction.CallbackContext _context)
+    {
+        if (_context.performed)
+        {
+            IsFlying = true;
+        }
+        else if(_context.canceled)
+        {
+            IsFlying = false;
+        }
+    }
+    public void OnCloaking(InputAction.CallbackContext _context)
+    {
+
+    }
+    public void OnPsychokinesis(InputAction.CallbackContext _context)
+    {
+
     }
 }
