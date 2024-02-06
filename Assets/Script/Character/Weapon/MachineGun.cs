@@ -69,9 +69,24 @@ public class MachineGun : WeaponTable
     {
         while (canShooting)
         {
-            Vector3 mousePos = Mouse.current.position.ReadValue();
-            Ray ray = camera.ScreenPointToRay(mousePos);
+            /*Vector3 mousePos = Mouse.current.position.ReadValue();
+            Ray ray = camera.ScreenPointToRay(mousePos);*/
 
+            /*            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
+                        {
+                            StartCoroutine(BulletInstanceCo());
+                            if (hit.collider.CompareTag("Monster"))
+                            {
+                                hit.collider.GetComponent<Weakness>().AttackDamage(Data.Damage, hit.point);
+                            }
+                        }*/
+
+            GameObject bullet = Instantiate(BulletPrefab, BulletShootPos.position,Quaternion.identity);
+            Rigidbody bulRig = bullet.GetComponent<Rigidbody>();
+            bulRig.velocity = BulletShootPos.forward * bulspd * Time.deltaTime;
+
+
+<<<<<<< Updated upstream
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
             {
                 StartCoroutine(BulletInstanceCo(hit));
@@ -80,11 +95,14 @@ public class MachineGun : WeaponTable
                     hit.collider.GetComponent<Weakness>().AttackDamage(Data.Damage, hit.point);
                 }
             }
+=======
+>>>>>>> Stashed changes
             yield return shotDelay;
         }
         usingCor = null;
     }
 
+<<<<<<< Updated upstream
     IEnumerator BulletInstanceCo(RaycastHit _hit)
     {
         GameObject bullet= Instantiate(BulletPrefab, BulletShootPos.position, Quaternion.identity);
@@ -94,6 +112,8 @@ public class MachineGun : WeaponTable
 
         yield return null;
     }
+=======
+>>>>>>> Stashed changes
 
 
     private IEnumerator SpawnTrail(RaycastHit hit)
