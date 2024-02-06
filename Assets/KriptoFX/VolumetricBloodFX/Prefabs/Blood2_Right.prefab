@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7935733108997359169
 Transform:
   m_ObjectHideFlags: 0
@@ -50,9 +50,8 @@ MonoBehaviour:
   AutomaticGroundHeightDetection: 1
   GroundHeight: 0
   LightIntensityMultiplier: 1
-  FreezeDecalDisappearance: 0
-  DecalRenderinMode: 0
-  ClampDecalSideSurface: 0
+  DecalLifeTimeSeconds: 30
+  DecalRenderingMode: 0
   DebugAnimationTime: 0.25
 --- !u!1 &7935733110466824763
 GameObject:
@@ -72,7 +71,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7935733110466824762
 Transform:
   m_ObjectHideFlags: 0

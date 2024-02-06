@@ -61,12 +61,12 @@
                 },
                 {
                     "name": "InterActions",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "93d71267-890a-43e1-98ee-724660e5855e",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Look",
@@ -82,6 +82,15 @@
                     "type": "PassThrough",
                     "id": "07aa42fc-a1ec-44f4-a3f3-74118927f898",
                     "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "c8a9dc46-61f0-4651-9a53-aff18306e993",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -239,6 +248,17 @@
                     "processors": "",
                     "groups": "PC",
                     "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "46a45a98-d7e1-46cc-a044-fe0423c1e1ef",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

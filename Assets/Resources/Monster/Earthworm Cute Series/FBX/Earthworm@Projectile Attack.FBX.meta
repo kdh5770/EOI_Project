@@ -61,9 +61,17 @@ ModelImporter:
       curves: []
       events:
       - time: 0.44897962
-        functionName: attackEgg
+        functionName: EventAnimation
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 95d4c27eb912cc048b039370fba9cada,
+        objectReferenceParameter: {fileID: 11500000, guid: 90dc5c8c250b5694fb77ed17d311e1bc,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.9535755
+        functionName: EndAnimation
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 90dc5c8c250b5694fb77ed17d311e1bc,
           type: 3}
         floatParameter: 0
         intParameter: 0

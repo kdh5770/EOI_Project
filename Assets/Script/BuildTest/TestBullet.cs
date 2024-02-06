@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class TestBullet : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    public List<GameObject> PreObj;
+    private void Update()
     {
-        if (other.CompareTag("Monster"))
+        if(Input.GetKeyDown(KeyCode.Space))
         {
-            other.GetComponent<MonsterStatus>().CalculateDamage(100,0);
+            int i = Random.Range(0, PreObj.Count);
+            Instantiate(PreObj[i], transform.position, Quaternion.identity);
         }
     }
 }

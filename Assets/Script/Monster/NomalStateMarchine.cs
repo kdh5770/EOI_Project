@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,19 +8,17 @@ public class NomalStateMarchine : MonsterFSM
 
     public float attackDist;
 
-    public int Shout = 0; // 소리 지르기 1회
-
     public Attack skill;
     public Attack melee;
     public Attack throwAttack;
+    public bool isSkilled;
 
-    public bool isSkill;
     private void Start()
     {
-        isSkill = true;
         animator = GetComponentInChildren<Animator>();
         monsterStatus = GetComponent<MonsterStatus>();
         nav = GetComponent<NavMeshAgent>();
+        isSkilled = true;
 
         ChangeState(MONSTER_STATE.TRACKING);
     }
@@ -130,24 +126,30 @@ public class NomalStateMarchine : MonsterFSM
         animator.SetBool("IsRun", true);
         animator.SetBool("IsIdle", false);
         nav.isStopped = false;
+        nav.SetDestination(target.transform.position);
 
-        if (skill != null)
+        //공격별 공격 범위 초기화
+        if (skill != null && isSkilled)
         {
-            attackDist = skill.atkRange;
+            attackDist = skill.attackRange;
+
             return;
         }
         if (melee != null)
         {
-            attackDist = melee.atkRange;
+            attackDist = melee.attackRange;
         }
+        if (throwAttack != null)
+        {
+            attackDist = throwAttack.attackRange;
+        }
+
     }
 
     void UpdateMove() // 공격 범위 감지
     {
-        nav.SetDestination(target.transform.position);
-        Collider[] colliders = Physics.OverlapSphere(transform.position, attackDist); // 공격 범위 지정하기
+        Collider[] colliders = Physics.OverlapSphere(transform.position, attackDist); // 공격 범위내 플레이어 감지
 
-        Debug.Log(colliders.Length);
         if (colliders.Length > 0)
         {
             foreach (Collider col in colliders)
@@ -156,11 +158,13 @@ public class NomalStateMarchine : MonsterFSM
                 {
                     nav.ResetPath();
                     nav.isStopped = true;
+                    nav.velocity = Vector3.zero;
                     ChangeState(MONSTER_STATE.ATTACK);
-                    break;
+                    return;
                 }
             }
         }
+        ChangeState(MONSTER_STATE.TRACKING);
     }
 
     void SetAttack()
@@ -168,10 +172,10 @@ public class NomalStateMarchine : MonsterFSM
         animator.SetBool("IsIdle", true);
         animator.SetBool("IsRun", false);
 
-        if (skill != null)
+        if (skill != null && isSkilled)
         {
             skill.ExecuteAttack(target);
-            skill = null;
+            isSkilled = false;
             return;
         }
         if (melee != null)
@@ -182,15 +186,9 @@ public class NomalStateMarchine : MonsterFSM
 
     }
 
-    float timeTest;
     void UpdateAttack()
     {
-        timeTest += Time.deltaTime;
-        if (timeTest > .2f && !animator.GetCurrentAnimatorStateInfo(0).IsTag("attack"))
-        {
-            timeTest = 0;
-            ChangeState(MONSTER_STATE.TRACKING);
-        }
+
     }
 
 

@@ -1,35 +1,40 @@
 using UnityEngine;
 
 public class MonsterStatus : MonoBehaviour
-{   
-    public int maxHP;
-    public int curHP;
-    public int ATK;
-    public int DEF;
+{
+    public float maxHP;
+    public float curHP;
+    public float ATK;
+    public float DEF;
 
     public float bassSPD;
     public float moveRange;
     public float sightRange;
     public float attackRange;
 
-    public GameObject dropItemPre;
+    public GameObject lowBlood;
+    public GameObject middleBlood;
+    public GameObject highBlood;
 
     protected MonsterFSM monsterFSM;
-    public Collider body;
 
     private void Start()
     {
-        monsterFSM = GetComponent<MonsterFSM>();
-        body = GetComponent<Collider>();
+        if (TryGetComponent(out MonsterFSM _monsterFSM))
+        {
+            monsterFSM = _monsterFSM;
+        }
+
+        curHP = maxHP;
     }
 
-    public virtual void CalculateDamage(int _damage, int _weakenValue)
+    public virtual void CalculateDamage(float _damage)
     {
-        curHP -= _damage - (DEF - _weakenValue);
-        if(curHP <= 0)
+        curHP -= _damage;
+        if (curHP <= 0)
         {
-            body.enabled = false;
-            monsterFSM.ChangeState(MONSTER_STATE.DIE);
+            monsterFSM?.ChangeState(MONSTER_STATE.DIE);
+            Gamemanager.instance.itemDropManagere.SpawnItems(transform.position);
         }
     }
 }

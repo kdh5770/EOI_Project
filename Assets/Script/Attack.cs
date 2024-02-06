@@ -9,13 +9,18 @@ public enum REACT_TYPE
 }
 public abstract class Attack : MonoBehaviour
 {
-    public Animator animator;
+    protected Animator animator;
     public REACT_TYPE react_type;
     public IReactionEffect reaction;
-    public float atkRange;
-    public void Initialized()
+    public float attackRange;
+    public float damage;
+
+    public GameObject target;
+    public AnimationEvent animationEvent;
+    private void Initialized()
     {
-        animator = GetComponentInChildren<Animator>();
+        animator = transform.root.GetComponentInChildren<Animator>();
+        animationEvent = transform.root.GetComponentInChildren<AnimationEvent>();
 
         switch (react_type)
         {
@@ -43,5 +48,7 @@ public abstract class Attack : MonoBehaviour
     }
 
     public abstract void ExecuteAttack(GameObject _target);
+
+    public abstract void ActionAttack();
 
 }

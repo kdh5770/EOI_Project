@@ -6,6 +6,7 @@ public class ThorwObject : MonoBehaviour
     public float effectTimer;
     public float damage;
 
+
     public void SetDamage(float _damage)
     {
         damage = _damage;
@@ -20,8 +21,15 @@ public class ThorwObject : MonoBehaviour
             Destroy(eftPre, effectTimer);
             Destroy(gameObject);
         }
-        if(other.gameObject.CompareTag("Wall"))
+        if (other.gameObject.CompareTag("Wall"))
         {
+            GameObject eftPre = Instantiate(effectPre, transform.position, Quaternion.identity);
+            Destroy(eftPre, effectTimer);
+            Destroy(gameObject);
+        }
+        if (other.gameObject.CompareTag("BossWall"))
+        {
+            other.GetComponent<BossWall>().BossWall_asd();
             GameObject eftPre = Instantiate(effectPre, transform.position, Quaternion.identity);
             Destroy(eftPre, effectTimer);
             Destroy(gameObject);

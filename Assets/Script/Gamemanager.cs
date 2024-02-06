@@ -6,9 +6,13 @@ public class Gamemanager : MonoBehaviour
 {
     public static Gamemanager instance;
 
-    public CameraManager cameraManager;
+    public GameObject player;
     public TempScript tempScript;
     public SpawnTest spawnTest;
+    public ItemDropManagere itemDropManagere;
+    public CharacterUI characterUI;
+    public PoolManager poolManager;
+    public TimeLineManager timeLineManager;
 
     private void Awake()
     {
@@ -17,10 +21,4 @@ public class Gamemanager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
     }
-
-    private void Start()
-    {
-        spawnTest.SpawnMonster();
-    }
-
 }

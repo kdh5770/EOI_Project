@@ -17,9 +17,7 @@ public abstract class MonsterFSM : MonoBehaviour, IStateMachine
 {
 
     public MONSTER_STATE State;
-
     protected Animator animator;
-
     protected MonsterStatus monsterStatus;
 
     public abstract void ChangeReactionState(REACT_TYPE _state);

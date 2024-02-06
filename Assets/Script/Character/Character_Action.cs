@@ -34,7 +34,22 @@ public class Character_Action : MonoBehaviour
     public bool isReload = false;
     RaycastHit hit;
 
-    public GameObject spotLight;
+    //public GameObject spotLight;
+
+    [Header("트레일 렌더러 관련")]
+
+    [SerializeField]
+    private GameObject ShootFlx;
+
+    //private ParticleSystem ShootingSystem;
+    [SerializeField]
+    private Transform Shootposition;
+    [SerializeField]
+    private ParticleSystem ImpactParticleSystem;
+    [SerializeField]
+    private TrailRenderer BulletTrail;
+    [SerializeField]
+    private LayerMask Mask;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +63,11 @@ public class Character_Action : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_input.sprint)
+        {
+            _input.aim = false;
+        }
+
         OnAim();
         if (_input.reload)
         {
@@ -58,7 +78,7 @@ public class Character_Action : MonoBehaviour
             {
                 return;
             }
-            //_animator.SetLayerWeight(1, 1);
+            _animator.SetLayerWeight(1, 1);
             _animator.SetTrigger("Reload");
         }
     }
@@ -70,7 +90,7 @@ public class Character_Action : MonoBehaviour
         {
             AimControll(true);
 
-            //_animator.SetLayerWeight(1, 1);
+            _animator.SetLayerWeight(1, 1);
 
             Vector3 targetPosition = Vector3.zero;
 
@@ -78,14 +98,14 @@ public class Character_Action : MonoBehaviour
             {
                 targetPosition = hit.point;
                 aimObj.transform.position = hit.point;
-                spotLight.transform.LookAt(aimObj.transform.position);
+                //spotLight.transform.LookAt(aimObj.transform.position);
             }
 
             else
             {
                 targetPosition = camTransform.position + camTransform.forward * aimObjDis;
                 aimObj.transform.position = camTransform.position + camTransform.forward * aimObjDis;
-                spotLight.transform.LookAt(aimObj.transform.position);
+                //spotLight.transform.LookAt(aimObj.transform.position);
             }
 
             /*            Vector3 targetAim = targetPosition;
@@ -99,38 +119,74 @@ public class Character_Action : MonoBehaviour
         else
         {
             AimControll(false);
-
-            //_animator.SetLayerWeight(1, 0);
-            _animator.SetBool("Shoot", false);
+            _animator.SetLayerWeight(1, 0);
+            //_animator.SetBool("Shoot", false);
         }
     }
 
     void AimControll(bool isCheck)
     {
         AimCam.gameObject.SetActive(isCheck);
-        AimImage.SetActive(isCheck);
+        //AimImage.SetActive(isCheck);
+        _animator.SetBool("Aiming", isCheck);
     }
 
     public void OnShoot()
     {
-        if (_input.aim && !_animator.GetCurrentAnimatorStateInfo(1).IsTag("Shoot"))
+        if (_input.aim && !_animator.GetCurrentAnimatorStateInfo(1).IsTag("Shoot") && !_input.sprint)
         {
             _animator.SetTrigger("ShootTri");
+            Instantiate(ShootFlx, Shootposition);
+            //ShootingSystem.Play();
+            Vector3 directioin = GetDirection();
+
+
             if (Physics.Raycast(camTransform.position, camTransform.forward, out hit, Mathf.Infinity, targetLayer))
             {
+                TrailRenderer trail = Instantiate(BulletTrail, Shootposition.position, Quaternion.identity);
+
+                StartCoroutine(SpawnTrail(trail, hit));
+
                 if (hit.collider.CompareTag("Monster"))
                 {
-                    hit.collider.GetComponent<MonsterStatus>().CalculateDamage(2, 0);
-
+                    hit.collider.GetComponent<Weakness>().AttackDamage(10, hit.point);
+                    Instantiate(ImpactParticleSystem, hit.point, Quaternion.LookRotation(hit.normal));
                     GameObject eftObj = Instantiate(BloodObj, hit.point, Quaternion.identity);
                     eftObj.transform.LookAt(camTransform.transform.position);
-                    Destroy(eftObj, 1f);
+                    Destroy(eftObj, 1f);                  
+                }
+                else
+                {
+                    Instantiate(ImpactParticleSystem, hit.point, Quaternion.LookRotation(hit.normal));
                 }
             }
         }
     }
 
 
+    private Vector3 GetDirection()
+    {
+        Vector3 direction = transform.forward;
 
+        direction.Normalize();
+        return direction;
+    }
+
+    private IEnumerator SpawnTrail(TrailRenderer Trail, RaycastHit hit)
+    {
+        float time = 0f;
+        Vector3 startPosition = Trail.transform.position;
+        while (time < 1f)
+        {
+            Trail.transform.position = Vector3.Lerp(startPosition, hit.point, time);
+            time += Time.deltaTime / Trail.time;
+            yield return null;
+        }
+
+        Trail.transform.position = hit.point;
+
+        Destroy(Trail.gameObject, Trail.time);
+
+    }
 
 }

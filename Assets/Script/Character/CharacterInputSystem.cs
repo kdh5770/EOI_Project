@@ -14,6 +14,7 @@ public class CharacterInputSystem : MonoBehaviour
     public bool aim;
     public bool shoot;
     public bool reload;
+    public bool interaction;
 
     [Header("Movement Settings")]
     public bool analogMovement;
@@ -39,6 +40,11 @@ public class CharacterInputSystem : MonoBehaviour
     public void OnSprint(InputValue value)
     {
         SprintInput(value.isPressed);
+    }
+
+    public void OnInterActions(InputValue value)
+    {
+        InterActionsInput(value.isPressed);
     }
 
     public void OnAim(InputValue value)
@@ -73,6 +79,11 @@ public class CharacterInputSystem : MonoBehaviour
     public void SprintInput(bool newSprintState)
     {
         sprint = newSprintState;
+    }
+
+    public void InterActionsInput(bool newInterActionState)
+    {
+        interaction = newInterActionState;
     }
 
     public void AimInput(bool newAimState)

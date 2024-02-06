@@ -2006,7 +2006,23 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.41925797
+        functionName: EventAnimation
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 90dc5c8c250b5694fb77ed17d311e1bc,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.86696106
+        functionName: EndAnimation
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 90dc5c8c250b5694fb77ed17d311e1bc,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1

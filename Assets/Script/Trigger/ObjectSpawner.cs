@@ -15,7 +15,6 @@ public class ObjectSpawner : Interaction
             foreach (GameObject obj in spawnePos)
             {
                 Instantiate(SpawnerPrefab, obj.transform.position, Quaternion.identity);
-                Debug.Log("¸®½ºÆù");
             }
         }
     }
