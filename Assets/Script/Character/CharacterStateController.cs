@@ -84,7 +84,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         curState = states[_state];
         curState?.OnEnterState();
         Debug_state = _state;
-        Debug.Log(_state.ToString());
+        //Debug.Log(_state.ToString());
     }
 
     public void ChangeReactionState(REACT_TYPE _state)
