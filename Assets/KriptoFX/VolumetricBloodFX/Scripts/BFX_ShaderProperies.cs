@@ -20,16 +20,16 @@ public class BFX_ShaderProperies : MonoBehaviour
     float _animationTimeLapsed;
     private float _timeLapsedBeforeFadeout;
 
-    private DecalProjector decal;
-    private Material decalMat;
+    //private DecalProjector decal;
+    //private Material decalMat;
 
     public event Action OnAnimationFinished;
 
     private void Awake()
     {
-        decal = GetComponent<DecalProjector>();
-        decalMat = new Material(decal.material);
-        decal.material = decalMat;
+        //decal = GetComponent<DecalProjector>();
+        //decalMat = new Material(decal.material);
+        //decal.material = decalMat;
         cutoutPropertyID = Shader.PropertyToID("_Cutout");
         forwardDirPropertyID = Shader.PropertyToID("_DecalForwardDir");
 
@@ -41,11 +41,11 @@ public class BFX_ShaderProperies : MonoBehaviour
         startTime = Time.time + TimeDelay;
         canUpdate = true;
 
-        GetComponent<DecalProjector>().enabled = true;
+        //GetComponent<DecalProjector>().enabled = true;
 
         var eval = FloatCurve.Evaluate(0) * GraphIntensityMultiplier;
-        decalMat.SetFloat(cutoutPropertyID, eval);
-        decalMat.SetVector(forwardDirPropertyID, transform.up);
+        //decalMat.SetFloat(cutoutPropertyID, eval);
+        //decalMat.SetVector(forwardDirPropertyID, transform.up);
 
     }
 
@@ -53,7 +53,7 @@ public class BFX_ShaderProperies : MonoBehaviour
     {
 
         var eval = FloatCurve.Evaluate(0) * GraphIntensityMultiplier;
-        decalMat.SetFloat(cutoutPropertyID, eval);
+        //decalMat.SetFloat(cutoutPropertyID, eval);
 
         _animationTimeLapsed = 0;
         _timeLapsedBeforeFadeout = 0;
@@ -73,9 +73,9 @@ public class BFX_ShaderProperies : MonoBehaviour
             _animationTimeLapsed += deltaTime;
 
         var eval = FloatCurve.Evaluate(_animationTimeLapsed / GraphTimeMultiplier) * GraphIntensityMultiplier;
-        decalMat.SetFloat(cutoutPropertyID, eval);
+        //decalMat.SetFloat(cutoutPropertyID, eval);
 
-        if (BloodSettings != null) decalMat.SetFloat("_LightIntencity", Mathf.Clamp(BloodSettings.LightIntensityMultiplier, 0.01f, 1f));
+        if (BloodSettings != null) //decalMat.SetFloat("_LightIntencity", Mathf.Clamp(BloodSettings.LightIntensityMultiplier, 0.01f, 1f));
 
         if (_animationTimeLapsed >= GraphTimeMultiplier)
         {
@@ -83,7 +83,7 @@ public class BFX_ShaderProperies : MonoBehaviour
             OnAnimationFinished?.Invoke();
 
         }
-        decalMat.SetVector(forwardDirPropertyID, transform.up);
+        //decalMat.SetVector(forwardDirPropertyID, transform.up);
     }
 
 }

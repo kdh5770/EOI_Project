@@ -36,8 +36,8 @@ public class Weakness : MonoBehaviour
 
             if (curEffect.activeSelf)
             {
-                curEffect.transform.position = _hitPoint;
                 curEffect.SetActive(false);
+                curEffect.transform.position = _hitPoint;
                 curEffect.SetActive(true);
             }
             else
@@ -68,6 +68,10 @@ public class Weakness : MonoBehaviour
                 reduction = 0f;
                 curEffect = Instantiate(status.highBlood, transform.position, Quaternion.identity);
                 break;
+        }
+        if(curEffect != null)
+        {
+            curEffect.SetActive(false);
         }
     }
 }

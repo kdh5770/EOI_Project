@@ -13,6 +13,7 @@ public class Gamemanager : MonoBehaviour
     public CharacterUI characterUI;
     public PoolManager poolManager;
     public TimeLineManager timeLineManager;
+    public DatabaseManager databaseManager;
 
     private void Awake()
     {
