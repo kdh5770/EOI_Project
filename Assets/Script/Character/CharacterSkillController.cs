@@ -21,16 +21,9 @@ public class CharacterSkillController : MonoBehaviour
 {
 
 
-
-
     void Start()
     {
-
-
-
-
         InitSkillState();
-
     }
 
 

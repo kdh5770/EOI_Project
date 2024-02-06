@@ -9,9 +9,13 @@ public class MachineGun : WeaponTable
     public GameObject shotFlash;
     public TrailRenderer shotTrail;
     public GameObject impactEft;
-
     private WaitForSeconds shotDelay;
     private IEnumerator usingCor;
+
+    // ºÒ¸´ ÇÁ¸®ÆÕÀ¸·Î ³ª°¡°Ô
+    public GameObject BulletPrefab;
+    public Transform BulletShootPos;
+    public float bulspd = 30f;
 
 
     private void Start()
@@ -32,8 +36,12 @@ public class MachineGun : WeaponTable
     {
         if (usingCor == null)
         {
-            usingCor = UsingCor();
-            StartCoroutine(usingCor);
+            //usingCor = UsingCor();
+            //StartCoroutine(usingCor);
+
+            // ÃÑ¾Ë ½î´Â ·ÎÁ÷
+            usingCor = BulletShootCo();
+            StartCoroutine(BulletShootCo());
         }
     }
 
@@ -47,7 +55,6 @@ public class MachineGun : WeaponTable
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
             {
                 StartCoroutine(SpawnTrail(hit));
-
                 if (hit.collider.CompareTag("Monster"))
                 {
                     hit.collider.GetComponent<Weakness>().AttackDamage(Data.Damage, hit.point);
@@ -57,6 +64,36 @@ public class MachineGun : WeaponTable
         }
         usingCor = null;
     }
+
+    IEnumerator BulletShootCo()
+    {
+        while (canShooting)
+        {
+            Vector3 mousePos = Mouse.current.position.ReadValue();
+            Ray ray = camera.ScreenPointToRay(mousePos);
+
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
+            {
+                StartCoroutine(BulletInstanceCo());
+                if (hit.collider.CompareTag("Monster"))
+                {
+                    hit.collider.GetComponent<Weakness>().AttackDamage(Data.Damage, hit.point);
+                }
+            }
+            yield return shotDelay;
+        }
+        usingCor = null;
+    }
+
+    IEnumerator BulletInstanceCo()
+    {
+        GameObject bullet= Instantiate(BulletPrefab, BulletShootPos.position, Quaternion.identity);
+        Rigidbody bulRig = bullet.GetComponent<Rigidbody>();
+        bulRig.velocity= BulletShootPos.forward * bulspd*Time.deltaTime;
+
+        yield return null;
+    }
+
 
     private IEnumerator SpawnTrail(RaycastHit hit)
     {

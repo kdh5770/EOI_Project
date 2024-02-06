@@ -54,7 +54,8 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     public bool IsCloaking;
     public bool IsPsychokinesis;
     public bool IsFlying;
-
+    [SerializeField]
+    private GameObject JetEngine;
 
 
 
@@ -263,10 +264,12 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         if (_context.performed)
         {
             IsFlying = true;
+            JetEngine.SetActive(true);
         }
         else if(_context.canceled)
         {
             IsFlying = false;
+            JetEngine.SetActive(false);
         }
     }
     public void OnCloaking(InputAction.CallbackContext _context)
