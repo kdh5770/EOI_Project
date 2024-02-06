@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class MonsterMelee : Attack
 {
-
-
     public override void ExecuteAttack(GameObject _target)
     {
         animationEvent.ActionAttack += ActionAttack;
