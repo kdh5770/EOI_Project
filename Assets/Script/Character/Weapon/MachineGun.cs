@@ -74,7 +74,7 @@ public class MachineGun : WeaponTable
 
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
             {
-                StartCoroutine(BulletInstanceCo());
+                StartCoroutine(BulletInstanceCo(hit));
                 if (hit.collider.CompareTag("Monster"))
                 {
                     hit.collider.GetComponent<Weakness>().AttackDamage(Data.Damage, hit.point);
@@ -85,11 +85,12 @@ public class MachineGun : WeaponTable
         usingCor = null;
     }
 
-    IEnumerator BulletInstanceCo()
+    IEnumerator BulletInstanceCo(RaycastHit _hit)
     {
         GameObject bullet= Instantiate(BulletPrefab, BulletShootPos.position, Quaternion.identity);
         Rigidbody bulRig = bullet.GetComponent<Rigidbody>();
-        bulRig.velocity= BulletShootPos.forward * bulspd*Time.deltaTime;
+        bullet.transform.LookAt(_hit.point);
+        bulRig.velocity= bullet.transform.forward * bulspd*Time.deltaTime;
 
         yield return null;
     }

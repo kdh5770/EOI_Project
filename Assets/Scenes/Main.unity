@@ -52966,6 +52966,10 @@ MonoBehaviour:
     type: 3}
   impactEft: {fileID: 1388365810598290825, guid: 8853f875fcffacf42910cd168feaa7e8,
     type: 3}
+  BulletPrefab: {fileID: 958203156934404563, guid: a16cf64938a20f348a5f604fa4944889,
+    type: 3}
+  BulletShootPos: {fileID: 1649598962}
+  bulspd: 30
 --- !u!1 &1699819812
 GameObject:
   m_ObjectHideFlags: 0
@@ -74369,6 +74373,18 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 58b69968-d7eb-46b1-b997-3d7a5438c8e2
     m_ActionName: Player/Potion
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c1faec1b-2fe6-4d2c-85a4-e756d432f7e9
+    m_ActionName: Player/Flying[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b229284d-8980-4dac-ac2a-b2b4ac3be6aa
+    m_ActionName: Player/Cloaking[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ee3b0134-ab79-4c1c-8311-cc65b9b8eaff
+    m_ActionName: Player/Psychokinesis[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: PC
   m_DefaultActionMap: Player
@@ -77488,6 +77504,10 @@ MonoBehaviour:
   aimIK: {fileID: 1624226122}
   isSprint: 0
   isAiming: 0
+  IsCloaking: 0
+  IsPsychokinesis: 0
+  IsFlying: 0
+  JetEngine: {fileID: 0}
   Debug_state: 0
 --- !u!114 &6003942261104176136
 MonoBehaviour:
