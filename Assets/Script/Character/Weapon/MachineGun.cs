@@ -71,17 +71,17 @@ public class MachineGun : WeaponTable
             {
                 if (hit.collider.CompareTag("Monster"))
                 {
-                    //hit.collider.GetComponent<Weakness>().AttackDamage(Data.Damage, hit.point);
+                    hit.collider.GetComponent<Weakness>().AttackDamage(Data.Damage, hit.point);
                 }
 
-                Vector3 directionToHit = (hit.point - shotPos.position).normalized;
-                GameObject bullet = Gamemanager.instance.poolManager.GetBullet();
-                if (bullet != null)
-                {
-                    bullet.transform.position = shotPos.position;
-                    bullet.transform.rotation = Quaternion.LookRotation(directionToHit);
-                    bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * 20f, ForceMode.Impulse);
-                }
+                //Vector3 directionToHit = (hit.point - shotPos.position).normalized;
+                //GameObject bullet = Gamemanager.instance.poolManager.GetBullet();
+                //if (bullet != null)
+                //{
+                //    bullet.transform.position = shotPos.position;
+                //    bullet.transform.rotation = Quaternion.LookRotation(directionToHit);
+                //    bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * 20f, ForceMode.Impulse);
+                //}
             }
             yield return shotDelay;
         }
