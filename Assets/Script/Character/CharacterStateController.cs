@@ -36,6 +36,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     public float TopClamp = 70f;
     public float BottomClamp = -30f;
     public float rotationSensitivity;
+    private const float _threshold = 0.01f;
 
     public WeaponTable curWeapon;
     public List<WeaponTable> weapons;
@@ -71,7 +72,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         health = GetComponent<CharacterHealth>();
         playerAnimationEvent = GetComponentInChildren<PlayerAnimationEvent>();
 
-        rotationSensitivity = 25f;
+        //rotationSensitivity = 25f;
 
         curWeapon = weapons[0];
 
@@ -87,6 +88,11 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     private void FixedUpdate()
     {
         curState?.OnFixedUpdateState();
+    }
+
+    private void LateUpdate()
+    {
+
     }
 
     public void ChangeState(CharacterSTATE _state)
@@ -142,7 +148,8 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     {
         if (isAiming)
             transform.rotation = Quaternion.Euler(0f, cinemachineTargetYaw, 0.0f);
-        CinemachineCameraTarget.transform.rotation = Quaternion.Euler(cinemachineTargetPitch, cinemachineTargetYaw, 0.0f);
+
+        CinemachineCameraTarget.transform.rotation = Quaternion.Euler(cinemachineTargetPitch + 0f, cinemachineTargetYaw, 0.0f);
     }
 
     private static float ClampAngle(float IfAngle, float IfMin, float IfMax) // 카메라 각도 관련
@@ -157,6 +164,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         if (_context.ReadValue<Vector2>() == Vector2.zero)
         {
             inputDir = Vector3.zero;
+            return;
         }
 
         inputDir = new Vector3(_context.ReadValue<Vector2>().x, 0f, _context.ReadValue<Vector2>().y);
@@ -183,14 +191,13 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
     public void OnCamRotation(InputAction.CallbackContext _context)
     {
-        if (_context.ReadValue<Vector2>() == Vector2.zero)
+        if (_context.ReadValue<Vector2>().sqrMagnitude >= _threshold)
         {
-            return;
+            Vector2 mouseDir = _context.ReadValue<Vector2>().normalized;
+            cinemachineTargetYaw += mouseDir.x * rotationSensitivity * Time.deltaTime;
+            cinemachineTargetPitch += mouseDir.y * rotationSensitivity * Time.deltaTime;
         }
 
-        Vector2 mouseDir = _context.ReadValue<Vector2>().normalized;
-        cinemachineTargetYaw += mouseDir.x * rotationSensitivity * Time.deltaTime;
-        cinemachineTargetPitch += mouseDir.y * rotationSensitivity * Time.deltaTime;
 
         cinemachineTargetYaw = ClampAngle(cinemachineTargetYaw, float.MinValue, float.MaxValue);
         cinemachineTargetPitch = ClampAngle(cinemachineTargetPitch, BottomClamp, TopClamp);
@@ -266,7 +273,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
             IsFlying = true;
             JetEngine.SetActive(true);
         }
-        else if(_context.canceled)
+        else if (_context.canceled)
         {
             IsFlying = false;
             JetEngine.SetActive(false);

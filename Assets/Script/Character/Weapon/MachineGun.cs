@@ -79,10 +79,9 @@ public class MachineGun : WeaponTable
                     //hit.collider.GetComponent<Weakness>().AttackDamage(Data.Damage, hit.point);
                 }
 
-
-                GameObject bullet = Instantiate(BulletPrefab, shotPos.position, Quaternion.identity);
-                // bullet.transform.LookAt(hit.point);
-                bullet.GetComponent<Rigidbody>().AddForce(ray.direction * 10f, ForceMode.Impulse);
+                Vector3 directionToHit = (hit.point - shotPos.position).normalized;
+                GameObject bullet = Instantiate(BulletPrefab, shotPos.position, Quaternion.LookRotation(directionToHit));
+                bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * 20f, ForceMode.Impulse);
 
             }
             yield return shotDelay;
