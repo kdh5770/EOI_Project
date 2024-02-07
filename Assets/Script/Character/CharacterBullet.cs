@@ -27,6 +27,7 @@ public class CharacterBullet : MonoBehaviour
     private void OnDisable()
     {
         rigid.velocity = Vector3.zero;
+        rigid.Sleep();
     }
 
     void BullSetFalse()
