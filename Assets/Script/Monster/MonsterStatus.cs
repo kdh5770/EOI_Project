@@ -68,6 +68,11 @@ public class MonsterStatus : MonoBehaviour
         }
     }
 
+    public bool GetDie()
+    {
+        return curHP <= 0;
+    }
+
     public void SpawnInit(MonsterData _data, bool _isCounting)
     {
         monsterData = _data;

@@ -45,7 +45,8 @@ public class Weakness : MonoBehaviour
                 curEffect.transform.position = _hitPoint;
                 curEffect.SetActive(true);
             }
-            status.CalculateDamage(result);
+            if (!status.GetDie())
+                status.CalculateDamage(result);
         }
     }
 
@@ -69,7 +70,7 @@ public class Weakness : MonoBehaviour
                 curEffect = Instantiate(status.highBlood, transform.position, Quaternion.identity);
                 break;
         }
-        if(curEffect != null)
+        if (curEffect != null)
         {
             curEffect.SetActive(false);
         }
