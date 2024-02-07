@@ -8,7 +8,7 @@ public class Gamemanager : MonoBehaviour
 
     public GameObject player;
     public TempScript tempScript;
-    public SpawnTest spawnTest;
+    public SpawnManager spawnManager;
     public ItemDropManagere itemDropManagere;
     public CharacterUI characterUI;
     public PoolManager poolManager;

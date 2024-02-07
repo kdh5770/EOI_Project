@@ -12,11 +12,6 @@ public class DatabaseManager : MonoBehaviour
     private void Start()
     {
         ParseMonsterData();
-
-        foreach(MonsterData data in monsterDataDic.Values )
-        {
-            Debug.Log(data.ATK);
-        }
     }
 
     void ParseMonsterData()

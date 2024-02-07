@@ -90,11 +90,6 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         curState?.OnFixedUpdateState();
     }
 
-    private void LateUpdate()
-    {
-
-    }
-
     public void ChangeState(CharacterSTATE _state)
     {
         curState?.OnExitState();
