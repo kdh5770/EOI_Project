@@ -35,7 +35,7 @@ public class WatcherThrow : Attack
     public override void ActionAttack()
     {
         BulletEft = Instantiate(BulletEftPre, BulletTf.transform.position, Quaternion.LookRotation(direction));
-        BulletEft.GetComponent<Rigidbody>().AddForce(BulletEft.transform.forward * 15f, ForceMode.Impulse);
+        BulletEft.GetComponent<Rigidbody>().AddForce(BulletEft.transform.forward * 30f, ForceMode.Impulse);
         Destroy(BulletEft, 5f);
         animationEvent.ActionAttack -= ActionAttack;
     }

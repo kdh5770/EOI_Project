@@ -29,8 +29,6 @@ public class Larva : MonsterStatus
     public void LarvaBoom()
     {
         //gameObject.GetComponent<Collider>().enabled = false;
-
-        Debug.Log("asd");
         boomPreObj = Instantiate(boomEftPre, boom.transform.position, Quaternion.identity);
        
         if (target != null)
