@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FireGun : WeaponTable
 {
-    public Transform shotPos;
+    public Transform shotFireGunPos;
     public GameObject FireEffect;
     private WaitForSeconds shotDelay;
     private IEnumerator usingCor;
@@ -35,7 +35,7 @@ public class FireGun : WeaponTable
     {
         while (canShooting)
         {
-            Instantiate(FireEffect,shotPos.position, Quaternion.identity);
+            Instantiate(FireEffect, shotFireGunPos.position, Quaternion.identity);
 
             
 

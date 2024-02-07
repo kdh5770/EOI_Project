@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class MachineGun : WeaponTable
 {
-    public Transform shotPos;
+    public Transform shotMachineGunPos;
     public GameObject shotFlash;
     public TrailRenderer shotTrail;
     public GameObject impactEft;
@@ -59,7 +59,7 @@ public class MachineGun : WeaponTable
         }
         usingCor = null;
     }
-
+    int i = 0;
     IEnumerator BulletShootCo()
     {
         while (canShooting)
@@ -74,14 +74,17 @@ public class MachineGun : WeaponTable
                     hit.collider.GetComponent<Weakness>().AttackDamage(Data.Damage, hit.point);
                 }
 
-                //Vector3 directionToHit = (hit.point - shotPos.position).normalized;
-                //GameObject bullet = Gamemanager.instance.poolManager.GetBullet();
-                //if (bullet != null)
-                //{
-                //    bullet.transform.position = shotPos.position;
-                //    bullet.transform.rotation = Quaternion.LookRotation(directionToHit);
-                //    bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * 20f, ForceMode.Impulse);
-                //}
+                Vector3 directionToHit = (hit.point - shotMachineGunPos.position).normalized;
+                GameObject bullet = Gamemanager.instance.poolManager.GetBullet();
+                if (bullet != null)
+                {
+                    bullet.SetActive(true);
+                    bullet.GetComponent<CharacterBullet>().SetBulle(Data.Damage);
+                    bullet.transform.position = shotMachineGunPos.position;
+                    bullet.transform.rotation = Quaternion.LookRotation(directionToHit);
+                    bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * 20f, ForceMode.Impulse);
+                    Debug.Log(++i);
+                }
             }
             yield return shotDelay;
         }
@@ -90,7 +93,7 @@ public class MachineGun : WeaponTable
 
     IEnumerator SpawnTrail(RaycastHit hit)
     {
-        TrailRenderer trail = Instantiate(shotTrail, shotPos.position, Quaternion.identity);
+        TrailRenderer trail = Instantiate(shotTrail, shotMachineGunPos.position, Quaternion.identity);
 
         yield return null;
 

@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class PoolManager : MonoBehaviour
 {
-    [Header("총알 오브젝트풀링")]
+    [Header("캐릭터 총알 풀링")]
     public List<GameObject> BulletPool = new List<GameObject>();
     public GameObject BulletPrefab;
-    int MaxBull = 20;
 
 
 
@@ -17,17 +16,12 @@ public class PoolManager : MonoBehaviour
     }
 
 
-    public void BulletPooling() // 총알풀링 생성
+    public GameObject BulletPooling() // 총알풀링 생성
     {
-        GameObject BulletPools = new GameObject("BulletPools");
-
-        for (int i = 0; i < MaxBull; i++)
-        {
-            var obj = Instantiate(BulletPrefab, BulletPools.transform);
-            obj.name = "Bullet_" + i.ToString("00");
-            obj.SetActive(false);
-            BulletPool.Add(obj);
-        }
+        var obj = Instantiate(BulletPrefab);
+        obj.SetActive(false);
+        BulletPool.Add(obj);
+        return obj;
     }
 
     public GameObject GetBullet() // 총알풀링 꺼내쓰기
@@ -39,7 +33,8 @@ public class PoolManager : MonoBehaviour
                 return BulletPool[i];
             }
         }
-        return null;
+
+        return BulletPooling();
     }
 
 }
