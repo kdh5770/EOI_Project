@@ -25,7 +25,7 @@ public class MachineGun : WeaponTable
     }
     public override void Initsetting()
     {
-        Data.ShotDelay = 1f;
+        Data.ShotDelay = .1f;
         Data.MaxBullet = 30;
         Data.CurBullet = 30;
         Data.Damage = 10;
@@ -54,7 +54,7 @@ public class MachineGun : WeaponTable
 
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
             {
-                StartCoroutine(SpawnTrail(hit));
+                //StartCoroutine(SpawnTrail(hit));
                 if (hit.collider.CompareTag("Monster"))
                 {
                     hit.collider.GetComponent<Weakness>().AttackDamage(Data.Damage, hit.point);
@@ -69,33 +69,22 @@ public class MachineGun : WeaponTable
     {
         while (canShooting)
         {
-            /*Vector3 mousePos = Mouse.current.position.ReadValue();
-            Ray ray = camera.ScreenPointToRay(mousePos);*/
+            Vector3 mousePos = Mouse.current.position.ReadValue();
+            Ray ray = camera.ScreenPointToRay(mousePos);
 
-            /*            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
-                        {
-                            StartCoroutine(BulletInstanceCo());
-                            if (hit.collider.CompareTag("Monster"))
-                            {
-                                hit.collider.GetComponent<Weakness>().AttackDamage(Data.Damage, hit.point);
-                            }
-                        }*/
-
-            GameObject bullet = Instantiate(BulletPrefab, BulletShootPos.position,Quaternion.identity);
-            Rigidbody bulRig = bullet.GetComponent<Rigidbody>();
-            bulRig.velocity = BulletShootPos.forward * bulspd * Time.deltaTime;
-
-
-
-/*            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
             {
-                StartCoroutine(BulletInstanceCo(hit));
                 if (hit.collider.CompareTag("Monster"))
                 {
-                    hit.collider.GetComponent<Weakness>().AttackDamage(Data.Damage, hit.point);
+                    //hit.collider.GetComponent<Weakness>().AttackDamage(Data.Damage, hit.point);
                 }
-            }*/
 
+
+                GameObject bullet = Instantiate(BulletPrefab, shotPos.position, Quaternion.identity);
+                // bullet.transform.LookAt(hit.point);
+                bullet.GetComponent<Rigidbody>().AddForce(ray.direction * 10f, ForceMode.Impulse);
+
+            }
             yield return shotDelay;
         }
         usingCor = null;
@@ -104,17 +93,17 @@ public class MachineGun : WeaponTable
 
     IEnumerator BulletInstanceCo(RaycastHit _hit)
     {
-        GameObject bullet= Instantiate(BulletPrefab, BulletShootPos.position, Quaternion.identity);
+        GameObject bullet = Instantiate(BulletPrefab, BulletShootPos.position, Quaternion.identity);
         Rigidbody bulRig = bullet.GetComponent<Rigidbody>();
         bullet.transform.LookAt(_hit.point);
-        bulRig.velocity= bullet.transform.forward * bulspd*Time.deltaTime;
+        bulRig.velocity = bullet.transform.forward * bulspd * Time.deltaTime;
 
         yield return null;
     }
 
 
 
-    private IEnumerator SpawnTrail(RaycastHit hit)
+    IEnumerator SpawnTrail(RaycastHit hit)
     {
         TrailRenderer trail = Instantiate(shotTrail, shotPos.position, Quaternion.identity);
 
@@ -125,4 +114,5 @@ public class MachineGun : WeaponTable
         Destroy(eftObj, 1f);
         Destroy(trail.gameObject, .1f);
     }
+
 }
