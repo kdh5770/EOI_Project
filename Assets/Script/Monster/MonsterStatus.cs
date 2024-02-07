@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class MonsterData
@@ -41,6 +42,8 @@ public class MonsterStatus : MonoBehaviour
     protected MonsterFSM monsterFSM;
     public MonsterData monsterData;
 
+    private bool dieCheck;
+
     private void Start()
     {
         if (TryGetComponent(out MonsterFSM _monsterFSM))
@@ -52,14 +55,20 @@ public class MonsterStatus : MonoBehaviour
     public virtual void CalculateDamage(float _damage)
     {
         curHP -= _damage;
+
         if (curHP <= 0)
         {
             monsterFSM?.ChangeState(MONSTER_STATE.DIE);
             Gamemanager.instance.itemDropManagere.SpawnItems(transform.position);
+            
+            if(dieCheck)
+            {
+                Gamemanager.instance.spawnManager.AddKillCount();
+            }
         }
     }
 
-    public void SpawnInit(MonsterData _data)
+    public void SpawnInit(MonsterData _data, bool _isCounting)
     {
         monsterData = _data;
 
@@ -72,5 +81,7 @@ public class MonsterStatus : MonoBehaviour
 
         Animator animator = GetComponentInChildren<Animator>();
         animator.transform.localScale = monsterData.scale;
+
+        dieCheck = _isCounting;
     }
 }

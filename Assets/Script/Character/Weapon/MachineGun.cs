@@ -76,7 +76,7 @@ public class MachineGun : WeaponTable
             {
                 if (hit.collider.CompareTag("Monster"))
                 {
-                    //hit.collider.GetComponent<Weakness>().AttackDamage(Data.Damage, hit.point);
+                    hit.collider.GetComponent<Weakness>().AttackDamage(Data.Damage, hit.point);
                 }
 
                 Vector3 directionToHit = (hit.point - shotPos.position).normalized;

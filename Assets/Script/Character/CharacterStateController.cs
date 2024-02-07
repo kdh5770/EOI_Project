@@ -257,7 +257,6 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         if (_context.performed && curState == states[CharacterSTATE.MOVE])
         {
             health.UsingPortion();
-            Debug.Log("potion");
         }
     }
 

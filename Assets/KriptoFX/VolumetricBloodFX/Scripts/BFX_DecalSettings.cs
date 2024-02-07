@@ -31,11 +31,11 @@ public class BFX_DecalSettings : MonoBehaviour
     Vector3 averageRay;
     bool isPositionInitialized;
     private Vector3 initializedPosition;
-    private DecalProjector decal;
+    //private DecalProjector decal;
 
     private void Awake()
     {
-        decal = GetComponent<DecalProjector>();
+        //decal = GetComponent<DecalProjector>();
         startOffset = transform.localPosition;
         startScale = transform.localScale;
         t = transform;
@@ -46,7 +46,7 @@ public class BFX_DecalSettings : MonoBehaviour
 
     private void ShaderCurve_OnAnimationFinished()
     {
-        decal.enabled = false;
+        //decal.enabled = false;
     }
 
     private void Update()
@@ -58,7 +58,7 @@ public class BFX_DecalSettings : MonoBehaviour
     void InitializePosition()
     {
 
-        decal.enabled = false;
+        //decal.enabled = false;
 
         var currentHeight = parent.position.y;
         float ground = currentHeight;
@@ -81,11 +81,11 @@ public class BFX_DecalSettings : MonoBehaviour
 
         if (currentHeight - ground >= scaledTimeHeightMax || currentHeight - ground <= scaledTimeHeightMin)
         {
-            decal.enabled = false;
+            //decal.enabled = false;
         }
         else
         {
-            decal.enabled = true;
+            //decal.enabled = true;
         }
 
         float diff = (tParent.position.y - ground) / scaledTimeHeightMax;
@@ -94,7 +94,7 @@ public class BFX_DecalSettings : MonoBehaviour
         var scaleMul = Vector3.Lerp(TimeScaleMin, TimeScaleMax, diff);
         scaleMul.x *= currentScale.x;
         scaleMul.z *= currentScale.z;
-        decal.size = new Vector3(scaleMul.x * startScale.x, scaleMul.z * startScale.z, startScale.y);
+       // decal.size = new Vector3(scaleMul.x * startScale.x, scaleMul.z * startScale.z, startScale.y);
 
         var lastOffset = Vector3.Lerp(TimeOffsetMin, TimeOffsetMax, diff);
         t.localPosition = startOffset + lastOffset;
@@ -106,14 +106,14 @@ public class BFX_DecalSettings : MonoBehaviour
         shaderProperies.enabled = false;
         Invoke("EnableDecalAnimation", Mathf.Max(0, timeDelay / BloodSettings.AnimationSpeed));
 
-        if (BloodSettings.DecalRenderingMode == BFX_BloodSettings.DecalRenderingModeEnum.DiagonalSurfaces)
-        {
-            t.localRotation = Quaternion.Euler(120, -90, 90);
+        //if (BloodSettings.DecalRenderingMode == BFX_BloodSettings.DecalRenderingModeEnum.DiagonalSurfaces)
+        //{
+        //    t.localRotation = Quaternion.Euler(120, -90, 90);
 
-            var decalSize = decal.size;
-            decalSize.z = 5;
-            decal.size = decalSize;
-        }
+        //    var decalSize = decal.size;
+        //    decalSize.z = 5;
+        //    decal.size = decalSize;
+        //}
 
         //if (BloodSettings.ClampDecalSideSurface) Shader.EnableKeyword("CLAMP_SIDE_SURFACE");
 
