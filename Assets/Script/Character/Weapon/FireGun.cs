@@ -35,9 +35,9 @@ public class FireGun : WeaponTable
     {
         while (canShooting)
         {
+            Instantiate(FireEffect,shotPos.position, Quaternion.identity);
 
-
-
+            
 
 
 

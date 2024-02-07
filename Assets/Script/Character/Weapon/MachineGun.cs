@@ -82,6 +82,7 @@ public class MachineGun : WeaponTable
                 Vector3 directionToHit = (hit.point - shotPos.position).normalized;
                 GameObject bullet = Instantiate(BulletPrefab, shotPos.position, Quaternion.LookRotation(directionToHit));
                 bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * 20f, ForceMode.Impulse);
+                Gamemanager.instance.poolManager.GetBullet();
 
             }
             yield return shotDelay;

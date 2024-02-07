@@ -4,26 +4,41 @@ using UnityEngine;
 
 public class PoolManager : MonoBehaviour
 {
-    public GameObject poolPre;
-    public List<GameObject> pools;
+    [Header("총알 오브젝트풀링")]
+    public List<GameObject> BulletPool = new List<GameObject>();
+    public GameObject BulletPrefab;
+    int MaxBull = 20;
 
-    public GameObject GetFromPool()
+
+
+    private void Start()
     {
-        // Look for an inactive object in the pool
-        foreach (GameObject obj in pools)
+        BulletPooling();
+    }
+
+
+    public void BulletPooling() // 총알풀링 생성
+    {
+        GameObject BulletPools = new GameObject("BulletPools");
+
+        for (int i = 0; i < MaxBull; i++)
         {
-            if (!obj.activeSelf)
+            var obj = Instantiate(BulletPrefab, BulletPools.transform);
+            obj.SetActive(false);
+            BulletPool.Add(obj);
+        }
+    }
+
+    public GameObject GetBullet() // 총알풀링 꺼내쓰기
+    {
+        for (int i = 0; i < BulletPool.Count; i++)
+        {
+            if (BulletPool[i].activeSelf == false)
             {
-                obj.SetActive(true); // Reactivate the object
-                return obj;
+                return BulletPool[i];
             }
         }
-
-        // Optionally expand the pool if no inactive object is found
-        GameObject newObj = Instantiate(poolPre);
-        newObj.SetActive(true);
-        pools.Add(newObj);
-        newObj.transform.SetParent(transform); // Optional
-        return newObj;
+        return null;
     }
+
 }
