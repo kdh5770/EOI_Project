@@ -24,6 +24,7 @@ public class PoolManager : MonoBehaviour
         for (int i = 0; i < MaxBull; i++)
         {
             var obj = Instantiate(BulletPrefab, BulletPools.transform);
+            obj.name = "Bullet_" + i.ToString("00");
             obj.SetActive(false);
             BulletPool.Add(obj);
         }

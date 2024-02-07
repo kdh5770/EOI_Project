@@ -12,11 +12,6 @@ public class MachineGun : WeaponTable
     private WaitForSeconds shotDelay;
     private IEnumerator usingCor;
 
-    // ºÒ¸´ ÇÁ¸®ÆÕÀ¸·Î ³ª°¡°Ô
-    public GameObject BulletPrefab;
-    public Transform BulletShootPos;
-    public float bulspd = 30f;
-
 
     private void Start()
     {
@@ -76,32 +71,22 @@ public class MachineGun : WeaponTable
             {
                 if (hit.collider.CompareTag("Monster"))
                 {
-                    hit.collider.GetComponent<Weakness>().AttackDamage(Data.Damage, hit.point);
+                    //hit.collider.GetComponent<Weakness>().AttackDamage(Data.Damage, hit.point);
                 }
 
                 Vector3 directionToHit = (hit.point - shotPos.position).normalized;
-                GameObject bullet = Instantiate(BulletPrefab, shotPos.position, Quaternion.LookRotation(directionToHit));
-                bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * 20f, ForceMode.Impulse);
-                Gamemanager.instance.poolManager.GetBullet();
-
+                GameObject bullet = Gamemanager.instance.poolManager.GetBullet();
+                if (bullet != null)
+                {
+                    bullet.transform.position = shotPos.position;
+                    bullet.transform.rotation = Quaternion.LookRotation(directionToHit);
+                    bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * 20f, ForceMode.Impulse);
+                }
             }
             yield return shotDelay;
         }
         usingCor = null;
     }
-
-
-    IEnumerator BulletInstanceCo(RaycastHit _hit)
-    {
-        GameObject bullet = Instantiate(BulletPrefab, BulletShootPos.position, Quaternion.identity);
-        Rigidbody bulRig = bullet.GetComponent<Rigidbody>();
-        bullet.transform.LookAt(_hit.point);
-        bulRig.velocity = bullet.transform.forward * bulspd * Time.deltaTime;
-
-        yield return null;
-    }
-
-
 
     IEnumerator SpawnTrail(RaycastHit hit)
     {
