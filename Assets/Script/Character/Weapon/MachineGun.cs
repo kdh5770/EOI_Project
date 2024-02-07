@@ -71,7 +71,7 @@ public class MachineGun : WeaponTable
             {
                 if (hit.collider.CompareTag("Monster"))
                 {
-                    hit.collider.GetComponent<Weakness>().AttackDamage(Data.Damage, hit.point);
+                    //hit.collider.GetComponent<Weakness>().AttackDamage(Data.Damage, hit.point);
                 }
 
                 Vector3 directionToHit = (hit.point - shotMachineGunPos.position).normalized;
@@ -83,7 +83,6 @@ public class MachineGun : WeaponTable
                     bullet.transform.position = shotMachineGunPos.position;
                     bullet.transform.rotation = Quaternion.LookRotation(directionToHit);
                     bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * 20f, ForceMode.Impulse);
-                    Debug.Log(++i);
                 }
             }
             yield return shotDelay;
