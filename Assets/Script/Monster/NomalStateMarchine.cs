@@ -217,12 +217,18 @@ public class NomalStateMarchine : MonsterFSM
         animator.SetTrigger("IsDead");
     }
 
+    float time = 0.1f;
     void UpdateDie()
     {
-        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
+        if(time <= 0)
         {
-            Destroy(this.gameObject);
+            if (!animator.GetCurrentAnimatorStateInfo(0).IsTag("Dead"))
+            {
+                time = 0.1f;
+                Destroy(this.gameObject);
+            }
         }
+        time -= Time.deltaTime;
     }
     public override void ChangeReactionState(REACT_TYPE _state)
     {

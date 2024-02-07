@@ -12,10 +12,14 @@ public class Larva : MonsterStatus
     public Transform boom;
     [Header("타겟")]
     public GameObject target;
+    [Header("번데기 터질시 나오는 와쳐")]
+    public GameObject spawnPre;
+    [Header("생성된 와쳐 위치")]
+    public Transform spawnPos;
 
     public override void CalculateDamage(float _damage)
     {
-        curHP -= _damage;
+        base.CalculateDamage(_damage);
         if (curHP <= 0)
         {
             LarvaBoom();
@@ -28,15 +32,18 @@ public class Larva : MonsterStatus
 
         Debug.Log("asd");
         boomPreObj = Instantiate(boomEftPre, boom.transform.position, Quaternion.identity);
-        Destroy(boomPreObj, 2f);
-        Destroy(gameObject);
-
+       
         if (target != null)
         {
             target.GetComponent<CharacterHealth>().TakeDamage(10);
         }
+        Destroy(boomPreObj, 2f);
     }
 
+    private void OnDestroy()
+    {
+        Instantiate(spawnPre, spawnPos.position, Quaternion.identity);
+    }
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Player"))

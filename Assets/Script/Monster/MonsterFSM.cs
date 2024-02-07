@@ -17,6 +17,7 @@ public abstract class MonsterFSM : MonoBehaviour, IStateMachine
 {
 
     public MONSTER_STATE State;
+    [SerializeField]
     protected Animator animator;
     protected MonsterStatus monsterStatus;
 

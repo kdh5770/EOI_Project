@@ -9,7 +9,7 @@ public class Watcher_Larva : MonsterSkill
     public GameObject larva;
 
     NavMeshAgent Nav;
-    Rigidbody RB;
+    Rigidbody rb;
 
 
     public override void ApplyReaction(GameObject target)
@@ -25,9 +25,13 @@ public class Watcher_Larva : MonsterSkill
     public override void ExecuteAttack(GameObject _target)
     {
         Nav = GetComponent<NavMeshAgent>();
+        rb = GetComponent<Rigidbody>();
+
+        Nav.enabled = false;
+        rb.isKinematic = true;
+        rb.detectCollisions = true;
         animationEvent.ActionAttack += ActionAttack;
         animator.SetTrigger("isLarva");
-        Nav.enabled = false;
     }
 
     public override void ActionAttack()
@@ -68,7 +72,9 @@ public class Watcher_Larva : MonsterSkill
     {
         if(collision.gameObject.CompareTag("Wall"))
         {
-
+            Nav.enabled = true;
+            rb.isKinematic = false;
+            rb.detectCollisions = false;
         }
     }
 }
