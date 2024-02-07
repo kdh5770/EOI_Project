@@ -16,7 +16,9 @@ public class MonsterThrow : Attack
         animationEvent.ActionAttack += ActionAttack;
         target = _target;
         direction = (target.transform.position - shootPos.transform.position).normalized;
-        //direction.y = 0f;//
+        Vector3 rotate = direction;
+        rotate.y = 0;
+
         transform.root.rotation = Quaternion.LookRotation(direction);
 
         animator.SetTrigger("isThrow");

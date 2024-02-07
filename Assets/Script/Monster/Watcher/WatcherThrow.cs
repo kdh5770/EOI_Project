@@ -10,24 +10,28 @@ public class WatcherThrow : Attack
     public Transform BulletTf;
     [Header("생성된 발사체")]
     public GameObject BulletEft;
-
+    private const float offest = 1.5f;
     public override void ExecuteAttack(GameObject _target)
     {
         animationEvent.ActionAttack += ActionAttack;
         target = _target;
+        
+
+        Vector3 direction = ((target.transform.position + target.transform.up * offest) - transform.root.position).normalized;
         transform.LookAt(target.transform.position);
+        BulletEft = Instantiate(BulletEftPre, BulletTf.transform.position, Quaternion.LookRotation(direction));
 
-        BulletEft = Instantiate(BulletEftPre, BulletTf.transform.position, Quaternion.identity);
-        Vector3 direction = (target.transform.position - BulletEft.transform.position).normalized;
-        BulletEft.GetComponent<Rigidbody>().velocity = direction * 30f;
-        Destroy(BulletEft, 5f);
+        //BulletEft.GetComponent<Rigidbody>().velocity = direction * 30f;
+        //BulletEft.transform.LookAt(target.transform.position + target.transform.up * offest);
+      
 
-        animator.SetTrigger("IsMelee");
+        animator.SetTrigger("isThrow");
     }
 
     public override void ActionAttack()
     {
-        target.GetComponent<CharacterHealth>().TakeDamage(damage);
+        BulletEft.GetComponent<Rigidbody>().AddForce(BulletEft.transform.forward * 15f, ForceMode.Impulse);
+        Destroy(BulletEft, 5f);
         animationEvent.ActionAttack -= ActionAttack;
     }
 }
