@@ -59,15 +59,15 @@ public class Weakness : MonoBehaviour
                 break;
             case WEAK_TYPE.LOW:
                 reduction = .3f;
-                curEffect = Instantiate(status.lowBlood, transform.position, Quaternion.identity);
+                curEffect = status.lowBlood;
                 break;
             case WEAK_TYPE.MIDDLE:
                 reduction = .5f;
-                curEffect = Instantiate(status.middleBlood, transform.position, Quaternion.identity);
+                curEffect = status.middleBlood;
                 break;
             case WEAK_TYPE.HIGH:
                 reduction = 0f;
-                curEffect = Instantiate(status.highBlood, transform.position, Quaternion.identity);
+                curEffect = status.highBlood;
                 break;
         }
         if (curEffect != null)

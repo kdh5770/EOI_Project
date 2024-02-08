@@ -89,4 +89,5 @@ public class MonsterStatus : MonoBehaviour
 
         dieCheck = _isCounting;
     }
+
 }
