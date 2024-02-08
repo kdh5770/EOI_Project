@@ -283,6 +283,8 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         {
             curWeapon.canShooting = false;
             animator.SetBool("IsMachineGun", curWeapon.canShooting);
+            animator.SetBool("IsLaserGun", curWeapon.canShooting);
+            animator.SetBool("IsFireGun", curWeapon.canShooting);
         }
     }
 
@@ -313,6 +315,10 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     }
     public void OnPsychokinesis(InputAction.CallbackContext _context)
     {
+        if(_context.performed)
+        {
 
+            ChangeState(CharacterSTATE.SKILL);
+        }
     }
 }

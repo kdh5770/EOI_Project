@@ -22199,7 +22199,19 @@ MonoBehaviour:
     m_ActionId: b229284d-8980-4dac-ac2a-b2b4ac3be6aa
     m_ActionName: Player/Cloaking[/Keyboard/f]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1809102450341903954}
+        m_TargetAssemblyTypeName: CharacterStateController, Assembly-CSharp
+        m_MethodName: OnPsychokinesis
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: ee3b0134-ab79-4c1c-8311-cc65b9b8eaff
     m_ActionName: Player/Psychokinesis[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
