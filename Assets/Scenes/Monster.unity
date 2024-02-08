@@ -9073,7 +9073,7 @@ Transform:
   - {fileID: 1984490780}
   - {fileID: 1289933103}
   m_Father: {fileID: 0}
-  m_RootOrder: 48
+  m_RootOrder: 49
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1505324728
 GameObject:
@@ -14096,7 +14096,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: de43b7af73913604c847889f8209a9f8, type: 2}
+  - {fileID: 2100000, guid: cd9fa7eb1c0f927478fa09a19f7f206e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16910,7 +16910,7 @@ RectTransform:
   - {fileID: 2387811450398541498}
   - {fileID: 2387811448967487882}
   m_Father: {fileID: 0}
-  m_RootOrder: 46
+  m_RootOrder: 47
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -26402,6 +26402,75 @@ Transform:
   m_Father: {fileID: 8597331434067672420}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2675122761614747606
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4228295694526930345, guid: 085c87a6fdd40dd41924152713c5ac63,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 46
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228295694526930345, guid: 085c87a6fdd40dd41924152713c5ac63,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228295694526930345, guid: 085c87a6fdd40dd41924152713c5ac63,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228295694526930345, guid: 085c87a6fdd40dd41924152713c5ac63,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228295694526930345, guid: 085c87a6fdd40dd41924152713c5ac63,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228295694526930345, guid: 085c87a6fdd40dd41924152713c5ac63,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228295694526930345, guid: 085c87a6fdd40dd41924152713c5ac63,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228295694526930345, guid: 085c87a6fdd40dd41924152713c5ac63,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228295694526930345, guid: 085c87a6fdd40dd41924152713c5ac63,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228295694526930345, guid: 085c87a6fdd40dd41924152713c5ac63,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228295694526930345, guid: 085c87a6fdd40dd41924152713c5ac63,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228295694526930359, guid: 085c87a6fdd40dd41924152713c5ac63,
+        type: 3}
+      propertyPath: m_Name
+      value: Watcher
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 085c87a6fdd40dd41924152713c5ac63, type: 3}
 --- !u!1 &2702237493880230852
 GameObject:
   m_ObjectHideFlags: 0
@@ -40255,7 +40324,7 @@ Transform:
   - {fileID: 2258507489259091873}
   - {fileID: 180843153}
   m_Father: {fileID: 0}
-  m_RootOrder: 47
+  m_RootOrder: 48
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5187190758299716759
 MonoBehaviour:
@@ -57823,7 +57892,7 @@ MonoBehaviour:
   animationEvent: {fileID: 0}
   spoutEffect: {fileID: 6682981842899936497}
   firePosition: {fileID: 7877551749687037804}
-  loopMaxCount: 24
+  loopMaxCount: 22
   loopCurCount: 0
 --- !u!114 &8597331433987888746
 MonoBehaviour:
@@ -57921,7 +57990,7 @@ MonoBehaviour:
   gizmoColor: 0
   lineStart: {x: 0, y: 0, z: 0}
   lineEnd: {x: 1, y: 0, z: 0}
-  sphereRadius: 60
+  sphereRadius: 100
 --- !u!1 &8597331434067672423
 GameObject:
   m_ObjectHideFlags: 0
@@ -57959,7 +58028,7 @@ MonoBehaviour:
   DEF: 0
   bassSPD: 0
   moveRange: 0
-  sightRange: 60
+  sightRange: 100
   attackRange: 0
   lowBlood: {fileID: 0}
   middleBlood: {fileID: 0}

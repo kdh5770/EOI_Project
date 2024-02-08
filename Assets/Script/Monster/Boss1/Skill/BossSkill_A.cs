@@ -78,7 +78,7 @@ public class BossSkill_A : MonsterSkill
 
     IEnumerator MoveToSecondTarget()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 65f);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 100f);
 
         if (colliders.Length > 0)
         {

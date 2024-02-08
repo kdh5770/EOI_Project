@@ -9,7 +9,7 @@ public class BossSkill_B : MonsterSkill
     public Transform firePosition;
     private GameObject preObj;
 
-    public int loopMaxCount = 23;
+    public int loopMaxCount = 22;
     public int loopCurCount = 0;
 
     public override void ApplyReaction(GameObject target)
@@ -35,7 +35,7 @@ public class BossSkill_B : MonsterSkill
     }
     public override void ActionAttack()
     {
-        if (loopCurCount == 0)
+        if (loopCurCount == 1)
         {
             spoutEffect.transform.position = firePosition.transform.position;
             spoutEffect.SetActive(true);
@@ -50,5 +50,4 @@ public class BossSkill_B : MonsterSkill
             spoutEffect.SetActive(false);
         }
     }
-
 }
