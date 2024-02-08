@@ -36,7 +36,7 @@ public class MachineGun : WeaponTable
 
             // ÃÑ¾Ë ½î´Â ·ÎÁ÷
             usingCor = BulletShootCo();
-            StartCoroutine(BulletShootCo());
+            StartCoroutine(usingCor);
         }
     }
 

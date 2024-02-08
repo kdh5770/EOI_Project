@@ -6,10 +6,11 @@ public class LaserGun : WeaponTable
 {
     public override void Initsetting()
     {
-        Data.ShotDelay = 0.5f;
+        Data.ShotDelay = 0.1f;
         Data.MaxBullet = 30;
         Data.CurBullet = 30;
-        Data.Damage = 10;
+        Data.Damage = 5;
+        Data.triggerName = "IsLaserGun";
     }
 
     public override void Using()

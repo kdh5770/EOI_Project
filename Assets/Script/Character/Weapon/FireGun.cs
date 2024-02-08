@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class FireGun : WeaponTable
 {
@@ -27,28 +28,31 @@ public class FireGun : WeaponTable
         if(usingCor==null)
         {
             usingCor = UsingCor();
+            StartCoroutine(usingCor);
         }
     }
 
-
     IEnumerator UsingCor()
     {
+        GameObject Fire=Instantiate(FireEffect, shotFireGunPos.position, Quaternion.identity);
+
         while (canShooting)
         {
-            Instantiate(FireEffect, shotFireGunPos.position, Quaternion.identity);
-
-            
-
-
-
-
+            Vector3 mousePos = Mouse.current.position.ReadValue();
+            Ray ray = camera.ScreenPointToRay(mousePos);
+            Fire.transform.position = shotFireGunPos.position;
+            Fire.transform.rotation = Quaternion.LookRotation(ray.direction);
+            if(Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
+            {
+                if (hit.collider.CompareTag("Monster"))
+                {
+                    hit.collider.GetComponent<Weakness>().AttackDamage(Data.Damage, hit.point);
+                }
+            }
 
             yield return shotDelay;
-/*            if (hit.collider.CompareTag("Monster"))
-            {
-                hit.collider.GetComponent<Weakness>().AttackDamage(Data.Damage, hit.point);
-            }*/
         }
+        Destroy(Fire);
         usingCor = null;
     }
 }
