@@ -101,5 +101,4 @@ public class MachineGun : WeaponTable
         Destroy(eftObj, 1f);
         Destroy(trail.gameObject, .1f);
     }
-
 }

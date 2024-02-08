@@ -49,7 +49,6 @@ public class FireGun : WeaponTable
                     hit.collider.GetComponent<Weakness>().AttackDamage(Data.Damage, hit.point);
                 }
             }
-
             yield return shotDelay;
         }
         Destroy(Fire);
