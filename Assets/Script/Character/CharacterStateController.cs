@@ -231,60 +231,24 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         {
             if (isAiming && curState == states[CharacterSTATE.MOVE])
             {
-                if (Data.triggerName == "IsMachineGun")
+                if (_context.interaction is HoldInteraction)
                 {
-                    if (_context.interaction is HoldInteraction)
-                    {
-                        curWeapon.canShooting = true;
-                        animator.SetBool("IsMachineGun", curWeapon.canShooting);
-                        curWeapon.Using();
-                    }
-                    else if (_context.interaction is PressInteraction)
-                    {
-                        curWeapon.canShooting = true;
-                        animator.SetBool("IsMachineGun", curWeapon.canShooting);
-                        curWeapon.Using();
-                    }
+                    curWeapon.canShooting = true;
+                    animator.SetBool(Data.triggerName, curWeapon.canShooting);
+                    curWeapon.Using();
                 }
-
-                else if(Data.triggerName == "IsFireGun")
+                else if (_context.interaction is PressInteraction)
                 {
-                    if (_context.interaction is HoldInteraction)
-                    {
-                        curWeapon.canShooting = true;
-                        animator.SetBool("IsFireGun", curWeapon.canShooting);
-                        curWeapon.Using();
-                    }
-                    else if (_context.interaction is PressInteraction)
-                    {
-                        curWeapon.canShooting = true;
-                        animator.SetBool("IsFireGun", curWeapon.canShooting);
-                        curWeapon.Using();
-                    }
-                }
-                else if(Data.triggerName == "IsLaserGun")
-                {
-                    if (_context.interaction is HoldInteraction)
-                    {
-                        curWeapon.canShooting = true;
-                        animator.SetBool("IsLaserGun", curWeapon.canShooting);
-                        curWeapon.Using();
-                    }
-                    else if (_context.interaction is PressInteraction)
-                    {
-                        curWeapon.canShooting = true;
-                        animator.SetBool("IsLaserGun", curWeapon.canShooting);
-                        curWeapon.Using();
-                    }
+                    curWeapon.canShooting = true;
+                    animator.SetBool(Data.triggerName, curWeapon.canShooting);
+                    curWeapon.Using();
                 }
             }
         }
         else if (_context.canceled)
         {
             curWeapon.canShooting = false;
-            animator.SetBool("IsMachineGun", curWeapon.canShooting);
-            animator.SetBool("IsLaserGun", curWeapon.canShooting);
-            animator.SetBool("IsFireGun", curWeapon.canShooting);
+            animator.SetBool(Data.triggerName, curWeapon.canShooting);
         }
     }
 
@@ -315,7 +279,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     }
     public void OnPsychokinesis(InputAction.CallbackContext _context)
     {
-        if(_context.performed)
+        if (_context.performed)
         {
 
             ChangeState(CharacterSTATE.SKILL);
