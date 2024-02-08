@@ -26,11 +26,8 @@ public class BossEnergy : MonsterSkill
 
     public GameObject preObj;
 
-    public int loopMaxCount = 23;
+    public int loopMaxCount = 13;
     public int loopCurCount = 0;
-
-    public float neutralizeTime = 0f; // 무력화 시간
-    public WormFSM fsm;
 
     public override void ApplyReaction(GameObject target)
     {
@@ -48,23 +45,22 @@ public class BossEnergy : MonsterSkill
     }
     public override void ActionAttack()
     {
-        Energy();
-        if (_shield1 == null && _shield2 == null && _shield3 == null)
+        if(loopCurCount== 0)
         {
-            Destroy(preObj);
-            animationEvent.ActionAttack -= ActionAttack;
-            animator.SetTrigger("isStopLoop2");
-            StartCoroutine(NeutralizeTime());
-            if (neutralizeTime >= 5)
-            {
-                animator.SetTrigger("isStopLoop");
-                //fsm.ChangeState(MONSTER_STATE.TRACKING);
-            }
+            Energy();
         }
         if (++loopCurCount >= loopMaxCount)
         {
             animationEvent.ActionAttack -= ActionAttack;
             animator.SetTrigger("isStopLoop");
+            loopCurCount = 0;
+        }
+        else if (_shield1 == null && _shield2 == null && _shield3 == null)
+        {
+            Destroy(preObj);
+            animationEvent.ActionAttack -= ActionAttack;
+            animator.SetTrigger("isStopLoop2");
+            StartCoroutine(NeutralizeTimes());
             loopCurCount = 0;
         }
     }
@@ -91,12 +87,9 @@ public class BossEnergy : MonsterSkill
         }
     }
 
-    IEnumerator NeutralizeTime()
+    IEnumerator NeutralizeTimes()
     {
-        while (neutralizeTime <= 5)
-        {
-            neutralizeTime += Time.deltaTime;
-            yield return null;
-        }
+        yield return new WaitForSeconds(5f);
+        animator.SetTrigger("isStopLoop3");
     }
 }
