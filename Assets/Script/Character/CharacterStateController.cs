@@ -23,7 +23,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     public Camera mainCamera;
     public CharacterHealth health;
     public PlayerAnimationEvent playerAnimationEvent;
-
+    private WeaponData Data;
     public Vector3 inputDir;
     public float moveSpeed = 2.0f; // ±âº» °È±â¼Óµµ
     public float sprintSpeed = 5.3f; // ¶Ù´Â¼Óµµ
@@ -231,17 +231,51 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         {
             if (isAiming && curState == states[CharacterSTATE.MOVE])
             {
-                if (_context.interaction is HoldInteraction)
+                if (Data.triggerName == "IsMachineGun")
                 {
-                    curWeapon.canShooting = true;
-                    animator.SetBool("IsMachineGun", curWeapon.canShooting);
-                    curWeapon.Using();
+                    if (_context.interaction is HoldInteraction)
+                    {
+                        curWeapon.canShooting = true;
+                        animator.SetBool("IsMachineGun", curWeapon.canShooting);
+                        curWeapon.Using();
+                    }
+                    else if (_context.interaction is PressInteraction)
+                    {
+                        curWeapon.canShooting = true;
+                        animator.SetBool("IsMachineGun", curWeapon.canShooting);
+                        curWeapon.Using();
+                    }
                 }
-                else if (_context.interaction is PressInteraction)
+
+                else if(Data.triggerName == "IsFireGun")
                 {
-                    curWeapon.canShooting = true;
-                    animator.SetBool("IsMachineGun", curWeapon.canShooting);
-                    curWeapon.Using();
+                    if (_context.interaction is HoldInteraction)
+                    {
+                        curWeapon.canShooting = true;
+                        animator.SetBool("IsFireGun", curWeapon.canShooting);
+                        curWeapon.Using();
+                    }
+                    else if (_context.interaction is PressInteraction)
+                    {
+                        curWeapon.canShooting = true;
+                        animator.SetBool("IsFireGun", curWeapon.canShooting);
+                        curWeapon.Using();
+                    }
+                }
+                else if(Data.triggerName == "IsLaserGun")
+                {
+                    if (_context.interaction is HoldInteraction)
+                    {
+                        curWeapon.canShooting = true;
+                        animator.SetBool("IsLaserGun", curWeapon.canShooting);
+                        curWeapon.Using();
+                    }
+                    else if (_context.interaction is PressInteraction)
+                    {
+                        curWeapon.canShooting = true;
+                        animator.SetBool("IsLaserGun", curWeapon.canShooting);
+                        curWeapon.Using();
+                    }
                 }
             }
         }

@@ -38,7 +38,8 @@ public class LaserGun : WeaponTable
 
     IEnumerator UsingCor()
     {
-        //GameObject Laser = Instantiate(laserEffect, shotLaserGunPos.position, Quaternion.identity);
+        //GameObject Laser = Instantiate(laserE
+        //ffect, shotLaserGunPos.position, Quaternion.identity);
 
 
         while (canShooting)
@@ -54,6 +55,10 @@ public class LaserGun : WeaponTable
             if (Physics.Raycast(ray, out hit, 500f,layerMask))
             {
                 laserEffect.SetPosition(1, hit.point);
+                if (hit.collider.CompareTag("Monster"))
+                {
+                    hit.collider.GetComponent<Weakness>().AttackDamage(Data.Damage, hit.point);
+                }
             }
             else
                 laserEffect.SetPosition(1, shotLaserGunPos.position+ shotLaserGunPos.forward * 500f);
