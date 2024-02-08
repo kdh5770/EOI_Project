@@ -24,7 +24,10 @@ public class BossEnergyTower : MonoBehaviour
                 if (col.CompareTag("Player"))
                 {
                     target = col.gameObject.transform;
-                    break;
+                }
+                else if (!col.CompareTag("Player"))
+                {
+                    target = null;
                 }
             }
         }
