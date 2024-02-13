@@ -306,7 +306,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
                     monsterTransform.position -= direction * gravitationalForce * Time.deltaTime;
                 }
 
-                ChangeState(CharacterSTATE.SKILL);
+
             }
         }
     }
