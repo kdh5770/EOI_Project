@@ -227,9 +227,10 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
     public void OnShoot(InputAction.CallbackContext _context)
     {
+        ChangeState(CharacterSTATE.ATTACK);
         if (_context.performed)
         {
-            if (isAiming && curState == states[CharacterSTATE.MOVE])
+            if (isAiming && curState == states[CharacterSTATE.ATTACK])
             {
                 if (_context.interaction is HoldInteraction)
                 {

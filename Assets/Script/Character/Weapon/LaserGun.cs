@@ -55,7 +55,8 @@ public class LaserGun : WeaponTable
 
             if (Physics.Raycast(ray, out hit, 500f, targetlayer))
             {
-                laserEffect.SetPosition(1, hit.point);
+                Vector3 directionToHit = (hit.point - shotLaserGunPos.position).normalized;
+                laserEffect.SetPosition(1, mousePos);
                 if (hit.collider.CompareTag("Monster"))
                 {
                     hit.collider.GetComponent<Weakness>().AttackDamage(Data.Damage, hit.point);

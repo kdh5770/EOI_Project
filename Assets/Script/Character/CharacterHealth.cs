@@ -103,6 +103,6 @@ public class CharacterHealth : MonoBehaviour
     {
         ATK = 0;
         GameObject weapon = Gamemanager.instance.player.GetComponent<GameObject>();
-        ATK += weapon.GetComponent<CharacterStateController>().Data.Damage;
+        ATK += weapon.GetComponent<CharacterStateController>().curWeapon.Data.Damage;
     }
 }

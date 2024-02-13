@@ -11,8 +11,9 @@ public class AttackState : CharaterBaseState
 
     public override void OnEnterState()
     {
-
+        Cursor.lockState = CursorLockMode.Locked;
     }
+
     public override void OnFixedUpdateState()
     {
         controller.RotateUpdate();
@@ -25,12 +26,10 @@ public class AttackState : CharaterBaseState
         {
             controller.ChangeState(CharacterSTATE.MOVE);
         }
-
     }
 
     public override void OnExitState()
     {
-
+        
     }
-
 }
