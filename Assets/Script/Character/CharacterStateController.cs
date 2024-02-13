@@ -272,7 +272,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
             IsFlying = true;
             JetEngine.SetActive(true);
             rigidbody.useGravity = false;
-            rigidbody.AddForce(Vector3.up * flyForce, ForceMode.Force);
+            rigidbody.AddForce(Vector3.up * flyForce, ForceMode.Impulse);
         }
         else if (_context.canceled)
         {
