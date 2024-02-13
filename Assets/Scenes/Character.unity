@@ -2944,7 +2944,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &985005647
 Transform:
   m_ObjectHideFlags: 0
@@ -3849,6 +3849,11 @@ MonoBehaviour:
   lowBlood: {fileID: 1310309800}
   middleBlood: {fileID: 1509729056}
   highBlood: {fileID: 1087241108}
+  hp100: {fileID: 0}
+  hp75: {fileID: 0}
+  hp50_1: {fileID: 0}
+  hp50_2: {fileID: 0}
+  hp50_3: {fileID: 0}
 --- !u!114 &1740878116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4554,7 +4559,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2039560184}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: -0, z: 0.438}
+  m_LocalPosition: {x: 0, y: 0, z: 1.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8927,7 +8932,7 @@ MonoBehaviour:
   rotationSensitivity: 40
   curWeapon: {fileID: 0}
   weapons:
-  - {fileID: 985005648}
+  - {fileID: 5328666600972191522}
   aimIK: {fileID: 5328666600896440466}
   isSprint: 0
   isAiming: 0
@@ -8935,6 +8940,7 @@ MonoBehaviour:
   IsPsychokinesis: 0
   IsFlying: 0
   JetEngine: {fileID: 1698716179}
+  flyForce: 6000
   Debug_state: 0
 --- !u!1 &1918942079628592334
 GameObject:
@@ -9056,7 +9062,7 @@ GameObject:
   m_IsActive: 1
 --- !u!114 &1918942079986491264
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -9073,7 +9079,7 @@ MonoBehaviour:
   mNoiseOffsets: {x: 221.48193, y: 627.57275, z: 244.2893}
 --- !u!4 &1918942079986491265
 Transform:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -9088,7 +9094,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1918942079986491266
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -9100,7 +9106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!114 &1918942079986491267
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -9124,7 +9130,7 @@ MonoBehaviour:
   DampingFromCollision: 0
 --- !u!1 &1918942079986491294
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -15949,7 +15955,7 @@ PrefabInstance:
     - target: {fileID: 224162242725361320, guid: 7ea731f501442984589dad30e8f89c28,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 31.13
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224162242725361320, guid: 7ea731f501442984589dad30e8f89c28,
         type: 3}
@@ -15979,7 +15985,7 @@ PrefabInstance:
     - target: {fileID: 224239615779024140, guid: 7ea731f501442984589dad30e8f89c28,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 31.13
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224239615779024140, guid: 7ea731f501442984589dad30e8f89c28,
         type: 3}
@@ -16009,7 +16015,7 @@ PrefabInstance:
     - target: {fileID: 224258100162751188, guid: 7ea731f501442984589dad30e8f89c28,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 31.13
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224258100162751188, guid: 7ea731f501442984589dad30e8f89c28,
         type: 3}
@@ -16034,7 +16040,7 @@ PrefabInstance:
     - target: {fileID: 224545660926631294, guid: 7ea731f501442984589dad30e8f89c28,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 46.129997
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224545660926631294, guid: 7ea731f501442984589dad30e8f89c28,
         type: 3}
@@ -16059,7 +16065,7 @@ PrefabInstance:
     - target: {fileID: 224574539757507590, guid: 7ea731f501442984589dad30e8f89c28,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 112.655
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224574539757507590, guid: 7ea731f501442984589dad30e8f89c28,
         type: 3}
@@ -16084,7 +16090,7 @@ PrefabInstance:
     - target: {fileID: 224681124713160502, guid: 7ea731f501442984589dad30e8f89c28,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 97.655
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224681124713160502, guid: 7ea731f501442984589dad30e8f89c28,
         type: 3}
@@ -16109,7 +16115,7 @@ PrefabInstance:
     - target: {fileID: 224927801235690616, guid: 7ea731f501442984589dad30e8f89c28,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 76.524994
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224927801235690616, guid: 7ea731f501442984589dad30e8f89c28,
         type: 3}
@@ -20517,7 +20523,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5328666600972191521
 Transform:
   m_ObjectHideFlags: 0
@@ -22416,9 +22422,9 @@ MonoBehaviour:
     m_ActionName: Player/Potion
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1809102450341903954}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CharacterStateController, Assembly-CSharp
-        m_MethodName: OnFlying
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

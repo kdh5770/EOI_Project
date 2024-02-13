@@ -58,6 +58,10 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     [SerializeField]
     private GameObject JetEngine;
 
+    public float flyForce = 20f;
+    private float gravitationalForce = 10f; // 중력
+    private float pullDistance = 10f; // 끌어들이는 거리
+    private LayerMask targetLayer;
 
 
 
@@ -235,13 +239,13 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
                 if (_context.interaction is HoldInteraction)
                 {
                     curWeapon.canShooting = true;
-                    animator.SetBool(Data.triggerName, curWeapon.canShooting);
+                    animator.SetBool(curWeapon.Data.triggerName, curWeapon.canShooting);
                     curWeapon.Using();
                 }
                 else if (_context.interaction is PressInteraction)
                 {
                     curWeapon.canShooting = true;
-                    animator.SetBool(Data.triggerName, curWeapon.canShooting);
+                    animator.SetBool(curWeapon.Data.triggerName, curWeapon.canShooting);
                     curWeapon.Using();
                 }
             }
@@ -249,7 +253,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         else if (_context.canceled)
         {
             curWeapon.canShooting = false;
-            animator.SetBool(Data.triggerName, curWeapon.canShooting);
+            animator.SetBool(curWeapon.Data.triggerName, curWeapon.canShooting);
         }
     }
 
@@ -267,23 +271,43 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         {
             IsFlying = true;
             JetEngine.SetActive(true);
+            rigidbody.useGravity = false;
+            rigidbody.AddForce(Vector3.up * flyForce, ForceMode.Force);
         }
         else if (_context.canceled)
         {
             IsFlying = false;
             JetEngine.SetActive(false);
+            rigidbody.useGravity = true;
         }
     }
+
     public void OnCloaking(InputAction.CallbackContext _context)
     {
 
     }
+
     public void OnPsychokinesis(InputAction.CallbackContext _context)
     {
         if (_context.performed)
         {
+            Vector3 mousePos = Mouse.current.position.ReadValue();
+            Ray ray = Camera.main.ScreenPointToRay(mousePos);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 50f, targetLayer))
+            {
+                if (hit.collider.CompareTag("Monster"))
+                {
+                    Transform monsterTransform = hit.collider.transform;
+                    Vector3 playerPosition = transform.position;
 
-            ChangeState(CharacterSTATE.SKILL);
+                    // 몬스터와 플레이어 사이의 방향 벡터
+                    Vector3 direction = (monsterTransform.position - playerPosition).normalized;
+                    monsterTransform.position -= direction * gravitationalForce * Time.deltaTime;
+                }
+
+                ChangeState(CharacterSTATE.SKILL);
+            }
         }
     }
 }

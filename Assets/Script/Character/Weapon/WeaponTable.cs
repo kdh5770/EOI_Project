@@ -20,7 +20,6 @@ public abstract class WeaponTable : MonoBehaviour
     [SerializeField]
     protected LayerMask layerMask;
     public bool canShooting;
-   
 
     public int AniHash { get; protected set; }
 
@@ -38,4 +37,5 @@ public abstract class WeaponTable : MonoBehaviour
         Debug.DrawRay(ray.origin, ray.direction, Color.red, 3f);
         Debug.Log("shoot");
     }
+
 }
