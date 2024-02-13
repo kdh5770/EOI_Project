@@ -5674,8 +5674,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be6ac907fe1f11f49aa581919e23adf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 0
-  curHP: 0
+  maxHP: 500
+  curHP: 500
   ATK: 0
   DEF: 0
   bassSPD: 0
@@ -5685,6 +5685,11 @@ MonoBehaviour:
   lowBlood: {fileID: 5213639792146406773}
   middleBlood: {fileID: 6593646496159770514}
   highBlood: {fileID: 1033290962013586910}
+  hp100: {fileID: 0}
+  hp75: {fileID: 0}
+  hp50_1: {fileID: 0}
+  hp50_2: {fileID: 0}
+  hp50_3: {fileID: 0}
 --- !u!195 &5898173558873647270
 NavMeshAgent:
   m_ObjectHideFlags: 0
