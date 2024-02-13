@@ -98,4 +98,11 @@ public class CharacterHealth : MonoBehaviour
         Gamemanager.instance.characterUI.HandlePotion(curPotionGauge, maxPotionGauge);
         Gamemanager.instance.characterUI.HandleHP(curHP, maxHP, true);
     }
+
+    public void AtkSetting() // 장착 무기별 플레이어 ATK 설정
+    {
+        ATK = 0;
+        GameObject weapon = Gamemanager.instance.player.GetComponent<GameObject>();
+        ATK += weapon.GetComponent<CharacterStateController>().Data.Damage;
+    }
 }

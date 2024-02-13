@@ -9,12 +9,13 @@ public class LaserGun : WeaponTable
     public Transform shotLaserGunPos;
     private WaitForSeconds shotDelay;
     private IEnumerator usingCor;
+    private LayerMask targetlayer;
 
     private void Start()
     {
         Initsetting();
         shotDelay = new WaitForSeconds(Data.ShotDelay);
-        laserEffect=GetComponent<LineRenderer>();
+        laserEffect = GetComponent<LineRenderer>();
         laserEffect.enabled = false;
     }
 
@@ -52,7 +53,7 @@ public class LaserGun : WeaponTable
 
             laserEffect.SetPosition(0, shotLaserGunPos.position);
 
-            if (Physics.Raycast(ray, out hit, 500f,layerMask))
+            if (Physics.Raycast(ray, out hit, 500f, targetlayer))
             {
                 laserEffect.SetPosition(1, hit.point);
                 if (hit.collider.CompareTag("Monster"))
@@ -61,22 +62,11 @@ public class LaserGun : WeaponTable
                 }
             }
             else
-                laserEffect.SetPosition(1, shotLaserGunPos.position+ shotLaserGunPos.forward * 500f);
+                laserEffect.SetPosition(1, shotLaserGunPos.position + shotLaserGunPos.forward * 500f);
 
-/*            Vector3 mousePos = Mouse.current.position.ReadValue();
-            Ray ray = camera.ScreenPointToRay(mousePos);
-            Laser.transform.position = shotLaserGunPos.position;
-            Laser.transform.rotation = Quaternion.LookRotation(ray.direction);*/
-/*            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
-            {
-                if (hit.collider.CompareTag("Monster"))
-                {
-                    hit.collider.GetComponent<Weakness>().AttackDamage(Data.Damage, hit.point);
-                }
-            }*/
             yield return shotDelay;
         }
-        laserEffect.enabled=false;
+        laserEffect.enabled = false;
         usingCor = null;
     }
 }
