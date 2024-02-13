@@ -8940,7 +8940,7 @@ MonoBehaviour:
   IsPsychokinesis: 0
   IsFlying: 0
   JetEngine: {fileID: 1698716179}
-  flyForce: 6000
+  flyForce: 5
   Debug_state: 0
 --- !u!1 &1918942079628592334
 GameObject:
@@ -22422,9 +22422,9 @@ MonoBehaviour:
     m_ActionName: Player/Potion
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1809102450341903954}
         m_TargetAssemblyTypeName: CharacterStateController, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: OnFlying
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -22442,9 +22442,9 @@ MonoBehaviour:
     m_ActionName: Player/Cloaking[/Keyboard/f]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1809102450341903954}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CharacterStateController, Assembly-CSharp
-        m_MethodName: OnPsychokinesis
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
