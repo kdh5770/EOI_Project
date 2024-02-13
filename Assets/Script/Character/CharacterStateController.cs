@@ -23,7 +23,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     public Camera mainCamera;
     public CharacterHealth health;
     public PlayerAnimationEvent playerAnimationEvent;
-    private WeaponData Data;
+    public WeaponData Data;
     public Vector3 inputDir;
     public float moveSpeed = 2.0f; // ±âº» °È±â¼Óµµ
     public float sprintSpeed = 5.3f; // ¶Ù´Â¼Óµµ
