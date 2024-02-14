@@ -25,7 +25,7 @@ public class FireGun : WeaponTable
 
     public override void Using()
     {
-        if(usingCor==null)
+        if (usingCor == null)
         {
             usingCor = UsingCor();
             StartCoroutine(usingCor);
@@ -34,7 +34,7 @@ public class FireGun : WeaponTable
 
     IEnumerator UsingCor()
     {
-        GameObject Fire=Instantiate(FireEffect, shotFireGunPos.position, Quaternion.identity);
+        GameObject Fire = Instantiate(FireEffect, shotFireGunPos.position, Quaternion.identity);
 
         while (canShooting)
         {
@@ -42,7 +42,7 @@ public class FireGun : WeaponTable
             Ray ray = camera.ScreenPointToRay(mousePos);
             Fire.transform.position = shotFireGunPos.position;
             Fire.transform.rotation = Quaternion.LookRotation(ray.direction);
-            if(Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
             {
                 if (hit.collider.CompareTag("Monster"))
                 {
@@ -51,7 +51,7 @@ public class FireGun : WeaponTable
             }
             yield return shotDelay;
         }
-        Destroy(Fire);
+        Destroy(Fire, 0.1f);
         usingCor = null;
     }
 }
