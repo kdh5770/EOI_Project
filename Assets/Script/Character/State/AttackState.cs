@@ -16,8 +16,7 @@ public class AttackState : CharaterBaseState
 
     public override void OnFixedUpdateState()
     {
-        controller.RotateUpdate();
-        controller.MoveUpdate();
+
     }
 
     public override void OnUpdateState()
@@ -26,6 +25,8 @@ public class AttackState : CharaterBaseState
         {
             controller.ChangeState(CharacterSTATE.MOVE);
         }
+        controller.RotateUpdate();
+        controller.MoveUpdate();
     }
 
     public override void OnExitState()
