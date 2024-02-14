@@ -111,7 +111,7 @@ public class CharacterUI : MonoBehaviour
         while (isDanger) // Continuous loop
         {
             float t = Time.time % 1; // Repeat every second
-            float alpha = (Mathf.Sin(2 * Mathf.PI * t) + 1) / 2; // Oscillate alpha between 0 and 1
+            float alpha = (Mathf.Sin(2 * Mathf.PI * t) + 1) / 3; // Oscillate alpha between 0 and 1
             effect.a = alpha;
             bloodEffect.color = effect;
             yield return null; // Wait for the next frame
