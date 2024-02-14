@@ -20,12 +20,12 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.22641516, g: 0.22641516, b: 0.22641516, a: 1}
+  m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 3
-  m_SubtractiveShadowColor: {r: 0.26415092, g: 0.26415092, b: 0.26415092, a: 1}
+  m_SubtractiveShadowColor: {r: 0, g: 0, b: 0, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18300688, g: 0.22637928, b: 0.29333517, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -13301,7 +13301,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &428381675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26280,6 +26280,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1898311362}
     m_Modifications:
+    - target: {fileID: 486333355046096, guid: 0a564646f088ada4cbfc1a87905d7630, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 5575547162317227088, guid: 0a564646f088ada4cbfc1a87905d7630,
         type: 3}
       propertyPath: m_RootOrder
@@ -26355,6 +26359,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\uBD80\uD654\uC2E42 \uC55E\uC758 \uB9C9\uD78C \uBB38 \uC5F4\uB9AC\uAC8C
         \uD558\uAE30"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732707565592473152, guid: 0a564646f088ada4cbfc1a87905d7630,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a564646f088ada4cbfc1a87905d7630, type: 3}
@@ -61257,7 +61266,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 50
-  m_Range: 100
+  m_Range: 80
   m_SpotAngle: 61.111107
   m_InnerSpotAngle: 0
   m_CookieSize: 10
@@ -61293,7 +61302,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 503
+    m_Bits: 1527
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
