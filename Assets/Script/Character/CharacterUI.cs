@@ -99,6 +99,11 @@ public class CharacterUI : MonoBehaviour
         }
     }
 
+    public void HandleBullet()
+    {
+        
+    }
+
     IEnumerator SinFadeImage()
     {
         Color effect = bloodEffect.color;

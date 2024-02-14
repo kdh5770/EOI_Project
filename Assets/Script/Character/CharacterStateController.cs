@@ -65,6 +65,9 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
 
     [SerializeField]
+    private List<GameObject> weaponImg = new List<GameObject>();
+
+    [SerializeField]
     private List<GameObject> Weapons = new List<GameObject>();
     int weaponnum = 0;
     public CharacterSTATE Debug_state;
@@ -321,6 +324,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         if (_context.performed)
         {
             weapons[weaponnum].gameObject.SetActive(false);
+            weaponImg[weaponnum].gameObject.SetActive(false);
             weaponnum++;
         }
         if(weaponnum>=weapons.Count)
@@ -329,6 +333,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         }
 
         weapons[weaponnum].gameObject.SetActive(true);
+        weaponImg[weaponnum].gameObject.SetActive(true);
         curWeapon = weapons[weaponnum];
     }
 }
