@@ -72,6 +72,8 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     int weaponnum = 0;
     public CharacterSTATE Debug_state;
 
+
+
     private void Start()
     {
         mainCamera = Camera.main;
