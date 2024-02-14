@@ -148,7 +148,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
     public void RotateUpdate()
     {
-/*        if (isAiming)*/
+        /*        if (isAiming)*/
         transform.rotation = Quaternion.Euler(0f, cinemachineTargetYaw, 0.0f);
 
         CinemachineCameraTarget.transform.rotation = Quaternion.Euler(cinemachineTargetPitch + 0f, cinemachineTargetYaw, 0.0f);
@@ -174,7 +174,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
     public void OnSprint(InputAction.CallbackContext _context)
     {
-        if (/*!isAiming &&*/ curState == states[CharacterSTATE.MOVE])
+        if (/*!isAiming &&*/curState == states[CharacterSTATE.MOVE])
         {
             if (_context.performed)
             {
@@ -187,7 +187,6 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
             {
                 isSprint = false;
             }
-
         }
     }
 
@@ -200,42 +199,41 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
             cinemachineTargetPitch += mouseDir.y * rotationSensitivity * Time.deltaTime;
         }
 
-
         cinemachineTargetYaw = ClampAngle(cinemachineTargetYaw, float.MinValue, float.MaxValue);
         cinemachineTargetPitch = ClampAngle(cinemachineTargetPitch, BottomClamp, TopClamp);
-
+    
     }
 
-/*    public void OnAim(InputAction.CallbackContext _context)
-    {
-        if (_context.performed)
+    /*    public void OnAim(InputAction.CallbackContext _context)
         {
-            if (_context.interaction is HoldInteraction)
+            if (_context.performed)
+            {
+                if (_context.interaction is HoldInteraction)
+                {
+                    Cinemachine3rdPersonFollow follow = virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
+                    follow.CameraDistance = 1;
+                    isAiming = true;
+                    isSprint = false;
+                    animator.SetLayerWeight(1, 1);
+                    animator.SetBool("IsAiming", isAiming);
+                    aimIK.weight = 1;
+                }
+            }
+            if (_context.canceled)
             {
                 Cinemachine3rdPersonFollow follow = virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
-                follow.CameraDistance = 1;
-                isAiming = true;
-                isSprint = false;
-                animator.SetLayerWeight(1, 1);
+                follow.CameraDistance = 2;
+                isAiming = false;
+                animator.SetLayerWeight(1, 0);
                 animator.SetBool("IsAiming", isAiming);
-                aimIK.weight = 1;
+                aimIK.weight = 0;
             }
-        }
-        if (_context.canceled)
-        {
-            Cinemachine3rdPersonFollow follow = virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
-            follow.CameraDistance = 2;
-            isAiming = false;
-            animator.SetLayerWeight(1, 0);
-            animator.SetBool("IsAiming", isAiming);
-            aimIK.weight = 0;
-        }
-    }*/
+        }*/
 
     public void OnShoot(InputAction.CallbackContext _context)
     {
         ChangeState(CharacterSTATE.ATTACK);
-        if (_context.performed)
+        if (_context.performed && !isSprint)
         {
             if (curState == states[CharacterSTATE.ATTACK])
             {
@@ -244,7 +242,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
                     curWeapon.canShooting = true;
                     animator.SetBool(curWeapon.Data.triggerName, curWeapon.canShooting);
                     curWeapon.Using();
-                    
+                    aimIK.weight = 1;
                 }
                 else if (_context.interaction is PressInteraction)
                 {
@@ -252,6 +250,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
                     animator.SetBool(curWeapon.Data.triggerName, curWeapon.canShooting);
                     curWeapon.Using();
                     curWeapon.Data.CurBullet--;
+                    aimIK.weight = 1;
                 }
             }
         }
@@ -259,6 +258,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         {
             curWeapon.canShooting = false;
             animator.SetBool(curWeapon.Data.triggerName, curWeapon.canShooting);
+            aimIK.weight = 0;
         }
     }
 
@@ -328,7 +328,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
             weaponImg[weaponnum].gameObject.SetActive(false);
             weaponnum++;
         }
-        if(weaponnum>=weapons.Count)
+        if (weaponnum >= weapons.Count)
         {
             weaponnum = 0;
         }

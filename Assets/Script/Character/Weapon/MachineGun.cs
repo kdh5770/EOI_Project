@@ -64,7 +64,7 @@ public class MachineGun : WeaponTable
         }
         usingCor = null;
     }
-    int i = 0;
+
     IEnumerator BulletShootCo()
     {
         while (canShooting)
