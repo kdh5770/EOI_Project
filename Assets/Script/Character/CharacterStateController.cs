@@ -81,9 +81,6 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         animator = GetComponentInChildren<Animator>();
         health = GetComponent<CharacterHealth>();
         playerAnimationEvent = GetComponentInChildren<PlayerAnimationEvent>();
-
-        //rotationSensitivity = 25f;
-
         curWeapon = weapons[0];
 
         InitState();
@@ -136,7 +133,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
             moveVector *= applySpeed;
             rigidbody.velocity = new Vector3(moveVector.x, rigidbody.velocity.y, moveVector.z);
 
-            if (moveVector.magnitude > 0f && !isAiming)
+            if (moveVector.magnitude > 0f /*&& !isAiming*/)
             {
                 Quaternion newRotation = Quaternion.LookRotation(moveVector);//, Vector3.up);
                 transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 10f);
@@ -151,8 +148,8 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
     public void RotateUpdate()
     {
-        if (isAiming)
-            transform.rotation = Quaternion.Euler(0f, cinemachineTargetYaw, 0.0f);
+/*        if (isAiming)*/
+        transform.rotation = Quaternion.Euler(0f, cinemachineTargetYaw, 0.0f);
 
         CinemachineCameraTarget.transform.rotation = Quaternion.Euler(cinemachineTargetPitch + 0f, cinemachineTargetYaw, 0.0f);
     }
@@ -177,7 +174,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
     public void OnSprint(InputAction.CallbackContext _context)
     {
-        if (!isAiming && curState == states[CharacterSTATE.MOVE])
+        if (/*!isAiming &&*/ curState == states[CharacterSTATE.MOVE])
         {
             if (_context.performed)
             {
@@ -209,7 +206,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
     }
 
-    public void OnAim(InputAction.CallbackContext _context)
+/*    public void OnAim(InputAction.CallbackContext _context)
     {
         if (_context.performed)
         {
@@ -233,26 +230,28 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
             animator.SetBool("IsAiming", isAiming);
             aimIK.weight = 0;
         }
-    }
+    }*/
 
     public void OnShoot(InputAction.CallbackContext _context)
     {
         ChangeState(CharacterSTATE.ATTACK);
         if (_context.performed)
         {
-            if (isAiming && curState == states[CharacterSTATE.ATTACK])
+            if (curState == states[CharacterSTATE.ATTACK])
             {
                 if (_context.interaction is HoldInteraction)
                 {
                     curWeapon.canShooting = true;
                     animator.SetBool(curWeapon.Data.triggerName, curWeapon.canShooting);
                     curWeapon.Using();
+                    
                 }
                 else if (_context.interaction is PressInteraction)
                 {
                     curWeapon.canShooting = true;
                     animator.SetBool(curWeapon.Data.triggerName, curWeapon.canShooting);
                     curWeapon.Using();
+                    curWeapon.Data.CurBullet--;
                 }
             }
         }

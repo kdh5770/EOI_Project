@@ -10,7 +10,6 @@ public struct WeaponData
     public int CurBullet;
     public float ShotDelay;
     public string triggerName;
-    //public GameObject WeaponFireFlash; // ÃÑ ½ò ¶§ ÃÑ±¸¿¡¼­ ³ª°¡´Â ºû? ¹ßÈ­¿°µµ Ãß°¡ÇØ¾ßÇÔ. ¹ßÈ­¿° À§Ä¡µµ Ãß°¡ÇØ¾ßÇÔ.
 }
 
 public abstract class WeaponTable : MonoBehaviour
@@ -37,5 +36,4 @@ public abstract class WeaponTable : MonoBehaviour
         Debug.DrawRay(ray.origin, ray.direction, Color.red, 3f);
         Debug.Log("shoot");
     }
-
 }
