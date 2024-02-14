@@ -21,17 +21,15 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Biomass3
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  m_ValidKeywords:
-  - _NORMALMAP
-  - _SPECULARHIGHLIGHTS_OFF
+  m_Shader: {fileID: -6465566751694194690, guid: 8460557d5e159dd4e8ed41544c726afd,
+    type: 3}
+  m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap:
-    RenderType: Opaque
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -46,6 +44,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 2800000, guid: 7ab9deeb7843ea346b7ede7297b54268, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ColorTex:
+        m_Texture: {fileID: 2800000, guid: 2c481fabd4719bd47910fe40dc4efb4e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _CubemapBlured:
@@ -104,6 +106,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 2c481fabd4719bd47910fe40dc4efb4e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SmothnessTex:
+        m_Texture: {fileID: 2800000, guid: 027cfa639ee71cd489e8c2b1cdb76508, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 2800000, guid: 027cfa639ee71cd489e8c2b1cdb76508, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -126,7 +132,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaClip: 0
+    - _AlphaClip: 1
     - _AlphaCutoff: 0.5
     - _Blend: 0
     - _BumpScale: 1
@@ -148,6 +154,7 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _NormalMapDepth: 1
+    - _NormalPower: 1
     - _OcclusionStrength: 1
     - _ParalaxOffset: 0.001
     - _Parallax: 0.02
@@ -178,6 +185,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     - __dirty: 0
+    - _smoothNessPower: 1.5
     m_Colors:
     - _AlbedoColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
