@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 100
-  curHP: 0
+  curHP: 100
   ATK: 0
   DEF: 0
   bassSPD: 0
@@ -665,6 +665,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Blood1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656253210798625995, guid: a78e9ef18b366424b84e0c7410d2fe72,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2996678859422021887, guid: a78e9ef18b366424b84e0c7410d2fe72,
         type: 3}
@@ -1189,6 +1194,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Blood2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5865290276592450837, guid: 42a28376f729c864a81abf66add7a418,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5865290276592450839, guid: 42a28376f729c864a81abf66add7a418,
         type: 3}
