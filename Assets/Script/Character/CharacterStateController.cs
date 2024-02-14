@@ -187,7 +187,6 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
             {
                 isSprint = false;
             }
-
         }
     }
 
@@ -200,10 +199,9 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
             cinemachineTargetPitch += mouseDir.y * rotationSensitivity * Time.deltaTime;
         }
 
-
         cinemachineTargetYaw = ClampAngle(cinemachineTargetYaw, float.MinValue, float.MaxValue);
         cinemachineTargetPitch = ClampAngle(cinemachineTargetPitch, BottomClamp, TopClamp);
-
+    
     }
 
     /*    public void OnAim(InputAction.CallbackContext _context)
@@ -244,7 +242,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
                     curWeapon.canShooting = true;
                     animator.SetBool(curWeapon.Data.triggerName, curWeapon.canShooting);
                     curWeapon.Using();
-
+                    aimIK.weight = 1;
                 }
                 else if (_context.interaction is PressInteraction)
                 {
@@ -252,6 +250,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
                     animator.SetBool(curWeapon.Data.triggerName, curWeapon.canShooting);
                     curWeapon.Using();
                     curWeapon.Data.CurBullet--;
+                    aimIK.weight = 1;
                 }
             }
         }
@@ -259,6 +258,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         {
             curWeapon.canShooting = false;
             animator.SetBool(curWeapon.Data.triggerName, curWeapon.canShooting);
+            aimIK.weight = 0;
         }
     }
 
