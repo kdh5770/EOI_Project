@@ -64,8 +64,11 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     private LayerMask targetLayer;
 
 
-
-
+    [SerializeField]
+    private GameObject Weapon1;
+    private GameObject Weapon2;
+    private GameObject Weapon3;
+    int weaponnum = 0;
     public CharacterSTATE Debug_state;
 
     private void Start()
@@ -269,11 +272,15 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     {
         if (_context.performed)
         {
-            IsFlying = true;
-            JetEngine.SetActive(true);
-            rigidbody.useGravity = false;
-            rigidbody.AddForce(Vector3.up * flyForce, ForceMode.Impulse);
+            if (_context.interaction is HoldInteraction)
+            {
+                IsFlying = true;
+                JetEngine.SetActive(true);
+                rigidbody.useGravity = false;
+                rigidbody.AddForce(Vector3.up * flyForce, ForceMode.Impulse);
+            }
         }
+
         else if (_context.canceled)
         {
             IsFlying = false;
@@ -309,5 +316,14 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
             }
         }
+    }
+
+    public void OnChangeWeapon(InputAction.CallbackContext _context)
+    {
+        if(_context.performed)
+        {
+            weaponnum++;
+        }
+
     }
 }

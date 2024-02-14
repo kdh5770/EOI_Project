@@ -65,7 +65,7 @@
                     "id": "c1faec1b-2fe6-4d2c-85a4-e756d432f7e9",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "initialStateCheck": false
                 },
                 {
@@ -81,6 +81,15 @@
                     "name": "Psychokinesis",
                     "type": "Button",
                     "id": "ee3b0134-ab79-4c1c-8311-cc65b9b8eaff",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ChangeWeapon",
+                    "type": "Button",
+                    "id": "1df9b943-a1e8-4fb7-9cde-cc17dde85289",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -213,7 +222,7 @@
                     "name": "",
                     "id": "ebec03b4-a752-449c-87a1-48bc4bc837ec",
                     "path": "<Keyboard>/f",
-                    "interactions": "",
+                    "interactions": "Hold(duration=0.1,pressPoint=0.1)",
                     "processors": "",
                     "groups": "",
                     "action": "Flying",
@@ -228,6 +237,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Cloaking",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7a5b4dbb-5b56-4768-a7c6-154a17a1895b",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

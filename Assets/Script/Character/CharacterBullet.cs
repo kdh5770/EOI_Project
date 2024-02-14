@@ -7,12 +7,20 @@ public class CharacterBullet : MonoBehaviour
     private Rigidbody rigid;
     public float damage;
     public bool isCollision;
+    [SerializeField]
+    private GameObject BloodObj;
+
+    Transform camTransform;
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
     }
 
+    private void Start()
+    {
+        camTransform = Camera.main.transform;
+    }
 
     public void SetBulle(float _damage)
     {
@@ -39,6 +47,9 @@ public class CharacterBullet : MonoBehaviour
             if (hit.collider.TryGetComponent(out Weakness weakness))
             {
                 hit.collider.GetComponent<Weakness>().AttackDamage(damage, hit.transform.position);
+                GameObject eftObj = Instantiate(BloodObj, hit.point, Quaternion.identity);
+                eftObj.transform.LookAt(camTransform.transform.position);
+                Destroy(eftObj, 1f);
             }
             this.gameObject.SetActive(false);
         }
