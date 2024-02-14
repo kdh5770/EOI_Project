@@ -13,13 +13,12 @@ public class MoveState : CharaterBaseState
     }
     public override void OnUpdateState()
     {
-        controller.RotateUpdate();
-        controller.MoveUpdate();
+
     }
     public override void OnFixedUpdateState()
     {
-
-
+        controller.RotateUpdate();
+        controller.MoveUpdate();
     }
 
     public override void OnExitState()

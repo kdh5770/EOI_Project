@@ -65,9 +65,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
 
     [SerializeField]
-    private GameObject Weapon1;
-    private GameObject Weapon2;
-    private GameObject Weapon3;
+    private List<GameObject> Weapons = new List<GameObject>();
     int weaponnum = 0;
     public CharacterSTATE Debug_state;
 
@@ -320,10 +318,17 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
     public void OnChangeWeapon(InputAction.CallbackContext _context)
     {
-        if(_context.performed)
+        if (_context.performed)
         {
+            weapons[weaponnum].gameObject.SetActive(false);
             weaponnum++;
         }
+        if(weaponnum>=weapons.Count)
+        {
+            weaponnum = 0;
+        }
 
+        weapons[weaponnum].gameObject.SetActive(true);
+        curWeapon = weapons[weaponnum];
     }
 }
