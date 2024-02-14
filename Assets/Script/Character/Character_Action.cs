@@ -65,14 +65,14 @@ public class Character_Action : MonoBehaviour
     {
         if (_input.sprint)
         {
-            _input.aim = false;
+            _input.shoot = false;
         }
 
-        OnAim();
+        //OnAim();
         if (_input.reload)
         {
             _input.reload = false;
-            AimControll(false);
+            //AimControll(false);
 
             if (character.isReload)
             {
@@ -84,7 +84,7 @@ public class Character_Action : MonoBehaviour
     }
 
 
-    void OnAim()
+/*    void OnAim()
     {
         if (_input.aim && !_input.sprint)
         {
@@ -108,11 +108,11 @@ public class Character_Action : MonoBehaviour
                 //spotLight.transform.LookAt(aimObj.transform.position);
             }
 
-            /*            Vector3 targetAim = targetPosition;
+            *//*            Vector3 targetAim = targetPosition;
                         targetAim.y = transform.position.y;
                         Vector3 aimDir = (targetAim - transform.position).normalized;
 
-                        transform.forward = Vector3.Lerp(transform.forward, aimDir, Time.deltaTime * 30f);*/
+                        transform.forward = Vector3.Lerp(transform.forward, aimDir, Time.deltaTime * 30f);*//*
 
         }
 
@@ -122,18 +122,18 @@ public class Character_Action : MonoBehaviour
             _animator.SetLayerWeight(1, 0);
             //_animator.SetBool("Shoot", false);
         }
-    }
+    }*/
 
-    void AimControll(bool isCheck)
+/*    void AimControll(bool isCheck)
     {
         AimCam.gameObject.SetActive(isCheck);
         //AimImage.SetActive(isCheck);
         _animator.SetBool("Aiming", isCheck);
     }
-
+*/
     public void OnShoot()
     {
-        if (_input.aim && !_animator.GetCurrentAnimatorStateInfo(1).IsTag("Shoot") && !_input.sprint)
+        if (/*_input.aim && */!_animator.GetCurrentAnimatorStateInfo(1).IsTag("Shoot") && !_input.sprint)
         {
             _animator.SetTrigger("ShootTri");
             Instantiate(ShootFlx, Shootposition);
