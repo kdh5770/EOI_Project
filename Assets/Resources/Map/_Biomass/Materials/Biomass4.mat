@@ -8,20 +8,15 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Biomass4
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  m_ValidKeywords:
-  - _ALPHATEST_ON
-  - _EMISSION
-  - _METALLICSPECGLOSSMAP
-  - _NORMALMAP
-  - _SPECULAR_SETUP
+  m_Shader: {fileID: -6465566751694194690, guid: 8460557d5e159dd4e8ed41544c726afd,
+    type: 3}
+  m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 1
-  m_CustomRenderQueue: 2450
-  stringTagMap:
-    RenderType: TransparentCutout
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -36,6 +31,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 2800000, guid: 0d8d3bd714afd7b47b81d6ce66953486, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ColorTex:
+        m_Texture: {fileID: 2800000, guid: e179b71e9b59022489e91e0462eef36f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _CubemapBlured:
@@ -94,6 +93,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: d48893be7df952a4ea36d0540124d7a7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SmothnessTex:
+        m_Texture: {fileID: 2800000, guid: d48893be7df952a4ea36d0540124d7a7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 2800000, guid: d48893be7df952a4ea36d0540124d7a7, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -138,9 +141,11 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _NormalMapDepth: 1
+    - _NormalPower: 1
     - _OcclusionStrength: 1
     - _ParalaxOffset: 0.001
     - _Parallax: 0.02
+    - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _SmoothFromMapSwitch: 1
@@ -167,6 +172,7 @@ Material:
     - _WorkflowMode: 0
     - _ZWrite: 1
     - __dirty: 0
+    - _smoothNessPower: 1
     m_Colors:
     - _AlbedoColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
