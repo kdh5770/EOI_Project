@@ -133,11 +133,11 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
             moveVector *= applySpeed;
             rigidbody.velocity = new Vector3(moveVector.x, rigidbody.velocity.y, moveVector.z);
 
-            if (moveVector.magnitude > 0f /*&& !isAiming*/)
+/*            if (moveVector.magnitude > 0f *//*&& !isAiming*//*)
             {
                 Quaternion newRotation = Quaternion.LookRotation(moveVector);//, Vector3.up);
                 transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 10f);
-            }
+            }*/
         }
         else
         {
