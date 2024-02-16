@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ObjectDestroyer : MonoBehaviour
 {
-    private ObjectSpawner spawner;
-
     [Header("제거할 오브젝트 스포너")]
     [SerializeField]
     private GameObject Destroyobj;
+
+    private ObjectSpawner spawner;
 
     private void Start()
     {

@@ -17,7 +17,6 @@ public class ObjectSpawner : Interaction
     public List<GameObject> spawnePos;
 
     private string monsterLyaer = "Monster";
-    int i = 0;
 
 
     public override void Interact()

@@ -42,13 +42,16 @@ public class FireGun : WeaponTable
             Ray ray = camera.ScreenPointToRay(mousePos);
             Fire.transform.position = shotFireGunPos.position;
             Fire.transform.rotation = Quaternion.LookRotation(ray.direction);
-            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
+
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask, QueryTriggerInteraction.Collide))
             {
                 if (hit.collider.CompareTag("Monster"))
                 {
                     hit.collider.GetComponent<Weakness>().AttackDamage(Data.Damage, hit.point);
                 }
             }
+
+
             yield return shotDelay;
         }
         Destroy(Fire, 0.1f);

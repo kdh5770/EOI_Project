@@ -25,8 +25,8 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     public PlayerAnimationEvent playerAnimationEvent;
     public WeaponData Data;
     public Vector3 inputDir;
-    public float moveSpeed = 2.0f; // ±âº» °È±â¼Óµµ
-    public float sprintSpeed = 5.3f; // ¶Ù´Â¼Óµµ
+    public float moveSpeed = 5.3f; // ±âº» °È±â¼Óµµ
+    //public float sprintSpeed = 5.3f; // ¶Ù´Â¼Óµµ
     public float applySpeed;
 
     public CinemachineVirtualCamera virtualCamera;
@@ -45,7 +45,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
     public CharaterBaseState curState;
 
-    public Rig aimIK;
+
 
 
     public bool isSprint;
@@ -125,7 +125,8 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     {
         if (inputDir != Vector3.zero)
         {
-            applySpeed = isSprint ? sprintSpeed : moveSpeed;
+            //applySpeed = isSprint ? sprintSpeed : moveSpeed;
+            applySpeed = moveSpeed;
             animator.SetFloat("MoveSpeed", applySpeed);
 
             Vector3 moveVector = mainCamera.transform.TransformDirection(inputDir); // Ä«¸Þ¶ó ±âÁØÀ¸·Î input°ªÀ» ¹Ù²ãÁÜ
@@ -133,11 +134,11 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
             moveVector *= applySpeed;
             rigidbody.velocity = new Vector3(moveVector.x, rigidbody.velocity.y, moveVector.z);
 
-/*            if (moveVector.magnitude > 0f *//*&& !isAiming*//*)
-            {
-                Quaternion newRotation = Quaternion.LookRotation(moveVector);//, Vector3.up);
-                transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 10f);
-            }*/
+            /*            if (moveVector.magnitude > 0f *//*&& !isAiming*//*)
+                        {
+                            Quaternion newRotation = Quaternion.LookRotation(moveVector);//, Vector3.up);
+                            transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 10f);
+                        }*/
         }
         else
         {
@@ -201,7 +202,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
         cinemachineTargetYaw = ClampAngle(cinemachineTargetYaw, float.MinValue, float.MaxValue);
         cinemachineTargetPitch = ClampAngle(cinemachineTargetPitch, BottomClamp, TopClamp);
-    
+
     }
 
     /*    public void OnAim(InputAction.CallbackContext _context)
@@ -242,7 +243,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
                     curWeapon.canShooting = true;
                     animator.SetBool(curWeapon.Data.triggerName, curWeapon.canShooting);
                     curWeapon.Using();
-                    aimIK.weight = 1;
+                    animator.SetLayerWeight(1, 1);
                 }
                 else if (_context.interaction is PressInteraction)
                 {
@@ -250,7 +251,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
                     animator.SetBool(curWeapon.Data.triggerName, curWeapon.canShooting);
                     curWeapon.Using();
                     curWeapon.Data.CurBullet--;
-                    aimIK.weight = 1;
+                    animator.SetLayerWeight(1, 1);
                 }
             }
         }
@@ -258,7 +259,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         {
             curWeapon.canShooting = false;
             animator.SetBool(curWeapon.Data.triggerName, curWeapon.canShooting);
-            aimIK.weight = 0;
+            animator.SetLayerWeight(1, 0);
         }
     }
 
