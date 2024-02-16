@@ -20,6 +20,7 @@ public class Character_Action : MonoBehaviour
     private float aimObjDis = 10f;
     [SerializeField]
     private LayerMask targetLayer;
+
     [SerializeField]
     private GameObject AimImage; // ¡∂¡ÿº±
 

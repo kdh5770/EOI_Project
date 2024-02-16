@@ -35,6 +35,8 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     public float cinemachineTargetPitch;
     public float TopClamp = 70f;
     public float BottomClamp = -30f;
+
+    [Header ("마우스 감도 설정")]
     public float rotationSensitivity;
     private const float _threshold = 0.01f;
 
@@ -60,7 +62,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
     public float flyForce = 20f;
     private float gravitationalForce = 10f; // 중력
-    private float pullDistance = 10f; // 끌어들이는 거리
+    //private float pullDistance = 10f; // 끌어들이는 거리
     private LayerMask targetLayer;
 
 
@@ -125,7 +127,6 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     {
         if (inputDir != Vector3.zero)
         {
-            //applySpeed = isSprint ? sprintSpeed : moveSpeed;
             applySpeed = moveSpeed;
             animator.SetFloat("MoveSpeed", applySpeed);
 
@@ -134,11 +135,12 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
             moveVector *= applySpeed;
             rigidbody.velocity = new Vector3(moveVector.x, rigidbody.velocity.y, moveVector.z);
 
-            /*            if (moveVector.magnitude > 0f *//*&& !isAiming*//*)
-                        {
-                            Quaternion newRotation = Quaternion.LookRotation(moveVector);//, Vector3.up);
-                            transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 10f);
-                        }*/
+            /////////////////
+/*            if (moveVector.magnitude > 0f && !isAiming)
+            {
+                Quaternion newRotation = Quaternion.LookRotation(moveVector);//, Vector3.up);
+                transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 10f);
+            }*/
         }
         else
         {
