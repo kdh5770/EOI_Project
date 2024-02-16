@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ObjectDestroyer : MonoBehaviour
 {
-    [SerializeField]
     private ObjectSpawner spawner;
 
     [Header("제거할 오브젝트 스포너")]
