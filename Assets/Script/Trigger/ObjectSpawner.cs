@@ -11,7 +11,7 @@ public class ObjectSpawner : Interaction
     public int index_ID;
 
     [Header("스폰할 프리팹")]
-    public List<GameObject> SpawnerPrefabs = new List<GameObject>();
+    public GameObject SpawnerPrefab;
 
     [Header("스폰할 위치")]
     public List<GameObject> spawnePos;
@@ -22,29 +22,19 @@ public class ObjectSpawner : Interaction
 
     public override void Interact()
     {
-        if (SpawnerPrefabs != null)
+        if (SpawnerPrefab != null)
         {
-            if (monsterLyaer == LayerMask.LayerToName(SpawnerPrefabs[i].layer))
+            if (monsterLyaer == LayerMask.LayerToName(SpawnerPrefab.layer))
             {
-                Gamemanager.instance.spawnManager.SpawnMonster(index_ID, SpawnerPrefabs[i], spawnePos, checkKill);
+                Gamemanager.instance.spawnManager.SpawnMonster(index_ID, SpawnerPrefab, spawnePos, checkKill);
             }
             else
             {
                 foreach (GameObject obj in spawnePos)
                 {
-                    Instantiate(SpawnerPrefabs[i], obj.transform.position, Quaternion.identity);
+                    Instantiate(SpawnerPrefab, obj.transform.position, Quaternion.identity);
                 }
             }
         }
     }
-
-    public void DestroyPrefab()
-    {
-        if(checkKill)
-        {
-            Destroy(SpawnerPrefabs[i]);
-            i++;
-        }
-    }
-
 }
