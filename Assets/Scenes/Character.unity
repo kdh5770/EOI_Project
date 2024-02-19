@@ -8964,7 +8964,8 @@ MonoBehaviour:
   health: {fileID: 0}
   playerAnimationEvent: {fileID: 0}
   inputDir: {x: 0, y: 0, z: 0}
-  moveSpeed: 2
+  moveSpeed: 5.3
+  sprintSpeed: 5.3
   applySpeed: 0
   virtualCamera: {fileID: 1918942080625013617}
   CinemachineCameraTarget: {fileID: 6174581560453516493}
@@ -8972,7 +8973,7 @@ MonoBehaviour:
   cinemachineTargetPitch: 0
   TopClamp: 70
   BottomClamp: -30
-  rotationSensitivity: 120
+  rotationSensitivity: 7
   curWeapon: {fileID: 0}
   weapons:
   - {fileID: 5328666600972191522}
@@ -22304,6 +22305,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 1df9b943-a1e8-4fb7-9cde-cc17dde85289
     m_ActionName: Player/ChangeWeapon[/Keyboard/p]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1809102450341903954}
+        m_TargetAssemblyTypeName: CharacterStateController, Assembly-CSharp
+        m_MethodName: OnReload
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a4e46124-24b2-4895-b746-41c1c158fb2c
+    m_ActionName: Player/Reload[/Keyboard/r]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: PC
   m_DefaultActionMap: Player
@@ -22534,6 +22551,7 @@ GameObject:
   - component: {fileID: 8576828020523926577}
   - component: {fileID: 8576828020523926576}
   - component: {fileID: 8576828020523926590}
+  - component: {fileID: 8576828020523926592}
   m_Layer: 5
   m_Name: CharacterUI_Canvas
   m_TagString: Untagged
@@ -22541,6 +22559,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8576828020523926592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8576828020523926591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab030e3c0259bae4695f219358138518, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BulletTxt: {fileID: 4703656321782270018}
 --- !u!1 &8576828020549522426
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,12 +8,14 @@ public class BulletUIManager : MonoBehaviour
 {
     [SerializeField]
     private TMP_Text BulletTxt;
+
+    private Gamemanager gamemanager;
     private CharacterStateController characterStateController;
 
 
     private void Start()
     {
-        
+        gamemanager = FindObjectOfType<Gamemanager>();
     }
 
     private void Update()
@@ -24,14 +26,11 @@ public class BulletUIManager : MonoBehaviour
 
     void HandleBulletUI()
     {
+        characterStateController = gamemanager.player.GetComponent<CharacterStateController>();
         if (characterStateController != null)
         {
-            BulletTxt.text = characterStateController.curWeapon.Data.CurBullet.ToString() + "/" + characterStateController.curWeapon.Data.MaxBullet.ToString();
-        }
 
-        else
-        {
-            Debug.Log("³Î");
+            BulletTxt.text = characterStateController.curWeapon.Data.CurBullet.ToString() + "/" + characterStateController.curWeapon.Data.MaxBullet.ToString();
         }
     }
 
