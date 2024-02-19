@@ -38,11 +38,16 @@ public class FireGun : WeaponTable
 
         while (canShooting)
         {
+            if (Data.CurBullet <= 0)
+            {
+                canShooting = false;
+                break;
+            }
             Vector3 mousePos = Mouse.current.position.ReadValue();
             Ray ray = camera.ScreenPointToRay(mousePos);
             Fire.transform.position = shotFireGunPos.position;
             Fire.transform.rotation = Quaternion.LookRotation(ray.direction);
-
+            Data.CurBullet--;
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask, QueryTriggerInteraction.Collide))
             {
                 if (hit.collider.CompareTag("Monster"))
