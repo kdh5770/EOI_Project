@@ -154,8 +154,6 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         {
             animator.SetLayerWeight(1, 0);
         }
-
-        Debug.Log(curWeapon.canShooting);
     }
 
     public void RotateUpdate()

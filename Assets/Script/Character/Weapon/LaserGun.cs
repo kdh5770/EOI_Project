@@ -21,10 +21,10 @@ public class LaserGun : WeaponTable
 
     public override void Initsetting()
     {
-        Data.ShotDelay = 0.01f;
+        Data.ShotDelay = 0.1f;
         Data.MaxBullet = 30;
         Data.CurBullet = 30;
-        Data.Damage = 5;
+        Data.Damage = 3;
         Data.triggerName = "IsLaserGun";
     }
 
