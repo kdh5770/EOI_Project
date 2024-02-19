@@ -26,7 +26,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     public WeaponData Data;
     public Vector3 inputDir;
     public float moveSpeed = 5.3f; // ±âº» °È±â¼Óµµ
-    //public float sprintSpeed = 5.3f; // ¶Ù´Â¼Óµµ
+    public float sprintSpeed = 5.3f; // ¶Ù´Â¼Óµµ
     public float applySpeed;
 
     public CinemachineVirtualCamera virtualCamera;
