@@ -148,6 +148,12 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
             animator.SetFloat("MoveSpeed", 0);
             rigidbody.velocity = Vector3.zero;
         }
+
+
+        if (curWeapon.Data.CurBullet <= 0)
+        {
+            animator.SetLayerWeight(1, 0);
+        }
     }
 
     public void RotateUpdate()
@@ -237,7 +243,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
     public void OnShoot(InputAction.CallbackContext _context)
     {
-        if (_context.performed && !isSprint && curWeapon.Data.CurBullet > 0 && !animator.GetCurrentAnimatorStateInfo(1).IsTag("Reload"))
+        if (_context.performed && curWeapon.Data.CurBullet > 0 && !animator.GetCurrentAnimatorStateInfo(1).IsTag("Reload"))
         {
             ChangeState(CharacterSTATE.ATTACK);
             if (curState == states[CharacterSTATE.ATTACK])
@@ -290,6 +296,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     {
         if (_context.performed)
         {
+            ChangeState(CharacterSTATE.SKILL);
             if (_context.interaction is HoldInteraction)
             {
                 IsFlying = true;
@@ -330,8 +337,6 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
                     Vector3 direction = (monsterTransform.position - playerPosition).normalized;
                     monsterTransform.position -= direction * gravitationalForce * Time.deltaTime;
                 }
-
-
             }
         }
     }
@@ -348,6 +353,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         {
             weaponnum = 0;
         }
+
 
         weapons[weaponnum].gameObject.SetActive(true);
         weaponImg[weaponnum].gameObject.SetActive(true);

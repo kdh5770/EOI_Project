@@ -16,6 +16,7 @@ public class SkillState : CharaterBaseState
 
     public override void OnExitState()
     {
+
     }
 
     public override void OnFixedUpdateState()
