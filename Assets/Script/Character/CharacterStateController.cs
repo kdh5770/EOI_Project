@@ -36,7 +36,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     public float TopClamp = 70f;
     public float BottomClamp = -30f;
 
-    [Header ("마우스 감도 설정")]
+    [Header("마우스 감도 설정")]
     public float rotationSensitivity;
     private const float _threshold = 0.01f;
 
@@ -136,11 +136,11 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
             rigidbody.velocity = new Vector3(moveVector.x, rigidbody.velocity.y, moveVector.z);
 
             /////////////////
-/*            if (moveVector.magnitude > 0f && !isAiming)
-            {
-                Quaternion newRotation = Quaternion.LookRotation(moveVector);//, Vector3.up);
-                transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 10f);
-            }*/
+            /*            if (moveVector.magnitude > 0f && !isAiming)
+                        {
+                            Quaternion newRotation = Quaternion.LookRotation(moveVector);//, Vector3.up);
+                            transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 10f);
+                        }*/
         }
         else
         {
@@ -198,6 +198,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         if (_context.ReadValue<Vector2>().sqrMagnitude >= _threshold)
         {
             Vector2 mouseDir = _context.ReadValue<Vector2>();
+            //Vector2 mouseDir = _context.ReadValue<Vector2>().normalized; // 프레임 드랍 문제가 있음.
             cinemachineTargetYaw += mouseDir.x * rotationSensitivity * Time.deltaTime;
             cinemachineTargetPitch += mouseDir.y * rotationSensitivity * Time.deltaTime;
         }
@@ -235,9 +236,9 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
     public void OnShoot(InputAction.CallbackContext _context)
     {
-        ChangeState(CharacterSTATE.ATTACK);
-        if (_context.performed && !isSprint)
+        if (_context.performed && !isSprint && curWeapon.Data.CurBullet > 0)
         {
+            ChangeState(CharacterSTATE.ATTACK);
             if (curState == states[CharacterSTATE.ATTACK])
             {
                 if (_context.interaction is HoldInteraction)
@@ -245,6 +246,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
                     curWeapon.canShooting = true;
                     animator.SetBool(curWeapon.Data.triggerName, curWeapon.canShooting);
                     curWeapon.Using();
+                    //curWeapon.Data.CurBullet--;
                     animator.SetLayerWeight(1, 1);
                 }
                 else if (_context.interaction is PressInteraction)
@@ -252,7 +254,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
                     curWeapon.canShooting = true;
                     animator.SetBool(curWeapon.Data.triggerName, curWeapon.canShooting);
                     curWeapon.Using();
-                    curWeapon.Data.CurBullet--;
+                    //curWeapon.Data.CurBullet--;
                     animator.SetLayerWeight(1, 1);
                 }
             }

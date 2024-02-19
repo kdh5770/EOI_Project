@@ -8965,6 +8965,7 @@ MonoBehaviour:
   playerAnimationEvent: {fileID: 0}
   inputDir: {x: 0, y: 0, z: 0}
   moveSpeed: 2
+  sprintSpeed: 5.3
   applySpeed: 0
   virtualCamera: {fileID: 1918942080625013617}
   CinemachineCameraTarget: {fileID: 6174581560453516493}
@@ -8972,7 +8973,7 @@ MonoBehaviour:
   cinemachineTargetPitch: 0
   TopClamp: 70
   BottomClamp: -30
-  rotationSensitivity: 120
+  rotationSensitivity: 5
   curWeapon: {fileID: 0}
   weapons:
   - {fileID: 5328666600972191522}
@@ -20130,7 +20131,6 @@ GameObject:
   - component: {fileID: 4703656321782270019}
   - component: {fileID: 4703656321782270029}
   - component: {fileID: 4703656321782270018}
-  - component: {fileID: 4703656321782270028}
   m_Layer: 5
   m_Name: BulletTxt
   m_TagString: Untagged
@@ -20247,19 +20247,6 @@ RectTransform:
   m_AnchoredPosition: {x: -14, y: 139.3}
   m_SizeDelta: {x: 200, y: 75.7682}
   m_Pivot: {x: 1, y: 0}
---- !u!114 &4703656321782270028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4703656321782270016}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab030e3c0259bae4695f219358138518, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BulletTxt: {fileID: 4703656321782270018}
 --- !u!222 &4703656321782270029
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -22534,6 +22521,7 @@ GameObject:
   - component: {fileID: 8576828020523926577}
   - component: {fileID: 8576828020523926576}
   - component: {fileID: 8576828020523926590}
+  - component: {fileID: 8576828020523926592}
   m_Layer: 5
   m_Name: CharacterUI_Canvas
   m_TagString: Untagged
@@ -22541,6 +22529,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8576828020523926592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8576828020523926591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab030e3c0259bae4695f219358138518, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BulletTxt: {fileID: 4703656321782270018}
 --- !u!1 &8576828020549522426
 GameObject:
   m_ObjectHideFlags: 0
