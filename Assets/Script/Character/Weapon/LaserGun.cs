@@ -41,6 +41,11 @@ public class LaserGun : WeaponTable
     {
         while (canShooting)
         {
+            if (Data.CurBullet <= 0)
+            {
+                canShooting = false;
+                break;
+            }
             laserEffect.enabled = true;
             RaycastHit hit;
 
@@ -48,7 +53,7 @@ public class LaserGun : WeaponTable
             Ray ray = camera.ScreenPointToRay(mousePos);
 
             laserEffect.SetPosition(0, shotLaserGunPos.position);
-
+            Data.CurBullet--;
             if (Physics.Raycast(ray, out hit, 500f, targetlayer))
             {
                 Vector3 directionToHit = (hit.point - shotLaserGunPos.position).normalized;
