@@ -12449,7 +12449,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &428381675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16240,7 +16240,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &551321400
 Transform:
   m_ObjectHideFlags: 0
@@ -64773,6 +64773,7 @@ MonoBehaviour:
   playerAnimationEvent: {fileID: 0}
   inputDir: {x: 0, y: 0, z: 0}
   moveSpeed: 2
+  sprintSpeed: 5.3
   applySpeed: 0
   virtualCamera: {fileID: 204126732876761197}
   CinemachineCameraTarget: {fileID: 5603817959231748049}
@@ -64780,7 +64781,7 @@ MonoBehaviour:
   cinemachineTargetPitch: 0
   TopClamp: 70
   BottomClamp: -30
-  rotationSensitivity: 100
+  rotationSensitivity: 10
   curWeapon: {fileID: 0}
   weapons:
   - {fileID: 5874802244198317118}
@@ -70344,7 +70345,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5603817958822966451
 Transform:
   m_ObjectHideFlags: 0
