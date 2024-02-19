@@ -10,16 +10,14 @@ public class MonsterThrow : Attack
     public float impulsPow;
 
     private GameObject preObj;
-    private const float offest = 0.2f;
+    private const float offset = 0.2f;
     Vector3 direction;
 
     public override void ExecuteAttack(GameObject _target)
     {
         animationEvent.ActionAttack += ActionAttack;
         target = _target;
-        direction = ((target.transform.position + target.transform.position * offest) - shootPos.transform.position).normalized;
-        Vector3 rotate = direction;
-        rotate.y = 0;
+        direction = (target.transform.position - shootPos.transform.position).normalized;
 
         transform.root.rotation = Quaternion.LookRotation(direction);
 

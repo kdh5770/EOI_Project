@@ -197,7 +197,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     {
         if (_context.ReadValue<Vector2>().sqrMagnitude >= _threshold)
         {
-            Vector2 mouseDir = _context.ReadValue<Vector2>().normalized;
+            Vector2 mouseDir = _context.ReadValue<Vector2>();
             cinemachineTargetYaw += mouseDir.x * rotationSensitivity * Time.deltaTime;
             cinemachineTargetPitch += mouseDir.y * rotationSensitivity * Time.deltaTime;
         }
