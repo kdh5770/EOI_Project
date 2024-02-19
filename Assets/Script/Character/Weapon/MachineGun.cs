@@ -67,34 +67,30 @@ public class MachineGun : WeaponTable
 
     IEnumerator BulletShootCo()
     {
-        if (Data.CurBullet > 0)
+        while (canShooting)
         {
-            while (canShooting)
+            Vector3 mousePos = Mouse.current.position.ReadValue();
+            Ray ray = camera.ScreenPointToRay(mousePos);
+            Instantiate(ShootFlx, machinegunShotpos);
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
             {
-                Vector3 mousePos = Mouse.current.position.ReadValue();
-                Ray ray = camera.ScreenPointToRay(mousePos);
-                Instantiate(ShootFlx, machinegunShotpos);
-                Data.CurBullet--;
-                if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
+                if (hit.collider.CompareTag("Monster"))
                 {
-                    if (hit.collider.CompareTag("Monster"))
-                    {
-                        //hit.collider.GetComponent<Weakness>().AttackDamage(Data.Damage, hit.point);
-                    }
-
-                    Vector3 directionToHit = (hit.point - shotMachineGunPos.position).normalized;
-                    GameObject bullet = Gamemanager.instance.poolManager.GetBullet();
-                    if (bullet != null)
-                    {
-                        bullet.SetActive(true);
-                        bullet.GetComponent<CharacterBullet>().SetBulle(Data.Damage);
-                        bullet.transform.position = shotMachineGunPos.position;
-                        bullet.transform.rotation = Quaternion.LookRotation(directionToHit);
-                        bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * 20f, ForceMode.Impulse);
-                    }
+                    //hit.collider.GetComponent<Weakness>().AttackDamage(Data.Damage, hit.point);
                 }
-                yield return shotDelay;
+
+                Vector3 directionToHit = (hit.point - shotMachineGunPos.position).normalized;
+                GameObject bullet = Gamemanager.instance.poolManager.GetBullet();
+                if (bullet != null)
+                {
+                    bullet.SetActive(true);
+                    bullet.GetComponent<CharacterBullet>().SetBulle(Data.Damage);
+                    bullet.transform.position = shotMachineGunPos.position;
+                    bullet.transform.rotation = Quaternion.LookRotation(directionToHit);
+                    bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * 20f, ForceMode.Impulse);
+                }
             }
+            yield return shotDelay;
         }
         usingCor = null;
     }
