@@ -39,10 +39,6 @@ public class LaserGun : WeaponTable
 
     IEnumerator UsingCor()
     {
-        //GameObject Laser = Instantiate(laserE
-        //ffect, shotLaserGunPos.position, Quaternion.identity);
-
-
         while (canShooting)
         {
             laserEffect.enabled = true;

@@ -28,7 +28,7 @@ public class MachineGun : WeaponTable
         Data.ShotDelay = .1f;
         Data.MaxBullet = 30;
         Data.CurBullet = 30;
-        Data.Damage = 10;
+        Data.Damage = 5;
         Data.triggerName = "IsMachineGun";
     }
 
@@ -72,6 +72,7 @@ public class MachineGun : WeaponTable
         {
             if (Data.CurBullet <= 0)
             {
+                canShooting = false;
                 break;
             }
             Vector3 mousePos = Mouse.current.position.ReadValue();

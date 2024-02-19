@@ -154,6 +154,8 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         {
             animator.SetLayerWeight(1, 0);
         }
+
+        Debug.Log(curWeapon.canShooting);
     }
 
     public void RotateUpdate()
@@ -209,10 +211,8 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
             cinemachineTargetYaw += mouseDir.x * rotationSensitivity * Time.deltaTime;
             cinemachineTargetPitch += mouseDir.y * rotationSensitivity * Time.deltaTime;
         }
-
         cinemachineTargetYaw = ClampAngle(cinemachineTargetYaw, float.MinValue, float.MaxValue);
         cinemachineTargetPitch = ClampAngle(cinemachineTargetPitch, BottomClamp, TopClamp);
-
     }
 
     /*    public void OnAim(InputAction.CallbackContext _context)
