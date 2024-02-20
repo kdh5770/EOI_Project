@@ -2,28 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HitTrigger : Interaction
+public class HitTrigger : MonoBehaviour
 {
-    [Header("오브젝트 히트 했을 시")]
+    [Header("총알에 히트 당했을 때 트리거")]
 
-    [Header("상호작용 - 복수가능")]
+    [Header("상호작용 프리팹 넣기 - 복수 가능")]
     public List<Interaction> interactions;
-
-    public override void Interact()
+    private void OnTriggerEnter(Collider other)
     {
-        if (interactions != null)
+        if (other.gameObject.CompareTag("Bullet"))
         {
-            StartCoroutine(HitInteraction());
-        }
-    }
+            if (interactions.Count > 0)
+            {
+                foreach (Interaction interaction in interactions)
+                {
+                    interaction.Interact();
+                }
+            }
 
-    IEnumerator HitInteraction()
-    {
-        yield return null;
-
-        foreach (Interaction _interact in interactions)
-        {
-            _interact.Interact();
+            gameObject.GetComponent<Collider>().enabled = false;
         }
     }
 }
