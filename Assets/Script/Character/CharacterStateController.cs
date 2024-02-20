@@ -1,5 +1,6 @@
 using Cinemachine;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 using UnityEngine.InputSystem;
@@ -12,6 +13,7 @@ public enum CharacterSTATE
     MOVE,
     ATTACK,
     SKILL,
+    SUIT,
     INTERACTION,
     REACTION,
     DEATH
@@ -62,7 +64,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     private GameObject JetEngine;
 
     public float flyForce = 20f;
-    private float gravitationalForce = 10f; // 중력
+    private float gravitationalForce = 0.5f; // 중력
     //private float pullDistance = 10f; // 끌어들이는 거리
     private LayerMask targetLayer;
 
@@ -74,6 +76,14 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     private List<GameObject> Weapons = new List<GameObject>();
     int weaponnum = 0;
     public CharacterSTATE Debug_state;
+
+
+    /////////////////////////////////////////////////// 슈트 변수 추가해야 함.
+    
+
+
+
+
 
 
 
@@ -119,6 +129,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         states.Add(CharacterSTATE.MOVE, new MoveState(gameObject.GetComponent<CharacterStateController>()));
         states.Add(CharacterSTATE.ATTACK, new AttackState(gameObject.GetComponent<CharacterStateController>()));
         states.Add(CharacterSTATE.SKILL, new SkillState(gameObject.GetComponent<CharacterStateController>()));
+        states.Add(CharacterSTATE.SUIT, new SuitState(gameObject.GetComponent<CharacterStateController>()));
         states.Add(CharacterSTATE.INTERACTION, new InteractionState(gameObject.GetComponent<CharacterStateController>()));
         states.Add(CharacterSTATE.REACTION, new ReactionState(gameObject.GetComponent<CharacterStateController>()));
         states.Add(CharacterSTATE.DEATH, new DeathState(gameObject.GetComponent<CharacterStateController>()));
@@ -143,16 +154,16 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
                             transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 10f);
                         }*/
         }
-        else
-        {
-            animator.SetFloat("MoveSpeed", 0);
-            rigidbody.velocity = Vector3.zero;
-        }
-
 
         if (curWeapon.Data.CurBullet <= 0)
         {
             animator.SetLayerWeight(1, 0);
+        }
+
+        else
+        {
+            animator.SetFloat("MoveSpeed", 0);
+            rigidbody.velocity = Vector3.zero;
         }
     }
 
@@ -163,6 +174,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
         CinemachineCameraTarget.transform.rotation = Quaternion.Euler(cinemachineTargetPitch + 0f, cinemachineTargetYaw, 0.0f);
     }
+
 
     private static float ClampAngle(float IfAngle, float IfMin, float IfMax) // 카메라 각도 관련
     {
@@ -321,22 +333,11 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     {
         if (_context.performed)
         {
-            Vector3 mousePos = Mouse.current.position.ReadValue();
-            Ray ray = Camera.main.ScreenPointToRay(mousePos);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 50f, targetLayer))
-            {
-                if (hit.collider.CompareTag("Monster"))
-                {
-                    Transform monsterTransform = hit.collider.transform;
-                    Vector3 playerPosition = transform.position;
-
-                    // 몬스터와 플레이어 사이의 방향 벡터
-                    Vector3 direction = (monsterTransform.position - playerPosition).normalized;
-                    monsterTransform.position -= direction * gravitationalForce * Time.deltaTime;
-                }
-            }
+            ChangeState(CharacterSTATE.SKILL);
         }
+
+        else if (_context.canceled)
+            ChangeState(CharacterSTATE.MOVE);
     }
 
     public void OnChangeWeapon(InputAction.CallbackContext _context)
@@ -346,12 +347,13 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
             weapons[weaponnum].gameObject.SetActive(false);
             weaponImg[weaponnum].gameObject.SetActive(false);
             weaponnum++;
-        }
-        if (weaponnum >= weapons.Count)
-        {
-            weaponnum = 0;
-        }
 
+            if (weaponnum >= weapons.Count)
+            {
+                weaponnum = 0;
+            }
+
+        }
 
         weapons[weaponnum].gameObject.SetActive(true);
         weaponImg[weaponnum].gameObject.SetActive(true);
