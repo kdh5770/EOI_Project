@@ -13,6 +13,7 @@ public enum CharacterSTATE
     MOVE,
     ATTACK,
     SKILL,
+    SUIT,
     INTERACTION,
     REACTION,
     DEATH
@@ -77,6 +78,14 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     public CharacterSTATE Debug_state;
 
 
+    /////////////////////////////////////////////////// 슈트 변수 추가해야 함.
+    
+
+
+
+
+
+
 
     private void Start()
     {
@@ -120,6 +129,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         states.Add(CharacterSTATE.MOVE, new MoveState(gameObject.GetComponent<CharacterStateController>()));
         states.Add(CharacterSTATE.ATTACK, new AttackState(gameObject.GetComponent<CharacterStateController>()));
         states.Add(CharacterSTATE.SKILL, new SkillState(gameObject.GetComponent<CharacterStateController>()));
+        states.Add(CharacterSTATE.SUIT, new SuitState(gameObject.GetComponent<CharacterStateController>()));
         states.Add(CharacterSTATE.INTERACTION, new InteractionState(gameObject.GetComponent<CharacterStateController>()));
         states.Add(CharacterSTATE.REACTION, new ReactionState(gameObject.GetComponent<CharacterStateController>()));
         states.Add(CharacterSTATE.DEATH, new DeathState(gameObject.GetComponent<CharacterStateController>()));
