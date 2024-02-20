@@ -16,6 +16,12 @@ public class Larva : MonsterStatus
     public GameObject spawnPre;
     [Header("생성된 와쳐 위치")]
     public Transform spawnPos;
+    [Header("발사체 프리팹")]
+    public GameObject bullet;
+    [Header("발사체 위치")]
+    public Transform shotPos;
+    [Header("타겟 범위")]
+    public int shotTarget = 50;
 
     public override void CalculateDamage(float _damage)
     {
@@ -26,6 +32,26 @@ public class Larva : MonsterStatus
         }
     }
 
+    public void Update()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, shotTarget);
+
+        if (colliders.Length > 0)
+        {
+            foreach (Collider col in colliders)
+            {
+                if (col.CompareTag("Player"))
+                {
+                    target = col.gameObject;
+                    break;
+                }
+            }
+        }
+        if(target != null)
+        {
+            bullet = Instantiate(bullet, shotPos.transform.position, Quaternion.identity);
+        }
+    }
     public void LarvaBoom()
     {
         //gameObject.GetComponent<Collider>().enabled = false;
