@@ -155,15 +155,15 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
                         }*/
         }
 
-        if (curWeapon.Data.CurBullet <= 0)
-        {
-            animator.SetLayerWeight(1, 0);
-        }
-
         else
         {
             animator.SetFloat("MoveSpeed", 0);
             rigidbody.velocity = Vector3.zero;
+        }
+
+        if (curWeapon.Data.CurBullet <= 0)
+        {
+            animator.SetLayerWeight(1, 0);
         }
     }
 
