@@ -169,9 +169,9 @@ half4 UniversalFragmentPBR_Custom(InputData inputData, SurfaceData surfaceData)
 
     float3 backLight = 0;
 
-    float3 H = mainLight.direction + inputData.normalWS * 1; // _Distortion
-    float VdotH = pow(saturate(dot(inputData.viewDirectionWS, -H)), 0.1 + 0.000001) * 0.1; // _SSSPower, _SSSScale
-    backLight += 0.1 * (VdotH)*surfaceData.albedo * mainLight.color; //_SssColor.rgb
+    float3 H = normalize(mainLight.direction + inputData.normalWS * _Distortion); // _Distortion
+    float VdotH = pow(saturate(dot(inputData.viewDirectionWS, -H)), _SSSPower + 0.000001) * _SSSScale; // _SSSPower, _SSSScale
+    backLight += _Attenuation * (VdotH) * surfaceData.smoothness * mainLight.color; //_SssColor.rgb
 
 
 #if defined(_ADDITIONAL_LIGHTS)
@@ -182,9 +182,9 @@ half4 UniversalFragmentPBR_Custom(InputData inputData, SurfaceData surfaceData)
     {
         Light light = GetAdditionalLight(lightIndex, inputData, shadowMask, aoFactor);
 
-        float3 H = light.direction + inputData.normalWS * 0.5; // _Distortion
-        float VdotH = pow(saturate(dot(inputData.viewDirectionWS, -H)), 0.1 + 0.000001) * 0.1; // _SSSPower, _SSSScale
-        backLight += 0.1 * (VdotH)*surfaceData.albedo * light.color; //_SssColor.rgb
+        float3 H = normalize(light.direction + inputData.normalWS * _Distortion); // _Distortion
+        float VdotH = pow(saturate(dot(inputData.viewDirectionWS, -H)), _SSSPower + 0.000001) * _SSSScale; // _SSSPower, _SSSScale
+        backLight += _Attenuation * (VdotH)* surfaceData.smoothness * light.color; //_SssColor.rgb
 
         if (IsMatchingLightLayer(light.layerMask, meshRenderingLayers))
         {
@@ -199,9 +199,9 @@ half4 UniversalFragmentPBR_Custom(InputData inputData, SurfaceData surfaceData)
     LIGHT_LOOP_BEGIN(pixelLightCount)
         Light light = GetAdditionalLight(lightIndex, inputData, shadowMask, aoFactor);
 
-    float3 H = light.direction + inputData.normalWS * 1; // _Distortion
-    float VdotH = pow(saturate(dot(inputData.viewDirectionWS, -H)), 0.1 + 0.000001) * 0.1; // _SSSPower, _SSSScale
-    backLight += 0.1 * (VdotH) * surfaceData.albedo * light.color; //_SssColor.rgb
+    float3 H = normalize(light.direction + inputData.normalWS * _Distortion); // _Distortion
+    float VdotH = pow(saturate(dot(inputData.viewDirectionWS, -H)), _SSSPower + 0.000001) * _SSSScale; // _SSSPower, _SSSScale
+    backLight += _Attenuation * (VdotH) * surfaceData.smoothness * light.color; //_SssColor.rgb
 
     if (IsMatchingLightLayer(light.layerMask, meshRenderingLayers))
     {

@@ -22,6 +22,13 @@ Shader "Universal Render Pipeline/Bio"
         _BumpScale("Scale", Float) = 1.0
         _BumpMap("Normal Map", 2D) = "bump" {}
 
+         _Distortion("Distortion", Range(0,1)) = 1.0
+         _SSSPower("SSSPower", Range(0,5)) = 1.0
+         _SSSScale("_SSSScale", Range(0,5)) = 1.0
+         _Attenuation("Attenuation", Range(0,5)) = 1.0
+
+
+
         // Blending state
         _Surface("__surface", Float) = 0.0
         _Blend("__blend", Float) = 0.0

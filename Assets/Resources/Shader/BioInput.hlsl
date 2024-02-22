@@ -20,6 +20,10 @@ half4 _SpecColor;
 half _Cutoff;
 half _Smoothness;
 half _BumpScale;
+float _Distortion;
+float _SSSPower;
+float _SSSScale;
+float _Attenuation;
 half _Surface;
 CBUFFER_END
 
@@ -34,6 +38,10 @@ UNITY_DOTS_INSTANCING_START(MaterialPropertyMetadata)
     UNITY_DOTS_INSTANCED_PROP(float , _Cutoff)
     UNITY_DOTS_INSTANCED_PROP(float , _Smoothness)
     UNITY_DOTS_INSTANCED_PROP(float , _BumpScale)
+    UNITY_DOTS_INSTANCED_PROP(float _Distortion)
+    UNITY_DOTS_INSTANCED_PROP(float _SSSPower)
+    UNITY_DOTS_INSTANCED_PROP(float _SSSScale)
+    UNITY_DOTS_INSTANCED_PROP(float _Attenuation)
     UNITY_DOTS_INSTANCED_PROP(float , _Surface)
 UNITY_DOTS_INSTANCING_END(MaterialPropertyMetadata)
 
@@ -43,6 +51,10 @@ UNITY_DOTS_INSTANCING_END(MaterialPropertyMetadata)
 #define _Cutoff                 UNITY_ACCESS_DOTS_INSTANCED_PROP_FROM_MACRO(float  , Metadata_Cutoff)
 #define _Smoothness             UNITY_ACCESS_DOTS_INSTANCED_PROP_FROM_MACRO(float  , Metadata_Smoothness)
 #define _BumpScale              UNITY_ACCESS_DOTS_INSTANCED_PROP_FROM_MACRO(float  , Metadata_BumpScale)
+#define _Surface                UNITY_ACCESS_DOTS_INSTANCED_PROP_FROM_MACRO(float  , Metadata_Surface)
+#define _Distortion             UNITY_ACCESS_DOTS_INSTANCED_PROP_FROM_MACRO(float  , Metadata_Distortion)
+#define _SSSPower               UNITY_ACCESS_DOTS_INSTANCED_PROP_FROM_MACRO(float  , Metadata_SSSPower)
+#define _Attenuation            UNITY_ACCESS_DOTS_INSTANCED_PROP_FROM_MACRO(float  , Metadata_Attenuation)
 #define _Surface                UNITY_ACCESS_DOTS_INSTANCED_PROP_FROM_MACRO(float  , Metadata_Surface)
 #endif
 
