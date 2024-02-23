@@ -171,7 +171,7 @@ half4 UniversalFragmentPBR_Custom(InputData inputData, SurfaceData surfaceData)
 
     float3 H = normalize(mainLight.direction + inputData.normalWS * _Distortion); // _Distortion
     float VdotH = pow(saturate(dot(inputData.viewDirectionWS, -H)), _SSSPower + 0.000001) * _SSSScale; // _SSSPower, _SSSScale
-    backLight += _Attenuation * (VdotH) * surfaceData.smoothness * mainLight.color; //_SssColor.rgb
+    backLight += _Attenuation * (VdotH)*surfaceData.smoothness * mainLight.color * _SSSColor.rgb;
 
 
 #if defined(_ADDITIONAL_LIGHTS)
@@ -182,9 +182,9 @@ half4 UniversalFragmentPBR_Custom(InputData inputData, SurfaceData surfaceData)
     {
         Light light = GetAdditionalLight(lightIndex, inputData, shadowMask, aoFactor);
 
-        float3 H = normalize(light.direction + inputData.normalWS * _Distortion); // _Distortion
-        float VdotH = pow(saturate(dot(inputData.viewDirectionWS, -H)), _SSSPower + 0.000001) * _SSSScale; // _SSSPower, _SSSScale
-        backLight += _Attenuation * (VdotH)* surfaceData.smoothness * light.color; //_SssColor.rgb
+        float3 H = normalize(light.direction + inputData.normalWS * _Distortion);
+        float VdotH = pow(saturate(dot(inputData.viewDirectionWS, -H)), _SSSPower + 0.000001) * _SSSScale;
+        backLight += _Attenuation * (VdotH)* surfaceData.smoothness * light.color * _SSSColor.rgb;
 
         if (IsMatchingLightLayer(light.layerMask, meshRenderingLayers))
         {
@@ -201,7 +201,7 @@ half4 UniversalFragmentPBR_Custom(InputData inputData, SurfaceData surfaceData)
 
     float3 H = normalize(light.direction + inputData.normalWS * _Distortion); // _Distortion
     float VdotH = pow(saturate(dot(inputData.viewDirectionWS, -H)), _SSSPower + 0.000001) * _SSSScale; // _SSSPower, _SSSScale
-    backLight += _Attenuation * (VdotH) * surfaceData.smoothness * light.color; //_SssColor.rgb
+    backLight += _Attenuation * (VdotH)*surfaceData.smoothness * light.color * _SSSColor.rgb;
 
     if (IsMatchingLightLayer(light.layerMask, meshRenderingLayers))
     {
