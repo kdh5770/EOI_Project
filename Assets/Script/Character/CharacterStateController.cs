@@ -79,7 +79,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
 
     /////////////////////////////////////////////////// 슈트 변수 추가해야 함.
-    
+
 
 
 
@@ -293,7 +293,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
     public void OnReload(InputAction.CallbackContext _context)
     {
-        if (_context.performed)
+        if (_context.performed && !curWeapon.canShooting)
         {
             animator.SetLayerWeight(1, 1);
             animator.SetTrigger("Reload");
