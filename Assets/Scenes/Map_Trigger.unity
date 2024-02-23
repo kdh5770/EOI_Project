@@ -53370,7 +53370,7 @@ GameObject:
   - component: {fileID: 4654253420063625077}
   m_Layer: 0
   m_Name: "\uC54C \uBCF4\uAD00\uC18C\uC758 \uBAAC\uC2A4\uD130\uB97C \uBAA8\uB450
-    \uC8FD\uC774\uBA74"
+    \uC8FD\uC774\uBA74 \uD1B5\uB85C \uAC1C\uBC29"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62456,8 +62456,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   checkKill: 1
   index_ID: 0
-  SpawnerPrefab: {fileID: 0}
-  spawnePos: []
+  SpawnerPrefab: {fileID: 720993982661979589, guid: e21899bd3bcef4b4ab5584c51e85d650,
+    type: 3}
+  spawnePos:
+  - {fileID: 3349964115618186858}
 --- !u!4 &5545146151376425261
 Transform:
   m_ObjectHideFlags: 0
@@ -78802,8 +78804,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   checkKill: 1
   index_ID: 0
-  SpawnerPrefab: {fileID: 0}
-  spawnePos: []
+  SpawnerPrefab: {fileID: 3776672629999166922, guid: b6ec13b85298fce43930bbc7ffd6c053,
+    type: 3}
+  spawnePos:
+  - {fileID: 3300618797296518215}
+  - {fileID: 9210349855911423095}
 --- !u!4 &8429986103929716287
 Transform:
   m_ObjectHideFlags: 0
