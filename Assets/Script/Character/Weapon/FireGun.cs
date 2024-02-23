@@ -16,10 +16,10 @@ public class FireGun : WeaponTable
     }
     public override void Initsetting()
     {
-        Data.ShotDelay = 0.3f;
-        Data.MaxBullet = 30;
-        Data.CurBullet = 30;
-        Data.Damage = 10;
+        Data.ShotDelay = 0.03f;
+        Data.MaxBullet = 300;
+        Data.CurBullet = 300;
+        Data.Damage = 1;
         Data.triggerName = "IsFireGun";
     }
 

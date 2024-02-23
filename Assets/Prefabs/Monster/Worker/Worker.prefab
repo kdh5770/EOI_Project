@@ -149,11 +149,9 @@ MonoBehaviour:
   moveRange: 0
   sightRange: 10
   attackRange: 0
-  lowBlood: {fileID: 2232662728709046839, guid: 5b81b9f1fd600654991c314e95e9e692,
-    type: 3}
-  middleBlood: {fileID: 2777858941450950115, guid: ab54333c20d70fe4790b4ed80fa379c3,
-    type: 3}
-  highBlood: {fileID: 77058900600929839, guid: acf69c953b1128942940a6232fdd13a4, type: 3}
+  lowBlood: {fileID: 9019963165879699380}
+  middleBlood: {fileID: 1941701028106184879}
+  highBlood: {fileID: 1256336125236249883}
 --- !u!195 &2772928981826424643
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -364,6 +362,12 @@ PrefabInstance:
 --- !u!4 &1256336125236249881 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 77058900600929837, guid: acf69c953b1128942940a6232fdd13a4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1188567283994934068}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1256336125236249883 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 77058900600929839, guid: acf69c953b1128942940a6232fdd13a4,
     type: 3}
   m_PrefabInstance: {fileID: 1188567283994934068}
   m_PrefabAsset: {fileID: 0}
@@ -1682,6 +1686,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4359098723198057804}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1941701028106184879 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2777858941450950115, guid: ab54333c20d70fe4790b4ed80fa379c3,
+    type: 3}
+  m_PrefabInstance: {fileID: 4359098723198057804}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6304351576964670280
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2529,6 +2539,12 @@ PrefabInstance:
 --- !u!4 &8099696471223249792 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1420530949293354499, guid: 5b81b9f1fd600654991c314e95e9e692,
+    type: 3}
+  m_PrefabInstance: {fileID: 7192629420512445827}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9019963165879699380 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2232662728709046839, guid: 5b81b9f1fd600654991c314e95e9e692,
     type: 3}
   m_PrefabInstance: {fileID: 7192629420512445827}
   m_PrefabAsset: {fileID: 0}
