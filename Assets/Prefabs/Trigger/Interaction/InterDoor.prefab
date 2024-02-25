@@ -176,6 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5575547162317227088}
   - component: {fileID: 5575547162317227095}
+  - component: {fileID: 9009445305357169488}
   m_Layer: 0
   m_Name: InterDoor
   m_TagString: Untagged
@@ -221,6 +222,19 @@ MonoBehaviour:
   - {fileID: 5575547163764214441}
   - {fileID: 5575547163401617862}
   - {fileID: 5575547163322927764}
+--- !u!65 &9009445305357169488
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5575547162317227094}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: -8, y: 7.9, z: 1}
+  m_Center: {x: -0.54, y: 1.7, z: 0}
 --- !u!1 &5575547163322927764
 GameObject:
   m_ObjectHideFlags: 0

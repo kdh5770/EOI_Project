@@ -11,12 +11,15 @@ public class DoorMover : Interaction
     public List<GameObject> doorObj;
     private Vector3[] directions = new Vector3[4];
 
+    Rigidbody bc;
+
     private void Start()
     {
         directions[0] = new Vector3(-1, 1, 0);  // Northwest
         directions[1] = new Vector3(1, 1, 0);   // Northeast
         directions[2] = new Vector3(-1, -1, 0); // Southwest
         directions[3] = new Vector3(1, -1, 0);  // Southeast
+        bc= GetComponent<Rigidbody>();
     }
     public override void Interact()
     {
@@ -38,6 +41,8 @@ public class DoorMover : Interaction
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+
+        bc.gameObject.SetActive(false);
     }
 
 }
