@@ -9,21 +9,21 @@ public class InteractionState : CharaterBaseState
     }
     public override void OnEnterState()
     {
-        throw new System.NotImplementedException();
+        controller.animator.SetTrigger("IsInterAction");
     }
 
     public override void OnExitState()
     {
-        throw new System.NotImplementedException();
+
     }
 
     public override void OnFixedUpdateState()
     {
-        throw new System.NotImplementedException();
+
     }
 
     public override void OnUpdateState()
     {
-        throw new System.NotImplementedException();
+
     }
 }

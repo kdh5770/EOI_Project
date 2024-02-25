@@ -83,10 +83,6 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
 
 
-
-
-
-
     private void Start()
     {
         mainCamera = Camera.main;
@@ -327,6 +323,16 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     public void OnCloaking(InputAction.CallbackContext _context)
     {
 
+    }
+
+
+
+    public void OnInterAction(InputAction.CallbackContext _context)
+    {
+        if(_context.performed)
+        {
+            ChangeState(CharacterSTATE.INTERACTION);
+        }
     }
 
     public void OnPsychokinesis(InputAction.CallbackContext _context)

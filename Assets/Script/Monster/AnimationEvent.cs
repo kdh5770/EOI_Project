@@ -5,6 +5,7 @@ public class AnimationEvent : MonoBehaviour
 {
     MonsterFSM monsterFSM;
     public event Action ActionAttack;
+
     private void Start()
     {
         monsterFSM = transform.root.GetComponent<MonsterFSM>();

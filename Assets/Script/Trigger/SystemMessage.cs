@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class SystemMessage : Interaction
@@ -9,6 +10,6 @@ public class SystemMessage : Interaction
     public string messageText;
     public override void Interact()
     {
-        Debug.Log(messageText);
+        Gamemanager.instance.characterUI.SetMissiontxt(messageText);
     }
 }

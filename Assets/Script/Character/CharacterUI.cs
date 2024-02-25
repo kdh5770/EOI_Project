@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Reflection;
+
 
 
 public class CharacterUI : MonoBehaviour
@@ -22,13 +24,16 @@ public class CharacterUI : MonoBehaviour
 
     public Slider potionGauge;
     public TMP_Text potionText;
-
+    public TMP_Text missionText;
     public TMP_Text dialogueText;
+
     private Queue<string> dialogues = new Queue<string>();
+    private Queue<string> missions = new Queue<string>(); //미션 txt 
+
+
     private IEnumerator dialogueCor;
 
     public Image effectImage;
-
     public Image bloodFrame;
     public Image bloodEffect;
 
@@ -55,6 +60,7 @@ public class CharacterUI : MonoBehaviour
                 StartCoroutine(effectCor);
             }
         }
+
         else
         {
             isDanger = false;
@@ -92,16 +98,28 @@ public class CharacterUI : MonoBehaviour
     {
         dialogues.Enqueue(_masseage);
 
-        if(dialogueCor == null)
+        if (dialogueCor == null)
         {
             dialogueCor = OutputTextGradually();
             StartCoroutine(dialogueCor);
         }
     }
 
+    public void SetMissiontxt(string _masseage)
+    {
+        missions.Enqueue(_masseage);
+        missionText.text = _masseage.ToString();
+        
+/*        // 만약 임무를 성공 했을 때
+        if (성공조건)
+        {
+            missions.Dequeue();
+        }*/
+    }
+
     public void HandleBullet()
     {
-        
+
     }
 
     IEnumerator SinFadeImage()
@@ -115,7 +133,6 @@ public class CharacterUI : MonoBehaviour
             effect.a = alpha;
             bloodEffect.color = effect;
             yield return null; // Wait for the next frame
-
         }
 
         effect.a = 0f;
@@ -134,6 +151,7 @@ public class CharacterUI : MonoBehaviour
             effectImage.color = newColor;
             yield return null;
         }
+
         newColor.a = 0f;
         effectImage.color = newColor;
         effectImage.sprite = null;
@@ -143,7 +161,7 @@ public class CharacterUI : MonoBehaviour
     {
         dialogueText.enabled = true;
 
-        while(dialogues.TryDequeue(out var dialogue))
+        while (dialogues.TryDequeue(out var dialogue))
         {
             dialogueText.text = dialogue;
             yield return outputTextDeley;
