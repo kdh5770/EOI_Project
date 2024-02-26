@@ -16,7 +16,7 @@ public class CutSceneInteraction : Interaction
 
     public override void Interact()
     {
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
         Gamemanager.instance.timeLineManager.SetInteraction(pd, timeLine);
         pd.stopped += OnTimelineStopped; // 타임라인이 끝날 때 재개되도록 설정
     }
@@ -27,7 +27,7 @@ public class CutSceneInteraction : Interaction
         {
             Destroy(interaction.gameObject);
         }
-        Time.timeScale = 1;
+        //Time.timeScale = 1;
         pd.stopped -= OnTimelineStopped; // 이벤트 리스너를 제거
     }
 }

@@ -7,6 +7,7 @@ public class InteractionState : CharaterBaseState
     {
         controller = _characterController;
     }
+
     public override void OnEnterState()
     {
         controller.animator.SetTrigger("IsInterAction");
