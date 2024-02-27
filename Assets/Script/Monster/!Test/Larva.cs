@@ -32,26 +32,26 @@ public class Larva : MonsterStatus
         }
     }
 
-    public void Update()
-    {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, shotTarget);
+    //public void Update()
+    //{
+    //    Collider[] colliders = Physics.OverlapSphere(transform.position, shotTarget);
 
-        if (colliders.Length > 0)
-        {
-            foreach (Collider col in colliders)
-            {
-                if (col.CompareTag("Player"))
-                {
-                    target = col.gameObject;
-                    break;
-                }
-            }
-        }
-        if(target != null)
-        {
-            bullet = Instantiate(bullet, shotPos.transform.position, Quaternion.identity);
-        }
-    }
+    //    if (colliders.Length > 0)
+    //    {
+    //        foreach (Collider col in colliders)
+    //        {
+    //            if (col.CompareTag("Player"))
+    //            {
+    //                target = col.gameObject;
+    //                break;
+    //            }
+    //        }
+    //    }
+    //    if(target != null)
+    //    {
+    //        bullet = Instantiate(bullet, shotPos.transform.position, Quaternion.identity);
+    //    }
+    //}
     public void LarvaBoom()
     {
         //gameObject.GetComponent<Collider>().enabled = false;
