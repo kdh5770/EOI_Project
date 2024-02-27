@@ -51391,6 +51391,7 @@ GameObject:
   - component: {fileID: 2136022124}
   - component: {fileID: 2136022122}
   - component: {fileID: 2136022121}
+  - component: {fileID: 2136022126}
   m_Layer: 0
   m_Name: "Special egg (RED) : \uBD80\uD654\uC2E4 1\uC5D0 \uC788\uC74C"
   m_TagString: InterActionObj
@@ -51493,6 +51494,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2136022119}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2136022126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136022119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0869667b641a9e4b808df44c1cb90bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EBtn: {fileID: 7863844131986096763}
 --- !u!1001 &2140030949
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -77859,7 +77873,6 @@ GameObject:
   - component: {fileID: 6543852869956561357}
   - component: {fileID: 6543852869956561358}
   - component: {fileID: 6543852869956561359}
-  - component: {fileID: 6543852869956561360}
   - component: {fileID: 6543852869956561361}
   m_Layer: 0
   m_Name: "\uBC14\uC704 \uC624\uBE0C\uC81D\uD2B8 \uC6C0\uC9C1\uC5EC\uC11C \uC785\uAD6C
@@ -77942,21 +77955,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6543852869956561360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6543852869956561356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Events:
-    m_Signals: []
-    m_Events: []
 --- !u!114 &6543852869956561361
 MonoBehaviour:
   m_ObjectHideFlags: 0

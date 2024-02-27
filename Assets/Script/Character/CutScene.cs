@@ -22,13 +22,11 @@ public class CutScene : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.CompareTag("Player"))
         {
-            //other.gameObject.SetActive(false);
-            //pd.Play(Tl[0]);
+            pd.Play(Tl[0]);
             player.enabled = false; // 플레이어 이동불가상태 만들기
             //other.gameObject.SetActive(false); ;
-            //pd.Play(Tl[0]);
             StartCoroutine(CutSceneIsPlayed()); // 코루틴 사용 11초 후 플레이어 이동 재개
         }
     }

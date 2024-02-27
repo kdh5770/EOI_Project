@@ -14,6 +14,7 @@ public enum CharacterSTATE
     ATTACK,
     SKILL,
     SUIT,
+    SCENEPLAY,
     INTERACTION,
     REACTION,
     DEATH
@@ -126,6 +127,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         states.Add(CharacterSTATE.ATTACK, new AttackState(gameObject.GetComponent<CharacterStateController>()));
         states.Add(CharacterSTATE.SKILL, new SkillState(gameObject.GetComponent<CharacterStateController>()));
         states.Add(CharacterSTATE.SUIT, new SuitState(gameObject.GetComponent<CharacterStateController>()));
+        states.Add(CharacterSTATE.SCENEPLAY, new ScenePlayState(gameObject.GetComponent<CharacterStateController>()));
         states.Add(CharacterSTATE.INTERACTION, new InteractionState(gameObject.GetComponent<CharacterStateController>()));
         states.Add(CharacterSTATE.REACTION, new ReactionState(gameObject.GetComponent<CharacterStateController>()));
         states.Add(CharacterSTATE.DEATH, new DeathState(gameObject.GetComponent<CharacterStateController>()));
