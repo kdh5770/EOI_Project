@@ -10,32 +10,33 @@ public class WatcherThrow : Attack
     public Transform BulletTf;
     [Header("생성된 발사체")]
     public GameObject BulletEft;
-    private const float offest = 0.5f;
     private Vector3 direction;
+
     public override void ExecuteAttack(GameObject _target)
     {
         animationEvent.ActionAttack += ActionAttack;
         target = _target;
-        
 
-        direction = ((target.transform.position + target.transform.up * offest) - transform.root.position).normalized;
-        transform.LookAt(target.transform.position);
+        // 타겟 방향 계산
+        Vector3 targetPosition = target.transform.position;
+        targetPosition.y += 1f; // 높이를 1만큼 올립니다.
 
-        //BulletEft = Instantiate(BulletEftPre, BulletTf.transform.position, Quaternion.LookRotation(direction));
+        Vector3 targetDirection = (targetPosition - BulletTf.position).normalized;
 
-        //BulletEft.GetComponent<Rigidbody>().velocity = direction * 30f;
-        //BulletEft.transform.LookAt(target.transform.position + target.transform.up * offest);
-        
-        //BulletEft.GetComponent<Rigidbody>().AddForce(BulletEft.transform.forward * 15f, ForceMode.Impulse);
-        //Destroy(BulletEft, 5f);
+        // 발사체 방향 계산 (타겟 위치 - 발사 위치)
+        direction = targetDirection;
+        transform.LookAt(targetPosition);
 
         animator.SetTrigger("isThrow");
     }
 
     public override void ActionAttack()
     {
+        // 발사체 생성 후 방향 설정
         BulletEft = Instantiate(BulletEftPre, BulletTf.transform.position, Quaternion.LookRotation(direction));
-        BulletEft.GetComponent<Rigidbody>().AddForce(BulletEft.transform.forward * 30f, ForceMode.Impulse);
+
+        // 발사체에 힘을 가하여 이동
+        BulletEft.GetComponent<Rigidbody>().velocity = direction * 30f; // 타겟 방향으로 발사체를 이동시킵니다.
         Destroy(BulletEft, 5f);
         animationEvent.ActionAttack -= ActionAttack;
     }
