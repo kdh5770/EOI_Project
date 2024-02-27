@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Mutant_Spawn : MonoBehaviour
 {
-    Transform monster;
+    [Header("몬스터 유무")]
+    public Transform monster;
     [Header("보스&이펙트 소환 위치")]
     public Transform spawn_Boss;
     [Header("뮤턴트 프리팹")]
