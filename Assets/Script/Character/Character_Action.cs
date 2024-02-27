@@ -85,53 +85,53 @@ public class Character_Action : MonoBehaviour
     }
 
 
-/*    void OnAim()
-    {
-        if (_input.aim && !_input.sprint)
+    /*    void OnAim()
         {
-            AimControll(true);
-
-            _animator.SetLayerWeight(1, 1);
-
-            Vector3 targetPosition = Vector3.zero;
-
-            if (Physics.Raycast(camTransform.position, camTransform.forward, out hit, Mathf.Infinity, targetLayer))
+            if (_input.aim && !_input.sprint)
             {
-                targetPosition = hit.point;
-                aimObj.transform.position = hit.point;
-                //spotLight.transform.LookAt(aimObj.transform.position);
+                AimControll(true);
+
+                _animator.SetLayerWeight(1, 1);
+
+                Vector3 targetPosition = Vector3.zero;
+
+                if (Physics.Raycast(camTransform.position, camTransform.forward, out hit, Mathf.Infinity, targetLayer))
+                {
+                    targetPosition = hit.point;
+                    aimObj.transform.position = hit.point;
+                    //spotLight.transform.LookAt(aimObj.transform.position);
+                }
+
+                else
+                {
+                    targetPosition = camTransform.position + camTransform.forward * aimObjDis;
+                    aimObj.transform.position = camTransform.position + camTransform.forward * aimObjDis;
+                    //spotLight.transform.LookAt(aimObj.transform.position);
+                }
+
+                *//*            Vector3 targetAim = targetPosition;
+                            targetAim.y = transform.position.y;
+                            Vector3 aimDir = (targetAim - transform.position).normalized;
+
+                            transform.forward = Vector3.Lerp(transform.forward, aimDir, Time.deltaTime * 30f);*//*
+
             }
 
             else
             {
-                targetPosition = camTransform.position + camTransform.forward * aimObjDis;
-                aimObj.transform.position = camTransform.position + camTransform.forward * aimObjDis;
-                //spotLight.transform.LookAt(aimObj.transform.position);
+                AimControll(false);
+                _animator.SetLayerWeight(1, 0);
+                //_animator.SetBool("Shoot", false);
             }
+        }*/
 
-            *//*            Vector3 targetAim = targetPosition;
-                        targetAim.y = transform.position.y;
-                        Vector3 aimDir = (targetAim - transform.position).normalized;
-
-                        transform.forward = Vector3.Lerp(transform.forward, aimDir, Time.deltaTime * 30f);*//*
-
-        }
-
-        else
+    /*    void AimControll(bool isCheck)
         {
-            AimControll(false);
-            _animator.SetLayerWeight(1, 0);
-            //_animator.SetBool("Shoot", false);
+            AimCam.gameObject.SetActive(isCheck);
+            //AimImage.SetActive(isCheck);
+            _animator.SetBool("Aiming", isCheck);
         }
-    }*/
-
-/*    void AimControll(bool isCheck)
-    {
-        AimCam.gameObject.SetActive(isCheck);
-        //AimImage.SetActive(isCheck);
-        _animator.SetBool("Aiming", isCheck);
-    }
-*/
+    */
     public void OnShoot()
     {
         if (/*_input.aim && */!_animator.GetCurrentAnimatorStateInfo(1).IsTag("Shoot") && !_input.sprint)
@@ -154,7 +154,7 @@ public class Character_Action : MonoBehaviour
                     Instantiate(ImpactParticleSystem, hit.point, Quaternion.LookRotation(hit.normal));
                     GameObject eftObj = Instantiate(BloodObj, hit.point, Quaternion.identity);
                     eftObj.transform.LookAt(camTransform.transform.position);
-                    Destroy(eftObj, 1f);                  
+                    Destroy(eftObj, 1f);
                 }
                 else
                 {
