@@ -22254,7 +22254,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &970804554
 Transform:
   m_ObjectHideFlags: 0
@@ -22262,8 +22262,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 970804553}
-  m_LocalRotation: {x: 0.00068251626, y: -0.9987105, z: 0.0048502535, w: -0.05053184}
-  m_LocalPosition: {x: -23.655844, y: 7.9120145, z: -52.664925}
+  m_LocalRotation: {x: 0.0007355806, y: 0.99889976, z: -0.01678915, w: 0.043782864}
+  m_LocalPosition: {x: -23.850628, y: 8.16387, z: -42.94687}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -67479,12 +67479,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'index_03_l'\n\tTransform 'lowerarm_l'\n\tTransform
-    'root'\n\tTransform 'pinky_03_l'\n\tTransform 'neck_01'\n\tTransform 'pinky_03_r'\n\tTransform
-    'clavicle_l'\n\tTransform 'ring_02_l'\n\tTransform 'ball_l'\n\tTransform 'hand_l'\n\tand
-    more ..."
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -77865,6 +77860,7 @@ GameObject:
   - component: {fileID: 6543852869956561358}
   - component: {fileID: 6543852869956561359}
   - component: {fileID: 6543852869956561360}
+  - component: {fileID: 6543852869956561361}
   m_Layer: 0
   m_Name: "\uBC14\uC704 \uC624\uBE0C\uC81D\uD2B8 \uC6C0\uC9C1\uC5EC\uC11C \uC785\uAD6C
     \uB9C9\uD788\uB294\uAC78 \uBCF4\uC5EC\uC8FC\uAE30"
@@ -77961,6 +77957,20 @@ MonoBehaviour:
   m_Events:
     m_Signals: []
     m_Events: []
+--- !u!114 &6543852869956561361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6543852869956561356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31fff145db70f6a4c9780500eaf8a805, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tl: []
+  player: {fileID: 3854090645595469724}
 --- !u!1 &6543852870004095740
 GameObject:
   m_ObjectHideFlags: 0
