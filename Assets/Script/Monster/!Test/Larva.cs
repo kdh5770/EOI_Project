@@ -23,6 +23,9 @@ public class Larva : MonsterStatus
     [Header("Å¸°Ù ¹üÀ§")]
     public int shotTarget = 50;
 
+    float count;
+    private Vector3 direction;
+
     public override void CalculateDamage(float _damage)
     {
         base.CalculateDamage(_damage);
@@ -32,26 +35,35 @@ public class Larva : MonsterStatus
         }
     }
 
-    //public void Update()
-    //{
-    //    Collider[] colliders = Physics.OverlapSphere(transform.position, shotTarget);
+    public void Update()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, shotTarget);
 
-    //    if (colliders.Length > 0)
-    //    {
-    //        foreach (Collider col in colliders)
-    //        {
-    //            if (col.CompareTag("Player"))
-    //            {
-    //                target = col.gameObject;
-    //                break;
-    //            }
-    //        }
-    //    }
-    //    if(target != null)
-    //    {
-    //        bullet = Instantiate(bullet, shotPos.transform.position, Quaternion.identity);
-    //    }
-    //}
+        if (colliders.Length > 0)
+        {
+            foreach (Collider col in colliders)
+            {
+                if (col.CompareTag("Player"))
+                {
+                    target = col.gameObject;
+                    break;
+                }
+            }
+        }
+        Vector3 targetPosition = target.transform.position;
+        targetPosition.y += 1f;
+
+        Vector3 targetDirection = (targetPosition - shotPos.position).normalized;
+        direction = targetDirection;
+        count += Time.deltaTime;
+        if(count >= 2f)
+        {
+            GameObject BulletEft = Instantiate(bullet, shotPos.transform.position, Quaternion.LookRotation(direction));
+            BulletEft.GetComponent<Rigidbody>().velocity = direction * 30f;
+            Destroy(BulletEft, 5f);
+            count = 0;
+        }
+    }
     public void LarvaBoom()
     {
         //gameObject.GetComponent<Collider>().enabled = false;
@@ -62,6 +74,7 @@ public class Larva : MonsterStatus
             target.GetComponent<CharacterHealth>().TakeDamage(10);
         }
         Destroy(boomPreObj, 2f);
+        Destroy(gameObject);
     }
 
     private void OnDestroy()
