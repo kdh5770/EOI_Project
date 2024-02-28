@@ -22,6 +22,11 @@ public class Title : MonoBehaviour
             Options.enabled = false;
             Load.enabled = false;
         }
+
+        if(!Options.enabled)
+        {
+
+        }
     }
 
 
