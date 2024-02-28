@@ -17,4 +17,16 @@ public class InputTrigger : MonoBehaviour
             }
         }
     }
+
+
+/*    private void OnTriggerStay(Collider other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            if(Input.GetKey(KeyCode.E))
+            {
+                InputPlayerTrigger();
+            }
+        }
+    }*/
 }

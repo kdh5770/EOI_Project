@@ -11,40 +11,31 @@ public class CutScene : MonoBehaviour
 {
     private PlayableDirector pd;
     public TimelineAsset[] Tl;
-    [SerializeField]
-    private Text ShakeSceneText;
-    private CharacterInputSystem _input;
+    public CharacterStateController player;
     // Start is called before the first frame update
     void Start()
     {
-        pd=GetComponent<PlayableDirector>();
-        _input=GetComponent<CharacterInputSystem>();
+        pd = GetComponent<PlayableDirector>();
+        player=GetComponent<CharacterStateController>();
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "CutScene")
+        if (other.CompareTag("Player"))
         {
-            if (_input.interaction) // 상호작용 키 e 를 눌렀을 때
-            {
-
-                other.gameObject.SetActive(false);
-                pd.Play(Tl[0]);
-                GetComponent<PlayerInput>().enabled = false; // 플레이어 이동불가상태 만들기
-                other.gameObject.SetActive(false); ;
-                pd.Play(Tl[0]);
-                StartCoroutine(CutSceneIsPlayed()); // 코루틴 사용 11초 후 플레이어 이동 재개
-
-            }
+            pd.Play(Tl[0]);
+            player.enabled = false; // 플레이어 이동불가상태 만들기
+            //other.gameObject.SetActive(false); ;
+            StartCoroutine(CutSceneIsPlayed()); // 코루틴 사용 11초 후 플레이어 이동 재개
         }
     }
 
 
-    IEnumerator CutSceneIsPlayed() 
+    IEnumerator CutSceneIsPlayed()
     {
         yield return new WaitForSeconds(11f);
-        GetComponent<PlayerInput>().enabled = true;
+        player.enabled = true;
     }
 
 

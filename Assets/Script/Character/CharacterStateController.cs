@@ -7,13 +7,13 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 using UnityEngine.InputSystem.XR;
 
-
 public enum CharacterSTATE
 {
     MOVE,
     ATTACK,
     SKILL,
     SUIT,
+    SCENEPLAY,
     INTERACTION,
     REACTION,
     DEATH
@@ -50,9 +50,6 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
     public CharaterBaseState curState;
 
-
-
-
     public bool isSprint;
     public bool isAiming;
 
@@ -68,7 +65,6 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     //private float pullDistance = 10f; // 끌어들이는 거리
     private LayerMask targetLayer;
 
-
     [SerializeField]
     private List<GameObject> weaponImg = new List<GameObject>();
 
@@ -77,11 +73,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     int weaponnum = 0;
     public CharacterSTATE Debug_state;
 
-
     /////////////////////////////////////////////////// 슈트 변수 추가해야 함.
-
-
-
 
     private void Start()
     {
@@ -112,12 +104,11 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         curState = states[_state];
         curState?.OnEnterState();
         Debug_state = _state;
-        //Debug.Log(_state.ToString());
     }
 
     public void ChangeReactionState(REACT_TYPE _state)
     {
-        throw new System.NotImplementedException();
+
     }
 
     void InitState()
@@ -126,6 +117,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         states.Add(CharacterSTATE.ATTACK, new AttackState(gameObject.GetComponent<CharacterStateController>()));
         states.Add(CharacterSTATE.SKILL, new SkillState(gameObject.GetComponent<CharacterStateController>()));
         states.Add(CharacterSTATE.SUIT, new SuitState(gameObject.GetComponent<CharacterStateController>()));
+        states.Add(CharacterSTATE.SCENEPLAY, new ScenePlayState(gameObject.GetComponent<CharacterStateController>()));
         states.Add(CharacterSTATE.INTERACTION, new InteractionState(gameObject.GetComponent<CharacterStateController>()));
         states.Add(CharacterSTATE.REACTION, new ReactionState(gameObject.GetComponent<CharacterStateController>()));
         states.Add(CharacterSTATE.DEATH, new DeathState(gameObject.GetComponent<CharacterStateController>()));
@@ -144,11 +136,11 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
             rigidbody.velocity = new Vector3(moveVector.x, rigidbody.velocity.y, moveVector.z);
 
             /////////////////
-            /*            if (moveVector.magnitude > 0f && !isAiming)
-                        {
-                            Quaternion newRotation = Quaternion.LookRotation(moveVector);//, Vector3.up);
-                            transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 10f);
-                        }*/
+            /*if (moveVector.magnitude > 0f && !isAiming)
+            {
+                Quaternion newRotation = Quaternion.LookRotation(moveVector);//, Vector3.up);
+                transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 10f);
+            }*/
         }
 
         else
@@ -171,7 +163,6 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         CinemachineCameraTarget.transform.rotation = Quaternion.Euler(cinemachineTargetPitch + 0f, cinemachineTargetYaw, 0.0f);
     }
 
-
     private static float ClampAngle(float IfAngle, float IfMin, float IfMax) // 카메라 각도 관련
     {
         if (IfAngle < -360f) IfAngle += 360f;
@@ -192,7 +183,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
     /*    public void OnSprint(InputAction.CallbackContext _context)
         {
-            if (*//*!isAiming &&*//*curState == states[CharacterSTATE.MOVE])
+            if (!isAiming && curState == states[CharacterSTATE.MOVE])
             {
                 if (_context.performed)
                 {
@@ -201,6 +192,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
                         isSprint = true;
                     }
                 }
+
                 else
                 {
                     isSprint = false;
@@ -217,6 +209,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
             cinemachineTargetYaw += mouseDir.x * rotationSensitivity * Time.deltaTime;
             cinemachineTargetPitch += mouseDir.y * rotationSensitivity * Time.deltaTime;
         }
+
         cinemachineTargetYaw = ClampAngle(cinemachineTargetYaw, float.MinValue, float.MaxValue);
         cinemachineTargetPitch = ClampAngle(cinemachineTargetPitch, BottomClamp, TopClamp);
     }
@@ -252,6 +245,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         if (_context.performed && curWeapon.Data.CurBullet > 0 && !animator.GetCurrentAnimatorStateInfo(1).IsTag("Reload"))
         {
             ChangeState(CharacterSTATE.ATTACK);
+
             if (curState == states[CharacterSTATE.ATTACK])
             {
                 if (_context.interaction is HoldInteraction)
@@ -271,6 +265,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
                 }
             }
         }
+
         else if (_context.canceled)
         {
             curWeapon.canShooting = false;
@@ -296,7 +291,6 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
             curWeapon.Data.CurBullet = curWeapon.Data.MaxBullet;
         }
     }
-
 
     public void OnFlying(InputAction.CallbackContext _context)
     {
@@ -325,11 +319,9 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
     }
 
-
-
     public void OnInterAction(InputAction.CallbackContext _context)
     {
-        if(_context.performed)
+        if (_context.performed)
         {
             ChangeState(CharacterSTATE.INTERACTION);
         }
@@ -358,7 +350,6 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
             {
                 weaponnum = 0;
             }
-
         }
 
         weapons[weaponnum].gameObject.SetActive(true);

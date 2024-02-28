@@ -7,19 +7,23 @@ public class ShowEKeyBtn : MonoBehaviour
     [SerializeField]
     private GameObject EBtn;
 
-    private void OnCollisionEnter(Collision collision)
+
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "CutScene")
+        if(other.CompareTag("Player"))
         {
+            Debug.Log("asdasd");
             StartCoroutine(Blink());
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
         EBtn.SetActive(false);
         StopAllCoroutines();
     }
+
 
     IEnumerator Blink()
     {
