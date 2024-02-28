@@ -14,6 +14,7 @@ public class Gamemanager : MonoBehaviour
     public PoolManager poolManager;
     public TimeLineManager timeLineManager;
     public DatabaseManager databaseManager;
+    public CutSceneInteraction cutsceneinteraction;
 
     private void Awake()
     {

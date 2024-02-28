@@ -19,6 +19,7 @@ public class AllKillTrigger : Interaction
             }
         }
         Gamemanager.instance.spawnManager.AllKillAction -= EventAllKill;
+        Debug.Log(Gamemanager.instance.spawnManager.killCount);
     }
 
     public override void Interact()

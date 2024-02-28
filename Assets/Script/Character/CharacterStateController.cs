@@ -1,4 +1,5 @@
 using Cinemachine;
+using JetBrains.Annotations;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -91,6 +92,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     private void Update()
     {
         curState?.OnUpdateState();
+        Debug.Log(Gamemanager.instance.cutsceneinteraction.isinteraction);
     }
 
     private void FixedUpdate()
@@ -125,6 +127,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
     public void MoveUpdate()
     {
+
         if (inputDir != Vector3.zero)
         {
             applySpeed = moveSpeed;
@@ -157,9 +160,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
     public void RotateUpdate()
     {
-        /*        if (isAiming)*/
         transform.rotation = Quaternion.Euler(0f, cinemachineTargetYaw, 0.0f);
-
         CinemachineCameraTarget.transform.rotation = Quaternion.Euler(cinemachineTargetPitch + 0f, cinemachineTargetYaw, 0.0f);
     }
 

@@ -12,12 +12,15 @@ public class CutSceneInteraction : Interaction
     [Header("타임라인에 사용된 오브젝트 파괴")]
     public List<GameObject> gameobjects;
 
+    public bool isinteraction;
+
     public float boss;
 
     public override void Interact()
     {
         //Time.timeScale = 0;
         Gamemanager.instance.timeLineManager.SetInteraction(pd, timeLine);
+        isinteraction = true;
         pd.stopped += OnTimelineStopped; // 타임라인이 끝날 때 재개되도록 설정
     }
 
@@ -28,6 +31,7 @@ public class CutSceneInteraction : Interaction
             Destroy(interaction.gameObject);
         }
         //Time.timeScale = 1;
+        isinteraction = false;
         pd.stopped -= OnTimelineStopped; // 이벤트 리스너를 제거
     }
 }

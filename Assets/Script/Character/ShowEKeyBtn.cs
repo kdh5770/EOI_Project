@@ -13,7 +13,6 @@ public class ShowEKeyBtn : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            Debug.Log("asdasd");
             StartCoroutine(Blink());
         }
     }
@@ -23,7 +22,6 @@ public class ShowEKeyBtn : MonoBehaviour
         EBtn.SetActive(false);
         StopAllCoroutines();
     }
-
 
     IEnumerator Blink()
     {

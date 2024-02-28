@@ -11253,7 +11253,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &508773940
 Transform:
   m_ObjectHideFlags: 0
@@ -21049,6 +21049,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: InterDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 5575547162317227094, guid: 0a564646f088ada4cbfc1a87905d7630,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a564646f088ada4cbfc1a87905d7630, type: 3}
 --- !u!114 &937153683 stripped
@@ -22248,13 +22253,14 @@ GameObject:
   m_Component:
   - component: {fileID: 970804554}
   - component: {fileID: 970804555}
+  - component: {fileID: 970804556}
   m_Layer: 0
   m_Name: CM vcam2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &970804554
 Transform:
   m_ObjectHideFlags: 0
@@ -22309,6 +22315,27 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1651444148}
+--- !u!95 &970804556
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970804553}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &974750444 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2437385140318257818, guid: 9f475b697bf4eb04c85b932c9ad56599,
@@ -53072,7 +53099,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &498797196470095785
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -54321,7 +54348,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1150639876400429726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67471,7 +67498,12 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'index_03_l'\n\tTransform 'lowerarm_l'\n\tTransform
+    'root'\n\tTransform 'pinky_03_l'\n\tTransform 'neck_01'\n\tTransform 'pinky_03_r'\n\tTransform
+    'clavicle_l'\n\tTransform 'ring_02_l'\n\tTransform 'ball_l'\n\tTransform 'hand_l'\n\tand
+    more ..."
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -77851,7 +77883,6 @@ GameObject:
   - component: {fileID: 6543852869956561357}
   - component: {fileID: 6543852869956561358}
   - component: {fileID: 6543852869956561359}
-  - component: {fileID: 6543852869956561361}
   m_Layer: 0
   m_Name: "\uBC14\uC704 \uC624\uBE0C\uC81D\uD2B8 \uC6C0\uC9C1\uC5EC\uC11C \uC785\uAD6C
     \uB9C9\uD788\uB294\uAC78 \uBCF4\uC5EC\uC8FC\uAE30"
@@ -77874,7 +77905,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeLine: {fileID: 11400000, guid: 55cf238cdc972254f9da0b78747692e3, type: 2}
   pd: {fileID: 6543852869956561358}
-  gameobjects: []
+  gameobjects:
+  - {fileID: 6560802255355559334}
   boss: 0
 --- !u!320 &6543852869956561358
 PlayableDirector:
@@ -77888,7 +77920,7 @@ PlayableDirector:
   m_PlayableAsset: {fileID: 11400000, guid: 55cf238cdc972254f9da0b78747692e3, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
-  m_DirectorUpdateMode: 1
+  m_DirectorUpdateMode: 2
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: 7680991069970210725, guid: 55cf238cdc972254f9da0b78747692e3, type: 2}
@@ -77903,8 +77935,10 @@ PlayableDirector:
     - 772b94fc645e40c498171cc816dc9a7c: {fileID: 7416510381262368512}
     - a51f9bb2f71ba1345a6a90f235a766cd: {fileID: 3946896779999491103}
     - f2c53d584f523014ebec0a05490d8796: {fileID: 8779704961917879933}
+    - 82a1070c5fc0f1e469353998b733eb5f: {fileID: 7416510381262368512}
     - 1c3598349d02e2644bd9c59ba1e58c74: {fileID: 3946896779043584703}
     - 3b41c892d11cb2e4a882ca3d3d3db85b: {fileID: 8779704961917879933}
+    - 695f466eb80a45948a0a54ffc82cdc15: {fileID: 5605488818542483242}
     - f89eacafd4572d24eac468711a29b89a: {fileID: 0}
     - 295ffddb1205f1647a2630c329975dec: {fileID: 5605488818542483242}
     - 3376b2ee3972b684fb2a6d4a03ff9d5c: {fileID: 6543852869956561356}
@@ -77933,20 +77967,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6543852869956561361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6543852869956561356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31fff145db70f6a4c9780500eaf8a805, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Tl: []
-  player: {fileID: 3854090645595469724}
 --- !u!1 &6543852870004095740
 GameObject:
   m_ObjectHideFlags: 0
@@ -78280,22 +78300,6 @@ Transform:
   m_Father: {fileID: 1293163712}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 45.094, z: 0}
---- !u!114 &6560802255355559328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6560802255355559334}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d2c0ec18a6ebb147851f46d8587aef1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactions:
-  - {fileID: 2174307921448718491}
-  - {fileID: 7416510381262368526}
-  - {fileID: 6543852869956561357}
 --- !u!65 &6560802255355559329
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -78336,8 +78340,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6560802255355559331}
-  - component: {fileID: 6560802255355559328}
   - component: {fileID: 6560802255355559329}
+  - component: {fileID: 6560802255355559335}
   m_Layer: 8
   m_Name: "\uD1B5\uB85C\uB85C \uC9C4\uC785\uD558\uBA74 \uC9C0\uC9C4\uC77C\uC5B4\uB098\uBA74\uC11C
     \uB3D9\uAD74\uC785\uAD6C \uB9C9\uD798"
@@ -78346,6 +78350,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6560802255355559335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6560802255355559334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d2c0ec18a6ebb147851f46d8587aef1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactions:
+  - {fileID: 7416510381262368526}
+  - {fileID: 6543852869956561357}
 --- !u!1 &6560802255388532176
 GameObject:
   m_ObjectHideFlags: 0
@@ -86594,6 +86613,7 @@ MonoBehaviour:
   poolManager: {fileID: 7319607342067176736}
   timeLineManager: {fileID: 7319607342067176739}
   databaseManager: {fileID: 7319607342067176737}
+  cutsceneinteraction: {fileID: 7319607342067176764}
 --- !u!1 &7319607342067176763
 GameObject:
   m_ObjectHideFlags: 0
@@ -86611,6 +86631,7 @@ GameObject:
   - component: {fileID: 7319607342067176736}
   - component: {fileID: 7319607342067176739}
   - component: {fileID: 7319607342067176737}
+  - component: {fileID: 7319607342067176764}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -86618,6 +86639,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7319607342067176764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7319607342067176763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b80c43cc06d3ff4ab5e081e63cfdfef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLine: {fileID: 0}
+  pd: {fileID: 0}
+  gameobjects: []
+  boss: 0
 --- !u!222 &7319607342067827738
 CanvasRenderer:
   m_ObjectHideFlags: 0
