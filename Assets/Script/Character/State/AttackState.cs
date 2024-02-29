@@ -28,6 +28,7 @@ public class AttackState : CharaterBaseState
         controller.RotateUpdate();
         controller.MoveUpdate();
         controller.ApplyGravity();
+
     }
 
     public override void OnExitState()

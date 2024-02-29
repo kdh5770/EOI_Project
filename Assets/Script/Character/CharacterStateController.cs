@@ -322,6 +322,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         {
             IsFlying = false;
             JetEngine.SetActive(false);
+            rigidbody.useGravity = true;
         }
     }
 
@@ -337,7 +338,6 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         if (_context.performed)
         {
             ChangeState(CharacterSTATE.INTERACTION);
-
         }
     }
 
