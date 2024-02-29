@@ -34,7 +34,6 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     public float applySpeed;
     public float gravityForce = 9.8f; // 중력값 
 
-
     public CinemachineVirtualCamera virtualCamera;
     public GameObject CinemachineCameraTarget;
     public float cinemachineTargetYaw;
@@ -63,7 +62,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     [SerializeField]
     private GameObject JetEngine;
 
-    public float flyForce = 20f;
+    public float flyForce;
     //private float pullDistance = 10f; // 끌어들이는 거리
     private LayerMask targetLayer;
 
@@ -74,7 +73,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     private List<GameObject> Weapons = new List<GameObject>();
     int weaponnum = 0;
     public CharacterSTATE Debug_state;
-
+    bool isShop=false;
     /////////////////////////////////////////////////// 슈트 변수 추가해야 함.
 
     private void Start()
@@ -93,7 +92,6 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     private void Update()
     {
         curState?.OnUpdateState();
-        Debug.Log(Gamemanager.instance.cutsceneinteraction.isinteraction);
     }
 
     private void FixedUpdate()
@@ -350,6 +348,19 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
         else if (_context.canceled)
             ChangeState(CharacterSTATE.MOVE);
+    }
+    
+    public void OpenShop(InputAction.CallbackContext _context)
+    {
+        if(_context.performed)
+        {
+            boolshopchange();
+        }
+    }
+
+    void boolshopchange()
+    {
+        isShop = !isShop;
     }
 
     public void OnChangeWeapon(InputAction.CallbackContext _context)

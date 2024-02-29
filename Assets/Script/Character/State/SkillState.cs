@@ -28,13 +28,11 @@ public class SkillState : CharaterBaseState
         if (controller.IsFlying)
         {
             controller.rigidbody.AddForce(Vector3.up * controller.flyForce, ForceMode.Impulse);
-            controller.animator.SetLayerWeight(1, 0);
         }
 
         if (!controller.IsFlying)
         {
             controller.ApplyGravity();
-            controller.animator.SetLayerWeight(1, 1);
         }
     }
 

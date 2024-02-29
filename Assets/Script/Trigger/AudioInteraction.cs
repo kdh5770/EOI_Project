@@ -8,7 +8,7 @@ public class AudioInteraction : Interaction
     public AudioClip clip;
     public override void Interact()
     {
-        if(clip != null)
+        if (clip != null)
         {
 
         }
