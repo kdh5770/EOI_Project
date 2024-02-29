@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17276844, g: 0.21589245, b: 0.2978263, a: 1}
+  m_IndirectSpecularColor: {r: 0.17276813, g: 0.21589185, b: 0.29782563, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -29598,7 +29598,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!64 &797539292
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -83586,6 +83586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 491a65affa7e3f04aa45ec9c4c8c5bf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rigidbody: {fileID: 0}
   animator: {fileID: 0}
   mainCamera: {fileID: 0}
   health: {fileID: 0}
@@ -83594,6 +83595,7 @@ MonoBehaviour:
   moveSpeed: 5.3
   sprintSpeed: 5.3
   applySpeed: 0
+  gravityForce: 9.8
   virtualCamera: {fileID: 1918942080625013617}
   CinemachineCameraTarget: {fileID: 6174581560453516493}
   cinemachineTargetYaw: 0
@@ -83612,7 +83614,7 @@ MonoBehaviour:
   IsPsychokinesis: 0
   IsFlying: 0
   JetEngine: {fileID: 1698716179}
-  flyForce: 5
+  flyForce: 0.2
   weaponImg:
   - {fileID: 4703656321212712537}
   - {fileID: 4703656320272674654}
@@ -83886,7 +83888,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1918942080625013582}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.721699, y: 3.34636, z: 18.730116}
+  m_LocalPosition: {x: -8.628831, y: 1.678, z: 1.9472523}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -83990,8 +83992,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1918942080645577729}
-  m_LocalRotation: {x: -0.1160827, y: -0.5670762, z: 0.082354225, w: -0.81127506}
-  m_LocalPosition: {x: -6.6116986, y: 3.1963599, z: -0.50988364}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.5188313, y: 1.528, z: -17.292747}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -96453,6 +96455,7 @@ MonoBehaviour:
   poolManager: {fileID: 5328666602952203502}
   timeLineManager: {fileID: 5328666602952203501}
   databaseManager: {fileID: 5328666602952203503}
+  cutsceneinteraction: {fileID: 0}
 --- !u!1 &5328666602952854992
 GameObject:
   m_ObjectHideFlags: 0
@@ -96882,9 +96885,9 @@ MonoBehaviour:
     m_ActionName: Player/Potion
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1809102450341903954}
         m_TargetAssemblyTypeName: CharacterStateController, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: OnFlying
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -96896,26 +96899,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c1faec1b-2fe6-4d2c-85a4-e756d432f7e9
     m_ActionName: Player/Flying[/Keyboard/f]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b229284d-8980-4dac-ac2a-b2b4ac3be6aa
-    m_ActionName: Player/Cloaking[/Keyboard/f]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1809102450341903954}
-        m_TargetAssemblyTypeName: CharacterStateController, Assembly-CSharp
-        m_MethodName: OnPsychokinesis
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: ee3b0134-ab79-4c1c-8311-cc65b9b8eaff
-    m_ActionName: Player/Psychokinesis[/Keyboard/f]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1809102450341903954}
@@ -96964,8 +96947,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6174581560863150003}
-  m_LocalRotation: {x: -0.1160827, y: -0.5670762, z: 0.082354225, w: -0.81127506}
-  m_LocalPosition: {x: -5.4930916, y: 1.1829681, z: 0.4363709}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.0188313, y: 0, z: -15.2927475}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

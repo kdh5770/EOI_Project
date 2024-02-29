@@ -19,6 +19,7 @@ public class MoveState : CharaterBaseState
     {
         controller.RotateUpdate();
         controller.MoveUpdate();
+        controller.ApplyGravity();
     }
 
     public override void OnExitState()

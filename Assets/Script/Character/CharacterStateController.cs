@@ -22,7 +22,7 @@ public enum CharacterSTATE
 
 public class CharacterStateController : MonoBehaviour, IStateMachine
 {
-    private new Rigidbody rigidbody;
+    public new Rigidbody rigidbody;
     public Animator animator;
     public Camera mainCamera;
     public CharacterHealth health;
@@ -32,6 +32,8 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     public float moveSpeed = 5.3f; // 기본 걷기속도
     public float sprintSpeed = 5.3f; // 뛰는속도
     public float applySpeed;
+    public float gravityForce = 9.8f; // 중력값 
+
 
     public CinemachineVirtualCamera virtualCamera;
     public GameObject CinemachineCameraTarget;
@@ -62,7 +64,6 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     private GameObject JetEngine;
 
     public float flyForce = 20f;
-    private float gravitationalForce = 0.5f; // 중력
     //private float pullDistance = 10f; // 끌어들이는 거리
     private LayerMask targetLayer;
 
@@ -127,7 +128,6 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
     public void MoveUpdate()
     {
-
         if (inputDir != Vector3.zero)
         {
             applySpeed = moveSpeed;
@@ -136,27 +136,40 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
             Vector3 moveVector = mainCamera.transform.TransformDirection(inputDir); // 카메라 기준으로 input값을 바꿔줌
             moveVector.y = 0f;
             moveVector *= applySpeed;
+
+            /// 원래 코드
+            //rigidbody.AddForce(Vector3.down * gravityForce, ForceMode.Force);
+            //rigidbody.velocity = new Vector3(moveVector.x, rigidbody.velocity.y, moveVector.z) + Vector3.down * gravityForce;
+
+            /// 수정 코드
             rigidbody.velocity = new Vector3(moveVector.x, rigidbody.velocity.y, moveVector.z);
 
-            /////////////////
-            /*if (moveVector.magnitude > 0f && !isAiming)
-            {
-                Quaternion newRotation = Quaternion.LookRotation(moveVector);//, Vector3.up);
-                transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 10f);
-            }*/
+
         }
 
         else
         {
             animator.SetFloat("MoveSpeed", 0);
-            rigidbody.velocity = Vector3.zero;
+            rigidbody.velocity = new Vector3(0f, rigidbody.velocity.y, 0f);
+
         }
+
+        //rigidbody.velocity = new Vector3(rigidbody.velocity.x, Mathf.Max(rigidbody.velocity.y - gravityForce * Time.fixedDeltaTime, rigidbody.velocity.z));
+
+        rigidbody.velocity += Vector3.down * gravityForce * Time.fixedDeltaTime;
 
         if (curWeapon.Data.CurBullet <= 0)
         {
             animator.SetLayerWeight(1, 0);
         }
     }
+
+    public void ApplyGravity()
+    {
+        // 중력을 적용하여 떨어지도록 함
+        rigidbody.velocity += Vector3.down * gravityForce * Time.deltaTime;
+    }
+
 
     public void RotateUpdate()
     {
@@ -285,7 +298,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
     public void OnReload(InputAction.CallbackContext _context)
     {
-        if (_context.performed && !curWeapon.canShooting)
+        if (_context.performed && !curWeapon.canShooting && curWeapon.Data.CurBullet < curWeapon.Data.MaxBullet)
         {
             animator.SetLayerWeight(1, 1);
             animator.SetTrigger("Reload");
@@ -302,8 +315,6 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
             {
                 IsFlying = true;
                 JetEngine.SetActive(true);
-                rigidbody.useGravity = false;
-                rigidbody.AddForce(Vector3.up * flyForce, ForceMode.Impulse);
             }
         }
 
@@ -311,9 +322,10 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         {
             IsFlying = false;
             JetEngine.SetActive(false);
-            rigidbody.useGravity = true;
         }
     }
+
+
 
     public void OnCloaking(InputAction.CallbackContext _context)
     {
@@ -325,6 +337,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         if (_context.performed)
         {
             ChangeState(CharacterSTATE.INTERACTION);
+
         }
     }
 
