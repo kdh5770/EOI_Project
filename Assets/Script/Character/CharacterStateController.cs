@@ -191,6 +191,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
             inputDir = Vector3.zero;
             return;
         }
+        
 
         inputDir = new Vector3(_context.ReadValue<Vector2>().x, 0f, _context.ReadValue<Vector2>().y);
     }
