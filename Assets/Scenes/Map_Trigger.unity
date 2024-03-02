@@ -16622,6 +16622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactions: []
+  controller: {fileID: 0}
 --- !u!1 &740037532
 GameObject:
   m_ObjectHideFlags: 0
@@ -49011,6 +49012,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactions: []
+  controller: {fileID: 0}
 --- !u!1001 &2038704829
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50181,6 +50183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactions:
   - {fileID: 0}
+  controller: {fileID: 0}
 --- !u!1001 &2081458278
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52905,6 +52908,7 @@ MonoBehaviour:
   maxPotionGauge: 0
   curPotionGauge: 0
   curGoods: 0
+  controller: {fileID: 0}
 --- !u!1 &251726635251192804
 GameObject:
   m_ObjectHideFlags: 0
@@ -52915,6 +52919,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3009040870990805915}
   - component: {fileID: 2567615419244429362}
+  - component: {fileID: 3009040870990805916}
   m_Layer: 0
   m_Name: "\uC0C1\uD638\uC791\uC6A9 \uD0A4\uB97C \uB204\uB974\uBA74 \uC9C0\uC9C4\uC77C\uC5B4\uB098\uBA74\uC11C
     \uBAAC\uC2A4\uD130 \uC2A4\uD3F0"
@@ -58002,6 +58007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactions: []
+  controller: {fileID: 0}
 --- !u!114 &2567615419244429362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58022,6 +58028,7 @@ MonoBehaviour:
   - {fileID: 7581957336659710950}
   - {fileID: 7581957336509919274}
   - {fileID: 1474162753176109068}
+  controller: {fileID: 0}
 --- !u!114 &2567615419364027923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58038,6 +58045,7 @@ MonoBehaviour:
   - {fileID: 3695336529265910157}
   - {fileID: 1576801307988461198}
   - {fileID: 2174307920653257298}
+  controller: {fileID: 0}
 --- !u!114 &2567615419785160800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58051,6 +58059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactions: []
+  controller: {fileID: 0}
 --- !u!114 &2567615420255317675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58065,6 +58074,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactions:
   - {fileID: 5575547163711399967}
+  controller: {fileID: 0}
 --- !u!114 &2567615420278282741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58090,6 +58100,7 @@ MonoBehaviour:
   - {fileID: 2174307921948642151}
   - {fileID: 1576801308178789807}
   - {fileID: 7588633546270593660}
+  controller: {fileID: 0}
 --- !u!4 &2579189913179614188
 Transform:
   m_ObjectHideFlags: 0
@@ -58902,6 +58913,19 @@ Transform:
   m_Father: {fileID: 2136022120}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &3009040870990805916
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251726635251192804}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.71
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &3009040871139743162
 Transform:
   m_ObjectHideFlags: 0
@@ -59221,6 +59245,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: JetEngineFire_1
       objectReference: {fileID: 0}
+    - target: {fileID: 14179790669712795, guid: c4c5a33647e759d4aa5db57b09de95f6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4c5a33647e759d4aa5db57b09de95f6, type: 3}
 --- !u!114 &3199598706003756042
@@ -59502,6 +59531,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: JetEngineFire_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 14179790669712795, guid: c4c5a33647e759d4aa5db57b09de95f6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4c5a33647e759d4aa5db57b09de95f6, type: 3}
@@ -60703,6 +60737,7 @@ MonoBehaviour:
   pd: {fileID: 0}
   gameobjects: []
   boss: 0
+  interaction: {fileID: 0}
 --- !u!4 &3695336529265910158
 Transform:
   m_ObjectHideFlags: 0
@@ -60734,6 +60769,7 @@ MonoBehaviour:
   pd: {fileID: 0}
   gameobjects: []
   boss: 0
+  interaction: {fileID: 0}
 --- !u!1 &3695336529708586633
 GameObject:
   m_ObjectHideFlags: 0
@@ -62084,7 +62120,7 @@ MonoBehaviour:
   IsPsychokinesis: 0
   IsFlying: 0
   JetEngine: {fileID: 3199598705908192221}
-  flyForce: 5
+  flyForce: 1
   weaponImg:
   - {fileID: 7863844130765590423}
   - {fileID: 7863844131975128720}
@@ -62094,6 +62130,7 @@ MonoBehaviour:
   - {fileID: 3199598706368762255}
   - {fileID: 3199598707469236096}
   Debug_state: 0
+  inputTrigger: {fileID: 0}
 --- !u!114 &3854090645595469727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62116,6 +62153,7 @@ MonoBehaviour:
   maxPotionGauge: 100
   curPotionGauge: 0
   curGoods: 0
+  controller: {fileID: 0}
 --- !u!1 &3898736776025621755
 GameObject:
   m_ObjectHideFlags: 0
@@ -62200,7 +62238,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3946896779043584640}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 892.043, y: 473.39737, z: 185.02556}
+  m_LocalPosition: {x: 895.24634, y: 475.1264, z: 192.91397}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -62320,8 +62358,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3946896779065750991}
-  m_LocalRotation: {x: -0.026691686, y: -0.000020262349, z: -0.0007588552, w: 0.99964345}
-  m_LocalPosition: {x: -23.129925, y: 7.468522, z: -57.160038}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -21.6, y: 10.028, z: -49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -63494,6 +63532,7 @@ MonoBehaviour:
   interactions:
   - {fileID: 1135280999}
   - {fileID: 7301159762818669249}
+  controller: {fileID: 0}
 --- !u!23 &4456054990446653520
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -77902,6 +77941,7 @@ MonoBehaviour:
   gameobjects:
   - {fileID: 6560802255355559334}
   boss: 0
+  interaction: {fileID: 0}
 --- !u!1 &6543852870004095740
 GameObject:
   m_ObjectHideFlags: 0
@@ -86494,6 +86534,7 @@ MonoBehaviour:
   pd: {fileID: 0}
   gameobjects: []
   boss: 0
+  interaction: {fileID: 0}
 --- !u!114 &7319607342067176765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86535,6 +86576,7 @@ MonoBehaviour:
   weaponImg: []
   Weapons: []
   Debug_state: 0
+  inputTrigger: {fileID: 0}
 --- !u!222 &7319607342067827738
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -93967,6 +94009,7 @@ MonoBehaviour:
   pd: {fileID: 0}
   gameobjects: []
   boss: 0
+  interaction: {fileID: 0}
 --- !u!1 &8052299558024973475
 GameObject:
   m_ObjectHideFlags: 0
@@ -94580,8 +94623,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8779704961917879933}
-  m_LocalRotation: {x: -0.026691686, y: -0.000020262349, z: -0.0007588552, w: 0.99964345}
-  m_LocalPosition: {x: -23.63285, y: 6.05, z: -55.06}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -22.1, y: 8.5, z: -47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -94592,7 +94635,7 @@ Transform:
   - {fileID: 752653512848405595}
   m_Father: {fileID: 0}
   m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: -3.059, y: 0, z: -0.087}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8779704961917879911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94717,9 +94760,9 @@ MonoBehaviour:
     m_ActionName: Player/Potion
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3854090645595469724}
         m_TargetAssemblyTypeName: CharacterStateController, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: OnFlying
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -95217,6 +95260,7 @@ MonoBehaviour:
   - {fileID: 8052299558024973474}
   - {fileID: 2174307921923352358}
   - {fileID: 1576801306502864842}
+  controller: {fileID: 0}
 --- !u!4 &9210349855911423094
 Transform:
   m_ObjectHideFlags: 0

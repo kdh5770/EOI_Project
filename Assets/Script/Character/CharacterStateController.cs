@@ -1,5 +1,6 @@
 using Cinemachine;
 using JetBrains.Annotations;
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -73,7 +74,8 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     private List<GameObject> Weapons = new List<GameObject>();
     int weaponnum = 0;
     public CharacterSTATE Debug_state;
-    bool isShop=false;
+    bool isShop = false;
+    public InputTrigger inputTrigger;
     /////////////////////////////////////////////////// 슈트 변수 추가해야 함.
 
     private void Start()
@@ -165,7 +167,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     public void ApplyGravity()
     {
         // 중력을 적용하여 떨어지도록 함
-        rigidbody.velocity += Vector3.down * gravityForce * Time.deltaTime;
+        //rigidbody.velocity += Vector3.down * gravityForce * Time.deltaTime;
     }
 
 
@@ -256,9 +258,9 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     {
         if (_context.performed && curWeapon.Data.CurBullet > 0 && !animator.GetCurrentAnimatorStateInfo(1).IsTag("Reload"))
         {
-            ChangeState(CharacterSTATE.ATTACK);
+            //ChangeState(CharacterSTATE.ATTACK);
 
-            if (curState == states[CharacterSTATE.ATTACK])
+            if (curState == states[CharacterSTATE.MOVE])
             {
                 if (_context.interaction is HoldInteraction)
                 {
@@ -293,7 +295,6 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
             health.UsingPortion();
         }
     }
-
     public void OnReload(InputAction.CallbackContext _context)
     {
         if (_context.performed && !curWeapon.canShooting && curWeapon.Data.CurBullet < curWeapon.Data.MaxBullet)
@@ -308,11 +309,12 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     {
         if (_context.performed)
         {
-            ChangeState(CharacterSTATE.SKILL);
+            //ChangeState(CharacterSTATE.SKILL);
             if (_context.interaction is HoldInteraction)
             {
                 IsFlying = true;
                 JetEngine.SetActive(true);
+
             }
         }
 
@@ -321,9 +323,24 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
             IsFlying = false;
             JetEngine.SetActive(false);
             rigidbody.useGravity = true;
+            if (!IsFlying)
+            {
+                ApplyGravity();
+            }
         }
     }
-
+    private const float MAX_SPEED_Y = 5f;
+    public void FlyingUpdate()
+    {
+        if (IsFlying)
+        {
+            rigidbody.AddForce(Vector3.up * flyForce, ForceMode.Impulse);
+            if (MathF.Abs(rigidbody.velocity.y) >= MAX_SPEED_Y)
+            {
+                rigidbody.velocity = new Vector3(rigidbody.velocity.x, MAX_SPEED_Y, rigidbody.velocity.z);
+            }
+        }
+    }
 
 
     public void OnCloaking(InputAction.CallbackContext _context)
@@ -333,15 +350,18 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
     public void OnInterAction(InputAction.CallbackContext _context)
     {
-        if (_context.performed)
+        if (_context.performed && curState == states[CharacterSTATE.MOVE] && !IsFlying)
         {
             ChangeState(CharacterSTATE.INTERACTION);
+
+            if (inputTrigger != null)
+                inputTrigger.InputPlayerTrigger();
         }
     }
 
     public void OnPsychokinesis(InputAction.CallbackContext _context)
     {
-        if (_context.performed)
+        if (_context.performed && curState == states[CharacterSTATE.MOVE])
         {
             ChangeState(CharacterSTATE.SKILL);
         }
@@ -349,10 +369,10 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         else if (_context.canceled)
             ChangeState(CharacterSTATE.MOVE);
     }
-    
+
     public void OpenShop(InputAction.CallbackContext _context)
     {
-        if(_context.performed)
+        if (_context.performed)
         {
             boolshopchange();
         }
@@ -381,4 +401,5 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         weaponImg[weaponnum].gameObject.SetActive(true);
         curWeapon = weapons[weaponnum];
     }
+
 }

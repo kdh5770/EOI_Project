@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class InteractionState : CharaterBaseState
 {
@@ -11,10 +12,13 @@ public class InteractionState : CharaterBaseState
     public override void OnEnterState()
     {
         controller.animator.SetTrigger("IsInterAction");
+        controller.rigidbody.velocity = Vector3.zero;
+        //controller.rigidbody.Sleep();
     }
 
     public override void OnExitState()
     {
+        //controller.rigidbody.WakeUp();
 
     }
 
@@ -25,6 +29,5 @@ public class InteractionState : CharaterBaseState
 
     public override void OnUpdateState()
     {
-
     }
 }

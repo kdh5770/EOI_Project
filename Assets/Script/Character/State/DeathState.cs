@@ -10,10 +10,13 @@ public class DeathState : CharaterBaseState
     }
     public override void OnEnterState()
     {
+        //죽엇을대 UI 팝업
+        //마우스 고정 해제
     }
 
     public override void OnExitState()
     {
+
     }
 
     public override void OnFixedUpdateState()
@@ -22,5 +25,6 @@ public class DeathState : CharaterBaseState
 
     public override void OnUpdateState()
     {
+
     }
 }

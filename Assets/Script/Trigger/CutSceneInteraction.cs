@@ -12,7 +12,7 @@ public class CutSceneInteraction : Interaction
     [Header("타임라인에 사용된 오브젝트 파괴")]
     public List<GameObject> gameobjects;
 
-    public float boss;
+    public float boss; // 정훈아 이거 왜있냐? ㅇㅅㅇ;;
 
     public override void Interact()
     {
@@ -28,6 +28,7 @@ public class CutSceneInteraction : Interaction
             Destroy(interaction.gameObject);
         }
         //Time.timeScale = 1;
+
         pd.stopped -= OnTimelineStopped; // 이벤트 리스너를 제거
     }
 }

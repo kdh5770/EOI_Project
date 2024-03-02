@@ -21,9 +21,10 @@ public class CharacterHealth : MonoBehaviour
     public int curGoods;
 
     public event Action DeathAction;
-
+    public CharacterStateController controller;
     private void Start()
     {
+        controller = GetComponent<CharacterStateController>();
         InitStatus();
     }
     void InitStatus()
@@ -50,6 +51,7 @@ public class CharacterHealth : MonoBehaviour
         {
             //캐릭터 사망시 등록된 이벤트 실행
             DeathAction?.Invoke();
+            controller.ChangeState(CharacterSTATE.DEATH);
         }
     }
     public bool GetDie()
