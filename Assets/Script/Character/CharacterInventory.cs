@@ -7,7 +7,7 @@ public class CharacterInventory : MonoBehaviour
     bool isget;
 
     [SerializeField]
-    private List<GameObject> InvenObj = new List<GameObject>();
+    public List<GameObject> InvenObj = new List<GameObject>();
 
     public void OnInputInven(GameObject _itemname)
     {

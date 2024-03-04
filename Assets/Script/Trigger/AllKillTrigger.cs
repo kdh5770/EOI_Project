@@ -11,7 +11,7 @@ public class AllKillTrigger : Interaction
 
     public void EventAllKill()
     {
-        Debug.Log("진입");
+        Debug.Log("두번째 진입");
         if (interactions.Count > 0)
         {
             foreach (Interaction interaction in interactions)
@@ -26,6 +26,7 @@ public class AllKillTrigger : Interaction
 
     public override void Interact()
     {
+        Debug.Log("진입");
         Gamemanager.instance.spawnManager.AllKillAction += EventAllKill;
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BossEnergyTower : CharcterInventory
+public class BossEnergyTower : CharacterInventory
 {
     public Transform target;
     public Transform tower2;
