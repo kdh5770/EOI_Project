@@ -13,12 +13,14 @@ public class InteractionState : CharaterBaseState
     {
         controller.animator.SetTrigger("IsInterAction");
         controller.rigidbody.velocity = Vector3.zero;
+
         //controller.rigidbody.Sleep();
     }
 
     public override void OnExitState()
     {
         //controller.rigidbody.WakeUp();
+
 
     }
 
