@@ -51677,7 +51677,6 @@ GameObject:
   - component: {fileID: 2136022122}
   - component: {fileID: 2136022121}
   - component: {fileID: 2136022126}
-  - component: {fileID: 2136022127}
   m_Layer: 0
   m_Name: "Special egg (RED) : \uBD80\uD654\uC2E4 1\uC5D0 \uC788\uC74C"
   m_TagString: InterActionObj
@@ -51793,18 +51792,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EBtn: {fileID: 7863844131986096763}
---- !u!114 &2136022127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2136022119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7dfda49ce57e6df4a8ed4cca47fcb4ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2140030949
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55676,7 +55663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactions:
-  - {fileID: 2136022127}
+  - {fileID: 0}
 --- !u!23 &1483654389102946459
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -67759,7 +67746,12 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'index_03_l'\n\tTransform 'lowerarm_l'\n\tTransform
+    'root'\n\tTransform 'pinky_03_l'\n\tTransform 'neck_01'\n\tTransform 'pinky_03_r'\n\tTransform
+    'clavicle_l'\n\tTransform 'ring_02_l'\n\tTransform 'ball_l'\n\tTransform 'hand_l'\n\tand
+    more ..."
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -74313,6 +74305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dfda49ce57e6df4a8ed4cca47fcb4ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Destroyobj: {fileID: 0}
 --- !u!1 &5923971902085834741
 GameObject:
   m_ObjectHideFlags: 0
@@ -88155,8 +88148,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkKill: 1
-  index_ID: 0
-  SpawnerPrefab: {fileID: 1558891530782441565, guid: 3faa18e54de26cf4cafacd3dd2f30eff,
+  index_ID: 1001
+  SpawnerPrefab: {fileID: 1558891530782441565, guid: 9feff93d3eba4ab4ca6c5c300893ccc7,
     type: 3}
   spawnePos:
   - {fileID: 1208452732205046349}
@@ -88174,7 +88167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkKill: 1
-  index_ID: 0
+  index_ID: 1001
   SpawnerPrefab: {fileID: 6010930227725434357, guid: 658ec4f7ef781ec46ad916aa81c49fbf,
     type: 3}
   spawnePos:
@@ -94053,6 +94046,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8075337505736466578}
+  - component: {fileID: 8075337505736466670}
   m_Layer: 0
   m_Name: "\uBE68\uAC04\uC54C \uC5C6\uC560\uACE0"
   m_TagString: Untagged
@@ -94060,6 +94054,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8075337505736466670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8075337505736466669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dfda49ce57e6df4a8ed4cca47fcb4ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Destroyobj: {fileID: 2136022119}
 --- !u!23 &8095361809173150784
 MeshRenderer:
   m_ObjectHideFlags: 0

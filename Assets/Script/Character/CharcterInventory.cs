@@ -12,7 +12,6 @@ public class CharcterInventory : MonoBehaviour
     public void OnInputInven(GameObject _itemname)
     {
         InvenObj.Add(_itemname);
-        Debug.Log("인벤토리에" + _itemname + "추가");
     }
 
 
