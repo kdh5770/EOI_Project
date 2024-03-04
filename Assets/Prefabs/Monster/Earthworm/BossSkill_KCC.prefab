@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -6459667739481832019}
   - component: {fileID: 7470555017476043287}
   - component: {fileID: 7470555017450727221}
+  - component: {fileID: 4749014890527674483}
   m_Layer: 0
   m_Name: BossSkill_KCC
   m_TagString: Untagged
@@ -4673,3 +4674,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnlyDeactivate: 0
+--- !u!135 &4749014890527674483
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7470555017456767703}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.79
+  m_Center: {x: 0.59, y: -1.62, z: 0}

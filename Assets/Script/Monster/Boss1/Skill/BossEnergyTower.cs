@@ -8,6 +8,10 @@ public class BossEnergyTower : MonoBehaviour
     public Transform target;
     public GameObject beam;
     public Transform beamTr;
+
+    public GameObject redEgg;
+    public GameObject greenEgg;
+    public GameObject blueEgg;
     public void Start()
     {
         GameObject boss = GameObject.FindGameObjectWithTag("Boss");

@@ -5,17 +5,26 @@ using UnityEngine;
 public class BossSkill_Damage : MonoBehaviour
 {
     public float damage;
+    float damageCount;
 
+    public void Update()
+    {
+        damageCount += Time.deltaTime;
+    }
     public void SetDamage(float _damage)
     {
         damage = _damage;
     }
 
-    private void OnTriggerStay(Collider other)
+    public void OnTriggerStay(Collider other)
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            other.GetComponent<CharacterHealth>().TakeDamage(damage);
+            if(damageCount >= .5f)
+            {
+                other.GetComponent<CharacterHealth>().TakeDamage(damage);
+                damageCount = 0;
+            }
         }
     }
 }
