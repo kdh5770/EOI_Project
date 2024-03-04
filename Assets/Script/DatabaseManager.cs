@@ -9,9 +9,15 @@ public class DatabaseManager : MonoBehaviour
 
     public Dictionary<int, MonsterData> monsterDataDic = new Dictionary<int, MonsterData>();
 
-    private void Start()
+    private void Awake()
     {
         ParseMonsterData();
+    }
+
+
+    private void Start()
+    {
+
     }
 
     void ParseMonsterData()
@@ -22,7 +28,19 @@ public class DatabaseManager : MonoBehaviour
 
         for(int i = 1; i < data.Length; i++)
         {
+            if(string.IsNullOrEmpty(data[i]))
+            {
+                continue;
+            }
+            
             string[] row_data = data[i].Split(new char[] { ',' });
+            
+            if (row_data.Length < 11)
+            {
+                Debug.LogError($"Error parsing row {i}: Insufficient data fields.");
+                continue;
+            }
+
             try
             {
                 int id = int.Parse(row_data[0]);
