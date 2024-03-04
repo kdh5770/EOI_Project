@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharcterInventory : MonoBehaviour
+public class CharacterInventory : MonoBehaviour
 {
     bool isget;
 
