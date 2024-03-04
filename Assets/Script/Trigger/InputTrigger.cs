@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class InputTrigger : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class InputTrigger : MonoBehaviour
             }
             controller.inputTrigger = null;
             this.GetComponent<Collider>().enabled = false;
+            Gamemanager.instance.characterUI.OnInputTrigger(false);
         }
     }
 
@@ -26,6 +28,7 @@ public class InputTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Gamemanager.instance.characterUI.OnInputTrigger(true);
             controller = other.GetComponent<CharacterStateController>();
             controller.inputTrigger = this;
         }
@@ -35,6 +38,7 @@ public class InputTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Gamemanager.instance.characterUI.OnInputTrigger(false);
             controller = other.GetComponent<CharacterStateController>();
             controller.inputTrigger = null;
         }

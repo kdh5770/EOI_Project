@@ -26,6 +26,8 @@ public class CharacterUI : MonoBehaviour
     public TMP_Text potionText;
     public TMP_Text missionText;
     public TMP_Text dialogueText;
+    public GameObject E_btn;
+
 
     private Queue<string> dialogues = new Queue<string>();
     private Queue<string> missions = new Queue<string>(); //¹Ì¼Ç txt 
@@ -115,6 +117,38 @@ public class CharacterUI : MonoBehaviour
         {
             missions.Dequeue();
         }*/
+    }
+
+    IEnumerator triggercor;
+
+    public void OnInputTrigger(bool _enter)
+    {
+        if (_enter)
+        {
+            if (triggercor == null)
+            {
+                triggercor = Blink();
+                StartCoroutine(triggercor);
+            }
+        }
+
+
+
+        else
+        {
+            StopCoroutine(triggercor);
+            triggercor = null;
+            E_btn.SetActive(false);
+        }
+    }
+
+    IEnumerator Blink()
+    {
+        while (true)
+        {
+            E_btn.SetActive(!E_btn.activeSelf);
+            yield return new WaitForSeconds(.5f);
+        }
     }
 
     public void HandleBullet()

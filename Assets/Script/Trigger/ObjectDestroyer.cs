@@ -4,25 +4,18 @@ using UnityEngine;
 
 public class ObjectDestroyer : Interaction
 {
-    [Header("제거할 오브젝트 스포너")]
-    private ObjectSpawner spawner;
-
-    [Header ("제거할 오브젝트")]
+    [Header("작동 off 오브젝트")]
     [SerializeField]
-    private GameObject Destroyobj;
+    private GameObject gameobj1;
 
+    [Header("작동 on 오브젝트")]
+    [SerializeField]
+    private GameObject gameobj2;
 
-
-    private void Start()
-    {
-        spawner = GetComponent<ObjectSpawner>();
-    }
 
     public override void Interact()
     {
-        if (Gamemanager.instance.spawnManager.allkill)
-        {
-            Destroy(Destroyobj);
-        }
+        gameobj1.SetActive(false);
+        gameobj2.SetActive(true);
     }
 }

@@ -9,15 +9,11 @@ public class DatabaseManager : MonoBehaviour
 
     public Dictionary<int, MonsterData> monsterDataDic = new Dictionary<int, MonsterData>();
 
-    private void Awake()
-    {
-        ParseMonsterData();
-    }
 
 
     private void Start()
     {
-
+        ParseMonsterData();
     }
 
     void ParseMonsterData()
@@ -60,6 +56,7 @@ public class DatabaseManager : MonoBehaviour
                 MonsterData monsterData = new MonsterData(hP, ATK, DEF, speed, sightRange, dropItemCount, scale);
                 monsterDataDic.Add(id, monsterData);
             }
+
             catch (System.FormatException e)
             {
                 Debug.LogError($"Error parsing row {i}: {e.Message}");
