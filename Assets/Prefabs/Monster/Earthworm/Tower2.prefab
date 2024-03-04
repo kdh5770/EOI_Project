@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7683913850381311035}
   m_Layer: 0
   m_Name: model
-  m_TagString: Untagged
+  m_TagString: Tower2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 6865878889774234206}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: Tower2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -155,7 +155,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7244703034081218357}
-  - component: {fileID: 2994197042948542236}
+  - component: {fileID: -9168396194466099973}
+  - component: {fileID: 1213636163992580884}
   m_Layer: 0
   m_Name: Tower2
   m_TagString: Tower2
@@ -179,7 +180,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2994197042948542236
+--- !u!114 &-9168396194466099973
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -188,12 +189,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 2540434781595319560}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b13a38fafd5508646a6d65692b64cca4, type: 3}
+  m_Script: {fileID: 11500000, guid: ed6c30df4ef8b4b4c80116e7e9794a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  tower3: {fileID: 0}
   beam: {fileID: 7534669642315901003, guid: b93a84f1d293baf49810cb72f80efd60, type: 3}
   beamTr: {fileID: 516578357169820086}
+  greenEgg: {fileID: 0}
+--- !u!136 &1213636163992580884
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2540434781595319560}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2992384365859931085
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,7 +225,7 @@ GameObject:
   - component: {fileID: 1870343485075251479}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Tower2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -306,7 +323,7 @@ GameObject:
   - component: {fileID: 9187626348941185251}
   m_Layer: 0
   m_Name: Rager
-  m_TagString: Untagged
+  m_TagString: Tower2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
