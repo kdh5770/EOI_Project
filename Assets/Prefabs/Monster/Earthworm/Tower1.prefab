@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6636932450627559653}
   m_Layer: 0
   m_Name: model
-  m_TagString: Untagged
+  m_TagString: Tower1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 5973122604550573428}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Tower1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 5973122605766223927}
   m_Layer: 0
   m_Name: Rager
-  m_TagString: Untagged
+  m_TagString: Tower1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 5973122605979751774}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: Tower1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -352,6 +352,7 @@ GameObject:
   - component: {fileID: 8958249548732978919}
   - component: {fileID: 6419865387155265271}
   - component: {fileID: 4413679893126814458}
+  - component: {fileID: -7166490569751610738}
   m_Layer: 0
   m_Name: Tower1
   m_TagString: Tower1
@@ -388,8 +389,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  tower2: {fileID: 0}
   beam: {fileID: 2397844340541071363, guid: 330f011e91579544ebd008c1cee87b13, type: 3}
   beamTr: {fileID: 5973122605766223920}
+  redEgg: {fileID: 0}
 --- !u!114 &4413679893126814458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,3 +410,17 @@ MonoBehaviour:
   lineStart: {x: 0, y: 0, z: 0}
   lineEnd: {x: 1, y: 0, z: 0}
   sphereRadius: 5
+--- !u!136 &-7166490569751610738
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8958249548732978915}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}

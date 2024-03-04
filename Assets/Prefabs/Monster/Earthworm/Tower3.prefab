@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7874143044819927224}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Tower3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 3293849269489126489}
   m_Layer: 0
   m_Name: model
-  m_TagString: Untagged
+  m_TagString: Tower3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 5317512979085048815}
   m_Layer: 0
   m_Name: Rager
-  m_TagString: Untagged
+  m_TagString: Tower3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 4222829249524566079}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: Tower3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -350,7 +350,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1354373905962290478}
-  - component: {fileID: 6563720081254970961}
+  - component: {fileID: 4256433077321020028}
+  - component: {fileID: 1278260057183873749}
   m_Layer: 0
   m_Name: Tower3
   m_TagString: Tower3
@@ -374,7 +375,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6563720081254970961
+--- !u!114 &4256433077321020028
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -383,9 +384,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 6195088363297552673}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b13a38fafd5508646a6d65692b64cca4, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d1d7e8830b15384aab7c1ac5f9f5716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   beam: {fileID: 2398428992176296100, guid: db2655f8df589b9469e96d2a72836df2, type: 3}
   beamTr: {fileID: 7147764563509494057}
+  blueEgg: {fileID: 0}
+--- !u!136 &1278260057183873749
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6195088363297552673}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
