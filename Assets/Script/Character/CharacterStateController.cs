@@ -35,6 +35,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     public float applySpeed;
     public float gravityForce = 9.8f; // Áß·Â°ª 
 
+
     public CinemachineVirtualCamera virtualCamera;
     public GameObject CinemachineCameraTarget;
     public float cinemachineTargetYaw;
@@ -49,7 +50,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     public WeaponTable curWeapon;
     public List<WeaponTable> weapons;
 
-    private Dictionary<CharacterSTATE, CharaterBaseState> states = new Dictionary<CharacterSTATE, CharaterBaseState>();
+    public Dictionary<CharacterSTATE, CharaterBaseState> states = new Dictionary<CharacterSTATE, CharaterBaseState>();
 
     public CharaterBaseState curState;
 
