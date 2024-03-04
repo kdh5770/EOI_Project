@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BossEnergyTower : CharcterInventory
+public class BossEnergyTower : MonoBehaviour
 {
     public Transform target;
     public Transform tower2;
     public GameObject beam;
     public Transform beamTr;
 
-    public GameObject redEgg;
+
     public void Start()
     {
         GameObject boss = GameObject.FindGameObjectWithTag("Boss");
         gameObject.transform.LookAt(boss.transform);
+
     }
     public void Update()
     {
@@ -52,10 +53,13 @@ public class BossEnergyTower : CharcterInventory
             }
         }
 
-        if (target != null && Input.GetKey(KeyCode.E) && tower2 == null && InvenObj[0] != null)
+        if (target != null && Input.GetKey(KeyCode.E) && tower2 == null)
         {
-            Instantiate(beam, beamTr.transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            if (Gamemanager.instance.player.GetComponent<CharacterInventory>().InvenObj[0] != null)
+            {
+                Instantiate(beam, beamTr.transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
         }
     }
 }

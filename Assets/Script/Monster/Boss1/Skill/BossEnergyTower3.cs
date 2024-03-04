@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BossEnergyTower3 : MonoBehaviour
+public class BossEnergyTower3 : CharacterInventory
 {
     public Transform target;
     public GameObject beam;
@@ -36,8 +36,11 @@ public class BossEnergyTower3 : MonoBehaviour
 
         if (target != null && Input.GetKey(KeyCode.E))
         {
-            Instantiate(beam, beamTr.transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            if (Gamemanager.instance.player.GetComponent<CharacterInventory>().InvenObj[2] != null)
+            {
+                Instantiate(beam, beamTr.transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
         }
     }
 }

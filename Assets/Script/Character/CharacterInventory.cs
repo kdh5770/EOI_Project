@@ -7,7 +7,7 @@ public class CharacterInventory : MonoBehaviour
     bool isget;
 
     [SerializeField]
-    private List<GameObject> InvenObj = new List<GameObject>();
+    public List<GameObject> InvenObj = new List<GameObject>();
 
     public void OnInputInven(GameObject _itemname)
     {
@@ -22,6 +22,27 @@ public class CharacterInventory : MonoBehaviour
             if (Gamemanager.instance.player.GetComponent<CharacterStateController>().curState == Gamemanager.instance.player.GetComponent<CharacterStateController>().states[CharacterSTATE.INTERACTION]&&!isget)
             {
                 OnInputInven(other.gameObject);
+                other.gameObject.SetActive(false);
+                isget = true;
+            }
+        }
+
+        if (other.CompareTag("InterActionObj2"))
+        {
+            if (Gamemanager.instance.player.GetComponent<CharacterStateController>().curState == Gamemanager.instance.player.GetComponent<CharacterStateController>().states[CharacterSTATE.INTERACTION] && !isget)
+            {
+                OnInputInven(other.gameObject);
+                other.gameObject.SetActive(false);
+                isget = true;
+            }
+        }
+
+        if (other.CompareTag("InterActionObj3"))
+        {
+            if (Gamemanager.instance.player.GetComponent<CharacterStateController>().curState == Gamemanager.instance.player.GetComponent<CharacterStateController>().states[CharacterSTATE.INTERACTION] && !isget)
+            {
+                OnInputInven(other.gameObject);
+                other.gameObject.SetActive(false);
                 isget = true;
             }
         }
