@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class CharcterInventory : MonoBehaviour
 {
     [SerializeField]
     private List<GameObject> InvenObj = new List<GameObject>();
