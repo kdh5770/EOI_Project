@@ -11,6 +11,7 @@ public class AllKillTrigger : Interaction
 
     public void EventAllKill()
     {
+        Debug.Log("ÁøÀÔ");
         if (interactions.Count > 0)
         {
             foreach (Interaction interaction in interactions)
