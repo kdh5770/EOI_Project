@@ -2,22 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectDestroyer : MonoBehaviour
+public class ObjectDestroyer : Interaction
 {
     [Header("제거할 오브젝트 스포너")]
-    [SerializeField]
-    private GameObject Destroyobj;
-
     private ObjectSpawner spawner;
 
+    /*    [SerializeField]
+        private GameObject Destroyobj;
+
+
+        */
     private void Start()
     {
         spawner = GetComponent<ObjectSpawner>();
     }
 
-    void DestroyObject()
+    public override void Interact()
     {
-        if (spawner.checkKill)
+        if (Gamemanager.instance.spawnManager.allkill)
         {
             Destroy(this.gameObject);
         }

@@ -6,6 +6,7 @@ public class SpawnManager : MonoBehaviour
 {
     public event Action AllKillAction;
 
+    public bool allkill;
     public int killCount;
     Dictionary<string, GameObject> monsterPreDic = new Dictionary<string, GameObject>();
 
@@ -35,6 +36,7 @@ public class SpawnManager : MonoBehaviour
 
         if(killCount <= 0)
         {
+            allkill = true;
             AllKillAction?.Invoke();
         }
     }

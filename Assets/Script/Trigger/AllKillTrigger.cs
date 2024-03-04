@@ -8,7 +8,7 @@ public class AllKillTrigger : Interaction
 
     [Header("상호작용 프리팹 넣기 - 복수 가능")]
     public List<Interaction> interactions;
-    
+
     public void EventAllKill()
     {
         if (interactions.Count > 0)
@@ -19,6 +19,7 @@ public class AllKillTrigger : Interaction
             }
         }
         Gamemanager.instance.spawnManager.AllKillAction -= EventAllKill;
+        Gamemanager.instance.spawnManager.allkill = false;
         Debug.Log(Gamemanager.instance.spawnManager.killCount);
     }
 

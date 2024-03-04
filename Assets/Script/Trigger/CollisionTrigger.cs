@@ -12,7 +12,7 @@ public class CollisionTrigger : MonoBehaviour
     {
         if(interactions.Count > 0)
         {
-            Gamemanager.instance.player.GetComponent<CharacterStateController>().enabled = false;
+            //Gamemanager.instance.player.GetComponent<CharacterStateController>().enabled = false;
             foreach (Interaction interaction in interactions)
             {
                 interaction.Interact();
