@@ -24,18 +24,15 @@ public class CharacterUI : MonoBehaviour
     [SerializeField]
     private TMP_Text systemMsgText;
 
-
     public Slider potionGauge;
     public TMP_Text potionText;
     public TMP_Text missionText;
     public TMP_Text dialogueText;
     public GameObject E_btn;
 
-
     private Queue<string> dialogues = new Queue<string>();
     private Queue<string> missions = new Queue<string>(); //미션 txt 
-    private Queue<string> systemmsg= new Queue<string>(); //시스템 메세지 txt
-
+    private Queue<string> systemmsg = new Queue<string>(); //시스템 메세지 txt
 
     private IEnumerator dialogueCor;
 
@@ -114,19 +111,20 @@ public class CharacterUI : MonoBehaviour
     public void SetSystemMsgtxt(string _message)
     {
         systemmsg.Enqueue(_message);
+        systemMsgText.text = _message.ToString();
+        StartCoroutine(systemmsgCo());
+    }
 
+    IEnumerator systemmsgCo()
+    {
+        systemmsg.Dequeue();
+        yield return new WaitForSeconds(5f);
     }
 
     public void SetMissiontxt(string _masseage)
     {
         missions.Enqueue(_masseage);
         missionText.text = _masseage.ToString();
-        
-/*        // 만약 임무를 성공 했을 때
-        if (성공조건)
-        {
-            missions.Dequeue();
-        }*/
     }
 
     IEnumerator triggercor;
@@ -141,8 +139,6 @@ public class CharacterUI : MonoBehaviour
                 StartCoroutine(triggercor);
             }
         }
-
-
 
         else
         {
@@ -159,11 +155,6 @@ public class CharacterUI : MonoBehaviour
             E_btn.SetActive(!E_btn.activeSelf);
             yield return new WaitForSeconds(.5f);
         }
-    }
-
-    public void HandleBullet()
-    {
-
     }
 
     IEnumerator SinFadeImage()

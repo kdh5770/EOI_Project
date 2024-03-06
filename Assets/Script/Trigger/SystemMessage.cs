@@ -10,6 +10,6 @@ public class SystemMessage : Interaction
     public string messageText;
     public override void Interact()
     {
-        Gamemanager.instance.characterUI.SetMissiontxt(messageText);
+        Gamemanager.instance.characterUI.SetSystemMsgtxt(messageText);
     }
 }
