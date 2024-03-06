@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectDestroyer : Interaction
+public class ObjectSwitcher : Interaction
 {
     [Header("작동 off 오브젝트")]
     [SerializeField]

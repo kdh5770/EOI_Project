@@ -13238,7 +13238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 580089333}
   m_Layer: 0
-  m_Name: StartCutSceneCam
+  m_Name: ShakeCamObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22517,7 +22517,7 @@ GameObject:
   - component: {fileID: 970804555}
   - component: {fileID: 970804556}
   m_Layer: 0
-  m_Name: CM vcam2
+  m_Name: ShakeCam_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53209,6 +53209,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3009040869912909058}
   - component: {fileID: 2567615420255317675}
+  - component: {fileID: 3009040869912909059}
   m_Layer: 0
   m_Name: "\uC77C\uBC18\uC54C\uC744 \uAC00\uC838\uC640\uC11C \uC0C1\uD638\uC791\uC6A9\uD558\uBA74"
   m_TagString: Untagged
@@ -53373,7 +53374,7 @@ GameObject:
   - component: {fileID: 7756337282894008236}
   m_Layer: 0
   m_Name: "\uC804\uD22C \uD6C4 \uC0C1\uD638\uC791\uC6A9\uC744 \uC704\uD55C \uB611\uAC19\uC740
-    \uC54C\uC744 \uC0C8\uB85C \uC0DD\uC131"
+    \uC54C \uC624\uBE0C\uC81D\uD2B8 ON"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59079,6 +59080,19 @@ Transform:
   m_Father: {fileID: 1208452730953855594}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3009040869912909059
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251726636303891837}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.76, y: 8.32, z: 12.94}
+  m_Center: {x: 28, y: 0.3, z: 49.9}
 --- !u!4 &3009040870519641033
 Transform:
   m_ObjectHideFlags: 0
@@ -62435,7 +62449,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3946896779043584640}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 894.28595, y: 476.87897, z: 185.75836}
+  m_LocalPosition: {x: 952.57874, y: 456.17062, z: 271.1642}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -62555,8 +62569,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3946896779065750991}
-  m_LocalRotation: {x: 0.078900956, y: -0.14267454, z: 0.011421796, w: 0.9865537}
-  m_LocalPosition: {x: -21.006002, y: 11.005047, z: -56.34092}
+  m_LocalRotation: {x: -0.00044337942, y: 0.99408484, z: -0.10805393, w: -0.010932521}
+  m_LocalPosition: {x: 17.697546, y: -0.52313787, z: 41.076626}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -67703,12 +67717,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'index_03_l'\n\tTransform 'lowerarm_l'\n\tTransform
-    'root'\n\tTransform 'pinky_03_l'\n\tTransform 'neck_01'\n\tTransform 'pinky_03_r'\n\tTransform
-    'clavicle_l'\n\tTransform 'ring_02_l'\n\tTransform 'ball_l'\n\tTransform 'hand_l'\n\tand
-    more ..."
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -88108,7 +88117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkKill: 1
-  index_ID: 1001
+  index_ID: 2002
   SpawnerPrefab: {fileID: 1558891530782441565, guid: 9feff93d3eba4ab4ca6c5c300893ccc7,
     type: 3}
   spawnePos:
@@ -94008,7 +94017,7 @@ GameObject:
   - component: {fileID: 8075337505736466578}
   - component: {fileID: 8075337505736466670}
   m_Layer: 0
-  m_Name: "\uBE68\uAC04\uC54C \uC5C6\uC560\uACE0"
+  m_Name: "\uCCAB\uBC88\uC9F8 \uC54C \uC624\uBE0C\uC81D\uD2B8 \uB044\uACE0"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94578,8 +94587,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8779704961917879933}
-  m_LocalRotation: {x: 0.078900956, y: -0.14267454, z: 0.011421796, w: 0.9865537}
-  m_LocalPosition: {x: -21.958076, y: 9.183676, z: -54.882767}
+  m_LocalRotation: {x: -0.00044337942, y: 0.99408484, z: -0.10805393, w: -0.010932521}
+  m_LocalPosition: {x: 18.160398, y: -2.4357944, z: 39.526897}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
