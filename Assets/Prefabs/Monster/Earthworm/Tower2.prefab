@@ -96,7 +96,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 764804887923287359}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -157,6 +157,7 @@ GameObject:
   - component: {fileID: 7244703034081218357}
   - component: {fileID: -9168396194466099973}
   - component: {fileID: 1213636163992580884}
+  - component: {fileID: -297869440438668692}
   m_Layer: 0
   m_Name: Tower2
   m_TagString: Tower2
@@ -192,6 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed6c30df4ef8b4b4c80116e7e9794a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InvenObj: []
   target: {fileID: 0}
   tower3: {fileID: 0}
   beam: {fileID: 7534669642315901003, guid: b93a84f1d293baf49810cb72f80efd60, type: 3}
@@ -211,6 +213,22 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &-297869440438668692
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2540434781595319560}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2992384365859931085
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +323,7 @@ BoxCollider:
   m_GameObject: {fileID: 2992384365859931085}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -402,7 +420,7 @@ BoxCollider:
   m_GameObject: {fileID: 4324141349314712057}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}

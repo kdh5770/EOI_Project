@@ -352,6 +352,7 @@ GameObject:
   - component: {fileID: 1354373905962290478}
   - component: {fileID: 4256433077321020028}
   - component: {fileID: 1278260057183873749}
+  - component: {fileID: 6308999693465441986}
   m_Layer: 0
   m_Name: Tower3
   m_TagString: Tower3
@@ -387,6 +388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d1d7e8830b15384aab7c1ac5f9f5716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InvenObj: []
   target: {fileID: 0}
   beam: {fileID: 2398428992176296100, guid: db2655f8df589b9469e96d2a72836df2, type: 3}
   beamTr: {fileID: 7147764563509494057}
@@ -405,3 +407,19 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &6308999693465441986
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6195088363297552673}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

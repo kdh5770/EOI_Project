@@ -43,7 +43,7 @@ public class BossEnergyTower : MonoBehaviour
         {
             foreach (Collider cols in colliders_)
             {
-                if (cols.CompareTag("Tower2"))
+                if (cols.CompareTag("Tower2") )
                 {
                     tower2 = cols.gameObject.transform;
                 }
