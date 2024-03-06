@@ -10,8 +10,10 @@ public class DeathState : CharaterBaseState
     }
     public override void OnEnterState()
     {
-        //죽엇을대 UI 팝업
         //마우스 고정 해제
+        Cursor.lockState = CursorLockMode.None;
+        //죽엇을대 UI 팝업
+
     }
 
     public override void OnExitState()

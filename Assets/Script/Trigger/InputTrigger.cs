@@ -13,7 +13,6 @@ public class InputTrigger : MonoBehaviour
     {
         if (interactions.Count > 0)
         {
-            Debug.Log("¿Œ«≤ »Æ¿Œ");
             foreach (Interaction interaction in interactions)
             {
                 interaction.Interact();

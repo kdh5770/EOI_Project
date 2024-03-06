@@ -19,15 +19,15 @@ public class DoorMover : Interaction
         directions[1] = new Vector3(1, 1, 0);   // Northeast
         directions[2] = new Vector3(-1, -1, 0); // Southwest
         directions[3] = new Vector3(1, -1, 0);  // Southeast
-        bc= GetComponent<Rigidbody>();
+        bc = GetComponent<Rigidbody>();
     }
 
     public override void Interact()
     {
         if (Gamemanager.instance.player.GetComponent<CharacterInventory>().InvenObj[0] != null)
         {
-            Gamemanager.instance.player.GetComponent<CharacterInventory>().InvenObj.Clear();
             StartCoroutine(MoveDoor());
+            Gamemanager.instance.player.GetComponent<CharacterInventory>().InvenObj.Clear();
         }
     }
 
@@ -45,7 +45,6 @@ public class DoorMover : Interaction
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-
         bc.gameObject.SetActive(false);
     }
 }

@@ -171,7 +171,6 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         //rigidbody.velocity += Vector3.down * gravityForce * Time.deltaTime;
     }
 
-
     public void RotateUpdate()
     {
         transform.rotation = Quaternion.Euler(0f, cinemachineTargetYaw, 0.0f);
