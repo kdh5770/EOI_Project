@@ -14,12 +14,11 @@ public class CharacterInventory : MonoBehaviour
         InvenObj.Add(_itemname);
     }
 
-
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("InterActionObj"))
         {
-            if (Gamemanager.instance.player.GetComponent<CharacterStateController>().curState == Gamemanager.instance.player.GetComponent<CharacterStateController>().states[CharacterSTATE.INTERACTION]&&!isget)
+            if (Gamemanager.instance.player.GetComponent<CharacterStateController>().curState == Gamemanager.instance.player.GetComponent<CharacterStateController>().states[CharacterSTATE.INTERACTION] && !isget)
             {
                 OnInputInven(other.gameObject);
                 other.gameObject.SetActive(false);
@@ -47,6 +46,7 @@ public class CharacterInventory : MonoBehaviour
             }
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         isget = false;

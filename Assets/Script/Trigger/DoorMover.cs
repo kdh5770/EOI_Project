@@ -21,11 +21,15 @@ public class DoorMover : Interaction
         directions[3] = new Vector3(1, -1, 0);  // Southeast
         bc= GetComponent<Rigidbody>();
     }
+
     public override void Interact()
     {
-        StartCoroutine(MoveDoor());
+        if (Gamemanager.instance.player.GetComponent<CharacterInventory>().InvenObj[0] != null)
+        {
+            Gamemanager.instance.player.GetComponent<CharacterInventory>().InvenObj.Clear();
+            StartCoroutine(MoveDoor());
+        }
     }
-
 
     IEnumerator MoveDoor()
     {
@@ -44,5 +48,4 @@ public class DoorMover : Interaction
 
         bc.gameObject.SetActive(false);
     }
-
 }
