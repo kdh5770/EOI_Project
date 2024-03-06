@@ -21,6 +21,9 @@ public class CharacterUI : MonoBehaviour
     private TMP_Text costText;
     [SerializeField]
     private TMP_Text BulletText;
+    [SerializeField]
+    private TMP_Text systemMsgText;
+
 
     public Slider potionGauge;
     public TMP_Text potionText;
@@ -31,6 +34,7 @@ public class CharacterUI : MonoBehaviour
 
     private Queue<string> dialogues = new Queue<string>();
     private Queue<string> missions = new Queue<string>(); //미션 txt 
+    private Queue<string> systemmsg= new Queue<string>(); //시스템 메세지 txt
 
 
     private IEnumerator dialogueCor;
@@ -105,6 +109,12 @@ public class CharacterUI : MonoBehaviour
             dialogueCor = OutputTextGradually();
             StartCoroutine(dialogueCor);
         }
+    }
+
+    public void SetSystemMsgtxt(string _message)
+    {
+        systemmsg.Enqueue(_message);
+
     }
 
     public void SetMissiontxt(string _masseage)

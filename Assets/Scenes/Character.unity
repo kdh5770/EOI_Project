@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17276813, g: 0.21589185, b: 0.29782563, a: 1}
+  m_IndirectSpecularColor: {r: 0.17276844, g: 0.21589245, b: 0.2978263, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -30025,7 +30025,7 @@ PrefabInstance:
     - target: {fileID: 6511218451531789961, guid: dbde0b8014cb20b47b24d25bfeafab50,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6511218451531789961, guid: dbde0b8014cb20b47b24d25bfeafab50,
         type: 3}
@@ -63160,7 +63160,7 @@ GameObject:
   - component: {fileID: 1740878114}
   - component: {fileID: 1740878117}
   m_Layer: 7
-  m_Name: Unique_Monster
+  m_Name: Unique_Monster0306
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83574,6 +83574,7 @@ MonoBehaviour:
   maxPotionGauge: 100
   curPotionGauge: 0
   curGoods: 0
+  controller: {fileID: 0}
 --- !u!114 &1809102450341903954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83624,6 +83625,7 @@ MonoBehaviour:
   - {fileID: 2027788353}
   - {fileID: 985005646}
   Debug_state: 0
+  inputTrigger: {fileID: 0}
 --- !u!1 &1918942079628592334
 GameObject:
   m_ObjectHideFlags: 3
@@ -96298,6 +96300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63d91fe9b728c5d4db3c5277433a4004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allkill: 0
   killCount: 0
 --- !u!4 &5328666602952203496
 Transform:
@@ -96456,6 +96459,7 @@ MonoBehaviour:
   timeLineManager: {fileID: 5328666602952203501}
   databaseManager: {fileID: 5328666602952203503}
   cutsceneinteraction: {fileID: 0}
+  characterstatecontroller: {fileID: 0}
 --- !u!1 &5328666602952854992
 GameObject:
   m_ObjectHideFlags: 0
@@ -97146,10 +97150,12 @@ MonoBehaviour:
   costSlider: {fileID: 8576828022336634515}
   costText: {fileID: 8576828021824931307}
   BulletText: {fileID: 4703656321782270018}
+  systemMsgText: {fileID: 0}
   potionGauge: {fileID: 5328666601472475666}
   potionText: {fileID: 5328666602886902550}
   missionText: {fileID: 0}
   dialogueText: {fileID: 5328666601127141353}
+  E_btn: {fileID: 0}
   effectImage: {fileID: 8631597327020116876}
   bloodFrame: {fileID: 300866000754424129}
   bloodEffect: {fileID: 7287178635717884490}
