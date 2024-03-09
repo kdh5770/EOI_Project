@@ -32652,6 +32652,51 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1339158861}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1344026547
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1344026548}
+  - component: {fileID: 1344026549}
+  m_Layer: 0
+  m_Name: "\uCC28\uB2E8\uB9C9"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1344026548
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344026547}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5575547163711399960}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1344026549
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344026547}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.76, y: 8.07, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1349015275 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4446684352120093052, guid: 48e9a270e3fa62a4c91284e45e2d8d97,
@@ -54468,6 +54513,7 @@ MonoBehaviour:
   - {fileID: 975282780198228876}
   - {fileID: 975282780095289571}
   - {fileID: 975282780035601329}
+  cantgoobj: {fileID: 0}
 --- !u!1 &975282779027938675
 GameObject:
   m_ObjectHideFlags: 0
@@ -68713,7 +68759,7 @@ Transform:
   m_Children:
   - {fileID: 7732707566684340744}
   m_Father: {fileID: 5575547163711399960}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5575547162272802529
 GameObject:
@@ -68745,7 +68791,7 @@ Transform:
   m_Children:
   - {fileID: 3682652946405517845}
   m_Father: {fileID: 5575547163711399960}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5575547162643852686
 GameObject:
@@ -68777,7 +68823,7 @@ Transform:
   m_Children:
   - {fileID: 486332332890264}
   m_Father: {fileID: 5575547163711399960}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5575547162703668956
 GameObject:
@@ -68809,7 +68855,7 @@ Transform:
   m_Children:
   - {fileID: 5597558995505773208}
   m_Father: {fileID: 5575547163711399960}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &5575547162750615916
 Transform:
@@ -69079,6 +69125,7 @@ Transform:
   m_LocalScale: {x: 1.4999998, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1344026548}
   - {fileID: 5575547162246204031}
   - {fileID: 5575547162272802530}
   - {fileID: 5575547162643852687}
@@ -69123,6 +69170,7 @@ MonoBehaviour:
   - {fileID: 5575547162272802529}
   - {fileID: 5575547162643852686}
   - {fileID: 5575547162703668956}
+  cantgoobj: {fileID: 1344026547}
 --- !u!114 &5575547163842326986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69142,6 +69190,7 @@ MonoBehaviour:
   - {fileID: 5575547163209072436}
   - {fileID: 5575547162779235419}
   - {fileID: 5575547162836991753}
+  cantgoobj: {fileID: 0}
 --- !u!1 &5575547163842326987
 GameObject:
   m_ObjectHideFlags: 0
@@ -69216,6 +69265,7 @@ MonoBehaviour:
   - {fileID: 5575547162774367730}
   - {fileID: 5575547163217077917}
   - {fileID: 5575547163272605135}
+  cantgoobj: {fileID: 0}
 --- !u!1 &5575547164280169229
 GameObject:
   m_ObjectHideFlags: 0
@@ -74281,6 +74331,7 @@ MonoBehaviour:
   - {fileID: 5915215484990765471}
   - {fileID: 5915215484619617008}
   - {fileID: 5915215484677339554}
+  cantgoobj: {fileID: 0}
 --- !u!4 &5915215485682775910
 Transform:
   m_ObjectHideFlags: 0
@@ -86134,6 +86185,7 @@ MonoBehaviour:
   - {fileID: 7301159761321382975}
   - {fileID: 7301159761750794064}
   - {fileID: 7301159761678521346}
+  cantgoobj: {fileID: 0}
 --- !u!4 &7301159762818669254
 Transform:
   m_ObjectHideFlags: 0

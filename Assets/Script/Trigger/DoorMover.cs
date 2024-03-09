@@ -12,6 +12,7 @@ public class DoorMover : Interaction
     private Vector3[] directions = new Vector3[4];
 
     Rigidbody bc;
+    public GameObject cantgoobj;
 
     private void Start()
     {
@@ -20,6 +21,7 @@ public class DoorMover : Interaction
         directions[2] = new Vector3(-1, -1, 0); // Southwest
         directions[3] = new Vector3(1, -1, 0);  // Southeast
         bc = GetComponent<Rigidbody>();
+        cantgoobj=GetComponentInChildren<GameObject>();
     }
 
     public override void Interact()
@@ -27,6 +29,7 @@ public class DoorMover : Interaction
         if (Gamemanager.instance.player.GetComponent<CharacterInventory>().InvenObj[0] != null)
         {
             StartCoroutine(MoveDoor());
+            cantgoobj.gameObject.SetActive(false);
             Gamemanager.instance.player.GetComponent<CharacterInventory>().InvenObj.Clear();
         }
     }
@@ -46,5 +49,6 @@ public class DoorMover : Interaction
             yield return null;
         }
         bc.gameObject.SetActive(false);
+
     }
 }
