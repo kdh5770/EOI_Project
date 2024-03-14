@@ -15,7 +15,7 @@ public class ObjectSwitcher : Interaction
 
     public override void Interact()
     {
-        gameobj1.SetActive(false);
         gameobj2.SetActive(true);
+        gameobj1.SetActive(false);
     }
 }
