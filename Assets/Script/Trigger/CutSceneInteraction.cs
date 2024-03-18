@@ -23,11 +23,11 @@ public class CutSceneInteraction : Interaction
 
     private void OnTimelineStopped(PlayableDirector director) // 타임라인이 끝날 때 호출되는 메서드
     {
+        //Time.timeScale = 1;
         foreach (GameObject interaction in gameobjects)
         {
             Destroy(interaction.gameObject);
         }
-        //Time.timeScale = 1;
         Gamemanager.instance.player.GetComponent<CharacterStateController>().enabled = true;
         pd.stopped -= OnTimelineStopped; // 이벤트 리스너를 제거
     }

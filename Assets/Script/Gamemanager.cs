@@ -7,7 +7,7 @@ public class Gamemanager : MonoBehaviour
     public static Gamemanager instance;
 
     public GameObject player;
-    public TempScript tempScript;
+    //public TempScript tempScript;
     public SpawnManager spawnManager;
     public ItemDropManagere itemDropManagere;
     public CharacterUI characterUI;
