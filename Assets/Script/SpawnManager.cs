@@ -38,6 +38,8 @@ public class SpawnManager : MonoBehaviour
         {
             allkill = true;
             AllKillAction?.Invoke();
+            killCount = 0;
         }
+        
     }
 }
