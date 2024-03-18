@@ -97,7 +97,7 @@ public class CharacterUI : MonoBehaviour
         }
     }
 
-    public void SetDialogue(string _masseage)
+    public void SetDialogue(string _masseage) // 캐릭터 대사
     {
         dialogues.Enqueue(_masseage);
 
@@ -108,24 +108,45 @@ public class CharacterUI : MonoBehaviour
         }
     }
 
-    public void SetSystemMsgtxt(string _message)
+    public void SetSystemMsgtxt(string _message) // 획득 아이템 메세지
     {
         systemmsg.Enqueue(_message);
-        systemMsgText.text = _message.ToString();
+        systemMsgText.text = _message;
         StartCoroutine(systemmsgCo());
     }
 
-    IEnumerator systemmsgCo()
+    IEnumerator systemmsgCo() // 획득 아이템 메세지 3초 후 삭제
     {
+        yield return new WaitForSeconds(3f);
         systemmsg.Dequeue();
-        yield return new WaitForSeconds(5f);
+        if (systemmsg.Count > 0)
+        {
+            systemMsgText.text = systemmsg.Peek();
+        }
+        else
+            systemMsgText.text = "";
     }
 
-    public void SetMissiontxt(string _masseage)
+    public void SetMissiontxt(string _masseage) // 플레이어 목표
     {
         missions.Enqueue(_masseage);
-        missionText.text = _masseage.ToString();
+        missionText.text = _masseage;
+        StartCoroutine(DeleteMissionTextCo());
     }
+
+    IEnumerator DeleteMissionTextCo() // 목표 메세지 3초 후 삭제
+    {
+        yield return new WaitForSeconds(3f);
+        missions.Dequeue();
+        if (missions.Count > 0)
+        {
+            missionText.text = missions.Peek();
+        }
+        else
+            missionText.text = "";
+
+    }
+
 
     IEnumerator triggercor;
 
