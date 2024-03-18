@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Reflection;
-
-
+using UnityEditor.ShaderGraph;
+using Unity.VisualScripting;
 
 public class CharacterUI : MonoBehaviour
 {
@@ -97,6 +97,17 @@ public class CharacterUI : MonoBehaviour
         }
     }
 
+    public void CommanderDialogue(string _masseage) // 사령관 대사
+    {
+        dialogues.Enqueue(_masseage);
+
+        if (dialogueCor == null)
+        {
+            dialogueCor = CommanderTextGradually();
+            StartCoroutine(dialogueCor);
+        }
+    }
+
     public void SetDialogue(string _masseage) // 캐릭터 대사
     {
         dialogues.Enqueue(_masseage);
@@ -115,9 +126,9 @@ public class CharacterUI : MonoBehaviour
         StartCoroutine(systemmsgCo());
     }
 
-    IEnumerator systemmsgCo() // 획득 아이템 메세지 3초 후 삭제
+    IEnumerator systemmsgCo() // 획득 아이템 메세지 4초 후 삭제
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4f);
         systemmsg.Dequeue();
         if (systemmsg.Count > 0)
         {
@@ -134,9 +145,9 @@ public class CharacterUI : MonoBehaviour
         StartCoroutine(DeleteMissionTextCo());
     }
 
-    IEnumerator DeleteMissionTextCo() // 목표 메세지 3초 후 삭제
+    IEnumerator DeleteMissionTextCo() // 목표 메세지 4초 후 삭제
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4f);
         missions.Dequeue();
         if (missions.Count > 0)
         {
@@ -220,6 +231,25 @@ public class CharacterUI : MonoBehaviour
         while (dialogues.TryDequeue(out var dialogue))
         {
             dialogueText.text = dialogue;
+            dialogueText.color = Color.white;
+            yield return outputTextDeley;
+        }
+
+        dialogueText.enabled = false;
+        dialogueCor = null;
+    }
+
+
+
+    IEnumerator CommanderTextGradually()
+    {
+        dialogueText.enabled = true;
+
+        while (dialogues.TryDequeue(out var dialogue))
+        {
+            dialogueText.text = dialogue;
+            dialogueText.color = Color.yellow;
+            
             yield return outputTextDeley;
         }
 

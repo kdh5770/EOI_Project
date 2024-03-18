@@ -12,5 +12,4 @@ public class DialogueBox : Interaction
     {
         Gamemanager.instance.characterUI.SetDialogue(dialogueText);
     }
-
 }
