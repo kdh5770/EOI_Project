@@ -10,6 +10,7 @@ public class MissionMessageBox : Interaction
 
     public override void Interact()
     {
-        Gamemanager.instance.characterUI.SetMissiontxt(dialogueText);
+        string yellowText = "<color=yellow>" + dialogueText + "</color>";
+        Gamemanager.instance.characterUI.SetMissiontxt(yellowText);
     }
 }

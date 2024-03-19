@@ -9,6 +9,10 @@ public class BossEnergyTower3 : CharacterInventory
     public GameObject beam;
     public Transform beamTr;
 
+    [Header("¾Ë & ³öµÑ À§Ä¡")]
+    public GameObject egg;
+    public Transform eggPos;
+
     public GameObject blueEgg;
     public void Start()
     {
@@ -39,7 +43,9 @@ public class BossEnergyTower3 : CharacterInventory
             if (Gamemanager.instance.player.GetComponent<CharacterInventory>().InvenObj[2] != null)
             {
                 Instantiate(beam, beamTr.transform.position, Quaternion.identity);
-                Destroy(gameObject);
+                GameObject egg_ = Instantiate(egg, eggPos.transform.position, Quaternion.identity);
+                Destroy(gameObject, 3f);
+                Destroy(egg_, 3f);
             }
         }
     }
