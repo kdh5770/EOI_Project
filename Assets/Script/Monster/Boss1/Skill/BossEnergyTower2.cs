@@ -67,6 +67,7 @@ public class BossEnergyTower2 : CharacterInventory
                 GameObject eft_ = Instantiate(eft, eftPos.transform.position, Quaternion.identity);
                 Destroy(gameObject, 3f);
                 Destroy(egg_, 3f);
+
             }
         }
     }

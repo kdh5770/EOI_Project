@@ -10,7 +10,6 @@ public class DialogueBox : Interaction
 
     public override void Interact()
     {
-        string yellowText = "<color=yellow>" + dialogueText + "</color>";
-        Gamemanager.instance.characterUI.SetDialogue(yellowText);
+        Gamemanager.instance.characterUI.SetDialogue(dialogueText);
     }
 }

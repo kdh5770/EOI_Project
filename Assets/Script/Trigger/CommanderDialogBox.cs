@@ -11,7 +11,8 @@ public class CommanderDialogBox : Interaction
 
     public override void Interact()
     {
-        Gamemanager.instance.characterUI.CommanderDialogue(dialogueText);
+        string yellowText = "<color=yellow>" + dialogueText + "</color>";
+        Gamemanager.instance.characterUI.CommanderDialogue(yellowText);
     }
 
 }
