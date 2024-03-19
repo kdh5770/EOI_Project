@@ -15,6 +15,9 @@ public class BossEnergyTower : MonoBehaviour
     public GameObject egg;
     public Transform eggPos;
 
+    [Header("¿Ã∆Â∆Æ")]
+    public GameObject eft;
+    public Transform eftPos;
 
     public void Start()
     {
@@ -64,6 +67,7 @@ public class BossEnergyTower : MonoBehaviour
             {
                 Instantiate(beam, beamTr.transform.position, Quaternion.identity);
                 GameObject egg_ = Instantiate(egg, eggPos.transform.position, Quaternion.identity);
+                GameObject eft_ = Instantiate(eft, eftPos.transform.position, Quaternion.identity);
                 Destroy(gameObject, 3f);
                 Destroy(egg_, 3f);
             }
