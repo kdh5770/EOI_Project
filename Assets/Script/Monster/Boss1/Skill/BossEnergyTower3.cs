@@ -16,6 +16,7 @@ public class BossEnergyTower3 : CharacterInventory
     [Header("¿Ã∆Â∆Æ")]
     public GameObject eft;
     public Transform eftPos;
+
     public void Start()
     {
         GameObject boss = GameObject.FindGameObjectWithTag("Boss");
