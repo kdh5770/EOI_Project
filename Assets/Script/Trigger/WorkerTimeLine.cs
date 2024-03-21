@@ -30,8 +30,10 @@ public class WorkerTimeLine : Interaction
         {
             Destroy(interaction.gameObject);
         }
+
         Time.timeScale = 1;
 
+        Gamemanager.instance.player.transform.position = playerPos.position;
         Gamemanager.instance.player.GetComponent<CharacterStateController>().enabled = true;
         pd.stopped -= OnTimelineStopped; // 이벤트 리스너를 제거
     }
