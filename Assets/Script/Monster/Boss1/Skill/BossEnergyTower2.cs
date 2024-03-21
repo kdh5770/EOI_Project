@@ -21,6 +21,8 @@ public class BossEnergyTower2 : CharacterInventory
     {
         GameObject boss = GameObject.FindGameObjectWithTag("Boss");
         gameObject.transform.LookAt(boss.transform);
+        target = null;
+        tower3 = null;
     }
     public void Update()
     {
@@ -33,10 +35,7 @@ public class BossEnergyTower2 : CharacterInventory
                 if (col.CompareTag("Player"))
                 {
                     target = col.gameObject.transform;
-                }
-                else if (!col.CompareTag("Player"))
-                {
-                    target = null;
+                    break;
                 }
             }
         }
@@ -50,10 +49,7 @@ public class BossEnergyTower2 : CharacterInventory
                 if (cols.CompareTag("Tower3"))
                 {
                     tower3 = cols.gameObject.transform;
-                }
-                else if (!cols.CompareTag("Tower3"))
-                {
-                    tower3 = null;
+                    break;
                 }
             }
         }

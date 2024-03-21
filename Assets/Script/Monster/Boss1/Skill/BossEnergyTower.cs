@@ -23,6 +23,8 @@ public class BossEnergyTower : MonoBehaviour
     {
         GameObject boss = GameObject.FindGameObjectWithTag("Boss");
         gameObject.transform.LookAt(boss.transform);
+        target = null;
+        tower2 = null;
 
     }
     public void Update()
@@ -36,10 +38,7 @@ public class BossEnergyTower : MonoBehaviour
                 if (col.CompareTag("Player"))
                 {
                     target = col.gameObject.transform;
-                }
-                else if (!col.CompareTag("Player"))
-                {
-                    target = null;
+                    break;
                 }
             }
         }
@@ -53,10 +52,7 @@ public class BossEnergyTower : MonoBehaviour
                 if (cols.CompareTag("Tower2") )
                 {
                     tower2 = cols.gameObject.transform;
-                }
-                else if (!cols.CompareTag("Tower2"))
-                {
-                    tower2 = null;
+                    break;
                 }
             }
         }
