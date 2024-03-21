@@ -11,6 +11,9 @@ public class WorkerTimeLine : Interaction
     public PlayableDirector pd;
     [Header("타임라인에 사용된 오브젝트 파괴")]
     public List<GameObject> gameobjects;
+    [Header("플레이어 위치 이동")]
+    public GameObject player;
+    public Transform playerPos;
 
     public override void Interact()
     {
@@ -28,6 +31,7 @@ public class WorkerTimeLine : Interaction
             Destroy(interaction.gameObject);
         }
         Time.timeScale = 1;
+
         Gamemanager.instance.player.GetComponent<CharacterStateController>().enabled = true;
         pd.stopped -= OnTimelineStopped; // 이벤트 리스너를 제거
     }
