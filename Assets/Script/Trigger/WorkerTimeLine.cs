@@ -15,6 +15,7 @@ public class WorkerTimeLine : Interaction
     public GameObject player;
     public Transform playerPos;
 
+    public Transform worker;
     public override void Interact()
     {
         Time.timeScale = 0;
@@ -30,10 +31,23 @@ public class WorkerTimeLine : Interaction
         {
             Destroy(interaction.gameObject);
         }
-
         Time.timeScale = 1;
 
-        Gamemanager.instance.player.transform.position = playerPos.position;
+        Collider[] colliders_ = Physics.OverlapSphere(transform.position, 100f);
+        if (colliders_.Length > 0)
+        {
+            foreach (Collider cols in colliders_)
+            {
+                if (cols.CompareTag("Destroy"))
+                {
+                    worker = cols.gameObject.transform;
+                    break;
+                }
+            }
+        }
+
+        Debug.Log("타임스케일 1");
+        player.transform.position = playerPos.position;
         Gamemanager.instance.player.GetComponent<CharacterStateController>().enabled = true;
         pd.stopped -= OnTimelineStopped; // 이벤트 리스너를 제거
     }
