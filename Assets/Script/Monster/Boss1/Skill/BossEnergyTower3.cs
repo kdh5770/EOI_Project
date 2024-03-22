@@ -41,14 +41,20 @@ public class BossEnergyTower3 : CharacterInventory
 
         if (target != null && Input.GetKey(KeyCode.E))
         {
-            if (Gamemanager.instance.player.GetComponent<CharacterInventory>().InvenObj[2] != null)
-            {
-                Instantiate(beam, beamTr.transform.position, Quaternion.identity);
-                GameObject egg_ = Instantiate(egg, eggPos.transform.position, Quaternion.identity);
-                GameObject eft_ = Instantiate(eft, eftPos.transform.position, Quaternion.identity);
-                Destroy(gameObject, 3f);
-                Destroy(egg_, 3f);
-            }
+            toweregg();
+        }
+    }
+    public void toweregg()
+    {
+        if (Gamemanager.instance.player.GetComponent<CharacterInventory>().InvenObj[2] != null)
+        {
+            GameObject beam_ = Instantiate(beam, beamTr.transform.position, Quaternion.identity);
+            GameObject egg_ = Instantiate(egg, eggPos.transform.position, Quaternion.identity);
+            GameObject eft_ = Instantiate(eft, eftPos.transform.position, Quaternion.identity);
+            Destroy(egg_, 3f);
+            Destroy(eft_, 3f);
+            Destroy(beam_, 3f);
+            Destroy(gameObject, 3f);
         }
     }
 }

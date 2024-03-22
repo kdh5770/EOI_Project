@@ -61,11 +61,12 @@ public class BossEnergyTower : MonoBehaviour
         {
             if (Gamemanager.instance.player.GetComponent<CharacterInventory>().InvenObj[0] != null)
             {
-                Instantiate(beam, beamTr.transform.position, Quaternion.identity);
+                GameObject beam_ = Instantiate(beam, beamTr.transform.position, Quaternion.identity);
                 GameObject egg_ = Instantiate(egg, eggPos.transform.position, Quaternion.identity);
                 GameObject eft_ = Instantiate(eft, eftPos.transform.position, Quaternion.identity);
                 Destroy(gameObject, 3f);
                 Destroy(egg_, 3f);
+                Destroy(eft_, 3f);
             }
         }
     }
