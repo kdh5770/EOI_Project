@@ -28,6 +28,7 @@ public class CharacterUI : MonoBehaviour
     public TMP_Text potionText;
     public TMP_Text missionText;
     public TMP_Text dialogueText;
+    public TMP_Text TowerText;
     public GameObject E_btn;
 
     private Queue<string> dialogues = new Queue<string>();
@@ -39,6 +40,8 @@ public class CharacterUI : MonoBehaviour
     public Image effectImage;
     public Image bloodFrame;
     public Image bloodEffect;
+
+
 
     bool isDanger;
 
@@ -256,4 +259,15 @@ public class CharacterUI : MonoBehaviour
         dialogueText.enabled = false;
         dialogueCor = null;
     }
+
+    public void ControlTowerTxt(bool _enter)
+    {
+        if (_enter)
+        {
+            TowerText.gameObject.SetActive(true);
+        }
+        else
+            TowerText.gameObject.SetActive(false);
+    }
+
 }

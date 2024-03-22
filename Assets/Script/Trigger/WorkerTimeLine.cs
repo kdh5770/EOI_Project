@@ -19,8 +19,6 @@ public class WorkerTimeLine : Interaction
     public override void Interact()
     {
         Time.timeScale = 0;
-        Gamemanager.instance.player.GetComponent<CharacterStateController>().enabled = false;
-        Gamemanager.instance.player.GetComponent<CharacterStateController>().rigidbody.velocity = Vector3.zero;
         Gamemanager.instance.timeLineManager.SetInteraction(pd, timeLine);
         pd.stopped += OnTimelineStopped; // 타임라인이 끝날 때 재개되도록 설정
     }
@@ -31,11 +29,12 @@ public class WorkerTimeLine : Interaction
         {
             Destroy(interaction.gameObject);
         }
-        Time.timeScale = 1;
 
         player.transform.position = playerPos.position;
         player.transform.rotation = playerPos.rotation;
-        Gamemanager.instance.player.GetComponent<CharacterStateController>().enabled = true;
+
+        Time.timeScale = 1;
+
         pd.stopped -= OnTimelineStopped; // 이벤트 리스너를 제거
     }
 }
