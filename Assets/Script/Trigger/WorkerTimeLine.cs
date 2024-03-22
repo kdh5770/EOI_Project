@@ -15,7 +15,7 @@ public class WorkerTimeLine : Interaction
     public GameObject player;
     public Transform playerPos;
 
-    public Transform worker;
+    //public Transform worker;
     public override void Interact()
     {
         Time.timeScale = 0;
@@ -33,9 +33,8 @@ public class WorkerTimeLine : Interaction
         }
         Time.timeScale = 1;
 
-
-        Debug.Log("타임스케일 1");
         player.transform.position = playerPos.position;
+        player.transform.rotation = playerPos.rotation;
         Gamemanager.instance.player.GetComponent<CharacterStateController>().enabled = true;
         pd.stopped -= OnTimelineStopped; // 이벤트 리스너를 제거
     }
