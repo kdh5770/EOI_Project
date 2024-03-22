@@ -18,7 +18,7 @@ public class WorkerTimeLineTrigger : MonoBehaviour
         int monsterLayer = LayerMask.NameToLayer("Monster");
         string playerTag = "Player";
 
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 10f);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 12f);
         monster = null;
         player = null;
 
@@ -29,7 +29,6 @@ public class WorkerTimeLineTrigger : MonoBehaviour
                 if (col.gameObject.layer == monsterLayer)
                 {
                     monster = col.gameObject.transform;
-                    break;
                 }
                 else if (col.gameObject.CompareTag(playerTag))
                 {
