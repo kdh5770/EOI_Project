@@ -12,6 +12,7 @@ public class MachineGun : WeaponTable
     private WaitForSeconds shotDelay;
     private IEnumerator usingCor;
 
+
     [SerializeField]
     private GameObject ShootFlx;
     [SerializeField]

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerAnimationEvent : MonoBehaviour
+public class GunSoundEvent : MonoBehaviour
 {
     CharacterStateController controller;
     public event Action ActionAttack;

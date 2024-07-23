@@ -43,7 +43,10 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     public float TopClamp = 70f;
     public float BottomClamp = -30f;
 
-    
+
+
+    public AudioSource shootingSound;
+    public AudioSource reloadingSound;
 
     [Header("마우스 감도 설정")]
     public float rotationSensitivity;
@@ -147,8 +150,6 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
             /// 수정 코드
             rigidbody.velocity = new Vector3(moveVector.x, rigidbody.velocity.y, moveVector.z);
-
-
         }
 
         else
