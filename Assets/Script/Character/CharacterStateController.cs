@@ -43,6 +43,8 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     public float TopClamp = 70f;
     public float BottomClamp = -30f;
 
+    
+
     [Header("마우스 감도 설정")]
     public float rotationSensitivity;
     private const float _threshold = 0.01f;
@@ -63,10 +65,11 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     public bool IsFlying;
     [SerializeField]
     private GameObject JetEngine;
-
+    
+    
     public float flyForce;
     //private float pullDistance = 10f; // 끌어들이는 거리
-    private LayerMask targetLayer;
+    //private LayerMask targetLayer;
 
     [SerializeField]
     private List<GameObject> weaponImg = new List<GameObject>();
