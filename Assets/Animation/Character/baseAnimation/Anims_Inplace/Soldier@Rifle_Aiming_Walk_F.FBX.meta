@@ -438,7 +438,23 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.35294116
+        functionName: FootSoundEvent
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: ef172e824daac5a4c88755e861b35091,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.81512606
+        functionName: FootSoundEvent
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: ef172e824daac5a4c88755e861b35091,
+          type: 3}
+        floatParameter: 0
+        intParameter: 1
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
