@@ -12,7 +12,6 @@ public class MachineGun : WeaponTable
     private WaitForSeconds shotDelay;
     private IEnumerator usingCor;
 
-
     [SerializeField]
     private GameObject ShootFlx;
     [SerializeField]
@@ -23,6 +22,7 @@ public class MachineGun : WeaponTable
     {
         Initsetting();
         shotDelay = new WaitForSeconds(Data.ShotDelay);
+        
     }
     public override void Initsetting()
     {
@@ -76,10 +76,11 @@ public class MachineGun : WeaponTable
                 canShooting = false;
                 break;
             }
+           
             Vector3 mousePos = Mouse.current.position.ReadValue();
             Ray ray = camera.ScreenPointToRay(mousePos);
             Instantiate(ShootFlx, machinegunShotpos);
-            Data.CurBullet--;
+            //Data.CurBullet--;
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
             {
                 if (hit.collider.CompareTag("Monster"))

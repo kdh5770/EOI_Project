@@ -205299,6 +205299,7 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   health: {fileID: 0}
   playerAnimationEvent: {fileID: 0}
+  gunSoundEvent: {fileID: 0}
   inputDir: {x: 0, y: 0, z: 0}
   moveSpeed: 5.3
   sprintSpeed: 5.3
@@ -211466,6 +211467,7 @@ GameObject:
   - component: {fileID: 3191518204863394621}
   - component: {fileID: 3191518204870909101}
   - component: {fileID: 3191518204870909100}
+  - component: {fileID: 3191518204870909102}
   m_Layer: 0
   m_Name: Base Mesh Skin1
   m_TagString: Untagged
@@ -212495,6 +212497,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3191518204870909102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3191518204863491805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1f274e67b5a182458b67b8a5879c47e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunsound: {fileID: 8371478270922627320}
+  machine: {fileID: 8371478270922627317}
 --- !u!137 &3191518204874990177
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -218471,6 +218487,7 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   health: {fileID: 0}
   playerAnimationEvent: {fileID: 0}
+  gunSoundEvent: {fileID: 0}
   inputDir: {x: 0, y: 0, z: 0}
   moveSpeed: 5.3
   sprintSpeed: 5.3
@@ -250460,6 +250477,7 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   health: {fileID: 0}
   playerAnimationEvent: {fileID: 0}
+  gunSoundEvent: {fileID: 0}
   inputDir: {x: 0, y: 0, z: 0}
   moveSpeed: 5.3
   sprintSpeed: 5.3
@@ -263574,6 +263592,7 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   health: {fileID: 0}
   playerAnimationEvent: {fileID: 0}
+  gunSoundEvent: {fileID: 0}
   inputDir: {x: 0, y: 0, z: 0}
   moveSpeed: 5.3
   sprintSpeed: 5.3
@@ -269520,7 +269539,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 5
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -269555,7 +269574,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -269570,7 +269589,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.25277779
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -270364,6 +270383,7 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   health: {fileID: 0}
   playerAnimationEvent: {fileID: 0}
+  gunSoundEvent: {fileID: 0}
   inputDir: {x: 0, y: 0, z: 0}
   moveSpeed: 5.3
   sprintSpeed: 5.3

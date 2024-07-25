@@ -28,6 +28,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
     public Camera mainCamera;
     public CharacterHealth health;
     public PlayerAnimationEvent playerAnimationEvent;
+    public GunSoundEvent gunSoundEvent;
     public WeaponData Data;
     public Vector3 inputDir;
     public float moveSpeed = 5.3f; // 기본 걷기속도
@@ -92,6 +93,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         animator = GetComponentInChildren<Animator>();
         health = GetComponent<CharacterHealth>();
         playerAnimationEvent = GetComponentInChildren<PlayerAnimationEvent>();
+        gunSoundEvent=GetComponentInChildren<GunSoundEvent>();
         curWeapon = weapons[0];
 
         InitState();
