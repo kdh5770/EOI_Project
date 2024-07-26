@@ -15,6 +15,7 @@ public class Gamemanager : MonoBehaviour
     public DatabaseManager databaseManager;
     public CutSceneInteraction cutsceneinteraction;
     public CharacterStateController characterstatecontroller;
+    public BGM_Manager bgm_manager;
 
     private void Awake()
     {
