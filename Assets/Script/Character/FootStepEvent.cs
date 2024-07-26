@@ -1,13 +1,16 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class FootStepEvent : MonoBehaviour
 {
     public AudioSource LeftSound;
     public AudioSource RightSound;
+    public GameObject obj;
+    CharacterStateController controller;
     private void Start()
     {
-
+        controller = transform.root.GetComponent<CharacterStateController>();
     }
 
     public void FootSoundEvent(int whichfoot)

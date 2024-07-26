@@ -1,6 +1,7 @@
 using Cinemachine;
 using JetBrains.Annotations;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -403,4 +404,19 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
         curWeapon = weapons[weaponnum];
     }
 
+
+    IEnumerator Stoptime()
+    {
+        yield return new WaitForSeconds(5f);
+        animator.SetFloat("MoveSpeed", applySpeed);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("First"))
+        {
+            animator.SetFloat("MoveSpeed", 0f);
+            StartCoroutine(Stoptime());
+        }
+    }
 }
