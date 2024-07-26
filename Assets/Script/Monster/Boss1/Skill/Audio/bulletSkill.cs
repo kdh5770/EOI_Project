@@ -7,19 +7,23 @@ public class bulletSkill : MonoBehaviour
     AudioSource audioSource1;
     public AudioClip audio1;
 
+    float count = 0;
+
     void Start()
     {
         audioSource1 = gameObject.AddComponent<AudioSource>();
-        StartCoroutine(monsterAudio());
     }
 
-    IEnumerator monsterAudio()
+    public void Update()
     {
-        while (true)
+        count += Time.deltaTime;
+
+        if(count >= 0.7f)
         {
             audioSource1.clip = audio1;
             audioSource1.Play();
-            yield return new WaitForSeconds(.7f);
+
+            count = 0f;
         }
     }
 }

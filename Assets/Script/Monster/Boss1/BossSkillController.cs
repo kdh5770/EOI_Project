@@ -12,11 +12,28 @@ public class BossSkillController : MonoBehaviour
     public int skillCount;
     public bool isSpecialSkill;
 
+    public GameObject bulletAudio;
+    public float count = 0;
+
     private void Start()
     {
         bossFSM = GetComponentInParent<MonsterFSM>();
         transform.root.GetComponent<WormHealth>().LowHealthEvent += SetSpecialSkill;
         skillCount = 0;
+    }
+
+    private void Update()
+    {
+        if (count >= 5)
+        {
+            bulletAudio.SetActive(false);
+            count = 0;
+        }
+
+        if (bulletAudio.activeSelf)
+        {
+            count += Time.deltaTime;
+        }
     }
 
     public void SetAttackState(GameObject _target)
