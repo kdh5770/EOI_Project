@@ -15,8 +15,23 @@ public class BossSkill_A : MonsterSkill
     public Transform Gun;
     bool hasReachedFirstTarget = false;
     public List<GameObject> bullets = new List<GameObject>();
+    public GameObject bulletAudio;
+    public float count = 0;
 
 
+    private void Update()
+    {
+        if (count >= 5)
+        {
+            bulletAudio.SetActive(false);
+            count = 0;
+        }
+
+        if (bulletAudio.activeSelf)
+        {
+            count += Time.deltaTime;
+        }
+    }
     public override void ApplyReaction(GameObject target)
     {
        
@@ -118,6 +133,7 @@ public class BossSkill_A : MonsterSkill
                 {
                     bullet.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 }
+                bulletAudio.SetActive(true);
                 StartCoroutine(MoveToSecondTarget());
             }
         }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4331046893706063940}
   - component: {fileID: 4331046893706063947}
   - component: {fileID: 5419218712328845281}
+  - component: {fileID: 9071117113953358102}
   - component: {fileID: 1144871390967259212}
   m_Layer: 7
   m_Name: NWorkerEgg
@@ -141,6 +142,20 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &9071117113953358102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4331046893706063945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bfe16bbab47fe2459a5eb7dacaaa849, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audio1: {fileID: 8300000, guid: 14f385f96e7ea6847b91382fba6efbbc, type: 3}
+  audio2: {fileID: 8300000, guid: 5187799d2ebe8594f92a02a903f63a35, type: 3}
 --- !u!114 &1144871390967259212
 MonoBehaviour:
   m_ObjectHideFlags: 0
