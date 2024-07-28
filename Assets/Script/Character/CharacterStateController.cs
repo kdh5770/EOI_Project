@@ -116,7 +116,7 @@ public class CharacterStateController : MonoBehaviour, IStateMachine
 
     public void ChangeReactionState(REACT_TYPE _state)
     {
-
+        
     }
 
     void InitState()

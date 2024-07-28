@@ -30,10 +30,16 @@ public class BGM_Manager : MonoBehaviour
             if (index<2)
             {
                 audioSource.loop = true;
+                if(index==1)
+                {
+                    audioSource.volume = 0.4f;
+                }
             }
-            else
+            else if(index==2) 
+            {
                 audioSource.loop = false;
-
+                audioSource.volume = 0.4f;
+            }
         }
     }
 
