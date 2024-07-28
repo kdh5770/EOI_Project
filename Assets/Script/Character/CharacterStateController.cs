@@ -22,6 +22,7 @@ public enum CharacterSTATE
     DEATH
 }
 
+
 public class CharacterStateController : MonoBehaviour, IStateMachine
 {
     public new Rigidbody rigidbody;

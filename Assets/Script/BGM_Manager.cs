@@ -27,6 +27,13 @@ public class BGM_Manager : MonoBehaviour
         {
             audioSource.clip = audioClips[index];
             audioSource.Play();
+            if (index<2)
+            {
+                audioSource.loop = true;
+            }
+            else
+                audioSource.loop = false;
+
         }
     }
 

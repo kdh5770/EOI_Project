@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class MachineGun : WeaponTable
 {
@@ -17,12 +18,15 @@ public class MachineGun : WeaponTable
     [SerializeField]
     private Transform machinegunShotpos;
 
+    [SerializeField]
+    private AudioSource gunAudioSource;  // 사운드를 재생할 AudioSource
+    [SerializeField]
+    private AudioClip gunShotClip;       // 사격 사운드 클립
 
     private void Start()
     {
         Initsetting();
         shotDelay = new WaitForSeconds(Data.ShotDelay);
-        
     }
     public override void Initsetting()
     {
@@ -80,7 +84,9 @@ public class MachineGun : WeaponTable
             Vector3 mousePos = Mouse.current.position.ReadValue();
             Ray ray = camera.ScreenPointToRay(mousePos);
             Instantiate(ShootFlx, machinegunShotpos);
-            //Data.CurBullet--;
+
+            gunAudioSource.PlayOneShot(gunShotClip);
+            Data.CurBullet--;
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
             {
                 if (hit.collider.CompareTag("Monster"))
