@@ -87,6 +87,7 @@ public class MachineGun : WeaponTable
 
             gunAudioSource.PlayOneShot(gunShotClip);
             Data.CurBullet--;
+
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
             {
                 if (hit.collider.CompareTag("Monster"))
