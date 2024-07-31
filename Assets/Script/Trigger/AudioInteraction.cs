@@ -25,8 +25,7 @@ public class AudioInteraction : Interaction
         {
             audioSource.clip = clip;
             audioSource.Play();
-            audioSource.volume = 0.4f;
+            audioSource.volume = 0.5f;
         }
-        Debug.Log("사운드재생");
     }
 }
