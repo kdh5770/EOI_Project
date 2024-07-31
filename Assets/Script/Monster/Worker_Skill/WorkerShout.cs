@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class WorkerShout : MonsterSkill
 {
-    public Sprite effectImage;
+    //public Sprite effectImage;
 
     public override void ApplyReaction(GameObject target) // 리액션 효과 (넉백)
     {
@@ -15,7 +15,7 @@ public class WorkerShout : MonsterSkill
 
     public override void ApplySkillEffect(GameObject target) // 스킬 효과
     {
-        Gamemanager.instance.characterUI.TakeEffect(effectImage);
+        //Gamemanager.instance.characterUI.TakeEffect(effectImage);
     }
 
     public override void ExecuteAttack(GameObject _target) // 공격 실행
